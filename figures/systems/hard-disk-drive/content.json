@@ -1,0 +1,58 @@
+{
+  "id": "hard-disk-drive",
+  "title": "Hard Disk Drive",
+  "subtitle": "Spinning mirrors that remember",
+  "category": "technology",
+  "featured": false,
+  "tags": ["hard drive", "hdd", "storage", "computer", "magnetism", "data", "seek time", "technology"],
+  "difficulty": "Intermediate",
+  "minutes": 5,
+  "summary": "With the lid off, watch the arm swing across spinning platters, wait for the right sector to come round, and read it — and see why seek time and rpm matter.",
+  "overview": [
+    "A hard disk stores data as tiny magnetised regions on glass or aluminium platters coated with a thin magnetic film. A modern platter holds over a trillion bits per square inch, each region a few tens of nanometres across.",
+    "The read/write head never touches the platter. Air dragged along by the spinning disc lifts its slider into flight a few nanometres above the surface — like a jet flying a millimetre above the ground. A voice-coil motor, the same idea as a loudspeaker, swings the arm in milliseconds.",
+    "Reading a block costs two waits: the seek, while the arm moves to the right track, and the rotational latency, while the platter brings the right sector round under the head. At 7,200 rpm the platter turns every 8.3 ms, so on average you wait half a turn."
+  ],
+  "controls": [
+    { "id": "rpm", "type": "range", "label": "Spindle speed", "min": 5400, "max": 15000, "step": 600, "value": 7200, "format": "{v} rpm", "help": "Laptop drives spin at 5,400 rpm; server drives at 10,000–15,000." },
+    { "id": "track", "type": "range", "label": "Requested track", "min": 0, "max": 100, "step": 1, "value": 50, "format": "{v} %", "help": "0 % is next to the hub, 100 % at the outer edge." },
+    { "id": "slow", "type": "range", "label": "Slow motion", "min": 20, "max": 400, "step": 10, "value": 120, "format": "×{v}", "help": "Real seeks take milliseconds." }
+  ],
+  "gauges": [
+    { "id": "state", "label": "Head" },
+    { "id": "track", "label": "Track number" },
+    { "id": "seek", "label": "Last seek" },
+    { "id": "latency", "label": "Avg rotational latency" },
+    { "id": "rate", "label": "Sustained rate" },
+    { "id": "fly", "label": "Fly height" }
+  ],
+  "actions": [
+    { "id": "seek", "label": "Seek", "primary": true },
+    { "id": "auto", "label": "Random reads" }
+  ],
+  "steps": [
+    { "title": "Platters and spindle", "body": ["Two platters, polished to a mirror, are clamped on a spindle motor that holds them at an exact speed. Data lies in concentric tracks — hundreds of thousands per surface.", "Each surface has its own head, all mounted on the same arm, so they move together."] },
+    { "title": "The voice-coil actuator", "body": ["Behind the pivot sits a flat copper coil between powerful neodymium magnets. Current through the coil pushes it one way or the other, swinging the arm — no gears, just magnetic force.", "A servo uses position marks written on the disc to hold the head on the track centre within a few nanometres."] },
+    { "title": "Seek", "body": ["To read a block the controller first moves the arm: it accelerates as hard as it can, then brakes, then settles on the track. Moving a third of the way across takes around 8 ms; to the next track, under 1 ms.", "Pick a track and press Seek to watch the profile."] },
+    { "title": "Rotational latency", "body": ["Once on track, the head waits for the right sector (pink) to rotate underneath. On average that is half a revolution: 4.2 ms at 7,200 rpm, 2 ms at 15,000 rpm.", "This wait is why spinning faster speeds up random reads."] },
+    { "title": "Reading", "body": ["As the magnetised regions pass, they change the resistance of a tiny magnetoresistive sensor in the head; the electronics turn those changes back into ones and zeros.", "Outer tracks are longer and hold more sectors, so data streams faster at the edge of the disc than near the hub."] }
+  ],
+  "parts": [
+    { "name": "Platters", "role": "Mirror-smooth discs coated with a magnetic film that stores the bits." },
+    { "name": "Actuator arm", "role": "Carries the heads across the platters; swung by the voice coil." },
+    { "name": "Voice-coil magnet", "role": "Neodymium magnets on a steel plate; the copper coil moves between them." },
+    { "name": "Base casting", "role": "A rigid aluminium casting that keeps everything aligned to micrometres." },
+    { "name": "Interface connector", "role": "Where the drive's circuit board connects to the computer." },
+    { "name": "Recirculation filter", "role": "Catches any particle in the sealed air; a speck of dust is bigger than the head's fly height." },
+    { "name": "Parking ramp", "role": "When the drive stops, the heads slide up this ramp so they never land on the platters." }
+  ],
+  "facts": [
+    { "label": "Fly height", "value": "≈ 3 nm" },
+    { "label": "Average seek (desktop)", "value": "≈ 8.5 ms" },
+    { "label": "Rotational latency at 7,200 rpm", "value": "4.17 ms" },
+    { "label": "Areal density", "value": "> 1 Tbit per square inch" },
+    { "label": "First hard disk", "value": "IBM 350, 1956: 3.75 MB on fifty 24-inch platters" }
+  ],
+  "accuracy": "Seek times use a square-root distance model fitted to typical desktop drives; transfer rate is an approximate zoned-recording estimate. Platter count and proportions are simplified.",
+  "sources": ["Jacob, Ng & Wang, Memory Systems: Cache, DRAM, Disk (2008)", "Seagate and WD product manuals (7,200 rpm desktop drives)"]
+}

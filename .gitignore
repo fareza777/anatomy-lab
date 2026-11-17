@@ -20,3 +20,5 @@ shots/
 *.apk
 *.aab
 !dist/*.apk
+
+dist/

@@ -9,6 +9,7 @@ Engines, hearts, factories and machines drawn as precise, full-colour isometric 
 <img src="marketing/screens/engine.png" width="30%" alt="Four-stroke engine lab">
 <img src="marketing/screens/chocolate.png" width="30%" alt="Chocolate factory lab">
 <img src="marketing/screens/heart.png" width="30%" alt="Human heart lab">
+<img src="marketing/screens/printer.png" width="30%" alt="3D printer lab">
 </p>
 
 ---
@@ -21,6 +22,12 @@ Engines, hearts, factories and machines drawn as precise, full-colour isometric 
 | **Chocolate Factory** | Factories & Making | Full bean-to-bar line: drum roaster, winnower + cyclone, granite melanger, conche, tempering machine, depositor, cooling tunnel, flow wrapper. Dark / milk / white couverture with real Form V tempering windows; set the working temperature and watch bars bloom when it's wrong. |
 | **3D Printer** | Factories & Making | Bed-slinger FDM printer printing a twisting six-lobed vase layer by layer. PLA / PETG / TPU windows, volumetric-flow limit, filament length and mass, print time. |
 | **Human Heart** | Biology | Long-axis section on a stand. Chambers contract through the Wiggers cycle, four valves open and close, blood flows, live ECG; Electrical mode animates the conduction system. Pressures, volumes, stroke volume, cardiac output. |
+| **Pin-Tumbler Lock** | Everyday | Sectioned brass cylinder: drag the key in and watch five pin stacks reach the shear line; try the wrong key. |
+| **Orrery: Sun, Earth & Moon** | Space | Brass orrery with a fixed 23.44° tilt, Kepler orbit, date pointer, moon phases (2026), daylight hours and noon Sun height for any latitude. |
+| **Electrolysis of Water** | Chemistry | Hofmann voltameter: H₂ and O₂ collect 2 : 1 by Faraday's law; brine mode makes chlorine; indicator colours at the electrodes; live ammeter and voltmeter. |
+| **DC Electric Motor** | Physics | Field magnets, armature, split-ring commutator and brushes; Lorentz-force arrows and moving charges; speed, current, back-EMF, torque and efficiency from the motor equations. |
+| **Hard Disk Drive** | Technology | Lid-off drive: platters spin, the voice-coil arm seeks with a bang-bang profile, then waits for the sector to rotate under the head; seek time, latency and data rate. |
+| **The Water Cycle** | Nature | Island diorama with a cut-away aquifer: Clausius–Clapeyron evaporation, wind-driven clouds, orographic rain, snowline from the lapse rate, river and groundwater return. |
 
 Every lab has view modes, sliders, live gauges, a synced step-by-step explanation, and **tap-any-part identification** (the part glows and its name and job appear).
 

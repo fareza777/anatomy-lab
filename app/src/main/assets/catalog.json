@@ -1368,6 +1368,197 @@
    "featured": true
   },
   {
+   "id": "hard-disk-drive",
+   "title": "Hard Disk Drive",
+   "subtitle": "Spinning mirrors that remember",
+   "category": "technology",
+   "featured": false,
+   "tags": [
+    "hard drive",
+    "hdd",
+    "storage",
+    "computer",
+    "magnetism",
+    "data",
+    "seek time",
+    "technology"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 5,
+   "summary": "With the lid off, watch the arm swing across spinning platters, wait for the right sector to come round, and read it — and see why seek time and rpm matter.",
+   "overview": [
+    "A hard disk stores data as tiny magnetised regions on glass or aluminium platters coated with a thin magnetic film. A modern platter holds over a trillion bits per square inch, each region a few tens of nanometres across.",
+    "The read/write head never touches the platter. Air dragged along by the spinning disc lifts its slider into flight a few nanometres above the surface — like a jet flying a millimetre above the ground. A voice-coil motor, the same idea as a loudspeaker, swings the arm in milliseconds.",
+    "Reading a block costs two waits: the seek, while the arm moves to the right track, and the rotational latency, while the platter brings the right sector round under the head. At 7,200 rpm the platter turns every 8.3 ms, so on average you wait half a turn."
+   ],
+   "controls": [
+    {
+     "id": "rpm",
+     "type": "range",
+     "label": "Spindle speed",
+     "min": 5400,
+     "max": 15000,
+     "step": 600,
+     "value": 7200,
+     "format": "{v} rpm",
+     "help": "Laptop drives spin at 5,400 rpm; server drives at 10,000–15,000."
+    },
+    {
+     "id": "track",
+     "type": "range",
+     "label": "Requested track",
+     "min": 0,
+     "max": 100,
+     "step": 1,
+     "value": 50,
+     "format": "{v} %",
+     "help": "0 % is next to the hub, 100 % at the outer edge."
+    },
+    {
+     "id": "slow",
+     "type": "range",
+     "label": "Slow motion",
+     "min": 20,
+     "max": 400,
+     "step": 10,
+     "value": 120,
+     "format": "×{v}",
+     "help": "Real seeks take milliseconds."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "state",
+     "label": "Head"
+    },
+    {
+     "id": "track",
+     "label": "Track number"
+    },
+    {
+     "id": "seek",
+     "label": "Last seek"
+    },
+    {
+     "id": "latency",
+     "label": "Avg rotational latency"
+    },
+    {
+     "id": "rate",
+     "label": "Sustained rate"
+    },
+    {
+     "id": "fly",
+     "label": "Fly height"
+    }
+   ],
+   "actions": [
+    {
+     "id": "seek",
+     "label": "Seek",
+     "primary": true
+    },
+    {
+     "id": "auto",
+     "label": "Random reads"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Platters and spindle",
+     "body": [
+      "Two platters, polished to a mirror, are clamped on a spindle motor that holds them at an exact speed. Data lies in concentric tracks — hundreds of thousands per surface.",
+      "Each surface has its own head, all mounted on the same arm, so they move together."
+     ]
+    },
+    {
+     "title": "The voice-coil actuator",
+     "body": [
+      "Behind the pivot sits a flat copper coil between powerful neodymium magnets. Current through the coil pushes it one way or the other, swinging the arm — no gears, just magnetic force.",
+      "A servo uses position marks written on the disc to hold the head on the track centre within a few nanometres."
+     ]
+    },
+    {
+     "title": "Seek",
+     "body": [
+      "To read a block the controller first moves the arm: it accelerates as hard as it can, then brakes, then settles on the track. Moving a third of the way across takes around 8 ms; to the next track, under 1 ms.",
+      "Pick a track and press Seek to watch the profile."
+     ]
+    },
+    {
+     "title": "Rotational latency",
+     "body": [
+      "Once on track, the head waits for the right sector (pink) to rotate underneath. On average that is half a revolution: 4.2 ms at 7,200 rpm, 2 ms at 15,000 rpm.",
+      "This wait is why spinning faster speeds up random reads."
+     ]
+    },
+    {
+     "title": "Reading",
+     "body": [
+      "As the magnetised regions pass, they change the resistance of a tiny magnetoresistive sensor in the head; the electronics turn those changes back into ones and zeros.",
+      "Outer tracks are longer and hold more sectors, so data streams faster at the edge of the disc than near the hub."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Platters",
+     "role": "Mirror-smooth discs coated with a magnetic film that stores the bits."
+    },
+    {
+     "name": "Actuator arm",
+     "role": "Carries the heads across the platters; swung by the voice coil."
+    },
+    {
+     "name": "Voice-coil magnet",
+     "role": "Neodymium magnets on a steel plate; the copper coil moves between them."
+    },
+    {
+     "name": "Base casting",
+     "role": "A rigid aluminium casting that keeps everything aligned to micrometres."
+    },
+    {
+     "name": "Interface connector",
+     "role": "Where the drive's circuit board connects to the computer."
+    },
+    {
+     "name": "Recirculation filter",
+     "role": "Catches any particle in the sealed air; a speck of dust is bigger than the head's fly height."
+    },
+    {
+     "name": "Parking ramp",
+     "role": "When the drive stops, the heads slide up this ramp so they never land on the platters."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Fly height",
+     "value": "≈ 3 nm"
+    },
+    {
+     "label": "Average seek (desktop)",
+     "value": "≈ 8.5 ms"
+    },
+    {
+     "label": "Rotational latency at 7,200 rpm",
+     "value": "4.17 ms"
+    },
+    {
+     "label": "Areal density",
+     "value": "> 1 Tbit per square inch"
+    },
+    {
+     "label": "First hard disk",
+     "value": "IBM 350, 1956: 3.75 MB on fifty 24-inch platters"
+    }
+   ],
+   "accuracy": "Seek times use a square-root distance model fitted to typical desktop drives; transfer rate is an approximate zoned-recording estimate. Platter count and proportions are simplified.",
+   "sources": [
+    "Jacob, Ng & Wang, Memory Systems: Cache, DRAM, Disk (2008)",
+    "Seagate and WD product manuals (7,200 rpm desktop drives)"
+   ]
+  },
+  {
    "id": "human-heart",
    "title": "Human Heart",
    "subtitle": "Four chambers, four valves, one beat",
@@ -2005,6 +2196,188 @@
    "sources": [
     "Tobias, Locks, Safes, and Security, 2nd ed. (2000)",
     "Pulford, The Locksmith's handbook (2014)"
+   ]
+  },
+  {
+   "id": "water-cycle",
+   "title": "The Water Cycle",
+   "subtitle": "Sun, sea, cloud, rain and river",
+   "category": "nature",
+   "featured": true,
+   "tags": [
+    "water cycle",
+    "rain",
+    "clouds",
+    "evaporation",
+    "weather",
+    "groundwater",
+    "climate",
+    "nature",
+    "snow"
+   ],
+   "difficulty": "Beginner",
+   "minutes": 5,
+   "summary": "An island diorama runs the water cycle: the Sun lifts vapour from the sea, wind carries clouds up the mountain where they rain or snow, and rivers and groundwater return it.",
+   "overview": [
+    "The water you drink has fallen as rain countless times. Powered by sunlight and gravity, Earth's water moves in an endless loop between ocean, air and land — about 500,000 cubic kilometres of it every year.",
+    "Warm sunlight evaporates water from the sea surface. The warmer the air, the more vapour it can hold: about 7 % more for every degree Celsius, a law found by Clausius and Clapeyron. Wind carries this moist air inland.",
+    "When the air meets a mountain it is forced upward, expands and cools by about 6.5 °C per kilometre. Its vapour condenses into cloud droplets that grow until they fall as rain — or as snow above the freezing level. Rivers carry some of it straight back to the sea; the rest soaks into the soil and moves slowly through the aquifer below."
+   ],
+   "controls": [
+    {
+     "id": "temp",
+     "type": "range",
+     "label": "Air temperature",
+     "min": 0,
+     "max": 35,
+     "step": 1,
+     "value": 22,
+     "format": "{v} °C",
+     "help": "Warmer air evaporates more water and lifts the snowline."
+    },
+    {
+     "id": "wind",
+     "type": "range",
+     "label": "Onshore wind",
+     "min": 0,
+     "max": 6,
+     "step": 0.5,
+     "value": 2.5,
+     "digits": 1,
+     "format": "{v}",
+     "help": "Pushes clouds from the sea toward the mountain."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "evap",
+     "label": "Evaporation vs 20 °C"
+    },
+    {
+     "id": "es",
+     "label": "Saturation vapour pressure"
+    },
+    {
+     "id": "clouds",
+     "label": "Cloud water"
+    },
+    {
+     "id": "rain",
+     "label": "Rainfall"
+    },
+    {
+     "id": "freeze",
+     "label": "Freezing level"
+    },
+    {
+     "id": "residence",
+     "label": "Water stays in air"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Evaporation",
+     "temp": 28,
+     "wind": 1,
+     "body": [
+      "Sunlight warms the sea surface and gives water molecules enough energy to escape as invisible vapour. Over the oceans this happens on a vast scale: 86 % of all evaporation on Earth.",
+      "Raise the temperature and watch the vapour thicken. Saturation vapour pressure roughly doubles for every 10 °C."
+     ]
+    },
+    {
+     "title": "Clouds form",
+     "temp": 22,
+     "wind": 2,
+     "body": [
+      "As moist air rises it expands and cools. When it reaches its dew point, vapour condenses on tiny specks of dust and salt into droplets about a hundredth of a millimetre across — a cloud.",
+      "Condensing releases the heat the Sun put in, which is what powers storms."
+     ]
+    },
+    {
+     "title": "Over the mountain",
+     "temp": 18,
+     "wind": 4,
+     "body": [
+      "Wind drives the clouds inland until the mountain forces them up. Cooling squeezes out more water than the droplets can hold; they merge, grow heavy and fall. This orographic rain is why the windward slopes of mountains are the wettest places on Earth.",
+      "The far side, in the mountain's rain shadow, stays dry."
+     ]
+    },
+    {
+     "title": "Rain or snow",
+     "temp": 4,
+     "wind": 3,
+     "body": [
+      "Air cools about 6.5 °C for each kilometre of height. Above the freezing level precipitation falls as snow. Drop the temperature and watch the dashed snowline creep down the mountain.",
+      "Snowpack stores water through winter and releases it in spring, feeding rivers when they are needed most."
+     ]
+    },
+    {
+     "title": "Back to the sea",
+     "temp": 20,
+     "wind": 2,
+     "body": [
+      "Rain that hits the ground runs off into streams and rivers, or soaks into the soil. Below, it fills the gaps in a sandy aquifer and creeps toward the sea at metres per year — the cut face shows the groundwater moving.",
+      "A water molecule spends about nine days in the air, weeks in a river, but can stay thousands of years in deep groundwater or ice."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Ocean",
+     "role": "Holds 97 % of Earth's water and supplies most of the evaporation."
+    },
+    {
+     "name": "Sun",
+     "role": "The engine of the cycle: its energy lifts water as vapour."
+    },
+    {
+     "name": "River",
+     "role": "Carries runoff from the mountain back to the sea."
+    },
+    {
+     "name": "Forest",
+     "role": "Trees pull water from the soil and release it from their leaves (transpiration)."
+    },
+    {
+     "name": "Soil",
+     "role": "Soaks up rain like a sponge and lets it drain slowly downward."
+    },
+    {
+     "name": "Aquifer",
+     "role": "A layer of porous sand or rock filled with groundwater, which flows slowly toward the sea."
+    },
+    {
+     "name": "Bedrock",
+     "role": "Solid rock beneath the aquifer that water can barely pass through."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Water on Earth",
+     "value": "≈ 1.39 billion km³ (97 % salt water)"
+    },
+    {
+     "label": "Evaporated each year",
+     "value": "≈ 500,000 km³"
+    },
+    {
+     "label": "Vapour capacity",
+     "value": "+7 % per °C (Clausius–Clapeyron)"
+    },
+    {
+     "label": "Environmental lapse rate",
+     "value": "≈ 6.5 °C per km"
+    },
+    {
+     "label": "Residence time in the atmosphere",
+     "value": "≈ 9 days"
+    }
+   ],
+   "accuracy": "Evaporation scales with the saturation vapour pressure (Magnus formula); the freezing level uses a standard 6.5 °C/km lapse rate. Cloud growth, rainfall and flow speeds are illustrative, not a weather model.",
+   "sources": [
+    "Trenberth et al., Estimates of the global water budget, J. Hydrometeorology 8 (2007)",
+    "Wallace & Hobbs, Atmospheric Science, 2nd ed. (2006)",
+    "USGS Water Science School: The Water Cycle"
    ]
   }
  ]

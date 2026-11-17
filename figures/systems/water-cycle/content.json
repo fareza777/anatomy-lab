@@ -1,0 +1,53 @@
+{
+  "id": "water-cycle",
+  "title": "The Water Cycle",
+  "subtitle": "Sun, sea, cloud, rain and river",
+  "category": "nature",
+  "featured": true,
+  "tags": ["water cycle", "rain", "clouds", "evaporation", "weather", "groundwater", "climate", "nature", "snow"],
+  "difficulty": "Beginner",
+  "minutes": 5,
+  "summary": "An island diorama runs the water cycle: the Sun lifts vapour from the sea, wind carries clouds up the mountain where they rain or snow, and rivers and groundwater return it.",
+  "overview": [
+    "The water you drink has fallen as rain countless times. Powered by sunlight and gravity, Earth's water moves in an endless loop between ocean, air and land — about 500,000 cubic kilometres of it every year.",
+    "Warm sunlight evaporates water from the sea surface. The warmer the air, the more vapour it can hold: about 7 % more for every degree Celsius, a law found by Clausius and Clapeyron. Wind carries this moist air inland.",
+    "When the air meets a mountain it is forced upward, expands and cools by about 6.5 °C per kilometre. Its vapour condenses into cloud droplets that grow until they fall as rain — or as snow above the freezing level. Rivers carry some of it straight back to the sea; the rest soaks into the soil and moves slowly through the aquifer below."
+  ],
+  "controls": [
+    { "id": "temp", "type": "range", "label": "Air temperature", "min": 0, "max": 35, "step": 1, "value": 22, "format": "{v} °C", "help": "Warmer air evaporates more water and lifts the snowline." },
+    { "id": "wind", "type": "range", "label": "Onshore wind", "min": 0, "max": 6, "step": 0.5, "value": 2.5, "digits": 1, "format": "{v}", "help": "Pushes clouds from the sea toward the mountain." }
+  ],
+  "gauges": [
+    { "id": "evap", "label": "Evaporation vs 20 °C" },
+    { "id": "es", "label": "Saturation vapour pressure" },
+    { "id": "clouds", "label": "Cloud water" },
+    { "id": "rain", "label": "Rainfall" },
+    { "id": "freeze", "label": "Freezing level" },
+    { "id": "residence", "label": "Water stays in air" }
+  ],
+  "steps": [
+    { "title": "Evaporation", "temp": 28, "wind": 1, "body": ["Sunlight warms the sea surface and gives water molecules enough energy to escape as invisible vapour. Over the oceans this happens on a vast scale: 86 % of all evaporation on Earth.", "Raise the temperature and watch the vapour thicken. Saturation vapour pressure roughly doubles for every 10 °C."] },
+    { "title": "Clouds form", "temp": 22, "wind": 2, "body": ["As moist air rises it expands and cools. When it reaches its dew point, vapour condenses on tiny specks of dust and salt into droplets about a hundredth of a millimetre across — a cloud.", "Condensing releases the heat the Sun put in, which is what powers storms."] },
+    { "title": "Over the mountain", "temp": 18, "wind": 4, "body": ["Wind drives the clouds inland until the mountain forces them up. Cooling squeezes out more water than the droplets can hold; they merge, grow heavy and fall. This orographic rain is why the windward slopes of mountains are the wettest places on Earth.", "The far side, in the mountain's rain shadow, stays dry."] },
+    { "title": "Rain or snow", "temp": 4, "wind": 3, "body": ["Air cools about 6.5 °C for each kilometre of height. Above the freezing level precipitation falls as snow. Drop the temperature and watch the dashed snowline creep down the mountain.", "Snowpack stores water through winter and releases it in spring, feeding rivers when they are needed most."] },
+    { "title": "Back to the sea", "temp": 20, "wind": 2, "body": ["Rain that hits the ground runs off into streams and rivers, or soaks into the soil. Below, it fills the gaps in a sandy aquifer and creeps toward the sea at metres per year — the cut face shows the groundwater moving.", "A water molecule spends about nine days in the air, weeks in a river, but can stay thousands of years in deep groundwater or ice."] }
+  ],
+  "parts": [
+    { "name": "Ocean", "role": "Holds 97 % of Earth's water and supplies most of the evaporation." },
+    { "name": "Sun", "role": "The engine of the cycle: its energy lifts water as vapour." },
+    { "name": "River", "role": "Carries runoff from the mountain back to the sea." },
+    { "name": "Forest", "role": "Trees pull water from the soil and release it from their leaves (transpiration)." },
+    { "name": "Soil", "role": "Soaks up rain like a sponge and lets it drain slowly downward." },
+    { "name": "Aquifer", "role": "A layer of porous sand or rock filled with groundwater, which flows slowly toward the sea." },
+    { "name": "Bedrock", "role": "Solid rock beneath the aquifer that water can barely pass through." }
+  ],
+  "facts": [
+    { "label": "Water on Earth", "value": "≈ 1.39 billion km³ (97 % salt water)" },
+    { "label": "Evaporated each year", "value": "≈ 500,000 km³" },
+    { "label": "Vapour capacity", "value": "+7 % per °C (Clausius–Clapeyron)" },
+    { "label": "Environmental lapse rate", "value": "≈ 6.5 °C per km" },
+    { "label": "Residence time in the atmosphere", "value": "≈ 9 days" }
+  ],
+  "accuracy": "Evaporation scales with the saturation vapour pressure (Magnus formula); the freezing level uses a standard 6.5 °C/km lapse rate. Cloud growth, rainfall and flow speeds are illustrative, not a weather model.",
+  "sources": ["Trenberth et al., Estimates of the global water budget, J. Hydrometeorology 8 (2007)", "Wallace & Hobbs, Atmospheric Science, 2nd ed. (2006)", "USGS Water Science School: The Water Cycle"]
+}
