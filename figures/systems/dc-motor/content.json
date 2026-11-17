@@ -1,0 +1,60 @@
+{
+  "id": "dc-motor",
+  "title": "DC Electric Motor",
+  "subtitle": "How current and magnets make motion",
+  "category": "physics",
+  "featured": false,
+  "tags": ["motor", "electromagnetism", "magnet", "commutator", "lorentz force", "physics", "electricity", "back emf"],
+  "difficulty": "Intermediate",
+  "minutes": 5,
+  "summary": "A demonstration motor turns as current meets a magnetic field. Raise the voltage, add load, and watch speed, current, torque and back-EMF balance out.",
+  "overview": [
+    "Every electric motor, from a phone's vibration buzzer to a train, runs on one fact discovered in the 1820s: a wire carrying current in a magnetic field feels a force. Make the wire into a loop on a shaft and the forces on its two sides push in opposite directions — a twist, or torque.",
+    "A single loop would only rock back and forth. The split-ring commutator fixes that: every half turn, as the coil passes the vertical, the carbon brushes swap which end of the coil is positive. The current reverses just in time, so the torque keeps turning the rotor the same way.",
+    "A spinning coil in a field is also a generator. It produces a voltage that opposes the supply, called back-EMF, which grows with speed. That is why a motor draws a huge current when it starts or stalls, and why it settles at the speed where its torque matches the load."
+  ],
+  "modes": [
+    { "id": "fields", "label": "Show forces" },
+    { "id": "plain", "label": "Plain" }
+  ],
+  "controls": [
+    { "id": "volts", "type": "range", "label": "Supply voltage", "min": 0, "max": 12, "step": 0.5, "value": 6, "digits": 1, "format": "{v} V", "help": "No-load speed rises in proportion to voltage." },
+    { "id": "load", "type": "range", "label": "Load torque", "min": 0, "max": 150, "step": 5, "value": 20, "format": "{v} mN·m", "help": "Like braking the shaft with your fingers. Too much and the motor stalls." }
+  ],
+  "gauges": [
+    { "id": "rpm", "label": "Speed" },
+    { "id": "amps", "label": "Current" },
+    { "id": "emf", "label": "Back-EMF" },
+    { "id": "torque", "label": "Motor torque" },
+    { "id": "pout", "label": "Mechanical power" },
+    { "id": "eff", "label": "Efficiency" }
+  ],
+  "steps": [
+    { "title": "Force on a wire", "volts": 6, "load": 20, "body": ["Current flows along the coil's long sides in opposite directions: away from you on one side, towards you on the other. In the field between the red north pole and the blue south pole, each side feels a force F = B·I·L at right angles to both.", "The orange arrows show these forces: up on one side, down on the other. Together they twist the coil."] },
+    { "title": "The commutator", "volts": 3, "load": 0, "body": ["Watch the copper split ring at the front. Each half is wired to one end of the coil, and two carbon brushes rub on it. As the coil passes vertical, the gap in the ring passes the brushes and the connections swap.", "The current in the coil reverses (see the yellow charges change direction), so the forces flip at the right moment and the turning never stops."] },
+    { "title": "Back-EMF", "volts": 12, "load": 0, "body": ["The faster the coil spins, the more it acts like a generator, pushing back against the supply. At full speed with no load, the back-EMF is nearly 12 V and only a small current flows.", "Speed = (V − I·R) ÷ k: this motor runs at about 5,700 rpm on 12 V."] },
+    { "title": "Adding load", "volts": 12, "load": 120, "body": ["Brake the shaft and the speed drops, the back-EMF falls, and the current rises until the motor's torque (k × I) equals the load.", "Push the load too high and the motor stalls: back-EMF is zero, current is limited only by the coil's resistance and the coil heats quickly — which is how motors burn out."] }
+  ],
+  "parts": [
+    { "name": "Armature coil", "role": "Turns of enamelled copper wire on the shaft. Current through it in the field makes the torque." },
+    { "name": "North magnet", "role": "The field magnet's north pole, painted red." },
+    { "name": "South magnet", "role": "The south pole, painted blue. Field lines run from north to south across the gap." },
+    { "name": "Magnetic field", "role": "Shown as moving dashed lines from north to south." },
+    { "name": "Commutator", "role": "A split copper ring that reverses the coil current every half turn." },
+    { "name": "Carbon brushes", "role": "Graphite blocks that slide on the commutator, carrying current to the spinning coil." },
+    { "name": "Bearing", "role": "Brass posts that let the shaft spin freely." },
+    { "name": "Battery pack", "role": "Four cells in series supplying the DC voltage." },
+    { "name": "Wires", "role": "Red to the positive brush, black to the negative." },
+    { "name": "Base board", "role": "A wooden board holding the demonstration." }
+  ],
+  "facts": [
+    { "label": "Torque", "value": "τ = k·I" },
+    { "label": "Back-EMF", "value": "E = k·ω" },
+    { "label": "Motor constant k", "value": "0.020 V·s/rad (= N·m/A)" },
+    { "label": "Coil resistance", "value": "1.2 Ω" },
+    { "label": "Stall current at 12 V", "value": "10 A" },
+    { "label": "No-load speed at 12 V", "value": "≈ 5,700 rpm" }
+  ],
+  "accuracy": "Speed, current and torque come from the standard brushed-DC motor equations with friction; the coil's torque ripple and brush voltage drop are omitted. The animation runs at one turn per second per 3,000 rpm.",
+  "sources": ["Hughes & Drury, Electric Motors and Drives, 5th ed. (2019)", "Serway & Jewett, Physics for Scientists and Engineers, ch. 29"]
+}

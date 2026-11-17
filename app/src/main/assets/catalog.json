@@ -678,6 +678,409 @@
    ]
   },
   {
+   "id": "dc-motor",
+   "title": "DC Electric Motor",
+   "subtitle": "How current and magnets make motion",
+   "category": "physics",
+   "featured": false,
+   "tags": [
+    "motor",
+    "electromagnetism",
+    "magnet",
+    "commutator",
+    "lorentz force",
+    "physics",
+    "electricity",
+    "back emf"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 5,
+   "summary": "A demonstration motor turns as current meets a magnetic field. Raise the voltage, add load, and watch speed, current, torque and back-EMF balance out.",
+   "overview": [
+    "Every electric motor, from a phone's vibration buzzer to a train, runs on one fact discovered in the 1820s: a wire carrying current in a magnetic field feels a force. Make the wire into a loop on a shaft and the forces on its two sides push in opposite directions — a twist, or torque.",
+    "A single loop would only rock back and forth. The split-ring commutator fixes that: every half turn, as the coil passes the vertical, the carbon brushes swap which end of the coil is positive. The current reverses just in time, so the torque keeps turning the rotor the same way.",
+    "A spinning coil in a field is also a generator. It produces a voltage that opposes the supply, called back-EMF, which grows with speed. That is why a motor draws a huge current when it starts or stalls, and why it settles at the speed where its torque matches the load."
+   ],
+   "modes": [
+    {
+     "id": "fields",
+     "label": "Show forces"
+    },
+    {
+     "id": "plain",
+     "label": "Plain"
+    }
+   ],
+   "controls": [
+    {
+     "id": "volts",
+     "type": "range",
+     "label": "Supply voltage",
+     "min": 0,
+     "max": 12,
+     "step": 0.5,
+     "value": 6,
+     "digits": 1,
+     "format": "{v} V",
+     "help": "No-load speed rises in proportion to voltage."
+    },
+    {
+     "id": "load",
+     "type": "range",
+     "label": "Load torque",
+     "min": 0,
+     "max": 150,
+     "step": 5,
+     "value": 20,
+     "format": "{v} mN·m",
+     "help": "Like braking the shaft with your fingers. Too much and the motor stalls."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "rpm",
+     "label": "Speed"
+    },
+    {
+     "id": "amps",
+     "label": "Current"
+    },
+    {
+     "id": "emf",
+     "label": "Back-EMF"
+    },
+    {
+     "id": "torque",
+     "label": "Motor torque"
+    },
+    {
+     "id": "pout",
+     "label": "Mechanical power"
+    },
+    {
+     "id": "eff",
+     "label": "Efficiency"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Force on a wire",
+     "volts": 6,
+     "load": 20,
+     "body": [
+      "Current flows along the coil's long sides in opposite directions: away from you on one side, towards you on the other. In the field between the red north pole and the blue south pole, each side feels a force F = B·I·L at right angles to both.",
+      "The orange arrows show these forces: up on one side, down on the other. Together they twist the coil."
+     ]
+    },
+    {
+     "title": "The commutator",
+     "volts": 3,
+     "load": 0,
+     "body": [
+      "Watch the copper split ring at the front. Each half is wired to one end of the coil, and two carbon brushes rub on it. As the coil passes vertical, the gap in the ring passes the brushes and the connections swap.",
+      "The current in the coil reverses (see the yellow charges change direction), so the forces flip at the right moment and the turning never stops."
+     ]
+    },
+    {
+     "title": "Back-EMF",
+     "volts": 12,
+     "load": 0,
+     "body": [
+      "The faster the coil spins, the more it acts like a generator, pushing back against the supply. At full speed with no load, the back-EMF is nearly 12 V and only a small current flows.",
+      "Speed = (V − I·R) ÷ k: this motor runs at about 5,700 rpm on 12 V."
+     ]
+    },
+    {
+     "title": "Adding load",
+     "volts": 12,
+     "load": 120,
+     "body": [
+      "Brake the shaft and the speed drops, the back-EMF falls, and the current rises until the motor's torque (k × I) equals the load.",
+      "Push the load too high and the motor stalls: back-EMF is zero, current is limited only by the coil's resistance and the coil heats quickly — which is how motors burn out."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Armature coil",
+     "role": "Turns of enamelled copper wire on the shaft. Current through it in the field makes the torque."
+    },
+    {
+     "name": "North magnet",
+     "role": "The field magnet's north pole, painted red."
+    },
+    {
+     "name": "South magnet",
+     "role": "The south pole, painted blue. Field lines run from north to south across the gap."
+    },
+    {
+     "name": "Magnetic field",
+     "role": "Shown as moving dashed lines from north to south."
+    },
+    {
+     "name": "Commutator",
+     "role": "A split copper ring that reverses the coil current every half turn."
+    },
+    {
+     "name": "Carbon brushes",
+     "role": "Graphite blocks that slide on the commutator, carrying current to the spinning coil."
+    },
+    {
+     "name": "Bearing",
+     "role": "Brass posts that let the shaft spin freely."
+    },
+    {
+     "name": "Battery pack",
+     "role": "Four cells in series supplying the DC voltage."
+    },
+    {
+     "name": "Wires",
+     "role": "Red to the positive brush, black to the negative."
+    },
+    {
+     "name": "Base board",
+     "role": "A wooden board holding the demonstration."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Torque",
+     "value": "τ = k·I"
+    },
+    {
+     "label": "Back-EMF",
+     "value": "E = k·ω"
+    },
+    {
+     "label": "Motor constant k",
+     "value": "0.020 V·s/rad (= N·m/A)"
+    },
+    {
+     "label": "Coil resistance",
+     "value": "1.2 Ω"
+    },
+    {
+     "label": "Stall current at 12 V",
+     "value": "10 A"
+    },
+    {
+     "label": "No-load speed at 12 V",
+     "value": "≈ 5,700 rpm"
+    }
+   ],
+   "accuracy": "Speed, current and torque come from the standard brushed-DC motor equations with friction; the coil's torque ripple and brush voltage drop are omitted. The animation runs at one turn per second per 3,000 rpm.",
+   "sources": [
+    "Hughes & Drury, Electric Motors and Drives, 5th ed. (2019)",
+    "Serway & Jewett, Physics for Scientists and Engineers, ch. 29"
+   ]
+  },
+  {
+   "id": "electrolysis",
+   "title": "Electrolysis of Water",
+   "subtitle": "Splitting water with electricity",
+   "category": "chemistry",
+   "featured": false,
+   "tags": [
+    "electrolysis",
+    "hydrogen",
+    "oxygen",
+    "chlorine",
+    "faraday",
+    "chemistry",
+    "electricity",
+    "redox",
+    "brine"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 5,
+   "summary": "A Hofmann voltameter splits water into hydrogen and oxygen, exactly two volumes to one, and proves Faraday's law of electrolysis as you watch.",
+   "overview": [
+    "Water is two hydrogen atoms bonded to one oxygen. Pass a direct current through water made conductive with a little salt, and those bonds are broken at the electrodes: hydrogen gas bubbles off the negative electrode (the cathode) and oxygen off the positive one (the anode).",
+    "The Hofmann voltameter, built by August Wilhelm von Hofmann in 1866, collects each gas in its own graduated column so the volumes can be read. There is always twice as much hydrogen as oxygen, because each water molecule gives two hydrogen atoms for every oxygen.",
+    "Michael Faraday showed in 1834 that the amount of gas depends only on the electric charge that has flowed: every 96,485 coulombs (one mole of electrons) frees half a mole of hydrogen. Switch to brine and the anode makes chlorine instead — the basis of a giant chemical industry."
+   ],
+   "modes": [
+    {
+     "id": "water",
+     "label": "Water + Na₂SO₄"
+    },
+    {
+     "id": "brine",
+     "label": "Brine (NaCl)"
+    }
+   ],
+   "controls": [
+    {
+     "id": "current",
+     "type": "range",
+     "label": "Current",
+     "min": 0,
+     "max": 2,
+     "step": 0.05,
+     "value": 0.8,
+     "digits": 2,
+     "format": "{v} A",
+     "help": "More current means more electrons per second, so gas forms faster."
+    },
+    {
+     "id": "speed",
+     "type": "range",
+     "label": "Time-lapse",
+     "min": 1,
+     "max": 60,
+     "step": 1,
+     "value": 20,
+     "format": "×{v}",
+     "help": "Speeds up time so the columns fill in seconds."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "h2",
+     "label": "Hydrogen (cathode)"
+    },
+    {
+     "id": "o2",
+     "label": "Anode gas"
+    },
+    {
+     "id": "ratio",
+     "label": "Volume ratio"
+    },
+    {
+     "id": "charge",
+     "label": "Charge passed"
+    },
+    {
+     "id": "mol",
+     "label": "Electrons"
+    },
+    {
+     "id": "volts",
+     "label": "Cell voltage"
+    }
+   ],
+   "actions": [
+    {
+     "id": "reset",
+     "label": "Empty columns",
+     "primary": true
+    }
+   ],
+   "steps": [
+    {
+     "title": "Making water conduct",
+     "mode": "water",
+     "body": [
+      "Pure water barely conducts electricity. A little sodium sulfate is dissolved in it: its ions carry the current through the liquid but are not themselves changed at the electrodes.",
+      "The three columns are joined at the bottom, so the liquid level in the central reservoir rises as gas pushes liquid out of the side columns."
+     ]
+    },
+    {
+     "title": "At the cathode",
+     "mode": "water",
+     "body": [
+      "Electrons flow from the power supply into the negative platinum electrode. Water molecules take them: 4H₂O + 4e⁻ → 2H₂ + 4OH⁻.",
+      "Hydrogen bubbles rise and the liquid around the cathode turns alkaline — with universal indicator it goes purple."
+     ]
+    },
+    {
+     "title": "At the anode",
+     "mode": "water",
+     "body": [
+      "At the positive electrode water gives up electrons: 2H₂O → O₂ + 4H⁺ + 4e⁻. Oxygen bubbles off and the liquid there turns acidic and orange.",
+      "Every four electrons make two hydrogen molecules but only one oxygen molecule, so the hydrogen column fills twice as fast."
+     ]
+    },
+    {
+     "title": "Faraday's law",
+     "mode": "water",
+     "body": [
+      "Moles of gas = charge ÷ (electrons per molecule × 96,485 C). At 1 A for one minute, 60 C flow and about 7.6 ml of hydrogen and 3.8 ml of oxygen collect at room temperature.",
+      "The voltage needed is at least 1.23 V, the thermodynamic limit, plus extra overpotential to make the bubbles form quickly."
+     ]
+    },
+    {
+     "title": "Brine and chlorine",
+     "mode": "brine",
+     "body": [
+      "In concentrated salt water, chloride ions give up their electrons more easily than water: 2Cl⁻ → Cl₂ + 2e⁻. The anode now makes yellow-green chlorine, one volume for each volume of hydrogen.",
+      "Some chlorine dissolves, so slightly less than expected collects. The chlor-alkali industry uses this reaction to make chlorine, hydrogen and sodium hydroxide for plastics, paper and clean water."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Cathode column",
+     "role": "The negative side, where hydrogen collects. Graduated so the volume can be read."
+    },
+    {
+     "name": "Anode column",
+     "role": "The positive side, where oxygen (or chlorine) collects."
+    },
+    {
+     "name": "Glass voltameter",
+     "role": "Three columns joined at the base, with a reservoir bulb that takes the displaced liquid."
+    },
+    {
+     "name": "Platinum electrodes",
+     "role": "Platinum does not react or dissolve, so it only passes electrons."
+    },
+    {
+     "name": "Electrolyte",
+     "role": "Water with dissolved ions. Indicator colours show the alkaline cathode and acidic anode."
+    },
+    {
+     "name": "Stopcock",
+     "role": "A glass tap at the top of each column, opened to release or test the gas."
+    },
+    {
+     "name": "Power supply",
+     "role": "A bench DC supply; its meters show the current in amperes and the voltage."
+    },
+    {
+     "name": "Current knob",
+     "role": "Sets the current through the cell."
+    },
+    {
+     "name": "Leads",
+     "role": "Black to the cathode (−), red to the anode (+)."
+    },
+    {
+     "name": "Retort stand",
+     "role": "Holds the glassware in two clamps."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Faraday constant",
+     "value": "96,485 C per mole of electrons"
+    },
+    {
+     "label": "Minimum voltage (water)",
+     "value": "1.23 V at 25 °C"
+    },
+    {
+     "label": "H₂ : O₂ by volume",
+     "value": "2 : 1"
+    },
+    {
+     "label": "Molar gas volume",
+     "value": "24.47 L at 25 °C, 1 atm"
+    },
+    {
+     "label": "1 A for 1 hour",
+     "value": "≈ 456 ml of hydrogen"
+    }
+   ],
+   "accuracy": "Gas volumes follow Faraday's law with the ideal-gas molar volume at 25 °C; the cell voltage adds a simple overpotential and resistance term. Chlorine yield is reduced by an illustrative 25 % for its solubility.",
+   "sources": [
+    "Atkins & de Paula, Physical Chemistry, 11th ed. (2018)",
+    "Faraday, Experimental Researches in Electricity, Series VII (1834)",
+    "Royal Society of Chemistry, Practical Chemistry: electrolysis of water"
+   ]
+  },
+  {
    "id": "four-stroke-engine",
    "title": "Four-Stroke Engine",
    "subtitle": "How a spark turns fuel into rotation",

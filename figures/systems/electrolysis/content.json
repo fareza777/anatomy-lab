@@ -1,0 +1,63 @@
+{
+  "id": "electrolysis",
+  "title": "Electrolysis of Water",
+  "subtitle": "Splitting water with electricity",
+  "category": "chemistry",
+  "featured": false,
+  "tags": ["electrolysis", "hydrogen", "oxygen", "chlorine", "faraday", "chemistry", "electricity", "redox", "brine"],
+  "difficulty": "Intermediate",
+  "minutes": 5,
+  "summary": "A Hofmann voltameter splits water into hydrogen and oxygen, exactly two volumes to one, and proves Faraday's law of electrolysis as you watch.",
+  "overview": [
+    "Water is two hydrogen atoms bonded to one oxygen. Pass a direct current through water made conductive with a little salt, and those bonds are broken at the electrodes: hydrogen gas bubbles off the negative electrode (the cathode) and oxygen off the positive one (the anode).",
+    "The Hofmann voltameter, built by August Wilhelm von Hofmann in 1866, collects each gas in its own graduated column so the volumes can be read. There is always twice as much hydrogen as oxygen, because each water molecule gives two hydrogen atoms for every oxygen.",
+    "Michael Faraday showed in 1834 that the amount of gas depends only on the electric charge that has flowed: every 96,485 coulombs (one mole of electrons) frees half a mole of hydrogen. Switch to brine and the anode makes chlorine instead — the basis of a giant chemical industry."
+  ],
+  "modes": [
+    { "id": "water", "label": "Water + Na₂SO₄" },
+    { "id": "brine", "label": "Brine (NaCl)" }
+  ],
+  "controls": [
+    { "id": "current", "type": "range", "label": "Current", "min": 0, "max": 2, "step": 0.05, "value": 0.8, "digits": 2, "format": "{v} A", "help": "More current means more electrons per second, so gas forms faster." },
+    { "id": "speed", "type": "range", "label": "Time-lapse", "min": 1, "max": 60, "step": 1, "value": 20, "format": "×{v}", "help": "Speeds up time so the columns fill in seconds." }
+  ],
+  "gauges": [
+    { "id": "h2", "label": "Hydrogen (cathode)" },
+    { "id": "o2", "label": "Anode gas" },
+    { "id": "ratio", "label": "Volume ratio" },
+    { "id": "charge", "label": "Charge passed" },
+    { "id": "mol", "label": "Electrons" },
+    { "id": "volts", "label": "Cell voltage" }
+  ],
+  "actions": [
+    { "id": "reset", "label": "Empty columns", "primary": true }
+  ],
+  "steps": [
+    { "title": "Making water conduct", "mode": "water", "body": ["Pure water barely conducts electricity. A little sodium sulfate is dissolved in it: its ions carry the current through the liquid but are not themselves changed at the electrodes.", "The three columns are joined at the bottom, so the liquid level in the central reservoir rises as gas pushes liquid out of the side columns."] },
+    { "title": "At the cathode", "mode": "water", "body": ["Electrons flow from the power supply into the negative platinum electrode. Water molecules take them: 4H₂O + 4e⁻ → 2H₂ + 4OH⁻.", "Hydrogen bubbles rise and the liquid around the cathode turns alkaline — with universal indicator it goes purple."] },
+    { "title": "At the anode", "mode": "water", "body": ["At the positive electrode water gives up electrons: 2H₂O → O₂ + 4H⁺ + 4e⁻. Oxygen bubbles off and the liquid there turns acidic and orange.", "Every four electrons make two hydrogen molecules but only one oxygen molecule, so the hydrogen column fills twice as fast."] },
+    { "title": "Faraday's law", "mode": "water", "body": ["Moles of gas = charge ÷ (electrons per molecule × 96,485 C). At 1 A for one minute, 60 C flow and about 7.6 ml of hydrogen and 3.8 ml of oxygen collect at room temperature.", "The voltage needed is at least 1.23 V, the thermodynamic limit, plus extra overpotential to make the bubbles form quickly."] },
+    { "title": "Brine and chlorine", "mode": "brine", "body": ["In concentrated salt water, chloride ions give up their electrons more easily than water: 2Cl⁻ → Cl₂ + 2e⁻. The anode now makes yellow-green chlorine, one volume for each volume of hydrogen.", "Some chlorine dissolves, so slightly less than expected collects. The chlor-alkali industry uses this reaction to make chlorine, hydrogen and sodium hydroxide for plastics, paper and clean water."] }
+  ],
+  "parts": [
+    { "name": "Cathode column", "role": "The negative side, where hydrogen collects. Graduated so the volume can be read." },
+    { "name": "Anode column", "role": "The positive side, where oxygen (or chlorine) collects." },
+    { "name": "Glass voltameter", "role": "Three columns joined at the base, with a reservoir bulb that takes the displaced liquid." },
+    { "name": "Platinum electrodes", "role": "Platinum does not react or dissolve, so it only passes electrons." },
+    { "name": "Electrolyte", "role": "Water with dissolved ions. Indicator colours show the alkaline cathode and acidic anode." },
+    { "name": "Stopcock", "role": "A glass tap at the top of each column, opened to release or test the gas." },
+    { "name": "Power supply", "role": "A bench DC supply; its meters show the current in amperes and the voltage." },
+    { "name": "Current knob", "role": "Sets the current through the cell." },
+    { "name": "Leads", "role": "Black to the cathode (−), red to the anode (+)." },
+    { "name": "Retort stand", "role": "Holds the glassware in two clamps." }
+  ],
+  "facts": [
+    { "label": "Faraday constant", "value": "96,485 C per mole of electrons" },
+    { "label": "Minimum voltage (water)", "value": "1.23 V at 25 °C" },
+    { "label": "H₂ : O₂ by volume", "value": "2 : 1" },
+    { "label": "Molar gas volume", "value": "24.47 L at 25 °C, 1 atm" },
+    { "label": "1 A for 1 hour", "value": "≈ 456 ml of hydrogen" }
+  ],
+  "accuracy": "Gas volumes follow Faraday's law with the ideal-gas molar volume at 25 °C; the cell voltage adds a simple overpotential and resistance term. Chlorine yield is reduced by an illustrative 25 % for its solubility.",
+  "sources": ["Atkins & de Paula, Physical Chemistry, 11th ed. (2018)", "Faraday, Experimental Researches in Electricity, Series VII (1834)", "Royal Society of Chemistry, Practical Chemistry: electrolysis of water"]
+}
