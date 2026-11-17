@@ -1,0 +1,63 @@
+{
+  "id": "pin-tumbler-lock",
+  "title": "Pin-Tumbler Lock",
+  "subtitle": "Why only the right key turns",
+  "category": "everyday",
+  "featured": false,
+  "tags": ["lock", "key", "security", "mechanism", "pins", "springs", "everyday", "door"],
+  "difficulty": "Beginner",
+  "minutes": 4,
+  "summary": "Slide a key into a sectioned brass lock and watch five spring-loaded pin stacks rise until every split lands on the shear line.",
+  "overview": [
+    "Most front doors are held by a pin-tumbler lock, an idea patented by Linus Yale Jr. in the 1860s from a design thousands of years old. Inside a fixed brass shell sits a cylinder called the plug, and the key's job is simply to let the plug turn.",
+    "Five holes are drilled through the shell into the plug. Each holds a stack: a key pin at the bottom, a driver pin above it and a spring pushing both down. With no key, the driver pins straddle the gap between shell and plug and jam it.",
+    "The right key lifts each key pin by exactly its own length, so every gap between key pin and driver pin lands on the shear line at once. Then nothing crosses the gap and the plug can rotate. Try the wrong key: one or two pins line up, but the plug stays locked."
+  ],
+  "modes": [
+    { "id": "right", "label": "Right key" },
+    { "id": "wrong", "label": "Wrong key" }
+  ],
+  "controls": [
+    { "id": "turn", "type": "toggle", "label": "Turn the key", "value": false, "help": "Only turns when every pin split sits on the shear line." }
+  ],
+  "gauges": [
+    { "id": "state", "label": "Lock" },
+    { "id": "aligned", "label": "Pins on shear line" },
+    { "id": "insert", "label": "Key inserted" },
+    { "id": "turn", "label": "Plug rotation" },
+    { "id": "bitting", "label": "Key bitting" },
+    { "id": "combos", "label": "Possible keys" }
+  ],
+  "actions": [
+    { "id": "insert", "label": "Insert", "primary": true },
+    { "id": "remove", "label": "Remove" },
+    { "id": "turnkey", "label": "Turn" }
+  ],
+  "steps": [
+    { "title": "Locked at rest", "ins": 0, "key": "right", "body": ["With no key in the lock, the springs push every pin stack down as far as it will go. Each driver pin now sits half in the shell and half in the plug, like a bolt dropped across the gap.", "Try to turn the plug and the five driver pins shear-block it: that is why the dashed line between shell and plug is called the shear line."] },
+    { "title": "Sliding the key in", "ins": 0.55, "key": "right", "body": ["The key's tip is ramped, so as it slides in it lifts each pin stack up and lets it drop again into the cuts behind. You can feel this as the clicks of a key going in.", "The cuts are called the bitting. This key's bitting is 3-7-4-8-2: the deeper the number, the deeper the cut."] },
+    { "title": "On the shear line", "ins": 1, "key": "right", "body": ["Fully inserted, each cut sits under its pin. Because every key pin was ground to match its cut, each split between key pin and driver pin now lies exactly on the shear line — the green dots.", "With no pin crossing the line, the plug is free to turn and its cam at the back draws the bolt."] },
+    { "title": "The wrong key", "ins": 1, "key": "wrong", "body": ["A different key lifts some pins too high, pushing a key pin up across the shear line, and leaves others too low, leaving a driver pin across it. One misplaced pin is enough to stop the plug.", "With ten depths and five pins there are 100,000 bitting combinations, though manufacturing rules reduce the usable number."] },
+    { "title": "Why picking works", "ins": 0.2, "key": "right", "body": ["No lock is perfect: the holes are never exactly in line, so under a light turning force one pin binds first. A lock-picker lifts that pin until it sets at the shear line, then the next, and so on.", "Security pins with spool or serrated shapes, and tighter tolerances, make this much harder."] }
+  ],
+  "parts": [
+    { "name": "Cylinder shell", "role": "The fixed brass housing, drilled with five pin chambers. Shown cut in half; section faces are hatched." },
+    { "name": "Plug", "role": "The cylinder that turns when the right key is in. Its keyway accepts only blades of the right profile." },
+    { "name": "Key pin", "role": "Brass pins of different lengths, each matched to one cut of the right key." },
+    { "name": "Driver pin", "role": "Equal-length steel pins that block the shear line unless lifted exactly right." },
+    { "name": "Spring", "role": "Pushes each pin stack down onto the key." },
+    { "name": "Key", "role": "Its cuts (bitting) lift each pin stack by the right amount." },
+    { "name": "Shear line", "role": "The boundary between shell and plug. The lock opens only when every pin split lands on it." },
+    { "name": "Face plate", "role": "The visible front of the lock, with the keyway opening." },
+    { "name": "Display block", "role": "A walnut block holding the cutaway on two saddles." }
+  ],
+  "facts": [
+    { "label": "Pin stacks", "value": "5 (key pin + driver pin + spring)" },
+    { "label": "Depths per cut", "value": "10 (0–9)" },
+    { "label": "Theoretical combinations", "value": "100,000" },
+    { "label": "Inventor of the modern form", "value": "Linus Yale Jr., 1861–65" },
+    { "label": "Shear-line tolerance", "value": "≈ 0.05 mm" }
+  ],
+  "accuracy": "Pin and cut proportions are enlarged for clarity; real depth steps are around 0.38 mm (0.015 in) and the plug's rotation is shown at its tailpiece.",
+  "sources": ["Tobias, Locks, Safes, and Security, 2nd ed. (2000)", "Pulford, The Locksmith's handbook (2014)"]
+}

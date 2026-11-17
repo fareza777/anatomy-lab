@@ -1,0 +1,59 @@
+{
+  "id": "orrery",
+  "title": "Orrery: Sun, Earth & Moon",
+  "subtitle": "Why we have seasons and moon phases",
+  "category": "space",
+  "featured": true,
+  "tags": ["solar system", "seasons", "earth", "moon", "orbit", "axial tilt", "kepler", "astronomy", "space"],
+  "difficulty": "Beginner",
+  "minutes": 5,
+  "summary": "A brass orrery turns through the year: Earth's fixed tilt makes the seasons, its slightly oval orbit changes its distance, and the Moon's position sets its phase.",
+  "overview": [
+    "An orrery is a clockwork model of the solar system, first built in the early 1700s. Turn its crank and a gear train carries the Earth around the Sun once a year and the Moon around the Earth once a month.",
+    "The seasons are not caused by distance. Earth is actually closest to the Sun in early January. They happen because Earth's axis is tilted 23.44° and keeps pointing the same way in space all year. In June the northern hemisphere leans toward the Sun: the Sun climbs higher and days are long. Six months later it leans away.",
+    "The Moon shines only by reflected sunlight, and half of it is always lit. Its phase is how much of that lit half we can see from Earth, which depends on where the Moon is in its 29.5-day trip around us. Move the latitude pin and the date to see daylight hours anywhere on Earth."
+  ],
+  "controls": [
+    { "id": "lat", "type": "range", "label": "Your latitude", "min": -66, "max": 66, "step": 1, "value": -6, "format": "{v}°", "help": "Positive is north of the equator. Jakarta is −6°, London +51°." }
+  ],
+  "gauges": [
+    { "id": "date", "label": "Date" },
+    { "id": "season", "label": "Season at latitude" },
+    { "id": "daylight", "label": "Daylight" },
+    { "id": "noon", "label": "Noon Sun height" },
+    { "id": "dec", "label": "Sun declination" },
+    { "id": "dist", "label": "Earth–Sun distance" },
+    { "id": "moon", "label": "Moon phase (2026)" }
+  ],
+  "actions": [
+    { "id": "play", "label": "Pause", "primary": true }
+  ],
+  "steps": [
+    { "title": "The tilt", "day": 172, "lat": 51, "body": ["Earth spins around an axis tilted 23.44° from the plane of its orbit, and that axis always points toward the same place in space, near the Pole Star.", "On 21 June the northern half leans toward the Sun. At 51° north the noon Sun stands 62° high and the day lasts more than 16 hours."] },
+    { "title": "Winter solstice", "day": 355, "lat": 51, "body": ["Half an orbit later the axis has not moved, but the Sun is now on the other side: the northern hemisphere leans away. The noon Sun at 51° north rises only 15°, and daylight shrinks to under 8 hours.", "South of the equator it is summer. The seasons are reversed between hemispheres."] },
+    { "title": "Equinoxes", "day": 79, "lat": 0, "body": ["Twice a year, around 20 March and 23 September, the tilt points neither toward nor away from the Sun. Day and night are close to 12 hours everywhere on Earth.", "At the equator the noon Sun is directly overhead on these days."] },
+    { "title": "Closest in January", "day": 3, "lat": 51, "body": ["Earth's orbit is a slightly stretched ellipse. It is closest to the Sun, 0.983 AU or 147 million km, around 3 January, and farthest, 1.017 AU, around 4 July.", "That 3 % change in distance makes sunlight about 7 % stronger in January — yet it is winter in the north, which shows how much more the tilt matters."] },
+    { "title": "Moon phases", "day": 200, "lat": -6, "body": ["The Moon circles the Earth every 29.5 days from new moon to new moon. When it lies between Earth and Sun, its lit side faces away: new moon. Opposite the Sun, we see the whole lit face: full moon.", "Halfway between are the quarters, when exactly half of the disc we see is lit."] }
+  ],
+  "parts": [
+    { "name": "Sun", "role": "The lamp at the centre. Real Sun: 1.39 million km across, 109 times the Earth." },
+    { "name": "Earth", "role": "Tilted 23.44°, with its day side always facing the Sun. The dashed ring is the equator." },
+    { "name": "Moon", "role": "Orbits the Earth every 27.3 days relative to the stars and 29.5 days from phase to phase." },
+    { "name": "Your latitude", "role": "The red pin sits at your chosen latitude on the meridian where it is noon." },
+    { "name": "Sun column", "role": "A brass column holding the Sun lamp above the gear train." },
+    { "name": "Gear train", "role": "The year wheel and drive pinion that turn the Earth arm." },
+    { "name": "Calendar ring", "role": "Engraved with the months, placed by Earth's true position on each date." },
+    { "name": "Hand crank", "role": "Turns the gear train: one full year per turn of the year wheel." },
+    { "name": "Walnut base", "role": "The turned wooden base of the instrument." }
+  ],
+  "facts": [
+    { "label": "Axial tilt", "value": "23.44°" },
+    { "label": "Orbital eccentricity", "value": "0.0167" },
+    { "label": "Perihelion / aphelion", "value": "0.983 AU (≈3 Jan) / 1.017 AU (≈4 Jul)" },
+    { "label": "Year", "value": "365.256 days (sidereal)" },
+    { "label": "Lunar month", "value": "29.53 days (synodic)" },
+    { "label": "1 AU", "value": "149.6 million km" }
+  ],
+  "accuracy": "Earth's position uses Kepler's equation of the centre, declination and daylight include atmospheric refraction; sizes and distances are not to scale (a true-scale Earth would be a speck). Moon phases are computed for 2026 from the 18 January new moon.",
+  "sources": ["Meeus, Astronomical Algorithms, 2nd ed. (1998)", "NOAA Solar Calculator methodology", "NASA Earth Fact Sheet"]
+}

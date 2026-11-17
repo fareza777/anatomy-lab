@@ -1213,6 +1213,396 @@
     "Klabunde, Cardiovascular Physiology Concepts, 3rd ed. (2021)",
     "Wiggers, Modern aspects of the circulation in health and disease (1915)"
    ]
+  },
+  {
+   "id": "orrery",
+   "title": "Orrery: Sun, Earth & Moon",
+   "subtitle": "Why we have seasons and moon phases",
+   "category": "space",
+   "featured": true,
+   "tags": [
+    "solar system",
+    "seasons",
+    "earth",
+    "moon",
+    "orbit",
+    "axial tilt",
+    "kepler",
+    "astronomy",
+    "space"
+   ],
+   "difficulty": "Beginner",
+   "minutes": 5,
+   "summary": "A brass orrery turns through the year: Earth's fixed tilt makes the seasons, its slightly oval orbit changes its distance, and the Moon's position sets its phase.",
+   "overview": [
+    "An orrery is a clockwork model of the solar system, first built in the early 1700s. Turn its crank and a gear train carries the Earth around the Sun once a year and the Moon around the Earth once a month.",
+    "The seasons are not caused by distance. Earth is actually closest to the Sun in early January. They happen because Earth's axis is tilted 23.44° and keeps pointing the same way in space all year. In June the northern hemisphere leans toward the Sun: the Sun climbs higher and days are long. Six months later it leans away.",
+    "The Moon shines only by reflected sunlight, and half of it is always lit. Its phase is how much of that lit half we can see from Earth, which depends on where the Moon is in its 29.5-day trip around us. Move the latitude pin and the date to see daylight hours anywhere on Earth."
+   ],
+   "controls": [
+    {
+     "id": "lat",
+     "type": "range",
+     "label": "Your latitude",
+     "min": -66,
+     "max": 66,
+     "step": 1,
+     "value": -6,
+     "format": "{v}°",
+     "help": "Positive is north of the equator. Jakarta is −6°, London +51°."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "date",
+     "label": "Date"
+    },
+    {
+     "id": "season",
+     "label": "Season at latitude"
+    },
+    {
+     "id": "daylight",
+     "label": "Daylight"
+    },
+    {
+     "id": "noon",
+     "label": "Noon Sun height"
+    },
+    {
+     "id": "dec",
+     "label": "Sun declination"
+    },
+    {
+     "id": "dist",
+     "label": "Earth–Sun distance"
+    },
+    {
+     "id": "moon",
+     "label": "Moon phase (2026)"
+    }
+   ],
+   "actions": [
+    {
+     "id": "play",
+     "label": "Pause",
+     "primary": true
+    }
+   ],
+   "steps": [
+    {
+     "title": "The tilt",
+     "day": 172,
+     "lat": 51,
+     "body": [
+      "Earth spins around an axis tilted 23.44° from the plane of its orbit, and that axis always points toward the same place in space, near the Pole Star.",
+      "On 21 June the northern half leans toward the Sun. At 51° north the noon Sun stands 62° high and the day lasts more than 16 hours."
+     ]
+    },
+    {
+     "title": "Winter solstice",
+     "day": 355,
+     "lat": 51,
+     "body": [
+      "Half an orbit later the axis has not moved, but the Sun is now on the other side: the northern hemisphere leans away. The noon Sun at 51° north rises only 15°, and daylight shrinks to under 8 hours.",
+      "South of the equator it is summer. The seasons are reversed between hemispheres."
+     ]
+    },
+    {
+     "title": "Equinoxes",
+     "day": 79,
+     "lat": 0,
+     "body": [
+      "Twice a year, around 20 March and 23 September, the tilt points neither toward nor away from the Sun. Day and night are close to 12 hours everywhere on Earth.",
+      "At the equator the noon Sun is directly overhead on these days."
+     ]
+    },
+    {
+     "title": "Closest in January",
+     "day": 3,
+     "lat": 51,
+     "body": [
+      "Earth's orbit is a slightly stretched ellipse. It is closest to the Sun, 0.983 AU or 147 million km, around 3 January, and farthest, 1.017 AU, around 4 July.",
+      "That 3 % change in distance makes sunlight about 7 % stronger in January — yet it is winter in the north, which shows how much more the tilt matters."
+     ]
+    },
+    {
+     "title": "Moon phases",
+     "day": 200,
+     "lat": -6,
+     "body": [
+      "The Moon circles the Earth every 29.5 days from new moon to new moon. When it lies between Earth and Sun, its lit side faces away: new moon. Opposite the Sun, we see the whole lit face: full moon.",
+      "Halfway between are the quarters, when exactly half of the disc we see is lit."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Sun",
+     "role": "The lamp at the centre. Real Sun: 1.39 million km across, 109 times the Earth."
+    },
+    {
+     "name": "Earth",
+     "role": "Tilted 23.44°, with its day side always facing the Sun. The dashed ring is the equator."
+    },
+    {
+     "name": "Moon",
+     "role": "Orbits the Earth every 27.3 days relative to the stars and 29.5 days from phase to phase."
+    },
+    {
+     "name": "Your latitude",
+     "role": "The red pin sits at your chosen latitude on the meridian where it is noon."
+    },
+    {
+     "name": "Sun column",
+     "role": "A brass column holding the Sun lamp above the gear train."
+    },
+    {
+     "name": "Gear train",
+     "role": "The year wheel and drive pinion that turn the Earth arm."
+    },
+    {
+     "name": "Calendar ring",
+     "role": "Engraved with the months, placed by Earth's true position on each date."
+    },
+    {
+     "name": "Hand crank",
+     "role": "Turns the gear train: one full year per turn of the year wheel."
+    },
+    {
+     "name": "Walnut base",
+     "role": "The turned wooden base of the instrument."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Axial tilt",
+     "value": "23.44°"
+    },
+    {
+     "label": "Orbital eccentricity",
+     "value": "0.0167"
+    },
+    {
+     "label": "Perihelion / aphelion",
+     "value": "0.983 AU (≈3 Jan) / 1.017 AU (≈4 Jul)"
+    },
+    {
+     "label": "Year",
+     "value": "365.256 days (sidereal)"
+    },
+    {
+     "label": "Lunar month",
+     "value": "29.53 days (synodic)"
+    },
+    {
+     "label": "1 AU",
+     "value": "149.6 million km"
+    }
+   ],
+   "accuracy": "Earth's position uses Kepler's equation of the centre, declination and daylight include atmospheric refraction; sizes and distances are not to scale (a true-scale Earth would be a speck). Moon phases are computed for 2026 from the 18 January new moon.",
+   "sources": [
+    "Meeus, Astronomical Algorithms, 2nd ed. (1998)",
+    "NOAA Solar Calculator methodology",
+    "NASA Earth Fact Sheet"
+   ]
+  },
+  {
+   "id": "pin-tumbler-lock",
+   "title": "Pin-Tumbler Lock",
+   "subtitle": "Why only the right key turns",
+   "category": "everyday",
+   "featured": false,
+   "tags": [
+    "lock",
+    "key",
+    "security",
+    "mechanism",
+    "pins",
+    "springs",
+    "everyday",
+    "door"
+   ],
+   "difficulty": "Beginner",
+   "minutes": 4,
+   "summary": "Slide a key into a sectioned brass lock and watch five spring-loaded pin stacks rise until every split lands on the shear line.",
+   "overview": [
+    "Most front doors are held by a pin-tumbler lock, an idea patented by Linus Yale Jr. in the 1860s from a design thousands of years old. Inside a fixed brass shell sits a cylinder called the plug, and the key's job is simply to let the plug turn.",
+    "Five holes are drilled through the shell into the plug. Each holds a stack: a key pin at the bottom, a driver pin above it and a spring pushing both down. With no key, the driver pins straddle the gap between shell and plug and jam it.",
+    "The right key lifts each key pin by exactly its own length, so every gap between key pin and driver pin lands on the shear line at once. Then nothing crosses the gap and the plug can rotate. Try the wrong key: one or two pins line up, but the plug stays locked."
+   ],
+   "modes": [
+    {
+     "id": "right",
+     "label": "Right key"
+    },
+    {
+     "id": "wrong",
+     "label": "Wrong key"
+    }
+   ],
+   "controls": [
+    {
+     "id": "turn",
+     "type": "toggle",
+     "label": "Turn the key",
+     "value": false,
+     "help": "Only turns when every pin split sits on the shear line."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "state",
+     "label": "Lock"
+    },
+    {
+     "id": "aligned",
+     "label": "Pins on shear line"
+    },
+    {
+     "id": "insert",
+     "label": "Key inserted"
+    },
+    {
+     "id": "turn",
+     "label": "Plug rotation"
+    },
+    {
+     "id": "bitting",
+     "label": "Key bitting"
+    },
+    {
+     "id": "combos",
+     "label": "Possible keys"
+    }
+   ],
+   "actions": [
+    {
+     "id": "insert",
+     "label": "Insert",
+     "primary": true
+    },
+    {
+     "id": "remove",
+     "label": "Remove"
+    },
+    {
+     "id": "turnkey",
+     "label": "Turn"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Locked at rest",
+     "ins": 0,
+     "key": "right",
+     "body": [
+      "With no key in the lock, the springs push every pin stack down as far as it will go. Each driver pin now sits half in the shell and half in the plug, like a bolt dropped across the gap.",
+      "Try to turn the plug and the five driver pins shear-block it: that is why the dashed line between shell and plug is called the shear line."
+     ]
+    },
+    {
+     "title": "Sliding the key in",
+     "ins": 0.55,
+     "key": "right",
+     "body": [
+      "The key's tip is ramped, so as it slides in it lifts each pin stack up and lets it drop again into the cuts behind. You can feel this as the clicks of a key going in.",
+      "The cuts are called the bitting. This key's bitting is 3-7-4-8-2: the deeper the number, the deeper the cut."
+     ]
+    },
+    {
+     "title": "On the shear line",
+     "ins": 1,
+     "key": "right",
+     "body": [
+      "Fully inserted, each cut sits under its pin. Because every key pin was ground to match its cut, each split between key pin and driver pin now lies exactly on the shear line — the green dots.",
+      "With no pin crossing the line, the plug is free to turn and its cam at the back draws the bolt."
+     ]
+    },
+    {
+     "title": "The wrong key",
+     "ins": 1,
+     "key": "wrong",
+     "body": [
+      "A different key lifts some pins too high, pushing a key pin up across the shear line, and leaves others too low, leaving a driver pin across it. One misplaced pin is enough to stop the plug.",
+      "With ten depths and five pins there are 100,000 bitting combinations, though manufacturing rules reduce the usable number."
+     ]
+    },
+    {
+     "title": "Why picking works",
+     "ins": 0.2,
+     "key": "right",
+     "body": [
+      "No lock is perfect: the holes are never exactly in line, so under a light turning force one pin binds first. A lock-picker lifts that pin until it sets at the shear line, then the next, and so on.",
+      "Security pins with spool or serrated shapes, and tighter tolerances, make this much harder."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Cylinder shell",
+     "role": "The fixed brass housing, drilled with five pin chambers. Shown cut in half; section faces are hatched."
+    },
+    {
+     "name": "Plug",
+     "role": "The cylinder that turns when the right key is in. Its keyway accepts only blades of the right profile."
+    },
+    {
+     "name": "Key pin",
+     "role": "Brass pins of different lengths, each matched to one cut of the right key."
+    },
+    {
+     "name": "Driver pin",
+     "role": "Equal-length steel pins that block the shear line unless lifted exactly right."
+    },
+    {
+     "name": "Spring",
+     "role": "Pushes each pin stack down onto the key."
+    },
+    {
+     "name": "Key",
+     "role": "Its cuts (bitting) lift each pin stack by the right amount."
+    },
+    {
+     "name": "Shear line",
+     "role": "The boundary between shell and plug. The lock opens only when every pin split lands on it."
+    },
+    {
+     "name": "Face plate",
+     "role": "The visible front of the lock, with the keyway opening."
+    },
+    {
+     "name": "Display block",
+     "role": "A walnut block holding the cutaway on two saddles."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Pin stacks",
+     "value": "5 (key pin + driver pin + spring)"
+    },
+    {
+     "label": "Depths per cut",
+     "value": "10 (0–9)"
+    },
+    {
+     "label": "Theoretical combinations",
+     "value": "100,000"
+    },
+    {
+     "label": "Inventor of the modern form",
+     "value": "Linus Yale Jr., 1861–65"
+    },
+    {
+     "label": "Shear-line tolerance",
+     "value": "≈ 0.05 mm"
+    }
+   ],
+   "accuracy": "Pin and cut proportions are enlarged for clarity; real depth steps are around 0.38 mm (0.015 in) and the plug's rotation is shown at its tailpiece.",
+   "sources": [
+    "Tobias, Locks, Safes, and Security, 2nd ed. (2000)",
+    "Pulford, The Locksmith's handbook (2014)"
+   ]
   }
  ]
 }
