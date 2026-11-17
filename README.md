@@ -1,0 +1,111 @@
+<p align="center"><img src="marketing/icon-512.png" width="120" alt="Anatomy Lab icon"></p>
+
+<h1 align="center">Anatomy Lab: How Things Work</h1>
+
+<p align="center"><b>An interactive explorer of complex systems for Android.</b><br>
+Engines, hearts, factories and machines drawn as precise, full-colour isometric models you can run, pull apart and question — every number driven by a real physical model.</p>
+
+<p align="center">
+<img src="marketing/screens/engine.png" width="30%" alt="Four-stroke engine lab">
+<img src="marketing/screens/chocolate.png" width="30%" alt="Chocolate factory lab">
+<img src="marketing/screens/heart.png" width="30%" alt="Human heart lab">
+</p>
+
+---
+
+## What's inside
+
+| System | Shelf | What you can do |
+|---|---|---|
+| **Four-Stroke Engine** | Engineering | Sectioned air-cooled DOHC single on a test bench. Turn the crank by hand, change rpm and throttle, X-ray or explode it. WebGL charge, flame front and exhaust in the chamber; live tachometer and cylinder-pressure gauge; p–V indicator diagram. Slider-crank kinematics, sin² valve lift, polytropic compression, Wiebe burn. |
+| **Chocolate Factory** | Factories & Making | Full bean-to-bar line: drum roaster, winnower + cyclone, granite melanger, conche, tempering machine, depositor, cooling tunnel, flow wrapper. Dark / milk / white couverture with real Form V tempering windows; set the working temperature and watch bars bloom when it's wrong. |
+| **3D Printer** | Factories & Making | Bed-slinger FDM printer printing a twisting six-lobed vase layer by layer. PLA / PETG / TPU windows, volumetric-flow limit, filament length and mass, print time. |
+| **Human Heart** | Biology | Long-axis section on a stand. Chambers contract through the Wiggers cycle, four valves open and close, blood flows, live ECG; Electrical mode animates the conduction system. Pressures, volumes, stroke volume, cardiac output. |
+
+Every lab has view modes, sliders, live gauges, a synced step-by-step explanation, and **tap-any-part identification** (the part glows and its name and job appear).
+
+## App features
+
+- Two splashes: animated Anatomy Lab mark (assembles from an exploded view), then the F7 Developer ident video.
+- Interactive onboarding (four animated pages, theme choice).
+- Home with featured carousel, "continue exploring", shelves per category; Explore (9 shelves), Search, Saved, Settings, About, Rate us, Share app.
+- Light (default) and dark themes, chosen in onboarding or Settings.
+- Offline-first: every lab is bundled; nothing is downloaded at runtime.
+- AdMob banner (in its own reserved row, never over content), interstitial only when leaving a lab after real use (≥ 40 s, ≥ 3 min apart, never the first lab), rewarded video only when the user chooses it to unlock poster sharing.
+- Google UMP consent before any ad request; Privacy options entry when required.
+- **Remove Ads — $4.99** one-time in-app product (`anatomylab_remove_ads`) with restore purchases.
+- "Share as poster": captures the live figure (WebGL included) with PixelCopy, frames it and shares it.
+
+## Architecture
+
+```
+figures/                 Node build pipeline for the labs (no npm dependencies)
+  vendor/anatomy/        The Anatomy kit (MIT, github.com/wheresryan22/anatomy) — iso camera, solids,
+                         lathe & tube parts, WebGL layer, capture tools
+  lab/shell.mjs          The lab page shell: controls, modes, gauges, steps, part picker, Android bridge
+  lab/materials.mjs      Full-colour material system layered on the kit's four-tone shading
+  lab/inline.mjs         Inlines kit modules into a standalone page
+  systems/<id>/          One folder per system: model.mjs (pure physics), build.mjs (geometry + live code),
+                         content.json (texts, controls, steps, parts, facts, sources)
+  build-all.mjs          Builds every system (light + dark) into app/src/main/assets/labs and writes catalog.json
+  thumbs.mjs             Captures transparent thumbnails of each figure with headless Chrome
+app/                     Android app (Kotlin, Jetpack Compose, Material 3)
+  ui/                    Splashes, onboarding, home, explore, search, saved, settings, lab screen
+  ads/ billing/          AdMob + UMP, Google Play Billing 8
+  data/                  Catalog repository, DataStore preferences
+tools/                   Icon generator, thumbnail converter
+marketing/               Icon, store listing text, screenshots
+docs/                    Privacy policy (GitHub Pages)
+```
+
+Each lab is a self-contained HTML page rendered in a WebView served from the APK through
+`WebViewAssetLoader`. The native app talks to it through a small bridge (`window.Lab` in the
+page, `AnatomyNative` in the app): readiness, step changes and part picks (haptic feedback),
+and pause/resume with the activity lifecycle.
+
+### Adding a system
+
+1. `mkdir figures/systems/my-system` with `model.mjs`, `build.mjs` (export `WIDTH`, `HEIGHT`, `figure(theme)`) and `content.json` (copy an existing one).
+2. `cd figures && node build-all.mjs my-system && node thumbs.mjs my-system && python ../tools/webp_thumbs.py`
+3. Rebuild the app. The catalog, search, shelves and thumbnails pick it up automatically.
+
+## Build
+
+Requirements: JDK 17+, Android SDK 36, Node 20.10+, Chrome (for thumbnails), Python 3 with Pillow.
+
+```bash
+cd figures && node build-all.mjs && node thumbs.mjs && python ../tools/webp_thumbs.py && cd ..
+./gradlew assembleDebug
+```
+
+Release (needs `keystore.properties` + the keystore, both git-ignored):
+
+```bash
+./gradlew bundleRelease assembleRelease
+```
+
+### Ads and billing configuration
+
+Without configuration the app uses Google's public **test** ad units. For production create
+`admob.properties` (git-ignored) in the project root:
+
+```properties
+admobAppId=ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
+bannerUnitId=ca-app-pub-XXXXXXXXXXXXXXXX/1111111111
+interstitialUnitId=ca-app-pub-XXXXXXXXXXXXXXXX/2222222222
+rewardedUnitId=ca-app-pub-XXXXXXXXXXXXXXXX/3333333333
+```
+
+In Play Console create a one-time in-app product with ID `anatomylab_remove_ads` priced at
+USD 4.99, and set up the GDPR/US-states messages in AdMob → Privacy & messaging.
+
+## Content rules
+
+All art avoids lifelike faces; there is no background music (sound effects and the brand
+sting only). Every system lists its modelling assumptions and references in its info sheet.
+
+## Credits & licences
+
+- Figure engine: [Anatomy](https://github.com/wheresryan22/anatomy) by Ryan — MIT licence (`figures/vendor/anatomy/LICENSE`).
+- Typefaces: Space Grotesk and JetBrains Mono — SIL Open Font Licence 1.1.
+- App code, art direction, models and texts © F7 Developer. All rights reserved.

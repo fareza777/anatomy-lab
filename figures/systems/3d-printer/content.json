@@ -1,0 +1,73 @@
+{
+  "id": "3d-printer",
+  "title": "3D Printer",
+  "subtitle": "Building a vase one layer at a time",
+  "category": "making",
+  "featured": true,
+  "tags": ["3d printing", "fdm", "additive manufacturing", "maker", "filament", "g-code", "stepper motor", "factory"],
+  "difficulty": "Beginner",
+  "minutes": 5,
+  "summary": "An open-frame FDM printer melts plastic filament and draws a twisting vase one thin layer at a time — and the flow physics decides how fast it can go.",
+  "overview": [
+    "A fused-filament (FDM) printer is a hot-glue gun on a robot. A motor pushes a 1.75 mm plastic filament into a heated nozzle, which melts it and squeezes out a line less than half a millimetre wide. Three motors steer the nozzle so the line traces the outline of one slice of the object.",
+    "This printer is a bed-slinger: the heated bed slides front to back (Y), the print head slides left to right on a gantry (X), and two lead screws lift the whole gantry by one layer height (Z) when a slice is finished. Watch the bed and the head move together: their combined motion draws the curved, six-lobed wall of the vase.",
+    "Speed has a hard limit. The hotend can only melt so much plastic each second, its volumetric flow. Faster moves or thicker layers ask for more; past the limit the plastic leaves the nozzle half-melted and the layers do not bond. The settings below compute flow, filament use and print time for the whole vase."
+  ],
+  "modes": [
+    { "id": "pla", "label": "PLA" },
+    { "id": "petg", "label": "PETG" },
+    { "id": "tpu", "label": "TPU" }
+  ],
+  "controls": [
+    { "id": "speed", "type": "range", "label": "Print speed", "min": 20, "max": 150, "step": 5, "value": 60, "format": "{v} mm/s", "help": "How fast the nozzle moves along the wall." },
+    { "id": "layer", "type": "range", "label": "Layer height", "min": 0.1, "max": 0.36, "step": 0.02, "value": 0.2, "digits": 2, "format": "{v} mm", "help": "Thinner layers look smoother but take longer." },
+    { "id": "temp", "type": "range", "label": "Nozzle temperature", "min": 170, "max": 270, "step": 1, "value": 205, "format": "{v} °C", "help": "Each plastic has its own melting window." }
+  ],
+  "gauges": [
+    { "id": "layer", "label": "Layer" },
+    { "id": "height", "label": "Height" },
+    { "id": "flow", "label": "Volumetric flow" },
+    { "id": "temp", "label": "Nozzle" },
+    { "id": "filament", "label": "Filament for vase" },
+    { "id": "time", "label": "Print time" }
+  ],
+  "actions": [
+    { "id": "restart", "label": "Start again", "primary": true }
+  ],
+  "steps": [
+    { "title": "Slicing", "layerFrac": 0, "body": ["Before printing, software called a slicer cuts the 3D model into hundreds of thin horizontal slices and writes each outline as G-code: a list of moves such as G1 X12.3 Y4.5 E0.08, meaning move here while pushing out this much filament.", "This vase at 0.2 mm layers becomes 320 slices; the controller on the front reads them one line at a time."] },
+    { "title": "Heating up", "layerFrac": 0, "body": ["The bed heats first, to 60 °C for PLA, so the first layer stays soft enough to grip the textured sheet instead of curling up as it cools.", "The nozzle then heats to its window: PLA prints at about 190–220 °C, PETG at 225–250 °C. A thermistor in the heater block measures the temperature many times a second and the controller adjusts the power to hold it steady."] },
+    { "title": "The first layer", "layerFrac": 0.02, "body": ["The first layer is pressed slightly into the bed so it spreads and sticks. Four orange knobs under the bed level it to within a few hundredths of a millimetre — paper thickness matters here.", "A badly levelled bed is the most common cause of a failed print."] },
+    { "title": "Drawing a wall", "layerFrac": 0.35, "body": ["For each layer the nozzle traces the outline twice to make a wall two lines thick. Because this printer moves the bed in Y and the head in X, every curve is the sum of two straight motions, coordinated by stepper motors that move in steps of a few micrometres.", "The fan on the head blows on the fresh plastic so it sets quickly and keeps its shape."] },
+    { "title": "Layer change", "layerFrac": 0.6, "body": ["When the outline closes, both lead screws turn together and lift the gantry by exactly one layer height. The next layer is laid on top of the still-warm one below and fuses to it.", "The vase twists because each slice is rotated a little from the last, and it bulges where the outline grows wider."] },
+    { "title": "Flow limits", "layerFrac": 0.85, "body": ["Volumetric flow is speed × layer height × line width. A standard hotend melts about 15 mm³ of PLA per second; flexible TPU only about 4, because it buckles if pushed hard.", "Try raising the speed and the layer height together until the flow gauge turns red: beyond that, the printer would lay down cold, weak, under-filled lines."] }
+  ],
+  "parts": [
+    { "name": "Print head", "role": "Carries the extruder motor, the part-cooling fan and the hotend that melts the filament." },
+    { "name": "X gantry", "role": "Two steel rods and a belt that carry the print head left and right." },
+    { "name": "Heated bed", "role": "A heated aluminium plate under a textured sheet; it slides front to back on rods." },
+    { "name": "Printed vase", "role": "The part being built, two lines thick, one 0.1–0.36 mm layer at a time." },
+    { "name": "Filament", "role": "A 1.75 mm plastic strand pulled from the spool into the extruder." },
+    { "name": "Filament spool", "role": "Usually holds 1 kg of filament, about 330 m of PLA." },
+    { "name": "Spool holder", "role": "Lets the spool turn freely as filament is pulled off." },
+    { "name": "Z lead screws", "role": "Brass-nut screws that lift the gantry exactly one layer at a time." },
+    { "name": "Z motors", "role": "Two stepper motors that turn the lead screws in sync." },
+    { "name": "Z linear rods", "role": "Guide the gantry so it rises perfectly straight." },
+    { "name": "Z frame", "role": "The upright aluminium extrusions that hold the gantry." },
+    { "name": "Base frame", "role": "Aluminium extrusions with T-slots that hold everything square." },
+    { "name": "Y linear rods", "role": "Hardened steel rods the bed slides on." },
+    { "name": "Y motor", "role": "Pulls the bed back and forth with a toothed belt." },
+    { "name": "Power supply", "role": "Converts mains power to 24 volts for the heaters and motors." },
+    { "name": "Controller & display", "role": "Reads the G-code and drives every motor and heater; the screen shows layer and temperatures." }
+  ],
+  "facts": [
+    { "label": "Nozzle / line width", "value": "0.4 mm / 0.45 mm" },
+    { "label": "Filament diameter", "value": "1.75 mm" },
+    { "label": "PLA nozzle window", "value": "190–220 °C, bed 60 °C" },
+    { "label": "PETG nozzle window", "value": "225–250 °C, bed 80 °C" },
+    { "label": "Typical hotend flow limit", "value": "≈ 15 mm³/s (PLA)" },
+    { "label": "Vase height", "value": "64 mm" }
+  ],
+  "accuracy": "Flow, filament length, mass and time are computed from the vase geometry with two 0.45 mm walls and a solid base; real slicers add acceleration limits, travel moves and cooling pauses, so actual times are longer.",
+  "sources": ["Prusa Research knowledge base: material guides and volumetric flow", "Gibson, Rosen & Stucker, Additive Manufacturing Technologies, 3rd ed. (2021)"]
+}

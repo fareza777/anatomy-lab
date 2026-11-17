@@ -1,0 +1,72 @@
+{
+  "id": "human-heart",
+  "title": "Human Heart",
+  "subtitle": "Four chambers, four valves, one beat",
+  "category": "biology",
+  "featured": true,
+  "tags": ["heart", "anatomy", "cardiac cycle", "blood", "valves", "ecg", "circulation", "biology", "human body"],
+  "difficulty": "Intermediate",
+  "minutes": 7,
+  "summary": "A sectioned heart beats through the cardiac cycle: chambers squeeze, valves snap shut, blood flows, and an ECG traces the electricity that times it all.",
+  "overview": [
+    "Your heart is two pumps side by side. The right side receives tired, oxygen-poor blood from the body and pushes it through the lungs. The left side receives fresh blood from the lungs and drives it out to every cell, around 100,000 times a day.",
+    "Each side has two chambers. A thin-walled atrium collects blood; a thick, muscular ventricle pumps it out. Four one-way valves keep the flow moving forward: the tricuspid and mitral valves between atria and ventricles, the pulmonary and aortic valves at the exits. Their closing makes the familiar lub-dub of the heartbeat.",
+    "This model is cut along the heart's long axis so all four chambers show at once. Everything moves to the same clock: the cardiac cycle traced by Carl Wiggers in 1915. Switch to Electrical to watch the impulse leave the sinoatrial node, pause at the AV node and race down the ventricles — the same wave the ECG records."
+  ],
+  "modes": [
+    { "id": "anatomy", "label": "Anatomy" },
+    { "id": "electrical", "label": "Electrical" },
+    { "id": "flow", "label": "Flow" }
+  ],
+  "controls": [
+    { "id": "bpm", "type": "range", "label": "Heart rate", "min": 40, "max": 180, "step": 1, "value": 72, "format": "{v} bpm", "help": "Resting adults run 60–100 bpm; hard exercise can exceed 170." },
+    { "id": "slow", "type": "range", "label": "Slow motion", "min": 1, "max": 10, "step": 1, "value": 3, "format": "×{v}", "help": "Stretch each beat so you can follow the valves." }
+  ],
+  "gauges": [
+    { "id": "phase", "label": "Phase" },
+    { "id": "bp", "label": "Blood pressure" },
+    { "id": "lv", "label": "LV pressure" },
+    { "id": "vol", "label": "LV volume" },
+    { "id": "sv", "label": "Stroke volume" },
+    { "id": "co", "label": "Cardiac output" },
+    { "id": "valvesState", "label": "Valves" },
+    { "id": "slow", "label": "Slow motion" }
+  ],
+  "steps": [
+    { "title": "Two pumps", "p": 0.75, "body": ["Blue blood returning from the body enters the right atrium through the superior and inferior venae cavae. Red blood from the lungs enters the left atrium through four pulmonary veins.", "The thick wall between the two sides, the septum, keeps the oxygen-poor and oxygen-rich blood from ever mixing."] },
+    { "title": "Atrial kick", "p": 0.05, "body": ["The beat begins at the sinoatrial node, the heart's natural pacemaker in the right atrium. Its signal makes both atria contract (the P wave on the ECG) and top up the ventricles with a last 15–20 ml.", "Most filling has already happened passively; the atrial kick adds about a fifth, and matters most during exercise."] },
+    { "title": "Lub: valves close", "p": 0.15, "body": ["The impulse pauses briefly at the AV node, then races down the ventricles (the QRS spike). The ventricles squeeze, pressure inside jumps above the atria, and the tricuspid and mitral valves slam shut — the first heart sound, lub.", "For a moment all four valves are closed and the ventricles tense without changing volume: isovolumic contraction. Thin cords, the chordae tendineae, stop the valve leaflets turning inside out."] },
+    { "title": "Ejection", "p": 0.3, "body": ["When left-ventricular pressure passes the 80 mmHg in the aorta, the aortic valve opens and about 70 ml of blood is thrown out; the right ventricle does the same into the pulmonary artery at a much lower 25 mmHg.", "The left ventricle ejects roughly 60 % of what it holds — the ejection fraction doctors measure."] },
+    { "title": "Dub: relaxation", "p": 0.52, "body": ["The ventricles relax (the T wave). Their pressure falls below the arteries, blood starts to flow back and snaps the aortic and pulmonary valves shut — the second sound, dub.", "With all valves closed again the muscle relaxes further (isovolumic relaxation) until its pressure drops below the atria."] },
+    { "title": "Filling", "p": 0.7, "body": ["The tricuspid and mitral valves swing open and blood that has pooled in the atria rushes into the ventricles. Then filling slows until the next P wave starts the cycle again.", "Raise the heart rate: diastole shortens much more than systole, which is why a very fast heart can fill too little and pump less."] }
+  ],
+  "parts": [
+    { "name": "Right atrium", "role": "Collects oxygen-poor blood from the body and holds the sinoatrial node, the natural pacemaker." },
+    { "name": "Right ventricle", "role": "Pumps blood to the lungs through the pulmonary valve at low pressure (about 25 mmHg)." },
+    { "name": "Left atrium", "role": "Receives oxygen-rich blood from the lungs through four pulmonary veins." },
+    { "name": "Left ventricle", "role": "The strongest chamber, with walls about 1 cm thick. Pumps blood to the whole body at about 120 mmHg." },
+    { "name": "Tricuspid valve", "role": "Three leaflets between right atrium and ventricle; closes at the start of systole." },
+    { "name": "Mitral valve", "role": "Two leaflets between left atrium and ventricle, tied down by chordae tendineae." },
+    { "name": "Pulmonary valve", "role": "Three half-moon cusps at the exit to the lungs." },
+    { "name": "Aortic valve", "role": "Three half-moon cusps at the exit to the body; its closure is the second heart sound." },
+    { "name": "Heart muscle (myocardium)", "role": "Muscle cells that contract together because electrical signals pass directly between them." },
+    { "name": "Aorta", "role": "The body's largest artery. It arches over the heart and sends branches to the head and arms." },
+    { "name": "Pulmonary artery", "role": "Carries oxygen-poor blood from the right ventricle to both lungs." },
+    { "name": "Superior vena cava", "role": "Returns blood from the head, neck and arms." },
+    { "name": "Inferior vena cava", "role": "Returns blood from the lower body." },
+    { "name": "Pulmonary veins", "role": "Bring oxygen-rich blood from the lungs into the left atrium." },
+    { "name": "ECG monitor", "role": "Records the heart's electrical activity: P wave, QRS complex and T wave." },
+    { "name": "ECG electrodes", "role": "Pads that pick up the tiny voltages the heart makes, about one millivolt." },
+    { "name": "Display stand", "role": "A walnut stand with a brass rod holding the model." }
+  ],
+  "facts": [
+    { "label": "Resting heart rate", "value": "60–100 bpm" },
+    { "label": "Stroke volume at rest", "value": "≈ 70 ml" },
+    { "label": "Cardiac output at rest", "value": "≈ 5 L/min" },
+    { "label": "Ejection fraction", "value": "55–70 %" },
+    { "label": "Blood pressure", "value": "≈ 120/80 mmHg (left side) · 25/10 (right side)" },
+    { "label": "Beats in a lifetime", "value": "≈ 3 billion" }
+  ],
+  "accuracy": "Timing, pressures and volumes follow textbook Wiggers values for a healthy adult at rest and scale with heart rate in a simplified way. The section is a schematic long-axis view: real chambers are three-dimensional and twist as they contract.",
+  "sources": ["Guyton & Hall, Textbook of Medical Physiology, 14th ed. (2020)", "Klabunde, Cardiovascular Physiology Concepts, 3rd ed. (2021)", "Wiggers, Modern aspects of the circulation in health and disease (1915)"]
+}
