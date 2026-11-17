@@ -1,0 +1,712 @@
+{
+ "version": 1,
+ "categories": [
+  {
+   "id": "biology",
+   "title": "Biology & Human Anatomy",
+   "short": "Biology",
+   "blurb": "Organs, cells and the body as a machine."
+  },
+  {
+   "id": "physics",
+   "title": "Science & Physics",
+   "short": "Physics",
+   "blurb": "Waves, forces, fields and light."
+  },
+  {
+   "id": "nature",
+   "title": "Nature & Ecosystems",
+   "short": "Nature",
+   "blurb": "Water, weather and living systems."
+  },
+  {
+   "id": "technology",
+   "title": "Technology & Computing",
+   "short": "Technology",
+   "blurb": "How the machines we think with work."
+  },
+  {
+   "id": "engineering",
+   "title": "Engineering",
+   "short": "Engineering",
+   "blurb": "Engines, mechanisms and structures."
+  },
+  {
+   "id": "chemistry",
+   "title": "Chemistry",
+   "short": "Chemistry",
+   "blurb": "Reactions you can watch atom by atom."
+  },
+  {
+   "id": "space",
+   "title": "Space",
+   "short": "Space",
+   "blurb": "Orbits, rockets and the sky."
+  },
+  {
+   "id": "making",
+   "title": "Factories & Making",
+   "short": "Making",
+   "blurb": "Production lines and machines that make things."
+  },
+  {
+   "id": "everyday",
+   "title": "Everyday Systems",
+   "short": "Everyday",
+   "blurb": "The clever things hiding in plain sight."
+  }
+ ],
+ "systems": [
+  {
+   "id": "chocolate-factory",
+   "title": "Chocolate Factory",
+   "subtitle": "From cocoa bean to wrapped bar",
+   "category": "making",
+   "featured": true,
+   "tags": [
+    "chocolate",
+    "factory",
+    "tempering",
+    "cocoa",
+    "food",
+    "production line",
+    "crystals",
+    "conveyor"
+   ],
+   "difficulty": "Beginner",
+   "minutes": 7,
+   "summary": "A complete bean-to-bar line: roast, winnow, grind, conche, temper, deposit, cool and wrap — and why chocolate must be tempered to snap.",
+   "overview": [
+    "A chocolate bar starts as the bitter seed of a tropical fruit. Fermented and dried on the farm, cocoa beans arrive at the factory hard and sour. Eight machines, working one after another, turn them into the glossy bar that snaps cleanly and melts on your tongue.",
+    "Heat does most of the work. The roaster develops flavour; the melanger's granite rollers grind nibs so fine — under 20 micrometres — that the tongue cannot feel the particles; the conche stirs warm chocolate for hours to drive off sharp acids and coat every grain of sugar in cocoa butter.",
+    "The cleverest step is tempering. Cocoa butter can crystallise in six different forms, and only Form V gives gloss and snap. The tempering machine melts every crystal, cools the chocolate to seed new ones, then warms it just enough to melt all but Form V. Slide the working temperature and watch what goes wrong when it is out of the window."
+   ],
+   "modes": [
+    {
+     "id": "dark",
+     "label": "Dark"
+    },
+    {
+     "id": "milk",
+     "label": "Milk"
+    },
+    {
+     "id": "white",
+     "label": "White"
+    }
+   ],
+   "controls": [
+    {
+     "id": "work",
+     "type": "range",
+     "label": "Working temperature",
+     "min": 25,
+     "max": 35,
+     "step": 0.1,
+     "value": 31.5,
+     "digits": 1,
+     "format": "{v} °C",
+     "help": "The temperature the chocolate is held at after seeding. Keep it inside the Form V window."
+    },
+    {
+     "id": "roast",
+     "type": "range",
+     "label": "Roast temperature",
+     "min": 105,
+     "max": 150,
+     "step": 1,
+     "value": 125,
+     "format": "{v} °C",
+     "help": "Hotter roasts darken the beans and push flavour from fruity to roasty."
+    },
+    {
+     "id": "speed",
+     "type": "range",
+     "label": "Line speed",
+     "min": 6,
+     "max": 30,
+     "step": 1,
+     "value": 15,
+     "format": "{v} moulds/min",
+     "help": "Each mould holds four 100 g bars."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "crystal",
+     "label": "Crystal form"
+    },
+    {
+     "id": "window",
+     "label": "Form V window"
+    },
+    {
+     "id": "rate",
+     "label": "Bars"
+    },
+    {
+     "id": "kg",
+     "label": "Output"
+    },
+    {
+     "id": "made",
+     "label": "Bars made"
+    },
+    {
+     "id": "flavour",
+     "label": "Roast flavour"
+    },
+    {
+     "id": "conche",
+     "label": "Conching"
+    },
+    {
+     "id": "cocoa",
+     "label": "Cocoa solids"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Roasting",
+     "focus": "roast",
+     "body": [
+      "Fermented beans tumble in a gas-heated drum at 110–150 °C for 15 to 40 minutes. Sugars and amino acids react (the Maillard reaction), creating hundreds of flavour compounds and the familiar chocolate aroma.",
+      "A rotating sieve in front cools the batch quickly so the roast stops exactly where the roaster wants it. Try the roast slider: the sight glass and the cooled beans darken as the temperature rises."
+     ]
+    },
+    {
+     "title": "Cracking & winnowing",
+     "focus": "winnow",
+     "body": [
+      "The roasted beans are cracked into pieces called nibs. A stream of air from the blower lifts away the light, papery shells, while the heavier nibs fall through.",
+      "A cyclone on top spins the air so the shells drop out into the bin — they become garden mulch or animal feed — and the clean nibs travel on to the grinder."
+     ]
+    },
+    {
+     "title": "Grinding",
+     "focus": "grind",
+     "body": [
+      "In the melanger two granite rollers roll round a granite bed. Nibs are about half fat (cocoa butter), so as they are crushed they melt into a thick, dark liquid called cocoa liquor.",
+      "Sugar and, for milk chocolate, milk powder are added from the hoppers above. Grinding continues until particles are below about 20 micrometres — smaller than the tongue can detect."
+     ]
+    },
+    {
+     "title": "Conching",
+     "focus": "conche",
+     "body": [
+      "The conche stirs and kneads the warm chocolate, 10 to 18 hours depending on the recipe. Aeration drives off volatile acids and water, and friction coats every particle in cocoa butter.",
+      "The result is smoother, mellower and more liquid. The name comes from the shell shape of the first trough, invented by Rodolphe Lindt in 1879."
+     ]
+    },
+    {
+     "title": "Tempering",
+     "focus": "temper",
+     "body": [
+      "Cocoa butter can set in six crystal forms. Only Form V is glossy, snaps cleanly and melts just below body temperature. The tempering machine first melts all crystals at 45–50 °C, then cools the chocolate to seed new ones, then warms it to the working temperature, which melts every form except V.",
+      "Each chocolate has its own window: about 31–32 °C for dark, 29–30 °C for milk and 28–29 °C for white, because milk fat interferes with the crystals. Too warm and the seeds melt: the bars bloom grey and soft. Too cool and unstable crystals thicken the chocolate."
+     ]
+    },
+    {
+     "title": "Depositing",
+     "focus": "deposit",
+     "body": [
+      "A piston depositor fills every cavity of each mould with an exact dose, here 100 g per bar, four bars per mould. The moulds are polished polycarbonate, so each bar takes a mirror shine from them.",
+      "The moulds are shaken as they move on, which brings air bubbles to the surface so the bars have no holes."
+     ]
+    },
+    {
+     "title": "Cooling",
+     "focus": "cool",
+     "body": [
+      "The filled moulds ride through a tunnel chilled to about 12 °C. As Form V crystals grow, the chocolate contracts slightly, which is what lets the bars drop out of the moulds.",
+      "Cooling too fast or too cold causes condensation and sugar bloom, so the tunnel controls temperature and humidity along its length."
+     ]
+    },
+    {
+     "title": "Wrapping",
+     "focus": "wrap",
+     "body": [
+      "Moulds are turned over and tapped; the bars fall out and the empty moulds return under the line. A flow wrapper folds gold foil and a paper sleeve around each bar.",
+      "The wrapped bars are counted into cartons. Store them at 15–18 °C: warmer, and cocoa butter migrates to the surface as fat bloom."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Cocoa bean sacks",
+     "role": "Fermented, sun-dried beans arrive from the farm in 60 kg jute sacks."
+    },
+    {
+     "name": "Roasting drum",
+     "role": "A perforated steel drum that turns over a gas burner so every bean roasts evenly."
+    },
+    {
+     "name": "Gas burner",
+     "role": "Heats the air flowing through the drum; its window glows hotter with the roast setting."
+    },
+    {
+     "name": "Roaster cabinet",
+     "role": "Holds the burner, the drum drive and the controls."
+    },
+    {
+     "name": "Bean hopper",
+     "role": "Holds the next batch of raw cocoa beans, dropped into the drum all at once."
+    },
+    {
+     "name": "Cooling sieve",
+     "role": "A rotating tray with a stirring arm that cools freshly roasted beans in minutes."
+    },
+    {
+     "name": "Chimney",
+     "role": "Carries away the roasting smoke and moisture."
+    },
+    {
+     "name": "Winnower",
+     "role": "Cracks the beans and blows away the shells with a stream of air."
+    },
+    {
+     "name": "Cyclone separator",
+     "role": "Spins the air so the light shells drop out of it."
+    },
+    {
+     "name": "Air blower",
+     "role": "Supplies the air stream that lifts the shells."
+    },
+    {
+     "name": "Shell bin",
+     "role": "Collects cocoa shells, a by-product used as mulch or tea."
+    },
+    {
+     "name": "Melanger stand",
+     "role": "Holds the motor that turns the granite bed."
+    },
+    {
+     "name": "Granite bowl",
+     "role": "The stone bed that the rollers grind against."
+    },
+    {
+     "name": "Granite rollers",
+     "role": "Heavy stone wheels that crush nibs into liquor finer than the tongue can feel."
+    },
+    {
+     "name": "Sugar hopper",
+     "role": "Doses fine sugar into the liquor."
+    },
+    {
+     "name": "Milk powder hopper",
+     "role": "Doses milk powder for milk and white chocolate."
+    },
+    {
+     "name": "Conche frame",
+     "role": "Supports the heated trough and the drive."
+    },
+    {
+     "name": "Conche trough",
+     "role": "A heated stainless trough where chocolate is kneaded for hours."
+    },
+    {
+     "name": "Conching paddles",
+     "role": "Stir and aerate the chocolate, driving off acids and water."
+    },
+    {
+     "name": "Gear motor",
+     "role": "Drives the conche paddles slowly and with great force."
+    },
+    {
+     "name": "Hot-water jacket",
+     "role": "Copper pipes carry warm water around the trough to hold it at 60–80 °C."
+    },
+    {
+     "name": "Tempering machine",
+     "role": "Melts, cools and rewarms the chocolate to grow only Form V crystals."
+    },
+    {
+     "name": "Tempering display",
+     "role": "Shows the working temperature and the crystal form it produces."
+    },
+    {
+     "name": "Tempering kettle",
+     "role": "A water-jacketed bowl that holds the chocolate during tempering."
+    },
+    {
+     "name": "Agitator motor",
+     "role": "Keeps the chocolate moving so it tempers evenly."
+    },
+    {
+     "name": "Chocolate pump line",
+     "role": "Carries conched chocolate to the tempering machine."
+    },
+    {
+     "name": "Heated chocolate main",
+     "role": "A jacketed pipe that keeps tempered chocolate at its working temperature on its way to the depositor."
+    },
+    {
+     "name": "Depositor gantry",
+     "role": "A yellow frame that holds the depositor over the conveyor."
+    },
+    {
+     "name": "Depositor hopper",
+     "role": "Holds tempered chocolate above the pistons."
+    },
+    {
+     "name": "Piston depositor",
+     "role": "Four pistons, one per cavity, each pushing out exactly 100 g."
+    },
+    {
+     "name": "Conveyor belt",
+     "role": "Carries the moulds through every station at a steady speed."
+    },
+    {
+     "name": "Conveyor frame",
+     "role": "Stainless rails and legs that are easy to wash down."
+    },
+    {
+     "name": "Cooling tunnel",
+     "role": "A chilled, humidity-controlled tunnel at about 12 °C."
+    },
+    {
+     "name": "Chiller unit",
+     "role": "Refrigeration fans that blow cold air through the tunnel."
+    },
+    {
+     "name": "Flow wrapper",
+     "role": "Wraps each bar in foil and a paper sleeve at high speed."
+    },
+    {
+     "name": "Foil reel",
+     "role": "A reel of gold aluminium foil for the inner wrap."
+    },
+    {
+     "name": "Paper reel",
+     "role": "Printed paper for the outer sleeve."
+    },
+    {
+     "name": "Outfeed conveyor",
+     "role": "Carries wrapped bars to packing."
+    },
+    {
+     "name": "Shipping carton",
+     "role": "Cartons of wrapped bars ready for the warehouse."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Form V window",
+     "value": "Dark 31–32 °C · Milk 29–30 °C · White 28–29 °C"
+    },
+    {
+     "label": "Melting point of Form V",
+     "value": "≈ 34 °C — just below body temperature"
+    },
+    {
+     "label": "Particle size after grinding",
+     "value": "< 20 µm"
+    },
+    {
+     "label": "Cocoa butter in a nib",
+     "value": "≈ 50–55 %"
+    },
+    {
+     "label": "Conching time",
+     "value": "10–18 hours"
+    },
+    {
+     "label": "Cooling tunnel",
+     "value": "≈ 12 °C"
+    }
+   ],
+   "accuracy": "Process temperatures and times follow typical industrial and couverture guidance; exact values vary by recipe and manufacturer. The crystal outcome is a simplified rule based on the Form V working window.",
+   "sources": [
+    "Beckett, Industrial Chocolate Manufacture and Use, 5th ed. (2017)",
+    "Afoakwa, Chocolate Science and Technology, 2nd ed. (2016)",
+    "Wille & Lutton, Polymorphism of cocoa butter, J. Am. Oil Chem. Soc. 43 (1966)"
+   ]
+  },
+  {
+   "id": "four-stroke-engine",
+   "title": "Four-Stroke Engine",
+   "subtitle": "How a spark turns fuel into rotation",
+   "category": "engineering",
+   "tags": [
+    "engine",
+    "piston",
+    "combustion",
+    "otto cycle",
+    "crankshaft",
+    "valves",
+    "car",
+    "motorcycle"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "A sectioned air-cooled single: watch the crank, rod and piston trade straight-line force for rotation while two cams open the valves in time with the spark.",
+   "overview": [
+    "Almost every car, motorcycle, lawn mower and generator on Earth runs on the same idea, patented by Nikolaus Otto in 1876: draw in a charge of air and fuel, squeeze it, set it alight, and let the hot gas push a piston. Because each of those jobs needs its own trip of the piston, the cycle takes four strokes and two full turns of the crankshaft.",
+    "This teaching engine is cut in half so you can see every part move together. The slider-crank turns the piston's up-and-down motion into rotation. A toothed belt drives two camshafts at exactly half crank speed, so each valve opens once every two turns. The plug fires a few degrees before top dead centre, timed so that peak pressure arrives just after it, when the crank can use it.",
+    "Every number on the screen comes from one model: the true slider-crank geometry, sin² valve lift windows, a polytropic compression, a Wiebe burn curve and an exhaust blowdown. The indicator diagram traces the pressure against volume, and the area inside its loop is the work done each cycle."
+   ],
+   "modes": [
+    {
+     "id": "cutaway",
+     "label": "Cutaway"
+    },
+    {
+     "id": "xray",
+     "label": "X-ray"
+    },
+    {
+     "id": "exploded",
+     "label": "Exploded"
+    }
+   ],
+   "controls": [
+    {
+     "id": "rpm",
+     "type": "range",
+     "label": "Engine speed",
+     "min": 800,
+     "max": 6000,
+     "step": 100,
+     "value": 1800,
+     "format": "{v} rpm",
+     "help": "The animation is slowed so you can follow it; the ×-gauge says by how much."
+    },
+    {
+     "id": "throttle",
+     "type": "range",
+     "label": "Throttle",
+     "min": 10,
+     "max": 100,
+     "step": 1,
+     "value": 75,
+     "format": "{v} %",
+     "help": "Opens the intake: more air in, a bigger charge, a higher peak pressure."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "stroke",
+     "label": "Stroke"
+    },
+    {
+     "id": "angle",
+     "label": "Cycle angle"
+    },
+    {
+     "id": "pressure",
+     "label": "Cylinder"
+    },
+    {
+     "id": "volume",
+     "label": "Volume"
+    },
+    {
+     "id": "speed",
+     "label": "Piston speed"
+    },
+    {
+     "id": "valves",
+     "label": "Valve lift mm"
+    },
+    {
+     "id": "power",
+     "label": "Indicated power"
+    },
+    {
+     "id": "slow",
+     "label": "Slow motion"
+    }
+   ],
+   "actions": [
+    {
+     "id": "play",
+     "label": "Pause",
+     "primary": true
+    },
+    {
+     "id": "step",
+     "label": "+15°"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Intake",
+     "phi": 90,
+     "body": [
+      "The piston falls from top dead centre while the cam on the left presses its bucket down and opens the intake valve. The falling piston lowers the pressure in the cylinder, and the atmosphere pushes a fresh charge of air and fuel in through the port.",
+      "The valve opened 10° before the piston reached the top and stays open 40° past the bottom, so the moving air keeps filling the cylinder by its own momentum."
+     ]
+    },
+    {
+     "title": "Compression",
+     "phi": 270,
+     "body": [
+      "Both valves are shut. The piston rises and squeezes the 447 cc charge into the 45 cc chamber, a compression ratio of 10 to 1. The gas heats as it is compressed, and its pressure climbs from below one bar to about twenty.",
+      "Compressing first is what makes the engine efficient: the hotter and denser the charge when it burns, the more of its heat becomes work."
+     ]
+    },
+    {
+     "title": "Ignition",
+     "phi": 346,
+     "body": [
+      "A few degrees before top dead centre the plug sparks. The flame does not explode at once; it spreads out from the electrode as a front, burning the charge over about fifty degrees of crank rotation.",
+      "Firing early gives the flame a head start, so peak pressure lands roughly 15° after the top, where the connecting rod has leverage on the crank. At high speed the spark has to come earlier still, so the gauge of spark advance rises with rpm."
+     ]
+    },
+    {
+     "title": "Power",
+     "phi": 420,
+     "body": [
+      "The burning gas reaches its peak pressure, around 45 bar at full throttle, and drives the piston down. This is the only stroke that makes work; the heavy crank web and counterweight store some of it as momentum to carry the engine through the other three.",
+      "Watch the indicator diagram: the curve now runs far above the compression line, and the area between them is the energy delivered to the crank."
+     ]
+    },
+    {
+     "title": "Exhaust",
+     "phi": 630,
+     "body": [
+      "Forty degrees before the bottom the right-hand cam opens the exhaust valve. The still-pressurised gas rushes out on its own, in a blowdown, and the rising piston then sweeps the rest out through the port to the silencer.",
+      "For a moment near the top both valves are slightly open together. This overlap lets the outgoing exhaust help draw in the next charge, and the cycle starts again."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Piston",
+     "role": "A light aluminium plug sealed by three rings. Gas pressure on its crown is the only force that drives the engine."
+    },
+    {
+     "name": "Connecting rod",
+     "role": "A forged I-section link. Its big end is clamped round the crankpin by a cap and two bolts; the small end rides on the piston pin."
+    },
+    {
+     "name": "Crankshaft",
+     "role": "An overhung crankpin on a web with a drilled counterweight. Its 40 mm throw gives the 80 mm stroke."
+    },
+    {
+     "name": "Intake camshaft",
+     "role": "Blue lobe. Turns at half crank speed and presses the intake bucket down for 230° of the cycle."
+    },
+    {
+     "name": "Exhaust camshaft",
+     "role": "Orange lobe. Opens the exhaust valve 40° before bottom dead centre and closes it 10° after the top."
+    },
+    {
+     "name": "Intake valve",
+     "role": "A steel poppet valve held shut by a green coil spring. Opens up to 8 mm to let the charge in."
+    },
+    {
+     "name": "Exhaust valve",
+     "role": "Made of heat-resistant steel that turns straw and blue in service: it runs at around 700 °C."
+    },
+    {
+     "name": "Spark plug",
+     "role": "A ceramic-insulated electrode that fires a spark of about 20,000 volts across a gap of under a millimetre."
+    },
+    {
+     "name": "Cylinder barrel",
+     "role": "A black cast-iron barrel with thin cooling fins that shed combustion heat into the passing air."
+    },
+    {
+     "name": "Cylinder head",
+     "role": "Cast aluminium. Holds the valves, the ports (blue for intake, orange for exhaust) and the combustion chamber roof."
+    },
+    {
+     "name": "Head studs",
+     "role": "Four long studs clamp head, gasket and barrel to the crankcase against 45 bar of pressure."
+    },
+    {
+     "name": "Crankcase",
+     "role": "Carries the main bearing and the oil. The section faces painted red show where the model was cut."
+    },
+    {
+     "name": "Engine oil",
+     "role": "Splashed by the crank, it lubricates the bearings and cylinder wall and carries heat away."
+    },
+    {
+     "name": "Dipstick",
+     "role": "Pull it out to check the oil level between its two marks."
+    },
+    {
+     "name": "Timing belt",
+     "role": "A toothed rubber belt: 14 teeth on the crank, 28 on each cam, so the cams turn exactly once every two crank turns."
+    },
+    {
+     "name": "Air filter",
+     "role": "A pleated paper element that stops dust from scouring the cylinder."
+    },
+    {
+     "name": "Throttle body",
+     "role": "A butterfly valve that sets how much air the engine can breathe, and so its power."
+    },
+    {
+     "name": "Intake runner",
+     "role": "Carries the air from the throttle to the port. Its length is tuned so pressure waves help fill the cylinder."
+    },
+    {
+     "name": "Fuel injector",
+     "role": "Fed by the blue line from the yellow fuel pump on the bench, it sprays a metered mist of petrol into the port just before the intake valve opens."
+    },
+    {
+     "name": "Exhaust header",
+     "role": "Carries the hot exhaust away; its steel turns blue from the heat."
+    },
+    {
+     "name": "Silencer",
+     "role": "Chambers and perforated tubes inside break up the pressure pulses that would otherwise be a loud bang."
+    },
+    {
+     "name": "Ignition coil",
+     "role": "A transformer that turns 12 volts into a short pulse of about 20,000 volts for the spark plug."
+    },
+    {
+     "name": "Cam cover",
+     "role": "Unbolted and set down on the bench so you can see the cams. Its fins baffle the oil mist inside."
+    },
+    {
+     "name": "Tachometer",
+     "role": "Reads engine speed in thousands of rpm; the red zone starts at 6,000."
+    },
+    {
+     "name": "Pressure gauge",
+     "role": "Fed by the copper line from a transducer in the head, it follows the pressure inside the cylinder in real time."
+    },
+    {
+     "name": "Test console",
+     "role": "The bench instrument box that holds the tachometer and the cylinder-pressure gauge."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Bore × stroke",
+     "value": "80 × 80 mm"
+    },
+    {
+     "label": "Displacement",
+     "value": "402 cc"
+    },
+    {
+     "label": "Compression ratio",
+     "value": "10 : 1"
+    },
+    {
+     "label": "Valve timing",
+     "value": "IVO 10° BTDC · IVC 40° ABDC · EVO 40° BBDC · EVC 10° ATDC"
+    },
+    {
+     "label": "Peak pressure",
+     "value": "≈ 45 bar at full throttle, 15° ATDC"
+    },
+    {
+     "label": "Indicated mean effective pressure",
+     "value": "≈ 9 bar at full throttle"
+    }
+   ],
+   "accuracy": "Kinematics are exact for the given geometry. Cylinder pressure uses a single-zone model (polytropic n = 1.32, Wiebe burn, exponential blowdown) that reproduces typical spark-ignition values; real engines differ with port design, mixture and heat loss.",
+   "sources": [
+    "Heywood, Internal Combustion Engine Fundamentals, 2nd ed. (2018)",
+    "Pulkrabek, Engineering Fundamentals of the Internal Combustion Engine (2004)"
+   ]
+  }
+ ]
+}

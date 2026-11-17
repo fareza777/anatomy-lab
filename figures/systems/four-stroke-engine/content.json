@@ -1,0 +1,286 @@
+{
+  "id": "four-stroke-engine",
+  "title": "Four-Stroke Engine",
+  "subtitle": "How a spark turns fuel into rotation",
+  "category": "engineering",
+  "tags": [
+    "engine",
+    "piston",
+    "combustion",
+    "otto cycle",
+    "crankshaft",
+    "valves",
+    "car",
+    "motorcycle"
+  ],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "A sectioned air-cooled single: watch the crank, rod and piston trade straight-line force for rotation while two cams open the valves in time with the spark.",
+  "overview": [
+    "Almost every car, motorcycle, lawn mower and generator on Earth runs on the same idea, patented by Nikolaus Otto in 1876: draw in a charge of air and fuel, squeeze it, set it alight, and let the hot gas push a piston. Because each of those jobs needs its own trip of the piston, the cycle takes four strokes and two full turns of the crankshaft.",
+    "This teaching engine is cut in half so you can see every part move together. The slider-crank turns the piston's up-and-down motion into rotation. A toothed belt drives two camshafts at exactly half crank speed, so each valve opens once every two turns. The plug fires a few degrees before top dead centre, timed so that peak pressure arrives just after it, when the crank can use it.",
+    "Every number on the screen comes from one model: the true slider-crank geometry, sin² valve lift windows, a polytropic compression, a Wiebe burn curve and an exhaust blowdown. The indicator diagram traces the pressure against volume, and the area inside its loop is the work done each cycle."
+  ],
+  "modes": [
+    {
+      "id": "cutaway",
+      "label": "Cutaway"
+    },
+    {
+      "id": "xray",
+      "label": "X-ray"
+    },
+    {
+      "id": "exploded",
+      "label": "Exploded"
+    }
+  ],
+  "controls": [
+    {
+      "id": "rpm",
+      "type": "range",
+      "label": "Engine speed",
+      "min": 800,
+      "max": 6000,
+      "step": 100,
+      "value": 1800,
+      "format": "{v} rpm",
+      "help": "The animation is slowed so you can follow it; the ×-gauge says by how much."
+    },
+    {
+      "id": "throttle",
+      "type": "range",
+      "label": "Throttle",
+      "min": 10,
+      "max": 100,
+      "step": 1,
+      "value": 75,
+      "format": "{v} %",
+      "help": "Opens the intake: more air in, a bigger charge, a higher peak pressure."
+    }
+  ],
+  "gauges": [
+    {
+      "id": "stroke",
+      "label": "Stroke"
+    },
+    {
+      "id": "angle",
+      "label": "Cycle angle"
+    },
+    {
+      "id": "pressure",
+      "label": "Cylinder"
+    },
+    {
+      "id": "volume",
+      "label": "Volume"
+    },
+    {
+      "id": "speed",
+      "label": "Piston speed"
+    },
+    {
+      "id": "valves",
+      "label": "Valve lift mm"
+    },
+    {
+      "id": "power",
+      "label": "Indicated power"
+    },
+    {
+      "id": "slow",
+      "label": "Slow motion"
+    }
+  ],
+  "actions": [
+    {
+      "id": "play",
+      "label": "Pause",
+      "primary": true
+    },
+    {
+      "id": "step",
+      "label": "+15°"
+    }
+  ],
+  "steps": [
+    {
+      "title": "Intake",
+      "phi": 90,
+      "body": [
+        "The piston falls from top dead centre while the cam on the left presses its bucket down and opens the intake valve. The falling piston lowers the pressure in the cylinder, and the atmosphere pushes a fresh charge of air and fuel in through the port.",
+        "The valve opened 10° before the piston reached the top and stays open 40° past the bottom, so the moving air keeps filling the cylinder by its own momentum."
+      ]
+    },
+    {
+      "title": "Compression",
+      "phi": 270,
+      "body": [
+        "Both valves are shut. The piston rises and squeezes the 447 cc charge into the 45 cc chamber, a compression ratio of 10 to 1. The gas heats as it is compressed, and its pressure climbs from below one bar to about twenty.",
+        "Compressing first is what makes the engine efficient: the hotter and denser the charge when it burns, the more of its heat becomes work."
+      ]
+    },
+    {
+      "title": "Ignition",
+      "phi": 346,
+      "body": [
+        "A few degrees before top dead centre the plug sparks. The flame does not explode at once; it spreads out from the electrode as a front, burning the charge over about fifty degrees of crank rotation.",
+        "Firing early gives the flame a head start, so peak pressure lands roughly 15° after the top, where the connecting rod has leverage on the crank. At high speed the spark has to come earlier still, so the gauge of spark advance rises with rpm."
+      ]
+    },
+    {
+      "title": "Power",
+      "phi": 420,
+      "body": [
+        "The burning gas reaches its peak pressure, around 45 bar at full throttle, and drives the piston down. This is the only stroke that makes work; the heavy crank web and counterweight store some of it as momentum to carry the engine through the other three.",
+        "Watch the indicator diagram: the curve now runs far above the compression line, and the area between them is the energy delivered to the crank."
+      ]
+    },
+    {
+      "title": "Exhaust",
+      "phi": 630,
+      "body": [
+        "Forty degrees before the bottom the right-hand cam opens the exhaust valve. The still-pressurised gas rushes out on its own, in a blowdown, and the rising piston then sweeps the rest out through the port to the silencer.",
+        "For a moment near the top both valves are slightly open together. This overlap lets the outgoing exhaust help draw in the next charge, and the cycle starts again."
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "Piston",
+      "role": "A light aluminium plug sealed by three rings. Gas pressure on its crown is the only force that drives the engine."
+    },
+    {
+      "name": "Connecting rod",
+      "role": "A forged I-section link. Its big end is clamped round the crankpin by a cap and two bolts; the small end rides on the piston pin."
+    },
+    {
+      "name": "Crankshaft",
+      "role": "An overhung crankpin on a web with a drilled counterweight. Its 40 mm throw gives the 80 mm stroke."
+    },
+    {
+      "name": "Intake camshaft",
+      "role": "Blue lobe. Turns at half crank speed and presses the intake bucket down for 230° of the cycle."
+    },
+    {
+      "name": "Exhaust camshaft",
+      "role": "Orange lobe. Opens the exhaust valve 40° before bottom dead centre and closes it 10° after the top."
+    },
+    {
+      "name": "Intake valve",
+      "role": "A steel poppet valve held shut by a green coil spring. Opens up to 8 mm to let the charge in."
+    },
+    {
+      "name": "Exhaust valve",
+      "role": "Made of heat-resistant steel that turns straw and blue in service: it runs at around 700 °C."
+    },
+    {
+      "name": "Spark plug",
+      "role": "A ceramic-insulated electrode that fires a spark of about 20,000 volts across a gap of under a millimetre."
+    },
+    {
+      "name": "Cylinder barrel",
+      "role": "A black cast-iron barrel with thin cooling fins that shed combustion heat into the passing air."
+    },
+    {
+      "name": "Cylinder head",
+      "role": "Cast aluminium. Holds the valves, the ports (blue for intake, orange for exhaust) and the combustion chamber roof."
+    },
+    {
+      "name": "Head studs",
+      "role": "Four long studs clamp head, gasket and barrel to the crankcase against 45 bar of pressure."
+    },
+    {
+      "name": "Crankcase",
+      "role": "Carries the main bearing and the oil. The section faces painted red show where the model was cut."
+    },
+    {
+      "name": "Engine oil",
+      "role": "Splashed by the crank, it lubricates the bearings and cylinder wall and carries heat away."
+    },
+    {
+      "name": "Dipstick",
+      "role": "Pull it out to check the oil level between its two marks."
+    },
+    {
+      "name": "Timing belt",
+      "role": "A toothed rubber belt: 14 teeth on the crank, 28 on each cam, so the cams turn exactly once every two crank turns."
+    },
+    {
+      "name": "Air filter",
+      "role": "A pleated paper element that stops dust from scouring the cylinder."
+    },
+    {
+      "name": "Throttle body",
+      "role": "A butterfly valve that sets how much air the engine can breathe, and so its power."
+    },
+    {
+      "name": "Intake runner",
+      "role": "Carries the air from the throttle to the port. Its length is tuned so pressure waves help fill the cylinder."
+    },
+    {
+      "name": "Fuel injector",
+      "role": "Fed by the blue line from the yellow fuel pump on the bench, it sprays a metered mist of petrol into the port just before the intake valve opens."
+    },
+    {
+      "name": "Exhaust header",
+      "role": "Carries the hot exhaust away; its steel turns blue from the heat."
+    },
+    {
+      "name": "Silencer",
+      "role": "Chambers and perforated tubes inside break up the pressure pulses that would otherwise be a loud bang."
+    },
+    {
+      "name": "Ignition coil",
+      "role": "A transformer that turns 12 volts into a short pulse of about 20,000 volts for the spark plug."
+    },
+    {
+      "name": "Cam cover",
+      "role": "Unbolted and set down on the bench so you can see the cams. Its fins baffle the oil mist inside."
+    },
+    {
+      "name": "Tachometer",
+      "role": "Reads engine speed in thousands of rpm; the red zone starts at 6,000."
+    },
+    {
+      "name": "Pressure gauge",
+      "role": "Fed by the copper line from a transducer in the head, it follows the pressure inside the cylinder in real time."
+    },
+    {
+      "name": "Test console",
+      "role": "The bench instrument box that holds the tachometer and the cylinder-pressure gauge."
+    }
+  ],
+  "facts": [
+    {
+      "label": "Bore × stroke",
+      "value": "80 × 80 mm"
+    },
+    {
+      "label": "Displacement",
+      "value": "402 cc"
+    },
+    {
+      "label": "Compression ratio",
+      "value": "10 : 1"
+    },
+    {
+      "label": "Valve timing",
+      "value": "IVO 10° BTDC · IVC 40° ABDC · EVO 40° BBDC · EVC 10° ATDC"
+    },
+    {
+      "label": "Peak pressure",
+      "value": "≈ 45 bar at full throttle, 15° ATDC"
+    },
+    {
+      "label": "Indicated mean effective pressure",
+      "value": "≈ 9 bar at full throttle"
+    }
+  ],
+  "accuracy": "Kinematics are exact for the given geometry. Cylinder pressure uses a single-zone model (polytropic n = 1.32, Wiebe burn, exponential blowdown) that reproduces typical spark-ignition values; real engines differ with port design, mixture and heat loss.",
+  "sources": [
+    "Heywood, Internal Combustion Engine Fundamentals, 2nd ed. (2018)",
+    "Pulkrabek, Engineering Fundamentals of the Internal Combustion Engine (2004)"
+  ]
+}
