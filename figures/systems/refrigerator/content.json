@@ -1,0 +1,238 @@
+{
+  "id": "refrigerator",
+  "title": "Refrigerator",
+  "subtitle": "A heat pump in your kitchen",
+  "category": "everyday",
+  "featured": false,
+  "tags": [
+    "refrigerator",
+    "fridge",
+    "heat pump",
+    "compressor",
+    "refrigerant",
+    "thermodynamics",
+    "cop",
+    "thermostat",
+    "kitchen",
+    "energy"
+  ],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "A fridge does not make cold; it pumps heat out. Follow the refrigerant round its loop, open the door, heat the kitchen and watch the thermostat and the electricity bill respond.",
+  "overview": [
+    "Heat always flows from warm to cold, so warmth from the kitchen is leaking into your fridge all the time through its walls and every time you open the door. A fridge keeps cool by pumping that heat back out, and the warm grid on its back is where it goes.",
+    "It does this with a liquid that boils at a very low temperature, the refrigerant. In the evaporator coil inside the freezer it boils at about −25 °C, soaking up heat as it turns to vapour, just as sweat cools your skin as it evaporates. The compressor squeezes that vapour, making it hot, and pushes it into the condenser coil on the back, where it gives its heat to the room and condenses back to liquid. A thin capillary tube then lets the pressure drop, and the liquid flows back to the evaporator, colder than ever.",
+    "A thermostat switches the compressor on when the inside warms past its set point and off when it is cool enough. Each joule of electricity moves about two joules of heat: the coefficient of performance (COP)."
+  ],
+  "controls": [
+    {
+      "id": "set",
+      "type": "range",
+      "label": "Thermostat",
+      "min": 1,
+      "max": 8,
+      "step": 0.5,
+      "value": 4,
+      "digits": 1,
+      "format": "{v} °C",
+      "help": "Food keeps best at 3–5 °C. Every degree colder costs a few per cent more energy."
+    },
+    {
+      "id": "room",
+      "type": "range",
+      "label": "Kitchen temperature",
+      "min": 12,
+      "max": 40,
+      "step": 1,
+      "value": 22,
+      "format": "{v} °C",
+      "help": "A hot kitchen leaks more heat in and makes the condenser work harder."
+    },
+    {
+      "id": "door",
+      "type": "toggle",
+      "label": "Door open",
+      "value": false,
+      "help": "Warm air pours in and cold air falls out."
+    }
+  ],
+  "gauges": [
+    {
+      "id": "temp",
+      "label": "Inside temperature"
+    },
+    {
+      "id": "comp",
+      "label": "Compressor"
+    },
+    {
+      "id": "duty",
+      "label": "Time running"
+    },
+    {
+      "id": "cop",
+      "label": "COP"
+    },
+    {
+      "id": "power",
+      "label": "Power drawn"
+    },
+    {
+      "id": "kwh",
+      "label": "Energy per day"
+    }
+  ],
+  "steps": [
+    {
+      "title": "Pumping heat",
+      "set": 4,
+      "room": 22,
+      "door": false,
+      "body": [
+        "The fridge is cut open at the side and seen from behind. Food sits on glass shelves; above is the freezer, with the evaporator coil on its wall and a small fan.",
+        "Wait for the compressor to start: dots of refrigerant start to circle. Blue dots inside are cold and soaking up heat; red dots on the back are hot and giving it away."
+      ]
+    },
+    {
+      "title": "Boil and condense",
+      "body": [
+        "In the evaporator the refrigerant is at low pressure and boils at about −25 °C. Boiling takes a lot of heat, which comes from the freezer air.",
+        "The compressor raises the pressure several times over. At high pressure the vapour is hot (red) and condenses back to liquid as it winds down the black grid, warming the air behind the fridge."
+      ]
+    },
+    {
+      "title": "The thermostat",
+      "body": [
+        "The compressor does not run all the time. When the inside warms past the set point plus a degree, it switches on; once it is a degree below, it stops. The card shows the sawtooth this makes.",
+        "At 22 °C this fridge runs about a third of the time and uses about 0.6 kWh a day."
+      ]
+    },
+    {
+      "title": "Door open",
+      "door": true,
+      "body": [
+        "With the door open, cold air spills out of the bottom and warm, moist air flows in at the top. The compressor runs much longer, and the moisture freezes on the evaporator as frost.",
+        "Frost insulates the coil and makes the fridge less efficient, which is why modern freezers defrost themselves."
+      ]
+    },
+    {
+      "title": "A hot kitchen",
+      "door": false,
+      "room": 34,
+      "body": [
+        "The hotter the room, the faster heat leaks in, and the hotter the condenser must get to dump that heat. The gap between the cold and hot sides grows, so each joule of electricity moves less heat: the COP falls.",
+        "Keep the back of a fridge clear and away from the oven, and it uses noticeably less energy."
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "Cabinet",
+      "role": "An insulated box; the side panel is cut away here."
+    },
+    {
+      "name": "Inner liner",
+      "role": "A smooth plastic lining inside the cabinet that is easy to clean."
+    },
+    {
+      "name": "Insulation foam",
+      "role": "Polyurethane foam between the walls slows the heat leaking in."
+    },
+    {
+      "name": "Door seal",
+      "role": "A magnetic rubber gasket that keeps warm air out."
+    },
+    {
+      "name": "Back panel",
+      "role": "The rear wall of the cabinet."
+    },
+    {
+      "name": "Evaporator coil",
+      "role": "Inside the freezer: refrigerant boils here and absorbs heat."
+    },
+    {
+      "name": "Condenser coil",
+      "role": "The black grid on the back: hot refrigerant gives its heat to the room and turns liquid."
+    },
+    {
+      "name": "Compressor",
+      "role": "An electric pump that squeezes the refrigerant vapour, raising its pressure and temperature."
+    },
+    {
+      "name": "Filter-drier",
+      "role": "Catches moisture and dirt before the capillary tube."
+    },
+    {
+      "name": "Refrigerant lines",
+      "role": "Copper pipes, including a thin capillary tube that drops the pressure."
+    },
+    {
+      "name": "Refrigerant",
+      "role": "Red: hot gas; orange: condensing; light blue: expanding; blue: boiling; pale blue: cold vapour."
+    },
+    {
+      "name": "Cold air",
+      "role": "Air cooled in the freezer sinks down into the fridge."
+    },
+    {
+      "name": "Glass shelf",
+      "role": "Lets cold air circulate."
+    },
+    {
+      "name": "Crisper drawer",
+      "role": "Keeps vegetables in more humid air."
+    },
+    {
+      "name": "Freezer drawer",
+      "role": "Ice cubes and frozen food at about −18 °C."
+    },
+    {
+      "name": "Milk",
+      "role": "Keep milk on a shelf, not in the warmer door."
+    },
+    {
+      "name": "Juice",
+      "role": "A bottle of orange juice."
+    },
+    {
+      "name": "Fruit bowl",
+      "role": "Apples keep for weeks in the cold."
+    },
+    {
+      "name": "Eggs",
+      "role": "A row of eggs."
+    },
+    {
+      "name": "Cheese",
+      "role": "A block of cheese."
+    }
+  ],
+  "facts": [
+    {
+      "label": "COP",
+      "value": "heat moved ÷ electricity used"
+    },
+    {
+      "label": "Carnot limit",
+      "value": "COP ≤ T_cold / (T_hot − T_cold)"
+    },
+    {
+      "label": "Evaporator",
+      "value": "≈ −25 °C"
+    },
+    {
+      "label": "Typical fridge-freezer",
+      "value": "≈ 0.5–1 kWh a day"
+    },
+    {
+      "label": "Common refrigerant",
+      "value": "isobutane (R600a)"
+    }
+  ],
+  "accuracy": "A single-temperature thermal model with a fixed wall conductance, door leak and cooling capacity; the COP is 45 % of the Carnot value between evaporator and condenser temperatures. Fridge time runs 90× faster than real time. The freezer is assumed to sit about 22 °C below the fridge.",
+  "sources": [
+    "Çengel & Boles, Thermodynamics: An Engineering Approach, 9th ed. (2019), ch. 11",
+    "Stoecker & Jones, Refrigeration and Air Conditioning, 2nd ed. (1982)",
+    "EU energy label data for household fridge-freezers"
+  ]
+}

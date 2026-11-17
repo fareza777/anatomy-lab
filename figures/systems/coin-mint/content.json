@@ -1,0 +1,77 @@
+{
+  "id": "coin-mint",
+  "title": "Coin Mint",
+  "subtitle": "From a coil of metal to a pocketful of coins",
+  "category": "making",
+  "featured": true,
+  "tags": ["mint", "coins", "money", "press", "metal", "factory", "stamping", "die", "annealing", "making"],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "A coil of alloy strip becomes coins: punched into blanks, rimmed, annealed, washed and struck between two dies with the weight of a hundred cars.",
+  "overview": [
+    "A modern mint can make well over a million coins a day, and every one starts as a flat strip of metal rolled to the exact thickness of the finished coin. The strip unrolls from a coil into a blanking press, which punches a row of round discs, called blanks, with every stroke. What is left, a lace of holes, goes back to be melted.",
+    "The blanks pass through a rimming mill that rolls their edge up into a raised rim, then an annealing furnace that softens them at around 750 °C so the metal will flow into every detail of the design, then a washing drum that removes the dark scale left by the heat.",
+    "Finally a coining press squeezes each blank between an upper and a lower die inside a steel collar, with a force of 100 to 200 tonnes, in a few hundredths of a second. The metal flows into the engraved recesses of both dies at once and into the grooves of the collar, which form the reeded edge."
+  ],
+  "modes": [
+    { "id": "brass", "label": "Nickel-brass" },
+    { "id": "cuni", "label": "Cupronickel" },
+    { "id": "bimetal", "label": "Bimetal" }
+  ],
+  "controls": [
+    { "id": "force", "type": "range", "label": "Striking force", "min": 40, "max": 220, "step": 5, "value": 140, "format": "{v} t", "help": "Too little leaves the rim and lettering flat; too much wears the dies and squeezes out a flash." },
+    { "id": "speed", "type": "range", "label": "Press speed", "min": 60, "max": 750, "step": 10, "value": 600, "format": "{v} /min", "help": "Strokes per minute. The animation is slowed so you can follow one strike." }
+  ],
+  "gauges": [
+    { "id": "press", "label": "Pressure on the blank" },
+    { "id": "fill", "label": "Relief filled" },
+    { "id": "verdict", "label": "Inspection" },
+    { "id": "rate", "label": "Coins per hour" },
+    { "id": "life", "label": "Die life (strikes)" },
+    { "id": "strip", "label": "Strip turned to blanks" }
+  ],
+  "steps": [
+    { "title": "Blanking", "focus": "blank", "force": 140, "body": ["The strip is fed forward one step at a time. On each stroke the orange press drives a row of hardened punches through it, and round blanks drop through the die below into a chute.", "The blanks are packed in a staggered pattern, like the cells of a honeycomb, so about 80 % of the strip becomes coins. The holey leftover, the web, falls into the scrap bin and is recycled."] },
+    { "title": "Rimming", "focus": "rim", "body": ["In the rimming mill a turning wheel rolls each blank against a grooved track, squeezing its edge inward and upward.", "The raised rim protects the finished design from wear, lets coins stack neatly and helps the metal fill the edge of the die when the coin is struck."] },
+    { "title": "Annealing and washing", "focus": "anneal", "body": ["Punching and rimming harden the metal. In the furnace the blanks are held at around 750 °C, which lets the metal's crystals regrow and makes it soft again.", "The heat leaves a dark oxide skin, so the blanks tumble through a washing drum with a mild acid and polishing media, then are rinsed and dried until they shine."] },
+    { "title": "Striking", "focus": "strike", "force": 140, "body": ["A feed finger slides a blank onto the lower die. The ram drives the upper die down and, for an instant, the metal is under more than 3 billion pascals. It flows like thick clay into the engraved recesses of both dies and into the grooved collar around it.", "The flat centre of the design fills first; the fine lettering and the tall rim fill last. Lower the force and watch them disappear on the coin above."] },
+    { "title": "Too hard", "focus": "strike", "force": 210, "body": ["More force is not always better. Past about 1.25 times what the alloy needs, metal squeezes out between die and collar as a thin flash, and the dies crack far sooner.", "Die life falls roughly with the fourth power of the overload, so mints set the force just high enough to fill every detail."] },
+    { "title": "Counting", "focus": "count", "force": 140, "body": ["Struck coins drop out along a chute into the counting bin. In a real mint they are inspected by cameras, counted by machine and sealed in bags or rolls.", "At 600 strokes a minute one press makes 36,000 coins an hour."] }
+  ],
+  "parts": [
+    { "name": "Metal coil", "role": "A coil of alloy strip rolled to the exact thickness of the coin." },
+    { "name": "Coil stand", "role": "Lets the coil turn as the strip is pulled off." },
+    { "name": "Straightener rolls", "role": "Bend the strip back and forth so it lies perfectly flat." },
+    { "name": "Metal strip", "role": "After blanking it is a web full of holes, sent back to be melted." },
+    { "name": "Blanking press", "role": "Punches a staggered row of round blanks from the strip on every stroke." },
+    { "name": "Blanking die", "role": "The hardened plate with holes the punches pass through." },
+    { "name": "Punch ram", "role": "Carries the punches down through the strip." },
+    { "name": "Flywheel", "role": "Stores energy between strokes so the motor does not have to deliver each blow." },
+    { "name": "Blank chute", "role": "Guides falling blanks onto the conveyor." },
+    { "name": "Scrap bin", "role": "Collects the web for recycling." },
+    { "name": "Conveyor", "role": "Carries blanks from machine to machine." },
+    { "name": "Blanks", "role": "Plain metal discs that will become coins." },
+    { "name": "Rimming mill", "role": "Rolls a raised rim onto each blank's edge." },
+    { "name": "Annealing furnace", "role": "Heats the blanks to about 750 °C to soften them." },
+    { "name": "Washing drum", "role": "Tumbles blanks clean and bright after annealing." },
+    { "name": "Bucket elevator", "role": "Lifts blanks up to the coining press." },
+    { "name": "Feed hopper", "role": "Holds blanks and lines them up in a feed tube." },
+    { "name": "Coining press", "role": "Strikes each blank between two dies with 100 to 200 tonnes." },
+    { "name": "Tie rods", "role": "Huge steel rods that hold the press frame together against the striking force." },
+    { "name": "Lower die & collar", "role": "The bottom design and the grooved ring that forms the reeded edge." },
+    { "name": "Coining ram", "role": "Drives the upper die down onto the blank." },
+    { "name": "Feed finger", "role": "Slides a blank onto the die and pushes the struck coin out." },
+    { "name": "Coin chute", "role": "Carries finished coins to the counting bin." },
+    { "name": "Counting bin", "role": "Collects the coins for counting and bagging." },
+    { "name": "Coin counter", "role": "Counts every coin struck." }
+  ],
+  "facts": [
+    { "label": "Striking force", "value": "100–200 tonnes" },
+    { "label": "Fastest coining presses", "value": "≈ 750 strokes a minute" },
+    { "label": "Annealing temperature", "value": "≈ 750 °C" },
+    { "label": "Strip used by a staggered layout", "value": "≈ 80 %" },
+    { "label": "One die pair strikes", "value": "hundreds of thousands to over a million coins" }
+  ],
+  "accuracy": "Pressure is force divided by the face of a 24 mm blank. How much relief fills, the overload limit and die life are illustrative models, not data for a specific coin. The animation strikes far slower than a real press.",
+  "sources": ["Cooper, The Art and Craft of Coinmaking (1988)", "Schuler, Metal Forming Handbook (1998), ch. on coining", "Royal Mint and US Mint public descriptions of coin production"]
+}

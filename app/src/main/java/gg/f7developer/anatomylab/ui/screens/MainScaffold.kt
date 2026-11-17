@@ -100,7 +100,11 @@ fun MainScaffold(container: AppContainer, activity: MainActivity, prefs: PrefsSt
             exit = slideOutVertically { it } + fadeOut(),
             modifier = Modifier.align(Alignment.BottomCenter),
         ) {
-            FloatingTabBar(route) { nav.switchTab(it) }
+            // fade the content out under the bar and the system navigation buttons
+            val bg = MaterialTheme.colorScheme.background
+            Box(Modifier.background(androidx.compose.ui.graphics.Brush.verticalGradient(0f to bg.copy(alpha = 0f), 0.45f to bg.copy(alpha = 0.85f), 1f to bg))) {
+                FloatingTabBar(route) { nav.switchTab(it) }
+            }
         }
     }
 }

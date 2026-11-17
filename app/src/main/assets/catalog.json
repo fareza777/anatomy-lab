@@ -313,6 +313,266 @@
    ]
   },
   {
+   "id": "bottling-plant",
+   "title": "Bottling Plant",
+   "subtitle": "Rinse, fill, cap, label, pack: 30,000 bottles an hour",
+   "category": "making",
+   "featured": true,
+   "tags": [
+    "bottling",
+    "factory",
+    "drinks",
+    "filler",
+    "carousel",
+    "capper",
+    "labeler",
+    "conveyor",
+    "packaging",
+    "making"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "Bottles race round a rotary filler, each under its own valve for just a few seconds. Speed the line up and find the point where they start to leave half-full.",
+   "overview": [
+    "A drinks bottling line can fill tens of thousands of bottles an hour without ever stopping. The trick is the rotary filler: a big turning table with a filling valve over every bottle position. A bottle is gripped by the neck as it joins the table, filled while it rides round about two thirds of a turn, and released before it gets back to the start.",
+    "Most fillers work by gravity. Liquid sits in a ring-shaped bowl above the valves and flows down into each bottle; how fast depends on the height of liquid above the valve, just as Torricelli worked out in 1643. Fizzy drinks need a counter-pressure filler: the bottle is first filled with carbon dioxide at the same pressure as the bowl so the drink flows in gently without foaming, then the pressure is let off slowly (the snift).",
+    "Around the filler, other machines keep pace: a rinser cleans the empty bottles, a capper screws on caps, a labeler wraps a label round each one, an inspection gate checks the fill level and rejects any that are low, and a packer drops them into cases."
+   ],
+   "modes": [
+    {
+     "id": "water",
+     "label": "Water"
+    },
+    {
+     "id": "juice",
+     "label": "Juice"
+    },
+    {
+     "id": "soda",
+     "label": "Cola"
+    }
+   ],
+   "controls": [
+    {
+     "id": "bph",
+     "type": "range",
+     "label": "Line speed",
+     "min": 6000,
+     "max": 60000,
+     "step": 1000,
+     "value": 30000,
+     "format": "{v} /h",
+     "help": "Bottles per hour. Faster means less time under each valve."
+    },
+    {
+     "id": "head",
+     "type": "range",
+     "label": "Liquid head in the bowl",
+     "min": 10,
+     "max": 60,
+     "step": 1,
+     "value": 30,
+     "format": "{v} cm",
+     "help": "More liquid above the valve pushes it out faster (flow grows with the square root of the head)."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "bph",
+     "label": "Output"
+    },
+    {
+     "id": "rpm",
+     "label": "Filler speed"
+    },
+    {
+     "id": "need",
+     "label": "Fill time needed"
+    },
+    {
+     "id": "avail",
+     "label": "Time under valve"
+    },
+    {
+     "id": "status",
+     "label": "Fill level"
+    },
+    {
+     "id": "rejects",
+     "label": "Rejected bottles"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Rinsing",
+     "focus": "rinse",
+     "bph": 30000,
+     "head": 30,
+     "body": [
+      "Empty bottles are swept off the pallet layer by layer and stood upright on the conveyor. Inside the blue rinser they are turned upside down and blasted with jets of sterile water or air.",
+      "Clean bottles then queue at the filler, spaced exactly one valve apart by a screw-shaped timing feed and a star wheel."
+     ]
+    },
+    {
+     "title": "Filling",
+     "focus": "fill",
+     "bph": 30000,
+     "body": [
+      "Each bottle is lifted against its valve and rides round with the table. The valve opens, the drink runs down the inside wall of the bottle, and a small vent tube stops the flow when the liquid reaches it, so every bottle fills to the same height.",
+      "At 30,000 bottles an hour this 72-valve filler turns about 7 times a minute, giving each bottle almost 6 seconds under its valve."
+     ]
+    },
+    {
+     "title": "Too fast",
+     "focus": "fill",
+     "bph": 54000,
+     "body": [
+      "Push the speed up and the table turns faster, but the liquid still flows at the same rate. Each bottle now leaves the filler before it is full.",
+      "Raise the liquid head or slow the line until the time under the valve is longer than the time the fill needs."
+     ]
+    },
+    {
+     "title": "Fizzy drinks",
+     "focus": "fill",
+     "bph": 24000,
+     "body": [
+      "Switch to Cola. A carbonated drink would foam out of an open bottle, so the valve first pressurises the bottle with CO₂, lets the drink flow in under pressure, then vents it slowly. That extra time is why fizzy-drink lines run slower, or need more valves.",
+      "Try Cola at 40,000 bottles an hour and watch the inspection gate turn red."
+     ]
+    },
+    {
+     "title": "Capping",
+     "focus": "cap",
+     "bph": 30000,
+     "body": [
+      "A sorter bowl spins loose caps until they all face the same way and slide down a chute. Spinning chucks press a cap onto each bottle and screw it tight to a set torque, so it seals but can still be opened by hand."
+     ]
+    },
+    {
+     "title": "Labelling and checking",
+     "focus": "inspect",
+     "body": [
+      "The labeler wraps a printed label off the reel round each passing bottle. Then a light beam (in real plants often an X-ray or camera) checks the fill height.",
+      "Any bottle that is too low is pushed off the line into the red reject tray, and the rest are packed six to a case."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Pallet",
+     "role": "A wooden pallet carrying layers of empty bottles."
+    },
+    {
+     "name": "Pallet of empty bottles",
+     "role": "Bottles arrive from the glass or plastic factory in layers separated by sheets."
+    },
+    {
+     "name": "Depalletiser",
+     "role": "Sweeps bottles off the pallet one layer at a time."
+    },
+    {
+     "name": "Conveyor",
+     "role": "A slatted chain that carries bottles upright between machines."
+    },
+    {
+     "name": "Rinser",
+     "role": "Turns bottles over and sprays them clean before filling."
+    },
+    {
+     "name": "Filler carousel",
+     "role": "The rotating heart of the line: one filling valve per bottle position."
+    },
+    {
+     "name": "Carousel table",
+     "role": "Carries the bottles round under their valves."
+    },
+    {
+     "name": "Filling valves",
+     "role": "Open when a bottle is in place and close when the liquid reaches the vent tube."
+    },
+    {
+     "name": "Centre column",
+     "role": "Holds the bowl and carries product and gas to the turning top."
+    },
+    {
+     "name": "Product bowl",
+     "role": "A ring-shaped tank above the valves; its liquid head drives the flow."
+    },
+    {
+     "name": "Product tank",
+     "role": "Holds the drink and keeps the bowl topped up."
+    },
+    {
+     "name": "Bottles",
+     "role": "Each bottle's fill level shows how long it spent under its valve."
+    },
+    {
+     "name": "Capper",
+     "role": "Screws caps onto bottles at a set torque."
+    },
+    {
+     "name": "Capping chucks",
+     "role": "Spinning heads that grip and tighten each cap."
+    },
+    {
+     "name": "Cap sorter",
+     "role": "A vibrating bowl that lines caps up the same way round."
+    },
+    {
+     "name": "Labeler",
+     "role": "Wraps a glued label round each bottle as it passes."
+    },
+    {
+     "name": "Label roll",
+     "role": "A reel of printed labels."
+    },
+    {
+     "name": "Inspection gate",
+     "role": "Checks the fill height of every bottle; green means pass, red means reject."
+    },
+    {
+     "name": "Reject tray",
+     "role": "Collects bottles pushed off for being under-filled."
+    },
+    {
+     "name": "Case packer",
+     "role": "Lowers bottles into cases of six."
+    },
+    {
+     "name": "Shipping case",
+     "role": "Six filled, capped and labelled bottles ready to ship."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Large rotary fillers",
+     "value": "up to 80,000+ bottles an hour"
+    },
+    {
+     "label": "Valves on a big filler",
+     "value": "100–200"
+    },
+    {
+     "label": "Flow through a valve",
+     "value": "Q ∝ √head (Torricelli)"
+    },
+    {
+     "label": "Fill arc",
+     "value": "≈ 240° of each turn"
+    },
+    {
+     "label": "This filler",
+     "value": "72 valves, 500 ml bottles"
+    }
+   ],
+   "accuracy": "Fill time is the valve overhead plus 500 ml divided by a flow that scales with the square root of the head; time under the valve is the 240° fill arc at the chosen output. Flow rates are typical, not those of a specific machine. The drawing shows 24 of the 72 valves.",
+   "sources": [
+    "Krones and KHS public technical descriptions of rotary gravity and counter-pressure fillers",
+    "Steen & Ashurst, Carbonated Soft Drinks: Formulation and Manufacture (2006)",
+    "Torricelli's law: any fluid mechanics text, e.g. White, Fluid Mechanics, 8th ed."
+   ]
+  },
+  {
    "id": "chocolate-factory",
    "title": "Chocolate Factory",
    "subtitle": "From cocoa bean to wrapped bar",
@@ -675,6 +935,281 @@
     "Beckett, Industrial Chocolate Manufacture and Use, 5th ed. (2017)",
     "Afoakwa, Chocolate Science and Technology, 2nd ed. (2016)",
     "Wille & Lutton, Polymorphism of cocoa butter, J. Am. Oil Chem. Soc. 43 (1966)"
+   ]
+  },
+  {
+   "id": "coin-mint",
+   "title": "Coin Mint",
+   "subtitle": "From a coil of metal to a pocketful of coins",
+   "category": "making",
+   "featured": true,
+   "tags": [
+    "mint",
+    "coins",
+    "money",
+    "press",
+    "metal",
+    "factory",
+    "stamping",
+    "die",
+    "annealing",
+    "making"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "A coil of alloy strip becomes coins: punched into blanks, rimmed, annealed, washed and struck between two dies with the weight of a hundred cars.",
+   "overview": [
+    "A modern mint can make well over a million coins a day, and every one starts as a flat strip of metal rolled to the exact thickness of the finished coin. The strip unrolls from a coil into a blanking press, which punches a row of round discs, called blanks, with every stroke. What is left, a lace of holes, goes back to be melted.",
+    "The blanks pass through a rimming mill that rolls their edge up into a raised rim, then an annealing furnace that softens them at around 750 °C so the metal will flow into every detail of the design, then a washing drum that removes the dark scale left by the heat.",
+    "Finally a coining press squeezes each blank between an upper and a lower die inside a steel collar, with a force of 100 to 200 tonnes, in a few hundredths of a second. The metal flows into the engraved recesses of both dies at once and into the grooves of the collar, which form the reeded edge."
+   ],
+   "modes": [
+    {
+     "id": "brass",
+     "label": "Nickel-brass"
+    },
+    {
+     "id": "cuni",
+     "label": "Cupronickel"
+    },
+    {
+     "id": "bimetal",
+     "label": "Bimetal"
+    }
+   ],
+   "controls": [
+    {
+     "id": "force",
+     "type": "range",
+     "label": "Striking force",
+     "min": 40,
+     "max": 220,
+     "step": 5,
+     "value": 140,
+     "format": "{v} t",
+     "help": "Too little leaves the rim and lettering flat; too much wears the dies and squeezes out a flash."
+    },
+    {
+     "id": "speed",
+     "type": "range",
+     "label": "Press speed",
+     "min": 60,
+     "max": 750,
+     "step": 10,
+     "value": 600,
+     "format": "{v} /min",
+     "help": "Strokes per minute. The animation is slowed so you can follow one strike."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "press",
+     "label": "Pressure on the blank"
+    },
+    {
+     "id": "fill",
+     "label": "Relief filled"
+    },
+    {
+     "id": "verdict",
+     "label": "Inspection"
+    },
+    {
+     "id": "rate",
+     "label": "Coins per hour"
+    },
+    {
+     "id": "life",
+     "label": "Die life (strikes)"
+    },
+    {
+     "id": "strip",
+     "label": "Strip turned to blanks"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Blanking",
+     "focus": "blank",
+     "force": 140,
+     "body": [
+      "The strip is fed forward one step at a time. On each stroke the orange press drives a row of hardened punches through it, and round blanks drop through the die below into a chute.",
+      "The blanks are packed in a staggered pattern, like the cells of a honeycomb, so about 80 % of the strip becomes coins. The holey leftover, the web, falls into the scrap bin and is recycled."
+     ]
+    },
+    {
+     "title": "Rimming",
+     "focus": "rim",
+     "body": [
+      "In the rimming mill a turning wheel rolls each blank against a grooved track, squeezing its edge inward and upward.",
+      "The raised rim protects the finished design from wear, lets coins stack neatly and helps the metal fill the edge of the die when the coin is struck."
+     ]
+    },
+    {
+     "title": "Annealing and washing",
+     "focus": "anneal",
+     "body": [
+      "Punching and rimming harden the metal. In the furnace the blanks are held at around 750 °C, which lets the metal's crystals regrow and makes it soft again.",
+      "The heat leaves a dark oxide skin, so the blanks tumble through a washing drum with a mild acid and polishing media, then are rinsed and dried until they shine."
+     ]
+    },
+    {
+     "title": "Striking",
+     "focus": "strike",
+     "force": 140,
+     "body": [
+      "A feed finger slides a blank onto the lower die. The ram drives the upper die down and, for an instant, the metal is under more than 3 billion pascals. It flows like thick clay into the engraved recesses of both dies and into the grooved collar around it.",
+      "The flat centre of the design fills first; the fine lettering and the tall rim fill last. Lower the force and watch them disappear on the coin above."
+     ]
+    },
+    {
+     "title": "Too hard",
+     "focus": "strike",
+     "force": 210,
+     "body": [
+      "More force is not always better. Past about 1.25 times what the alloy needs, metal squeezes out between die and collar as a thin flash, and the dies crack far sooner.",
+      "Die life falls roughly with the fourth power of the overload, so mints set the force just high enough to fill every detail."
+     ]
+    },
+    {
+     "title": "Counting",
+     "focus": "count",
+     "force": 140,
+     "body": [
+      "Struck coins drop out along a chute into the counting bin. In a real mint they are inspected by cameras, counted by machine and sealed in bags or rolls.",
+      "At 600 strokes a minute one press makes 36,000 coins an hour."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Metal coil",
+     "role": "A coil of alloy strip rolled to the exact thickness of the coin."
+    },
+    {
+     "name": "Coil stand",
+     "role": "Lets the coil turn as the strip is pulled off."
+    },
+    {
+     "name": "Straightener rolls",
+     "role": "Bend the strip back and forth so it lies perfectly flat."
+    },
+    {
+     "name": "Metal strip",
+     "role": "After blanking it is a web full of holes, sent back to be melted."
+    },
+    {
+     "name": "Blanking press",
+     "role": "Punches a staggered row of round blanks from the strip on every stroke."
+    },
+    {
+     "name": "Blanking die",
+     "role": "The hardened plate with holes the punches pass through."
+    },
+    {
+     "name": "Punch ram",
+     "role": "Carries the punches down through the strip."
+    },
+    {
+     "name": "Flywheel",
+     "role": "Stores energy between strokes so the motor does not have to deliver each blow."
+    },
+    {
+     "name": "Blank chute",
+     "role": "Guides falling blanks onto the conveyor."
+    },
+    {
+     "name": "Scrap bin",
+     "role": "Collects the web for recycling."
+    },
+    {
+     "name": "Conveyor",
+     "role": "Carries blanks from machine to machine."
+    },
+    {
+     "name": "Blanks",
+     "role": "Plain metal discs that will become coins."
+    },
+    {
+     "name": "Rimming mill",
+     "role": "Rolls a raised rim onto each blank's edge."
+    },
+    {
+     "name": "Annealing furnace",
+     "role": "Heats the blanks to about 750 °C to soften them."
+    },
+    {
+     "name": "Washing drum",
+     "role": "Tumbles blanks clean and bright after annealing."
+    },
+    {
+     "name": "Bucket elevator",
+     "role": "Lifts blanks up to the coining press."
+    },
+    {
+     "name": "Feed hopper",
+     "role": "Holds blanks and lines them up in a feed tube."
+    },
+    {
+     "name": "Coining press",
+     "role": "Strikes each blank between two dies with 100 to 200 tonnes."
+    },
+    {
+     "name": "Tie rods",
+     "role": "Huge steel rods that hold the press frame together against the striking force."
+    },
+    {
+     "name": "Lower die & collar",
+     "role": "The bottom design and the grooved ring that forms the reeded edge."
+    },
+    {
+     "name": "Coining ram",
+     "role": "Drives the upper die down onto the blank."
+    },
+    {
+     "name": "Feed finger",
+     "role": "Slides a blank onto the die and pushes the struck coin out."
+    },
+    {
+     "name": "Coin chute",
+     "role": "Carries finished coins to the counting bin."
+    },
+    {
+     "name": "Counting bin",
+     "role": "Collects the coins for counting and bagging."
+    },
+    {
+     "name": "Coin counter",
+     "role": "Counts every coin struck."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Striking force",
+     "value": "100–200 tonnes"
+    },
+    {
+     "label": "Fastest coining presses",
+     "value": "≈ 750 strokes a minute"
+    },
+    {
+     "label": "Annealing temperature",
+     "value": "≈ 750 °C"
+    },
+    {
+     "label": "Strip used by a staggered layout",
+     "value": "≈ 80 %"
+    },
+    {
+     "label": "One die pair strikes",
+     "value": "hundreds of thousands to over a million coins"
+    }
+   ],
+   "accuracy": "Pressure is force divided by the face of a 24 mm blank. How much relief fills, the overload limit and die life are illustrative models, not data for a specific coin. The animation strikes far slower than a real press.",
+   "sources": [
+    "Cooper, The Art and Craft of Coinmaking (1988)",
+    "Schuler, Metal Forming Handbook (1998), ch. on coining",
+    "Royal Mint and US Mint public descriptions of coin production"
    ]
   },
   {
@@ -1809,6 +2344,1145 @@
    ]
   },
   {
+   "id": "human-lungs",
+   "title": "Lungs & Breathing",
+   "subtitle": "Half a billion air sacs and a dome of muscle",
+   "category": "biology",
+   "featured": true,
+   "tags": [
+    "lungs",
+    "breathing",
+    "respiration",
+    "oxygen",
+    "carbon dioxide",
+    "alveoli",
+    "diaphragm",
+    "altitude",
+    "anatomy",
+    "biology"
+   ],
+   "difficulty": "Beginner",
+   "minutes": 6,
+   "summary": "Watch the diaphragm pull air into a tree of airways that ends in half a billion tiny sacs. Change your breathing or climb a mountain and see your blood's oxygen respond.",
+   "overview": [
+    "Your lungs have no muscles of their own. Breathing in is done mostly by the diaphragm, a dome of muscle under the lungs. When it contracts it flattens and pulls down, the chest gets bigger, the pressure inside falls slightly below the air outside, and air flows in. Breathing out at rest is just the diaphragm relaxing and the stretchy lungs springing back.",
+    "Air travels down the trachea, which splits into two bronchi and then keeps branching, about 23 times, into ever narrower tubes. At the ends are around 480 million alveoli: air sacs a fifth of a millimetre across, wrapped in tiny blood vessels. Spread out, their surface would cover half a tennis court.",
+    "In each sac, oxygen crosses a wall less than a thousandth of a millimetre thick into the blood, where haemoglobin grabs it, and carbon dioxide crosses the other way to be breathed out. How much oxygen reaches the sacs depends on how much fresh air you move and on the air pressure around you."
+   ],
+   "modes": [
+    {
+     "id": "anatomy",
+     "label": "Anatomy"
+    },
+    {
+     "id": "airways",
+     "label": "Airways"
+    }
+   ],
+   "controls": [
+    {
+     "id": "rate",
+     "type": "range",
+     "label": "Breathing rate",
+     "min": 4,
+     "max": 40,
+     "step": 1,
+     "value": 12,
+     "format": "{v} /min",
+     "help": "Breaths per minute. 12–16 is normal at rest."
+    },
+    {
+     "id": "tidal",
+     "type": "range",
+     "label": "Breath size",
+     "min": 200,
+     "max": 1500,
+     "step": 50,
+     "value": 500,
+     "format": "{v} ml",
+     "help": "Tidal volume. The first 150 ml of every breath only fills the airways (dead space)."
+    },
+    {
+     "id": "alt",
+     "type": "range",
+     "label": "Altitude",
+     "min": 0,
+     "max": 8849,
+     "step": 50,
+     "value": 0,
+     "format": "{v} m",
+     "help": "Air pressure, and with it the oxygen you breathe in, halves by about 5,500 m."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "ve",
+     "label": "Air moved per minute"
+    },
+    {
+     "id": "va",
+     "label": "Fresh air reaching sacs"
+    },
+    {
+     "id": "co2",
+     "label": "Blood CO₂"
+    },
+    {
+     "id": "o2",
+     "label": "O₂ in the air sacs"
+    },
+    {
+     "id": "spo2",
+     "label": "Blood oxygen (SpO₂)"
+    },
+    {
+     "id": "ph",
+     "label": "Blood pH"
+    }
+   ],
+   "steps": [
+    {
+     "title": "The diaphragm",
+     "rate": 12,
+     "tidal": 500,
+     "alt": 0,
+     "body": [
+      "Watch the red dome under the lungs. As it contracts it moves down by a centimetre or two, the lungs stretch to follow, and about half a litre of air flows in.",
+      "Breathing out at rest needs no effort: the diaphragm relaxes and the elastic lungs recoil."
+     ]
+    },
+    {
+     "title": "The airway tree",
+     "mode": "airways",
+     "body": [
+      "Switch to Airways. The trachea, held open by C-shaped rings of cartilage, divides into two bronchi. The right one is wider and steeper, which is why an inhaled peanut usually ends up in the right lung.",
+      "Each branch divides again and again into bronchioles, and finally into the alveoli where gas exchange happens."
+     ]
+    },
+    {
+     "title": "Gas exchange",
+     "mode": "anatomy",
+     "body": [
+      "The card below shows one alveolus beside its capillary. Oxygen is at about 100 mmHg in the sac and 40 mmHg in the blood arriving from the body, so it diffuses in. Carbon dioxide does the opposite, 46 mmHg in the blood and 40 mmHg in the sac.",
+      "Blood passes in under a second and leaves almost fully loaded: 97 % of its haemoglobin carries oxygen."
+     ]
+    },
+    {
+     "title": "Holding back",
+     "rate": 6,
+     "tidal": 450,
+     "alt": 0,
+     "body": [
+      "Breathe too little and carbon dioxide builds up in the blood, which turns more acidic. Oxygen in the sacs falls too.",
+      "It is rising CO₂, not falling oxygen, that makes you feel the urge to breathe."
+     ]
+    },
+    {
+     "title": "Up a mountain",
+     "rate": 12,
+     "tidal": 500,
+     "alt": 5500,
+     "body": [
+      "At 5,500 m the air pressure is half that at sea level, so every breath carries half as much oxygen. Breathing normally, the oxygen in the sacs drops so low that the blood leaves the lungs far from full.",
+      "Now raise the rate and breath size. Breathing harder flushes CO₂ out of the sacs and makes room for more oxygen: the body does this automatically at altitude."
+     ]
+    },
+    {
+     "title": "Dead space",
+     "rate": 40,
+     "tidal": 250,
+     "alt": 0,
+     "body": [
+      "Fast, shallow panting moves plenty of air, but each 250 ml breath spends 150 ml just filling the airways and back. Only 100 ml of fresh air reaches the sacs.",
+      "Compare with slow, deep breaths: the same minute volume delivers far more fresh air to the alveoli."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Trachea",
+     "role": "The windpipe, about 12 cm long and kept open by rings of cartilage."
+    },
+    {
+     "name": "Bronchial tree",
+     "role": "Airways that branch about 23 times down to the alveoli."
+    },
+    {
+     "name": "Right lung",
+     "role": "Three lobes; slightly larger than the left."
+    },
+    {
+     "name": "Left lung",
+     "role": "Two lobes, with a notch where the heart sits."
+    },
+    {
+     "name": "Heart",
+     "role": "Pumps the blood that carries oxygen from the lungs to the body."
+    },
+    {
+     "name": "Diaphragm",
+     "role": "A dome of muscle that does most of the work of breathing in."
+    },
+    {
+     "name": "Ribs",
+     "role": "Protect the lungs and lift outward to help bigger breaths."
+    },
+    {
+     "name": "Spine",
+     "role": "The ribs hinge on the vertebrae at the back."
+    },
+    {
+     "name": "Air",
+     "role": "Fresh air in, used air out."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Alveoli",
+     "value": "≈ 480 million"
+    },
+    {
+     "label": "Gas exchange surface",
+     "value": "≈ 70 m²"
+    },
+    {
+     "label": "Alveolar gas equation",
+     "value": "PAO₂ = FiO₂·(Pb − 47) − PaCO₂/0.8"
+    },
+    {
+     "label": "Resting breath",
+     "value": "≈ 500 ml, 12–16 times a minute"
+    },
+    {
+     "label": "Anatomical dead space",
+     "value": "≈ 150 ml"
+    }
+   ],
+   "accuracy": "CO₂ comes from alveolar ventilation and a resting CO₂ output; alveolar O₂ from the alveolar gas equation; saturation from the Severinghaus fit of the dissociation curve; pressure falls with an 8.4 km scale height. The body's automatic responses (it would breathe harder by itself at altitude) are left out so you can see each effect.",
+   "sources": [
+    "West & Luks, West's Respiratory Physiology: The Essentials, 11th ed. (2020)",
+    "Severinghaus, Simple, accurate equations for human blood O₂ dissociation computations, J. Appl. Physiol. 46 (1979)",
+    "Ochs et al., The number of alveoli in the human lung, Am. J. Respir. Crit. Care Med. 169 (2004)"
+   ]
+  },
+  {
+   "id": "injection-molding",
+   "title": "Injection Moulding Machine",
+   "subtitle": "How plastic toys are made in seconds",
+   "category": "making",
+   "featured": false,
+   "tags": [
+    "injection moulding",
+    "plastic",
+    "mould",
+    "toy",
+    "factory",
+    "polymer",
+    "screw",
+    "making",
+    "manufacturing",
+    "brick"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "Pellets melt in a heated barrel, a screw shoots them into a steel mould under huge pressure, and a toy brick pops out every few seconds. Find the window between short shots, burns and warping.",
+   "overview": [
+    "Most plastic things around you, from bottle caps to phone cases to building bricks, were made by injection moulding. It is the fastest way to make the same complicated shape millions of times with the same precision.",
+    "Plastic pellets fall from the hopper into a long heated barrel. Inside, a screw turns, dragging the pellets forward; friction and the heater bands melt them into a thick, glowing paste that collects in front of the screw. Then the screw stops turning and rams forward like a syringe plunger, forcing the melt through a nozzle into a closed steel mould at hundreds of bar.",
+    "The mould is kept cool, so the plastic freezes against its walls. A toggle clamp holds the two halves shut against the injection pressure. Once the part is stiff enough, the mould opens and ejector pins push it out, and the next cycle starts while the screw is already melting the next shot."
+   ],
+   "modes": [
+    {
+     "id": "abs",
+     "label": "ABS"
+    },
+    {
+     "id": "pp",
+     "label": "PP"
+    },
+    {
+     "id": "pc",
+     "label": "PC"
+    }
+   ],
+   "controls": [
+    {
+     "id": "melt",
+     "type": "range",
+     "label": "Melt temperature",
+     "min": 180,
+     "max": 340,
+     "step": 1,
+     "value": 235,
+     "format": "{v} °C",
+     "help": "Too cold and the plastic freezes before the mould is full; too hot and it burns."
+    },
+    {
+     "id": "speed",
+     "type": "range",
+     "label": "Injection speed",
+     "min": 10,
+     "max": 100,
+     "step": 1,
+     "value": 60,
+     "format": "{v} %",
+     "help": "Fast fills thin walls before they freeze, but too fast forces plastic out between the mould halves."
+    },
+    {
+     "id": "cool",
+     "type": "range",
+     "label": "Cooling time",
+     "min": 2,
+     "max": 25,
+     "step": 0.5,
+     "value": 10,
+     "digits": 1,
+     "format": "{v} s",
+     "help": "The longest part of the cycle. Too short and the part warps when it is pushed out."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "cycle",
+     "label": "Cycle time"
+    },
+    {
+     "id": "need",
+     "label": "Cooling needed"
+    },
+    {
+     "id": "rate",
+     "label": "Parts per hour (4 cavities)"
+    },
+    {
+     "id": "bar",
+     "label": "Injection pressure"
+    },
+    {
+     "id": "clamp",
+     "label": "Clamp force needed"
+    },
+    {
+     "id": "quality",
+     "label": "Part"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Melting",
+     "melt": 235,
+     "speed": 60,
+     "cool": 10,
+     "body": [
+      "Pellets slide from the hopper into the back of the barrel. The turning screw has a deep channel at the back that gets shallower towards the front, so the pellets are squeezed, sheared and heated.",
+      "About two thirds of the heat comes from that shearing, not from the heater bands, which mainly keep each zone at its set temperature."
+     ]
+    },
+    {
+     "title": "Injection",
+     "body": [
+      "When enough melt has collected in front of the screw, it stops turning and is pushed forward by the injection cylinder. A check ring on its tip stops the melt flowing backwards, so the screw works like a plunger.",
+      "Plastic fills the mould in about a second, driven by up to a thousand bar or more."
+     ]
+    },
+    {
+     "title": "Holding and cooling",
+     "body": [
+      "Plastic shrinks as it cools, so the screw keeps pushing for a moment (holding pressure) to pack in a little more.",
+      "Then the part must cool until it is stiff. Cooling time grows with the square of the wall thickness: a part twice as thick needs four times as long. Water channels in the mould carry the heat away."
+     ]
+    },
+    {
+     "title": "Clamp and eject",
+     "body": [
+      "The two links of the toggle clamp straighten as the mould closes, like locking your knee. That multiplies the force of the clamp cylinder many times and locks the mould against the injection pressure.",
+      "When the mould opens, ejector pins push the part free and it drops into the bin."
+     ]
+    },
+    {
+     "title": "Short shot",
+     "melt": 195,
+     "speed": 25,
+     "body": [
+      "Too cold, or too slow, and the melt freezes at the thin edges before the cavity is full. You get a short shot: a part with missing pieces, shown grey in the bin.",
+      "Warm it up or inject faster and the full part comes back."
+     ]
+    },
+    {
+     "title": "Rushing the cooling",
+     "melt": 235,
+     "speed": 60,
+     "cool": 4,
+     "body": [
+      "Cut the cooling time to speed the line up, and parts come out still soft inside. They bend as they shrink and the brick no longer clicks onto another.",
+      "Engineers balance cycle time against quality: every second saved is worth thousands of parts a day."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Hopper",
+     "role": "Holds the plastic pellets and feeds them into the barrel."
+    },
+    {
+     "name": "Plastic pellets",
+     "role": "Raw plastic, often already coloured, about 3 mm across."
+    },
+    {
+     "name": "Barrel",
+     "role": "A thick steel tube, cut open here to show the screw."
+    },
+    {
+     "name": "Heater bands",
+     "role": "Electric heaters that hold each zone of the barrel at its temperature."
+    },
+    {
+     "name": "Screw",
+     "role": "Melts and carries the plastic forward, then pushes it into the mould like a plunger."
+    },
+    {
+     "name": "Nozzle",
+     "role": "Seals against the mould and lets the melt through."
+    },
+    {
+     "name": "Injection cylinder",
+     "role": "A hydraulic cylinder that drives the screw forward."
+    },
+    {
+     "name": "Carriage",
+     "role": "Holds the injection unit and presses the nozzle against the mould."
+    },
+    {
+     "name": "Fixed platen",
+     "role": "Holds the stationary half of the mould."
+    },
+    {
+     "name": "Mould (cavity half)",
+     "role": "Hardened steel with the shape of the part cut into it, cut away here."
+    },
+    {
+     "name": "Mould (core half)",
+     "role": "The moving half; carries the ejector pins."
+    },
+    {
+     "name": "Moving platen",
+     "role": "Slides along the tie bars to open and close the mould."
+    },
+    {
+     "name": "Toggle clamp",
+     "role": "Links that lock straight to hold the mould shut with tonnes of force."
+    },
+    {
+     "name": "Rear platen",
+     "role": "The anchor for the toggle and clamp cylinder."
+    },
+    {
+     "name": "Clamp cylinder",
+     "role": "Drives the toggle open and closed."
+    },
+    {
+     "name": "Tie bars",
+     "role": "Four steel bars that take the clamping force."
+    },
+    {
+     "name": "Machine base",
+     "role": "Holds the hydraulics, pumps and electrics."
+    },
+    {
+     "name": "Control panel",
+     "role": "Sets temperatures, speeds, pressures and times."
+    },
+    {
+     "name": "Drop chute",
+     "role": "Guides falling parts into the bin."
+    },
+    {
+     "name": "Parts bin",
+     "role": "Collects finished parts. Rejects are shown grey."
+    },
+    {
+     "name": "Moulded parts",
+     "role": "Small building bricks with studs, fresh from the mould."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Cooling time",
+     "value": "t = s²/(π²α) · ln(8/π² · (Tm − Tw)/(Te − Tw))"
+    },
+    {
+     "label": "Wall thickness here",
+     "value": "2 mm"
+    },
+    {
+     "label": "Typical injection pressure",
+     "value": "500–1,500 bar"
+    },
+    {
+     "label": "Typical cycle",
+     "value": "5–60 s"
+    },
+    {
+     "label": "Mould steel lasts",
+     "value": "up to millions of cycles"
+    }
+   ],
+   "accuracy": "Cooling time uses the standard one-dimensional slab formula with typical diffusivities and eject temperatures. Pressure, the short-shot rule and the defect limits are simplified illustrations of a real processing window. The cycle is shown 1.6× faster than real time.",
+   "sources": [
+    "Rosato & Rosato, Injection Molding Handbook, 3rd ed. (2000)",
+    "Menges, Michaeli & Mohren, How to Make Injection Molds, 3rd ed. (2001)",
+    "Osswald, Turng & Gramann, Injection Molding Handbook (2008)"
+   ]
+  },
+  {
+   "id": "jet-engine",
+   "title": "Jet Engine",
+   "subtitle": "Suck, squeeze, bang, blow: inside a turbofan",
+   "category": "engineering",
+   "featured": true,
+   "tags": [
+    "jet engine",
+    "turbofan",
+    "aircraft",
+    "turbine",
+    "compressor",
+    "brayton cycle",
+    "thrust",
+    "aviation",
+    "engineering",
+    "combustion"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 7,
+   "summary": "A cut-away airliner engine: a giant fan, 10 rows of compressor blades, a ring of fire at 1,300 °C and the turbines that drive it all. Open the throttle and follow the air.",
+   "overview": [
+    "A jet engine works in four steps that mechanics sum up as suck, squeeze, bang, blow. The fan and compressor suck air in and squeeze it to more than thirty times atmospheric pressure. Fuel is sprayed into that hot, dense air and burned. The expanding gas rushes out through turbines, which take enough power from it to drive the fan and compressor, and then out of the back.",
+    "Modern airliner engines are turbofans. Only about one sixth of the air goes through the hot core. The rest is pushed by the big front fan straight round the outside, through the bypass duct. Moving a lot of air a little faster is far more efficient, and much quieter, than moving a little air very fast, so the fan makes most of the thrust.",
+    "Two shafts run down the middle. The low-pressure turbines at the back drive the fan and booster on a long thin shaft; the high-pressure turbines drive the high-pressure compressor on a short hollow one around it. Each spins at its own best speed."
+   ],
+   "modes": [
+    {
+     "id": "cutaway",
+     "label": "Cutaway"
+    },
+    {
+     "id": "temp",
+     "label": "Temperature"
+    }
+   ],
+   "controls": [
+    {
+     "id": "throttle",
+     "type": "range",
+     "label": "Throttle",
+     "min": 0,
+     "max": 100,
+     "step": 1,
+     "value": 70,
+     "format": "{v} %",
+     "help": "From ground idle to take-off power."
+    },
+    {
+     "id": "speed",
+     "type": "range",
+     "label": "Air speed",
+     "min": 0,
+     "max": 250,
+     "step": 5,
+     "value": 0,
+     "format": "{v} m/s",
+     "help": "Flying fast means the engine must speed up air that is already moving, so thrust falls."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "n1",
+     "label": "Fan speed N1"
+    },
+    {
+     "id": "thrust",
+     "label": "Thrust"
+    },
+    {
+     "id": "egt",
+     "label": "Exhaust gas temp"
+    },
+    {
+     "id": "fuel",
+     "label": "Fuel flow"
+    },
+    {
+     "id": "opr",
+     "label": "Pressure ratio"
+    },
+    {
+     "id": "tsfc",
+     "label": "Fuel per thrust"
+    }
+   ],
+   "steps": [
+    {
+     "title": "The fan",
+     "throttle": 70,
+     "speed": 0,
+     "body": [
+      "The front fan, over 1.5 m across on a real engine, is the biggest single compressor stage. Its wide twisted blades push air backwards like a propeller in a duct.",
+      "Watch the blue particles: five out of every six go round the outside through the bypass duct. This engine's bypass ratio is 5.5."
+     ]
+    },
+    {
+     "title": "Squeeze",
+     "body": [
+      "The air that enters the core passes ten rows of ever-smaller blades: three in the booster and seven in the high-pressure compressor. Each row speeds the air up and the fixed vanes between them slow it again, turning speed into pressure.",
+      "At full power the air leaves the compressor 32 times denser in pressure and over 550 °C hot, just from being squeezed."
+     ]
+    },
+    {
+     "title": "Bang",
+     "mode": "temp",
+     "body": [
+      "In the ring-shaped combustor, twenty nozzles spray fine kerosene into the compressed air, and it burns continuously. The gas reaches about 1,300 °C, hotter than the melting point of the turbine blades.",
+      "The blades survive because cooler air from the compressor flows through tiny holes inside them and over their surfaces as a protective film."
+     ]
+    },
+    {
+     "title": "Blow",
+     "mode": "temp",
+     "body": [
+      "The hot gas expands through the high-pressure turbine, which drives the compressor, and then the low-pressure turbine, which drives the fan. By the exhaust it has given up most of its heat as work.",
+      "What is left leaves through the nozzle faster than it came in. Thrust is mass flow times the change in speed: F = ṁ·(Vout − Vin)."
+     ]
+    },
+    {
+     "title": "Idle to take-off",
+     "mode": "cutaway",
+     "throttle": 100,
+     "body": [
+      "Push the throttle forward. The fan speeds up, the pressure ratio climbs, more fuel burns, and thrust rises steeply: from a few kilonewtons at idle to over 110 kN here.",
+      "Fuel per unit of thrust falls as power rises: the cycle is most efficient when the pressure ratio is high."
+     ]
+    },
+    {
+     "title": "In flight",
+     "throttle": 100,
+     "speed": 230,
+     "body": [
+      "At cruise the air already arrives at over 800 km/h. The engine must speed it up from that, so the same fan produces less thrust, and ram compression heats the air before it even reaches the fan.",
+      "At high altitude the thin air reduces thrust further, which is why airliners need such large engines for take-off and climb."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Nacelle",
+     "role": "The smooth outer cowling; its back half is cut away here."
+    },
+    {
+     "name": "Core casing",
+     "role": "The case around the compressor, combustor and turbines."
+    },
+    {
+     "name": "Compressor and turbine blades",
+     "role": "Rows of blades on two shafts: the fan and booster with the low-pressure turbine, the high-pressure compressor with the high-pressure turbine."
+    },
+    {
+     "name": "Combustor",
+     "role": "A ring-shaped chamber where fuel burns in the compressed air."
+    },
+    {
+     "name": "Airflow",
+     "role": "Coloured by temperature: blue cool air to orange-red hot gas."
+    },
+    {
+     "name": "Display stand",
+     "role": "Holds the engine for the exhibit."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Thrust",
+     "value": "F = ṁ·(Vout − Vin)"
+    },
+    {
+     "label": "Bypass ratio here",
+     "value": "5.5 : 1"
+    },
+    {
+     "label": "Overall pressure ratio",
+     "value": "up to 32 : 1"
+    },
+    {
+     "label": "Turbine inlet temperature",
+     "value": "≈ 1,330 °C at take-off"
+    },
+    {
+     "label": "Air flow at take-off",
+     "value": "≈ 350 kg every second"
+    }
+   ],
+   "accuracy": "An ideal two-spool Brayton cycle at sea level with typical component efficiencies, sized like a narrow-body airliner engine; it is not a model of a specific engine. Ram drag and altitude effects are simplified. Blade counts and sizes are reduced for clarity.",
+   "sources": [
+    "Saravanamuttoo, Rogers & Cohen, Gas Turbine Theory, 7th ed. (2017)",
+    "Rolls-Royce, The Jet Engine, 5th ed. (2005)",
+    "NASA Glenn Research Center, Beginner's Guide to Propulsion"
+   ]
+  },
+  {
+   "id": "mechanical-watch",
+   "title": "Mechanical Watch",
+   "subtitle": "Keeping time with a spring and a swinging wheel",
+   "category": "engineering",
+   "featured": true,
+   "tags": [
+    "watch",
+    "clock",
+    "escapement",
+    "balance wheel",
+    "hairspring",
+    "gears",
+    "horology",
+    "mechanism",
+    "engineering",
+    "time"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 7,
+   "summary": "A coiled spring, a train of tiny gears and a wheel that swings eight times a second. Slow time down to watch the escapement let the watch tick, one half-tooth at a time.",
+   "overview": [
+    "A mechanical watch has no battery. Its energy comes from a long steel spring coiled inside a drum called the barrel. Winding the crown tightens the spring; as it slowly unwinds it turns the barrel, and the barrel's teeth drive a train of wheels that turn the hands.",
+    "Left alone, the spring would unwind in a fraction of a second. The escapement stops that. A balance wheel, held by a hairspring as fine as a hair, swings back and forth eight times a second. Each time it passes the middle, it flicks the pallet lever, which releases the escape wheel by exactly half a tooth and then catches it again. That is the tick you hear.",
+    "On the way past, the escape wheel tooth slides along a jewel on the lever and gives the balance a tiny push, which keeps it swinging. Because a balance and spring always take nearly the same time to swing, however big the swing, the watch keeps time."
+   ],
+   "modes": [
+    {
+     "id": "movement",
+     "label": "Movement"
+    },
+    {
+     "id": "escapement",
+     "label": "Escapement"
+    }
+   ],
+   "controls": [
+    {
+     "id": "slow",
+     "type": "range",
+     "label": "Slow motion",
+     "min": 1,
+     "max": 60,
+     "step": 1,
+     "value": 20,
+     "format": "{v}×",
+     "help": "The real balance swings 4 times a second each way, too fast to follow."
+    },
+    {
+     "id": "wind",
+     "type": "range",
+     "label": "Mainspring wind",
+     "min": 0,
+     "max": 100,
+     "step": 1,
+     "value": 80,
+     "format": "{v} %",
+     "help": "A fully wound spring swings the balance wider. Near empty, the swing shrinks and the rate drifts."
+    },
+    {
+     "id": "reg",
+     "type": "range",
+     "label": "Regulator",
+     "min": -1,
+     "max": 1,
+     "step": 0.05,
+     "value": 0,
+     "digits": 2,
+     "format": "{v}",
+     "help": "Moves two pins along the hairspring to change its working length: + makes the watch faster."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "bph",
+     "label": "Beat rate"
+    },
+    {
+     "id": "amp",
+     "label": "Balance amplitude"
+    },
+    {
+     "id": "rate",
+     "label": "Gain or loss per day"
+    },
+    {
+     "id": "reserve",
+     "label": "Power reserve"
+    },
+    {
+     "id": "escape",
+     "label": "Escape wheel"
+    },
+    {
+     "id": "beats",
+     "label": "Ticks counted"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Stored energy",
+     "slow": 20,
+     "wind": 80,
+     "reg": 0,
+     "body": [
+      "The brass barrel on the left holds the mainspring. Wound up, the spring wraps tightly round the central arbor; as it runs down it relaxes outward against the barrel wall. Drag the wind slider down to see it.",
+      "A full wind here lasts 42 hours. The barrel turns once about every 8 hours."
+     ]
+    },
+    {
+     "title": "The gear train",
+     "body": [
+      "The barrel's teeth drive the small pinion of the centre wheel, which turns once an hour and carries the minute hand. Each following pair of wheel and pinion speeds things up: the third wheel, then the fourth wheel, which turns once a minute and carries the seconds hand, then the steel escape wheel.",
+      "Every gear step trades force for speed, so the strong slow pull of the spring becomes a faint fast turn at the escapement."
+     ]
+    },
+    {
+     "title": "The escapement",
+     "mode": "escapement",
+     "slow": 40,
+     "body": [
+      "The pallet lever rocks between two banking pins. Its two red jewels, the pallet stones, take turns blocking the escape wheel's teeth.",
+      "When the balance swings through the middle, its impulse jewel knocks the lever over. One stone lets go, the wheel jumps half a tooth, and the other stone catches the next tooth. Watch the gear train move in little jumps, one per tick."
+     ]
+    },
+    {
+     "title": "The balance",
+     "mode": "escapement",
+     "slow": 30,
+     "body": [
+      "The gold balance wheel and the blue hairspring are the watch's timekeeper, like a pendulum you can wear. Their period depends only on the wheel's inertia and the spring's stiffness: T = 2π√(I/κ).",
+      "This balance beats 28,800 times an hour: 4 full swings each way per second."
+     ]
+    },
+    {
+     "title": "Regulating",
+     "mode": "movement",
+     "slow": 20,
+     "reg": 0.6,
+     "body": [
+      "The regulator arm on the balance cock moves two tiny pins along the hairspring. Shortening its working length makes it stiffer, so the balance swings faster and the watch gains.",
+      "A change of only 0.05 % in length moves the rate by about 20 seconds a day. Good watches keep within a few seconds a day."
+     ]
+    },
+    {
+     "title": "Running down",
+     "reg": 0,
+     "wind": 6,
+     "body": [
+      "As the mainspring runs down, it pushes less, so the balance swings through a smaller arc. In theory the period would not change, but small errors in a real escapement make the watch run fast at low amplitude.",
+      "That is why watchmakers want a flat torque curve, and why a nearly empty watch keeps worse time."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Main plate",
+     "role": "The base of the movement, decorated with overlapping circles (perlage)."
+    },
+    {
+     "name": "Case",
+     "role": "The steel case ring around the movement."
+    },
+    {
+     "name": "Crown",
+     "role": "Turned by hand to wind the mainspring and set the hands."
+    },
+    {
+     "name": "Ratchet & click",
+     "role": "The ratchet wheel on the barrel arbor; a click stops the spring unwinding backwards."
+    },
+    {
+     "name": "Gear train",
+     "role": "Barrel, centre, third, fourth and escape wheels: each pair speeds up the motion."
+    },
+    {
+     "name": "Jewels",
+     "role": "Synthetic ruby bearings that cut friction at every pivot."
+    },
+    {
+     "name": "Pallet lever",
+     "role": "Rocks at each tick, locking and releasing the escape wheel and pushing the balance."
+    },
+    {
+     "name": "Balance wheel",
+     "role": "Swings back and forth on its hairspring: the watch's timekeeper."
+    },
+    {
+     "name": "Balance cock",
+     "role": "The bridge that holds the top pivot of the balance."
+    },
+    {
+     "name": "Regulator",
+     "role": "An arm that changes the hairspring's active length to adjust the rate."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Beat rate",
+     "value": "28,800 bph (4 Hz)"
+    },
+    {
+     "label": "Balance period",
+     "value": "T = 2π√(I/κ)"
+    },
+    {
+     "label": "Power reserve",
+     "value": "42 hours"
+    },
+    {
+     "label": "Escape wheel",
+     "value": "20 teeth, 12 rpm"
+    },
+    {
+     "label": "Chronometer standard",
+     "value": "−4 to +6 s/day"
+    }
+   ],
+   "accuracy": "Wheel speeds follow a common 28,800 bph train; the escape wheel advances half a tooth per beat. Amplitude versus wind and the low-amplitude rate error are typical curves, not a specific calibre. Wheel sizes and positions are simplified.",
+   "sources": [
+    "Daniels, Watchmaking (1981, updated 2011)",
+    "de Carle, Practical Watch Repairing (1946)",
+    "Reymondin et al., The Theory of Horology (1999)"
+   ]
+  },
+  {
+   "id": "oil-refinery",
+   "title": "Oil Refinery",
+   "subtitle": "Splitting crude oil by boiling point",
+   "category": "chemistry",
+   "featured": false,
+   "tags": [
+    "refinery",
+    "crude oil",
+    "distillation",
+    "fractional distillation",
+    "petrol",
+    "diesel",
+    "kerosene",
+    "chemistry",
+    "hydrocarbons",
+    "industry"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "A tall column sorts crude oil into gas, petrol, kerosene, diesel and tar by boiling point. Turn up the furnace or switch to a heavy crude and see the barrel change.",
+   "overview": [
+    "Crude oil is a mixture of thousands of hydrocarbons, from tiny molecules like propane to huge ones with fifty or more carbon atoms. Small molecules boil at low temperatures and big ones at high temperatures, so heating crude and letting the vapour cool step by step sorts the molecules by size. This is fractional distillation.",
+    "In a refinery, crude is pumped through a furnace and heated to about 360 °C. Most of it turns to vapour and enters the bottom of a column up to 60 m tall, filled with trays. The vapour rises, bubbling through liquid on each tray and cooling as it goes. Each product condenses on the trays where the temperature matches its boiling range and is drawn off there: diesel lower down, kerosene above it, petrol near the top. Gases leave from the very top.",
+    "What never boils, the heavy residue, collects at the bottom. Different crudes give very different mixtures: a light crude is rich in petrol and diesel, a heavy crude yields mostly heavy oils and bitumen."
+   ],
+   "modes": [
+    {
+     "id": "light",
+     "label": "Light crude"
+    },
+    {
+     "id": "heavy",
+     "label": "Heavy crude"
+    }
+   ],
+   "controls": [
+    {
+     "id": "furnace",
+     "type": "range",
+     "label": "Furnace outlet",
+     "min": 300,
+     "max": 420,
+     "step": 1,
+     "value": 360,
+     "format": "{v} °C",
+     "help": "Hotter vaporises more, but above ~400 °C the molecules start to crack and form coke."
+    },
+    {
+     "id": "bpd",
+     "type": "range",
+     "label": "Throughput",
+     "min": 50,
+     "max": 300,
+     "step": 10,
+     "value": 150,
+     "format": "{v}k bbl/day",
+     "help": "Thousands of barrels of crude a day (one barrel is 159 litres)."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "light",
+     "label": "Gas, petrol, naphtha"
+    },
+    {
+     "id": "middle",
+     "label": "Kerosene & diesel"
+    },
+    {
+     "id": "resid",
+     "label": "Residue"
+    },
+    {
+     "id": "duty",
+     "label": "Furnace heat"
+    },
+    {
+     "id": "top",
+     "label": "Column top"
+    },
+    {
+     "id": "status",
+     "label": "Operation"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Heating the crude",
+     "furnace": 360,
+     "bpd": 150,
+     "body": [
+      "Crude from the storage tank is pumped through heat exchangers (not shown) and then the fired furnace, where it flows through tubes past burner flames. It leaves at about 360 °C, partly boiling, and rushes into the bottom of the column.",
+      "Heating 150,000 barrels a day takes over 100 megawatts, about as much as a small town uses."
+     ]
+    },
+    {
+     "title": "The column",
+     "body": [
+      "The column is cut open to show its trays. Vapour (the dots) rises through holes in each tray, covered by bubble caps, and bubbles through a layer of liquid. Heavier molecules condense into that liquid; lighter ones carry on up.",
+      "So the column is hot at the bottom and cool at the top, and every tray holds liquid of a slightly different make-up: dark and heavy low down, pale and light near the top."
+     ]
+    },
+    {
+     "title": "The products",
+     "body": [
+      "Each product is drawn off at its own height: refinery gas from the top (to the sphere), then petrol, naphtha, kerosene for jet fuel, diesel, fuel oil, and finally the residue from the bottom.",
+      "The card below shows the crude's boiling curve: how much of it has boiled away by each temperature. The coloured bands are the products."
+     ]
+    },
+    {
+     "title": "Heavy crude",
+     "mode": "heavy",
+     "body": [
+      "Switch to heavy crude. Its boiling curve sits much higher: less than a fifth boils below 180 °C, and about half is still liquid at 360 °C.",
+      "Refineries that run heavy crude need extra units, like crackers and cokers, to break the big molecules into petrol and diesel."
+     ]
+    },
+    {
+     "title": "Too hot",
+     "furnace": 415,
+     "body": [
+      "Push the furnace higher and more of the crude vaporises, but above about 400 °C large molecules start to crack apart and form coke, a hard carbon deposit that clogs furnace tubes.",
+      "To recover more without cracking, refineries send the residue to a second column under vacuum, where everything boils at a lower temperature."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Crude oil tank",
+     "role": "Stores crude oil with a floating roof to stop vapour escaping."
+    },
+    {
+     "name": "Feed pump",
+     "role": "Pushes crude through the furnace and into the column."
+    },
+    {
+     "name": "Crude line",
+     "role": "Carries crude from the tank to the furnace."
+    },
+    {
+     "name": "Furnace",
+     "role": "Burner flames heat the crude flowing through tubes to about 360 °C."
+    },
+    {
+     "name": "Furnace stack",
+     "role": "Carries the burner exhaust away."
+    },
+    {
+     "name": "Transfer line",
+     "role": "Carries the hot, partly boiling crude into the column."
+    },
+    {
+     "name": "Column skirt",
+     "role": "The steel support at the base of the column."
+    },
+    {
+     "name": "Distillation column",
+     "role": "A tall steel tower full of trays, cut open here."
+    },
+    {
+     "name": "Trays",
+     "role": "Perforated plates with bubble caps; vapour bubbles through the liquid on each one."
+    },
+    {
+     "name": "Product lines",
+     "role": "Draw each product off the column at its height; the colours show the product."
+    },
+    {
+     "name": "Gas sphere",
+     "role": "Holds refinery gas (propane and butane) under pressure."
+    },
+    {
+     "name": "Petrol tank",
+     "role": "Light liquid boiling at about 30–110 °C."
+    },
+    {
+     "name": "Naphtha tank",
+     "role": "Feedstock for making petrol and plastics, boiling at 110–180 °C."
+    },
+    {
+     "name": "Kerosene tank",
+     "role": "Jet fuel and paraffin, boiling at 180–250 °C."
+    },
+    {
+     "name": "Diesel tank",
+     "role": "Gas oil for diesel engines and heating, 250–350 °C."
+    },
+    {
+     "name": "Fuel oil tank",
+     "role": "Heavy oil for ships and power stations."
+    },
+    {
+     "name": "Residue tank",
+     "role": "What never boiled: used for bitumen or processed further."
+    },
+    {
+     "name": "Plant floor",
+     "role": "The refinery site."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Furnace outlet",
+     "value": "≈ 350–380 °C"
+    },
+    {
+     "label": "Column height",
+     "value": "up to ≈ 60 m"
+    },
+    {
+     "label": "One barrel",
+     "value": "159 litres"
+    },
+    {
+     "label": "Kerosene boils",
+     "value": "≈ 180–250 °C"
+    },
+    {
+     "label": "Cracking starts",
+     "value": "≈ 400 °C and above"
+    }
+   ],
+   "accuracy": "Yields come from two typical true-boiling-point curves cut at standard boiling ranges, with a little overflash above the furnace temperature; real cut points overlap and depend on the column design. The column temperature profile and furnace duty (crude preheated to about 240 °C) are simplified.",
+   "sources": [
+    "Gary, Handwerk & Kaiser, Petroleum Refining: Technology and Economics, 5th ed. (2007)",
+    "Fahim, Al-Sahhaf & Elkilani, Fundamentals of Petroleum Refining (2010)",
+    "US EIA, Refining crude oil (energy explained)"
+   ]
+  },
+  {
    "id": "orrery",
    "title": "Orrery: Sun, Earth & Moon",
    "subtitle": "Why we have seasons and moon phases",
@@ -1994,7 +3668,7 @@
      "value": "149.6 million km"
     }
    ],
-   "accuracy": "Earth's position uses Kepler's equation of the centre, declination and daylight include atmospheric refraction; sizes and distances are not to scale (a true-scale Earth would be a speck). Moon phases are computed for 2026 from the 18 January new moon.",
+   "accuracy": "Earth's position uses Kepler's equation of the centre, declination and daylight include atmospheric refraction; sizes and distances are not to scale (a true-scale Earth would be a speck). Moon phases use the actual 2026 new-moon dates (UTC).",
    "sources": [
     "Meeus, Astronomical Algorithms, 2nd ed. (1998)",
     "NOAA Solar Calculator methodology",
@@ -2196,6 +3870,677 @@
    "sources": [
     "Tobias, Locks, Safes, and Security, 2nd ed. (2000)",
     "Pulford, The Locksmith's handbook (2014)"
+   ]
+  },
+  {
+   "id": "refrigerator",
+   "title": "Refrigerator",
+   "subtitle": "A heat pump in your kitchen",
+   "category": "everyday",
+   "featured": false,
+   "tags": [
+    "refrigerator",
+    "fridge",
+    "heat pump",
+    "compressor",
+    "refrigerant",
+    "thermodynamics",
+    "cop",
+    "thermostat",
+    "kitchen",
+    "energy"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "A fridge does not make cold; it pumps heat out. Follow the refrigerant round its loop, open the door, heat the kitchen and watch the thermostat and the electricity bill respond.",
+   "overview": [
+    "Heat always flows from warm to cold, so warmth from the kitchen is leaking into your fridge all the time through its walls and every time you open the door. A fridge keeps cool by pumping that heat back out, and the warm grid on its back is where it goes.",
+    "It does this with a liquid that boils at a very low temperature, the refrigerant. In the evaporator coil inside the freezer it boils at about −25 °C, soaking up heat as it turns to vapour, just as sweat cools your skin as it evaporates. The compressor squeezes that vapour, making it hot, and pushes it into the condenser coil on the back, where it gives its heat to the room and condenses back to liquid. A thin capillary tube then lets the pressure drop, and the liquid flows back to the evaporator, colder than ever.",
+    "A thermostat switches the compressor on when the inside warms past its set point and off when it is cool enough. Each joule of electricity moves about two joules of heat: the coefficient of performance (COP)."
+   ],
+   "controls": [
+    {
+     "id": "set",
+     "type": "range",
+     "label": "Thermostat",
+     "min": 1,
+     "max": 8,
+     "step": 0.5,
+     "value": 4,
+     "digits": 1,
+     "format": "{v} °C",
+     "help": "Food keeps best at 3–5 °C. Every degree colder costs a few per cent more energy."
+    },
+    {
+     "id": "room",
+     "type": "range",
+     "label": "Kitchen temperature",
+     "min": 12,
+     "max": 40,
+     "step": 1,
+     "value": 22,
+     "format": "{v} °C",
+     "help": "A hot kitchen leaks more heat in and makes the condenser work harder."
+    },
+    {
+     "id": "door",
+     "type": "toggle",
+     "label": "Door open",
+     "value": false,
+     "help": "Warm air pours in and cold air falls out."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "temp",
+     "label": "Inside temperature"
+    },
+    {
+     "id": "comp",
+     "label": "Compressor"
+    },
+    {
+     "id": "duty",
+     "label": "Time running"
+    },
+    {
+     "id": "cop",
+     "label": "COP"
+    },
+    {
+     "id": "power",
+     "label": "Power drawn"
+    },
+    {
+     "id": "kwh",
+     "label": "Energy per day"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Pumping heat",
+     "set": 4,
+     "room": 22,
+     "door": false,
+     "body": [
+      "The fridge is cut open at the side and seen from behind. Food sits on glass shelves; above is the freezer, with the evaporator coil on its wall and a small fan.",
+      "Wait for the compressor to start: dots of refrigerant start to circle. Blue dots inside are cold and soaking up heat; red dots on the back are hot and giving it away."
+     ]
+    },
+    {
+     "title": "Boil and condense",
+     "body": [
+      "In the evaporator the refrigerant is at low pressure and boils at about −25 °C. Boiling takes a lot of heat, which comes from the freezer air.",
+      "The compressor raises the pressure several times over. At high pressure the vapour is hot (red) and condenses back to liquid as it winds down the black grid, warming the air behind the fridge."
+     ]
+    },
+    {
+     "title": "The thermostat",
+     "body": [
+      "The compressor does not run all the time. When the inside warms past the set point plus a degree, it switches on; once it is a degree below, it stops. The card shows the sawtooth this makes.",
+      "At 22 °C this fridge runs about a third of the time and uses about 0.6 kWh a day."
+     ]
+    },
+    {
+     "title": "Door open",
+     "door": true,
+     "body": [
+      "With the door open, cold air spills out of the bottom and warm, moist air flows in at the top. The compressor runs much longer, and the moisture freezes on the evaporator as frost.",
+      "Frost insulates the coil and makes the fridge less efficient, which is why modern freezers defrost themselves."
+     ]
+    },
+    {
+     "title": "A hot kitchen",
+     "door": false,
+     "room": 34,
+     "body": [
+      "The hotter the room, the faster heat leaks in, and the hotter the condenser must get to dump that heat. The gap between the cold and hot sides grows, so each joule of electricity moves less heat: the COP falls.",
+      "Keep the back of a fridge clear and away from the oven, and it uses noticeably less energy."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Cabinet",
+     "role": "An insulated box; the side panel is cut away here."
+    },
+    {
+     "name": "Inner liner",
+     "role": "A smooth plastic lining inside the cabinet that is easy to clean."
+    },
+    {
+     "name": "Insulation foam",
+     "role": "Polyurethane foam between the walls slows the heat leaking in."
+    },
+    {
+     "name": "Door seal",
+     "role": "A magnetic rubber gasket that keeps warm air out."
+    },
+    {
+     "name": "Back panel",
+     "role": "The rear wall of the cabinet."
+    },
+    {
+     "name": "Evaporator coil",
+     "role": "Inside the freezer: refrigerant boils here and absorbs heat."
+    },
+    {
+     "name": "Condenser coil",
+     "role": "The black grid on the back: hot refrigerant gives its heat to the room and turns liquid."
+    },
+    {
+     "name": "Compressor",
+     "role": "An electric pump that squeezes the refrigerant vapour, raising its pressure and temperature."
+    },
+    {
+     "name": "Filter-drier",
+     "role": "Catches moisture and dirt before the capillary tube."
+    },
+    {
+     "name": "Refrigerant lines",
+     "role": "Copper pipes, including a thin capillary tube that drops the pressure."
+    },
+    {
+     "name": "Refrigerant",
+     "role": "Red: hot gas; orange: condensing; light blue: expanding; blue: boiling; pale blue: cold vapour."
+    },
+    {
+     "name": "Cold air",
+     "role": "Air cooled in the freezer sinks down into the fridge."
+    },
+    {
+     "name": "Glass shelf",
+     "role": "Lets cold air circulate."
+    },
+    {
+     "name": "Crisper drawer",
+     "role": "Keeps vegetables in more humid air."
+    },
+    {
+     "name": "Freezer drawer",
+     "role": "Ice cubes and frozen food at about −18 °C."
+    },
+    {
+     "name": "Milk",
+     "role": "Keep milk on a shelf, not in the warmer door."
+    },
+    {
+     "name": "Juice",
+     "role": "A bottle of orange juice."
+    },
+    {
+     "name": "Fruit bowl",
+     "role": "Apples keep for weeks in the cold."
+    },
+    {
+     "name": "Eggs",
+     "role": "A row of eggs."
+    },
+    {
+     "name": "Cheese",
+     "role": "A block of cheese."
+    }
+   ],
+   "facts": [
+    {
+     "label": "COP",
+     "value": "heat moved ÷ electricity used"
+    },
+    {
+     "label": "Carnot limit",
+     "value": "COP ≤ T_cold / (T_hot − T_cold)"
+    },
+    {
+     "label": "Evaporator",
+     "value": "≈ −25 °C"
+    },
+    {
+     "label": "Typical fridge-freezer",
+     "value": "≈ 0.5–1 kWh a day"
+    },
+    {
+     "label": "Common refrigerant",
+     "value": "isobutane (R600a)"
+    }
+   ],
+   "accuracy": "A single-temperature thermal model with a fixed wall conductance, door leak and cooling capacity; the COP is 45 % of the Carnot value between evaporator and condenser temperatures. Fridge time runs 90× faster than real time. The freezer is assumed to sit about 22 °C below the fridge.",
+   "sources": [
+    "Çengel & Boles, Thermodynamics: An Engineering Approach, 9th ed. (2019), ch. 11",
+    "Stoecker & Jones, Refrigeration and Air Conditioning, 2nd ed. (1982)",
+    "EU energy label data for household fridge-freezers"
+   ]
+  },
+  {
+   "id": "rocket-launch",
+   "title": "Rocket Launch",
+   "subtitle": "Two stages, nine engines, eight minutes to orbit",
+   "category": "space",
+   "featured": true,
+   "tags": [
+    "rocket",
+    "launch",
+    "orbit",
+    "space",
+    "staging",
+    "tsiolkovsky",
+    "propellant",
+    "satellite",
+    "gravity turn",
+    "physics"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 7,
+   "summary": "A cut-away two-stage rocket flies a full launch: lift-off, max-Q, the gravity turn, staging and the push to 7.8 km/s. Load more payload and find out how much is too much.",
+   "overview": [
+    "Reaching orbit is less about going up than going sideways. At 200 km above the Earth there is still gravity, almost as strong as on the ground; a satellite stays up because it is moving sideways at about 7.8 km/s, so fast that as it falls, the curved Earth drops away beneath it just as fast.",
+    "Most of a rocket is propellant. This one carries kerosene (RP-1) and liquid oxygen, which burn together in the engines. As the tanks empty the rocket gets lighter, so the same thrust accelerates it harder and harder. Rather than carry heavy empty tanks all the way, rockets drop them: the first stage burns out, falls away, and a smaller second stage carries on.",
+    "The best possible change in speed is given by the rocket equation, worked out by Konstantin Tsiolkovsky in 1903: Δv = Isp · g₀ · ln(m_full / m_empty). Getting to orbit needs about 9.4 km/s of it: 7.8 km/s of orbital speed plus losses to gravity and drag on the way up."
+   ],
+   "actions": [
+    {
+     "id": "launch",
+     "label": "Launch",
+     "primary": true
+    },
+    {
+     "id": "reset",
+     "label": "Back to pad"
+    }
+   ],
+   "controls": [
+    {
+     "id": "payload",
+     "type": "range",
+     "label": "Payload",
+     "min": 0,
+     "max": 24,
+     "step": 0.5,
+     "value": 15,
+     "digits": 1,
+     "format": "{v} t",
+     "help": "The satellite's mass. Every extra kilogram costs speed at the end."
+    },
+    {
+     "id": "warp",
+     "type": "range",
+     "label": "Time warp",
+     "min": 1,
+     "max": 30,
+     "step": 1,
+     "value": 12,
+     "format": "{v}×",
+     "help": "The real flight to orbit takes about eight minutes."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "time",
+     "label": "Mission time"
+    },
+    {
+     "id": "alt",
+     "label": "Altitude"
+    },
+    {
+     "id": "vel",
+     "label": "Speed"
+    },
+    {
+     "id": "acc",
+     "label": "Acceleration"
+    },
+    {
+     "id": "dv",
+     "label": "Δv left in the tanks"
+    },
+    {
+     "id": "status",
+     "label": "Flight event"
+    }
+   ],
+   "steps": [
+    {
+     "title": "The stack",
+     "payload": 15,
+     "body": [
+      "The rocket is cut open down the front. The first stage holds orange kerosene below pale-blue liquid oxygen, which is so cold (−183 °C) that frost forms on the outside. A pipe, the downcomer, carries the oxygen through the fuel tank to the nine engines.",
+      "Above the black interstage sits the second stage with one large engine whose bell is shaped for vacuum, and the satellite inside the nose fairing."
+     ]
+    },
+    {
+     "title": "Lift-off and Max-Q",
+     "launch": true,
+     "body": [
+      "At lift-off the nine engines push with over 7,600 kN, about 1.4 times the rocket's weight, so at first it rises slowly. As it speeds up into thick air, the aerodynamic pressure on it climbs to a peak about a minute in: Max-Q.",
+      "Watch the exhaust plume widen as the air pressure around it falls."
+     ]
+    },
+    {
+     "title": "The gravity turn",
+     "body": [
+      "A few seconds after lift-off the rocket starts to lean over. Gravity then pulls its path gradually toward horizontal, the gravity turn, so it builds sideways speed without ever turning against the air.",
+      "The flight path card shows the curve: steep at first, then nearly flat."
+     ]
+    },
+    {
+     "title": "Staging",
+     "body": [
+      "After about two and a half minutes the first stage is empty. The stages separate, the first stage falls away, and the second stage's engine starts. Without the dead weight of the big empty tanks, the remaining propellant goes much further.",
+      "At about 110 km, above nearly all of the air, the fairing splits in two and falls away."
+     ]
+    },
+    {
+     "title": "Orbit",
+     "body": [
+      "The second stage keeps pushing almost horizontally until the lowest point of the orbit is safely above the atmosphere, then shuts down. The payload is in orbit, circling the Earth every 90 minutes.",
+      "Δv left shows the rocket equation at work on the propellant still on board."
+     ]
+    },
+    {
+     "title": "Too heavy",
+     "payload": 22.5,
+     "body": [
+      "Now try 22.5 tonnes. The rocket climbs on the same path, but the heavier second stage runs dry before it reaches orbital speed, and the payload falls back.",
+      "Because Δv depends on the logarithm of the mass ratio, a few extra tonnes on top cost far more than they seem to."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "First stage",
+     "role": "The big booster: kerosene and liquid oxygen tanks and nine engines."
+    },
+    {
+     "name": "Engine section",
+     "role": "Holds the engines and their plumbing at the base of the first stage."
+    },
+    {
+     "name": "Merlin-class engines",
+     "role": "Nine kerosene-oxygen engines, eight in a ring around a centre one."
+    },
+    {
+     "name": "Common bulkhead",
+     "role": "The dome separating the fuel tank from the oxygen tank."
+    },
+    {
+     "name": "LOX downcomer",
+     "role": "Carries liquid oxygen from its tank down through the fuel tank to the engines."
+    },
+    {
+     "name": "Interstage",
+     "role": "Joins the two stages and covers the second-stage engine."
+    },
+    {
+     "name": "Landing legs",
+     "role": "Folded against the first stage."
+    },
+    {
+     "name": "Grid fins",
+     "role": "Steer the first stage when it falls back."
+    },
+    {
+     "name": "Second stage",
+     "role": "Carries the payload the rest of the way to orbit."
+    },
+    {
+     "name": "Vacuum engine",
+     "role": "One engine with a huge bell, designed to work in vacuum."
+    },
+    {
+     "name": "Payload fairing",
+     "role": "A nose cone that protects the satellite through the atmosphere, then splits in two."
+    },
+    {
+     "name": "Payload adapter",
+     "role": "Holds the satellite and releases it in orbit."
+    },
+    {
+     "name": "Satellite",
+     "role": "The payload, with folded solar panels."
+    },
+    {
+     "name": "Launch pad",
+     "role": "Concrete pad with a flame trench to carry the exhaust away."
+    },
+    {
+     "name": "Flame trench",
+     "role": "Channels the engines' exhaust away from the pad."
+    },
+    {
+     "name": "Launch tower",
+     "role": "Gives access to the rocket and carries fuel and power lines."
+    },
+    {
+     "name": "Crew access arm",
+     "role": "A walkway to the top of the rocket."
+    },
+    {
+     "name": "Lightning mast",
+     "role": "Protects the rocket on the pad from lightning strikes."
+    },
+    {
+     "name": "Exhaust",
+     "role": "Hot gas leaving the engines; it spreads as the outside air thins."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Rocket equation",
+     "value": "Δv = Isp·g₀·ln(m₀/m₁)"
+    },
+    {
+     "label": "Orbital speed at 200 km",
+     "value": "≈ 7.8 km/s"
+    },
+    {
+     "label": "Δv to low orbit",
+     "value": "≈ 9.4 km/s with losses"
+    },
+    {
+     "label": "First stage burn",
+     "value": "≈ 2.5 minutes"
+    },
+    {
+     "label": "Lift-off thrust",
+     "value": "≈ 7,600 kN"
+    }
+   ],
+   "accuracy": "The flight is a point-mass simulation over a round Earth with an exponential atmosphere, drag, thrust that rises as the air thins, and a fixed pitch programme. Stage masses and engines are similar to a modern medium-lift launcher but not a model of a specific vehicle; real guidance optimises the path for each payload.",
+   "sources": [
+    "Sutton & Biblarz, Rocket Propulsion Elements, 9th ed. (2016)",
+    "Curtis, Orbital Mechanics for Engineering Students, 4th ed. (2020)",
+    "Tsiolkovsky, Exploration of Outer Space by Means of Reaction Devices (1903)"
+   ]
+  },
+  {
+   "id": "volcano",
+   "title": "Volcano",
+   "subtitle": "Why some volcanoes ooze and others explode",
+   "category": "nature",
+   "featured": true,
+   "tags": [
+    "volcano",
+    "magma",
+    "lava",
+    "eruption",
+    "geology",
+    "plinian",
+    "viscosity",
+    "earth science",
+    "nature",
+    "ash"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "A stratovolcano sliced through its summit. Change the magma's silica and gas, and watch gentle lava fountains turn into a 40 km column of ash.",
+   "overview": [
+    "Deep under a volcano, rock melts into magma that collects in a chamber a few kilometres down. Being lighter than the rock around it, it rises through cracks and a central conduit toward the surface.",
+    "What happens when it gets there depends mostly on two things. The first is silica: magma rich in silica (like rhyolite) is cooler and millions of times stickier than silica-poor basalt. The second is dissolved gas, mostly water and CO₂, which comes out of solution as the pressure falls, just like the bubbles in a fizzy drink when you open it.",
+    "In runny basalt, bubbles escape easily and the lava fountains and flows away, as in Hawaii. In sticky, gas-rich magma the bubbles cannot escape. Pressure builds until the magma shatters into ash and shoots out at hundreds of metres a second, building a column that can rise into the stratosphere. Layer upon layer of lava and ash from thousands of such eruptions builds the cone."
+   ],
+   "controls": [
+    {
+     "id": "silica",
+     "type": "range",
+     "label": "Silica in the magma",
+     "min": 46,
+     "max": 75,
+     "step": 1,
+     "value": 49,
+     "format": "{v} %",
+     "help": "Basalt about 50 %, andesite about 60 %, rhyolite over 70 %."
+    },
+    {
+     "id": "gas",
+     "type": "range",
+     "label": "Dissolved gas",
+     "min": 0.5,
+     "max": 6,
+     "step": 0.1,
+     "value": 1.2,
+     "digits": 1,
+     "format": "{v} wt %",
+     "help": "Mostly water vapour. More gas means more violent fragmentation."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "temp",
+     "label": "Magma temperature"
+    },
+    {
+     "id": "eta",
+     "label": "Viscosity"
+    },
+    {
+     "id": "style",
+     "label": "Eruption style"
+    },
+    {
+     "id": "plume",
+     "label": "Plume height"
+    },
+    {
+     "id": "mer",
+     "label": "Mass erupted"
+    },
+    {
+     "id": "vei",
+     "label": "Explosivity"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Inside the volcano",
+     "silica": 49,
+     "gas": 1.2,
+     "body": [
+      "The volcano is cut in half through the summit. Far below, magma collects in a chamber. From its roof, a conduit leads up to the crater; other blades of magma have pushed sideways as a sill or squeezed up through cracks as a dyke.",
+      "The cone itself is built from alternating layers of solidified lava (dark) and ash and rubble (pale) from countless past eruptions."
+     ]
+    },
+    {
+     "title": "Runny lava",
+     "silica": 49,
+     "gas": 1.2,
+     "body": [
+      "Basalt at about 1,200 °C flows like warm honey. Its gas escapes easily, so the eruption is gentle: lava fountains at the vent and rivers of lava down the slope.",
+      "These Hawaiian eruptions are spectacular but rarely deadly; you can usually walk away from the lava."
+     ]
+    },
+    {
+     "title": "Bursting bubbles",
+     "silica": 50,
+     "gas": 3.6,
+     "body": [
+      "Add more gas to the same runny magma. Large bubbles now rise through the conduit and burst at the top, flinging out glowing clots of lava every few seconds.",
+      "This is Strombolian activity, named after the island of Stromboli, which has erupted like this almost continuously for over two thousand years."
+     ]
+    },
+    {
+     "title": "A plug of sticky lava",
+     "silica": 66,
+     "gas": 1,
+     "body": [
+      "Silica-rich magma with little gas is too stiff to flow far. It piles up over the vent as a lava dome that grows like toothpaste squeezed from a tube.",
+      "Domes are dangerous: they can collapse or seal the vent until pressure builds beneath them."
+     ]
+    },
+    {
+     "title": "Plinian eruption",
+     "silica": 72,
+     "gas": 5,
+     "body": [
+      "Sticky rhyolite full of gas. The bubbles cannot escape, the magma shatters into ash, and the eruption column shoots up tens of kilometres, spreading out as an umbrella cloud.",
+      "Hot avalanches of ash and gas, pyroclastic flows, race down the slopes at over 100 km/h. Lightning crackles in the column from the friction of colliding ash. Vesuvius in 79 AD and Pinatubo in 1991 erupted like this."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Volcano cone",
+     "role": "Built from layers of lava and ash. Snow caps the top."
+    },
+    {
+     "name": "Forest",
+     "role": "Trees on the fertile lower slopes; volcanic soils are rich in minerals."
+    },
+    {
+     "name": "Cut face",
+     "role": "Alternating dark lava and pale ash layers that slope outward like the cone."
+    },
+    {
+     "name": "Magma chamber",
+     "role": "A reservoir of molten rock a few kilometres underground."
+    },
+    {
+     "name": "Conduit",
+     "role": "The main pipe from the chamber to the crater."
+    },
+    {
+     "name": "Dyke",
+     "role": "A blade of magma that cut upward through the layers and froze."
+    },
+    {
+     "name": "Sill",
+     "role": "A sheet of magma that pushed sideways between layers."
+    },
+    {
+     "name": "Bedrock",
+     "role": "Older crust the volcano is built on."
+    },
+    {
+     "name": "Eruption",
+     "role": "Fountains, bursts, a dome or an ash column, depending on the magma."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Basalt viscosity",
+     "value": "≈ 10²–10³ Pa·s"
+    },
+    {
+     "label": "Rhyolite viscosity",
+     "value": "≈ 10⁸–10¹⁰ Pa·s"
+    },
+    {
+     "label": "Plume height",
+     "value": "H ≈ 2·V̇^0.241 km (V̇ in m³/s)"
+    },
+    {
+     "label": "Pinatubo 1991 column",
+     "value": "≈ 35 km"
+    },
+    {
+     "label": "Basalt eruption temperature",
+     "value": "≈ 1,150–1,200 °C"
+    }
+   ],
+   "accuracy": "Temperature and viscosity follow simple trends with silica; eruption style is decided by viscosity and gas content with illustrative thresholds. Plume height uses the Mastin et al. (2009) fit to the mass eruption rate. Heights and distances in the drawing are not to scale.",
+   "sources": [
+    "Mastin et al., A multidisciplinary effort to assign realistic source parameters to models of volcanic ash-cloud transport, J. Volcanol. Geotherm. Res. 186 (2009)",
+    "Sigurdsson (ed.), The Encyclopedia of Volcanoes, 2nd ed. (2015)",
+    "USGS Volcano Hazards Program: Volcanic Explosivity Index"
    ]
   },
   {

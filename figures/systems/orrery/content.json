@@ -54,6 +54,6 @@
     { "label": "Lunar month", "value": "29.53 days (synodic)" },
     { "label": "1 AU", "value": "149.6 million km" }
   ],
-  "accuracy": "Earth's position uses Kepler's equation of the centre, declination and daylight include atmospheric refraction; sizes and distances are not to scale (a true-scale Earth would be a speck). Moon phases are computed for 2026 from the 18 January new moon.",
+  "accuracy": "Earth's position uses Kepler's equation of the centre, declination and daylight include atmospheric refraction; sizes and distances are not to scale (a true-scale Earth would be a speck). Moon phases use the actual 2026 new-moon dates (UTC).",
   "sources": ["Meeus, Astronomical Algorithms, 2nd ed. (1998)", "NOAA Solar Calculator methodology", "NASA Earth Fact Sheet"]
 }

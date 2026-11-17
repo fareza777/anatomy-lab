@@ -4,8 +4,12 @@
 export const TILT_DEG = 23.44;
 export const ECC = 0.0167;
 export const PERIHELION_DAY = 3; // ~3 January
-export const SYNODIC = 29.530588; // days
-export const NEW_MOON_DAY = 18.8; // new moon of 18 January 2026
+/** New moons around 2026 (UTC) as day-of-year: 1.0 = 1 January 00:00. */
+export const NEW_MOONS_2026 = [
+  -10.93, // 20 Dec 2025 01:43
+  18.83, 48.5, 78.06, 107.49, 136.83, 166.12, 195.41, 224.73, 254.14, 283.66, 313.29, 343.04,
+  372.85, // 7 Jan 2027 20:24
+];
 
 const RAD = Math.PI / 180;
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -50,8 +54,12 @@ export function season(day, north = true) {
 
 /** Lunar phase: age in days, illuminated fraction and name. */
 export function moon(day) {
-  const age = (((day - NEW_MOON_DAY) % SYNODIC) + SYNODIC) % SYNODIC;
-  const phase = age / SYNODIC; // 0 new, 0.5 full
+  // real new moons, so the phase stays right all year (mean months drift by up to a day)
+  let i = NEW_MOONS_2026.findIndex((t) => t > day) - 1;
+  if (i < 0) i = day < NEW_MOONS_2026[0] ? 0 : NEW_MOONS_2026.length - 2;
+  const start = NEW_MOONS_2026[i], len = NEW_MOONS_2026[i + 1] - start;
+  const age = Math.max(0, day - start);
+  const phase = Math.min(age / len, 0.9999); // 0 new, 0.5 full
   const lit = (1 - Math.cos(2 * Math.PI * phase)) / 2;
   const names = ["New moon", "Waxing crescent", "First quarter", "Waxing gibbous", "Full moon", "Waning gibbous", "Last quarter", "Waning crescent"];
   return { age, phase, lit, name: names[Math.round(phase * 8) % 8] };

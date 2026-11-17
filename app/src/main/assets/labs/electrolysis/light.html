@@ -143,7 +143,8 @@ body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:15px
 .lab-seg button[aria-pressed="true"]{background:var(--anatomy-card);color:var(--anatomy-strong);box-shadow:var(--anatomy-lift)}
 .lab-gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin:8px 0 4px}
 .lab-gauge{background:var(--lab-chip);border-radius:12px;padding:9px 11px 8px;box-shadow:0 0 0 1px var(--lab-rule)}
-.lab-gauge b{display:block;color:var(--anatomy-strong);font:600 16px/1.2 var(--anatomy-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lab-gauge b{display:block;color:var(--anatomy-strong);font:600 16px/1.2 var(--anatomy-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em;overflow-wrap:anywhere}
+.lab-gauge b[data-long]{font-size:12.5px;line-height:1.25}
 .lab-gauge span{display:block;color:var(--anatomy-muted);font:500 9.5px/1.3 var(--anatomy-mono);letter-spacing:.09em;text-transform:uppercase;margin-top:3px}
 .lab-gauge[data-hot] b{color:var(--lab-accent)}
 .lab-controls{margin:10px 0 2px}
@@ -186,10 +187,17 @@ body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:15px
 .lab-card-head span{color:var(--anatomy-strong);font:600 11px/1 var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase}
 .lab-card-head em{color:var(--anatomy-muted);font:500 10px/1 var(--anatomy-mono);font-style:normal;letter-spacing:.06em}
 .lab-foot{margin:18px 0 0;color:var(--anatomy-muted);font:500 10.5px/1.5 var(--anatomy-mono);letter-spacing:.04em}
+.lab .iso-stage{transform-origin:0 0}
+.lab .iso-stage[data-ease]{transition:transform .28s var(--anatomy-ease)}
+.lab-zoom{position:absolute;z-index:4;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px}
+.lab-zoom button{width:34px;height:34px;border:0;border-radius:11px;background:var(--lab-tip-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--anatomy-strong);box-shadow:0 0 0 1px var(--lab-rule),0 4px 12px #0002;font:600 17px/1 var(--anatomy-mono);padding:0}
+.lab-zoom button:active{transform:scale(.94)}
+.lab-zoom [data-zoom="level"]{font-size:10px;letter-spacing:.02em;height:26px}
+.lab-zoom:not([data-zoomed]) [data-zoom="level"],.lab-zoom:not([data-zoomed]) [data-zoom="out"]{display:none}
 @media (prefers-reduced-motion:reduce){.lab-step{animation:none}}
 body.lab-thumb,body.lab-thumb .lab-stage{background:transparent!important}
 body.lab-thumb .iso-plate{background:none!important;box-shadow:none!important;padding:0!important}
-body.lab-thumb .iso-plate::before,body.lab-thumb .iso-plate-corners,body.lab-thumb .lab-panel,body.lab-thumb .lab-tip{display:none!important}
+body.lab-thumb .iso-plate::before,body.lab-thumb .iso-plate-corners,body.lab-thumb .lab-panel,body.lab-thumb .lab-tip,body.lab-thumb .lab-zoom{display:none!important}
 body.lab-thumb .iso-stage{width:100%!important}
 @media (min-height:700px) and (max-width:719px){.lab-stage{padding-top:8px}}
 .iso{--fig-aspect:1.0000}
@@ -299,7 +307,7 @@ const Lab = (() => {
   function gauge(id, text, hot) {
     const el = gauges[id] || (gauges[id] = document.querySelector('[data-gauge="' + id + '"] b'));
     if (!el) return;
-    if (el.textContent !== text) el.textContent = text;
+    if (el.textContent !== text) { el.textContent = text; el.toggleAttribute("data-long", text.length > 9); }
     el.parentElement.toggleAttribute("data-hot", !!hot);
   }
   // Tap a part: highlight it and show what it is.
@@ -331,11 +339,123 @@ const Lab = (() => {
     const plate = document.querySelector(".iso-plate");
     if (!stage || !plate) return;
     const tip = document.createElement("div"); tip.className = "lab-tip"; tip.innerHTML = "<b></b><span></span>"; plate.appendChild(tip);
-    let down = null;
+    let down = null, lastTap = null;
     stage.addEventListener("pointerdown", (e) => { down = { x: e.clientX, y: e.clientY, t: performance.now() }; });
-    stage.addEventListener("pointerup", (e) => { if (down && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 8 && performance.now() - down.t < 450) pick(e.clientX, e.clientY); down = null; });
+    stage.addEventListener("pointerup", (e) => {
+      const tap = down && !zoom.gestured && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 8 && performance.now() - down.t < 450;
+      down = null;
+      if (!tap) return;
+      const now = performance.now();
+      if (lastTap && now - lastTap.t < 320 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 40) { lastTap = null; zoom.toggleAt(e.clientX, e.clientY); return; }
+      lastTap = { x: e.clientX, y: e.clientY, t: now };
+      pick(e.clientX, e.clientY);
+    });
   }
-  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => { build(); wirePicker(); }) : (build(), wirePicker());
+  // Zoom: pinch with two fingers (which also pans), double-tap, or the + / - buttons.
+  // The stage is scaled with a CSS transform, so the SVG stays sharp and every lab's own
+  // pointer maths (which reads the stage's on-screen rect) keeps working.
+  const zoom = (() => {
+    const MAX = 5;
+    let stage, box, s = 1, tx = 0, ty = 0, gestured = false;
+    const pts = new Map();
+    let pinch = null, pan = null;
+    const origin = () => { const r = stage.getBoundingClientRect(); return [r.left - tx, r.top - ty]; };
+    function apply(ease) {
+      const W = stage.offsetWidth, H = stage.offsetHeight;
+      s = Math.min(MAX, Math.max(1, s));
+      tx = Math.min(0, Math.max(W * (1 - s), tx)); ty = Math.min(0, Math.max(H * (1 - s), ty));
+      if (s < 1.01) { s = 1; tx = 0; ty = 0; }
+      ease ? stage.setAttribute("data-ease", "") : stage.removeAttribute("data-ease");
+      stage.style.transform = s === 1 ? "" : "translate(" + tx + "px," + ty + "px) scale(" + s + ")";
+      if (box) { box.toggleAttribute("data-zoomed", s > 1); box.querySelector('[data-zoom="level"]').textContent = s.toFixed(1) + "×"; }
+    }
+    function zoomAt(cx, cy, to, ease) {
+      const [ox, oy] = origin();
+      const px = (cx - ox - tx) / s, py = (cy - oy - ty) / s;
+      s = Math.min(MAX, Math.max(1, to));
+      tx = cx - ox - px * s; ty = cy - oy - py * s;
+      apply(ease);
+    }
+    const centre = () => { const r = stage.parentElement.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+    function wire() {
+      stage = document.querySelector(".lab .iso-stage");
+      const plate = document.querySelector(".iso-plate");
+      if (!stage || !plate) return;
+      box = document.createElement("div"); box.className = "lab-zoom";
+      box.innerHTML = '<button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="level" aria-label="Reset zoom">1.0×</button><button type="button" data-zoom="out" aria-label="Zoom out">−</button>';
+      plate.appendChild(box);
+      box.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-zoom]"); if (!b) return;
+        const [cx, cy] = centre();
+        if (b.dataset.zoom === "in") zoomAt(cx, cy, s * 1.6, true);
+        else if (b.dataset.zoom === "out") zoomAt(cx, cy, s / 1.6, true);
+        else { s = 1; apply(true); }
+      });
+      // Capture listeners run before each lab's own handlers, so a pinch never turns a crank.
+      const opt = { capture: true };
+      stage.addEventListener("pointerdown", (e) => {
+        if (!pts.size) gestured = false;
+        pts.set(e.pointerId, [e.clientX, e.clientY]);
+        // zoomed in, one finger drags the view around like a map
+        pan = pts.size === 1 && s > 1 ? { x: e.clientX, y: e.clientY, tx, ty } : null;
+        if (pts.size === 2) {
+          const [a, b] = [...pts.values()];
+          pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, m: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], s, tx, ty };
+          gestured = true;
+        }
+        if (gestured) e.stopImmediatePropagation();
+      }, opt);
+      stage.addEventListener("pointermove", (e) => {
+        if (!pts.has(e.pointerId)) return;
+        pts.set(e.pointerId, [e.clientX, e.clientY]);
+        if (pan && pts.size === 1) {
+          const dx = e.clientX - pan.x, dy = e.clientY - pan.y;
+          if (!gestured && Math.hypot(dx, dy) > 8) gestured = true; // a small wobble is still a tap
+          if (!gestured) return;
+          e.stopImmediatePropagation();
+          tx = pan.tx + dx; ty = pan.ty + dy;
+          apply(false);
+          return;
+        }
+        if (!gestured) return;
+        e.stopImmediatePropagation();
+        if (pts.size < 2 || !pinch) return;
+        const [a, b] = [...pts.values()];
+        const d = Math.hypot(a[0] - b[0], a[1] - b[1]), m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+        // keep the point under the fingers' first midpoint under the current midpoint
+        s = pinch.s; tx = pinch.tx; ty = pinch.ty;
+        zoomAt(pinch.m[0], pinch.m[1], pinch.s * (d / pinch.d), false);
+        tx += m[0] - pinch.m[0]; ty += m[1] - pinch.m[1];
+        apply(false);
+      }, opt);
+      const end = (e) => {
+        if (!pts.delete(e.pointerId)) return;
+        if (pts.size < 2) pinch = null;
+        // after a pinch, the finger still down carries on panning from where the view is now
+        if (pts.size === 1 && s > 1) { const [p] = [...pts.values()]; pan = { x: p[0], y: p[1], tx, ty }; }
+        if (!pts.size) pan = null;
+        if (gestured && pts.size) e.stopImmediatePropagation(); // the last lift still reaches the lab, so its drag ends
+      };
+      stage.addEventListener("pointerup", end, opt);
+      stage.addEventListener("pointercancel", end, opt);
+      // a trackpad pinch in a desktop browser arrives as ctrl + wheel
+      stage.addEventListener("wheel", (e) => { if (!e.ctrlKey) return; e.preventDefault(); zoomAt(e.clientX, e.clientY, s * Math.exp(-e.deltaY / 200), false); }, { passive: false });
+      addEventListener("resize", () => apply(false));
+    }
+    return {
+      wire, get gestured() { return gestured; }, get scale() { return s; },
+      toggleAt(x, y) { if (s > 1) { s = 1; apply(true); } else zoomAt(x, y, 2.5, true); },
+      set(level) { const [cx, cy] = centre(); zoomAt(cx, cy, level, true); },
+      // Centre the point at (fx, fy) of the stage (0..1 each) and zoom to level; 1 resets.
+      focus(fx, fy, level) {
+        if (!stage) return;
+        const W = stage.offsetWidth, Hh = stage.offsetHeight;
+        s = Math.max(1, level); tx = W / 2 - s * fx * W; ty = Hh / 2 - s * fy * Hh;
+        apply(true);
+      },
+    };
+  })();
+  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => { build(); zoom.wire(); wirePicker(); }) : (build(), zoom.wire(), wirePicker());
   window.addEventListener("load", () => native && native.ready && native.ready());
   return {
     get values() { return values; }, get step() { return step; }, get mode() { return mode; },
@@ -343,7 +463,7 @@ const Lab = (() => {
     reduced: matchMedia("(prefers-reduced-motion: reduce)"),
     value: (id) => values[id], set: setValue, setMode, setStep, gauge,
     onChange: (fn) => listeners.push(fn), onStep: (fn) => stepListeners.push(fn),
-    onMode: (fn) => modeListeners.push(fn), onAction: (fn) => actionListeners.push(fn), onPick: (fn) => pickListeners.push(fn), pick,
+    onMode: (fn) => modeListeners.push(fn), onAction: (fn) => actionListeners.push(fn), onPick: (fn) => pickListeners.push(fn), pick, zoom,
     // Pause everything when the app goes to the background (called from Android).
     paused: false, setPaused(p) { this.paused = !!p; document.dispatchEvent(new CustomEvent("lab-pause", { detail: this.paused })); },
   };

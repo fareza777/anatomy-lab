@@ -1,0 +1,70 @@
+{
+  "id": "rocket-launch",
+  "title": "Rocket Launch",
+  "subtitle": "Two stages, nine engines, eight minutes to orbit",
+  "category": "space",
+  "featured": true,
+  "tags": ["rocket", "launch", "orbit", "space", "staging", "tsiolkovsky", "propellant", "satellite", "gravity turn", "physics"],
+  "difficulty": "Intermediate",
+  "minutes": 7,
+  "summary": "A cut-away two-stage rocket flies a full launch: lift-off, max-Q, the gravity turn, staging and the push to 7.8 km/s. Load more payload and find out how much is too much.",
+  "overview": [
+    "Reaching orbit is less about going up than going sideways. At 200 km above the Earth there is still gravity, almost as strong as on the ground; a satellite stays up because it is moving sideways at about 7.8 km/s, so fast that as it falls, the curved Earth drops away beneath it just as fast.",
+    "Most of a rocket is propellant. This one carries kerosene (RP-1) and liquid oxygen, which burn together in the engines. As the tanks empty the rocket gets lighter, so the same thrust accelerates it harder and harder. Rather than carry heavy empty tanks all the way, rockets drop them: the first stage burns out, falls away, and a smaller second stage carries on.",
+    "The best possible change in speed is given by the rocket equation, worked out by Konstantin Tsiolkovsky in 1903: Δv = Isp · g₀ · ln(m_full / m_empty). Getting to orbit needs about 9.4 km/s of it: 7.8 km/s of orbital speed plus losses to gravity and drag on the way up."
+  ],
+  "actions": [
+    { "id": "launch", "label": "Launch", "primary": true },
+    { "id": "reset", "label": "Back to pad" }
+  ],
+  "controls": [
+    { "id": "payload", "type": "range", "label": "Payload", "min": 0, "max": 24, "step": 0.5, "value": 15, "digits": 1, "format": "{v} t", "help": "The satellite's mass. Every extra kilogram costs speed at the end." },
+    { "id": "warp", "type": "range", "label": "Time warp", "min": 1, "max": 30, "step": 1, "value": 12, "format": "{v}×", "help": "The real flight to orbit takes about eight minutes." }
+  ],
+  "gauges": [
+    { "id": "time", "label": "Mission time" },
+    { "id": "alt", "label": "Altitude" },
+    { "id": "vel", "label": "Speed" },
+    { "id": "acc", "label": "Acceleration" },
+    { "id": "dv", "label": "Δv left in the tanks" },
+    { "id": "status", "label": "Flight event" }
+  ],
+  "steps": [
+    { "title": "The stack", "payload": 15, "body": ["The rocket is cut open down the front. The first stage holds orange kerosene below pale-blue liquid oxygen, which is so cold (−183 °C) that frost forms on the outside. A pipe, the downcomer, carries the oxygen through the fuel tank to the nine engines.", "Above the black interstage sits the second stage with one large engine whose bell is shaped for vacuum, and the satellite inside the nose fairing."] },
+    { "title": "Lift-off and Max-Q", "launch": true, "body": ["At lift-off the nine engines push with over 7,600 kN, about 1.4 times the rocket's weight, so at first it rises slowly. As it speeds up into thick air, the aerodynamic pressure on it climbs to a peak about a minute in: Max-Q.", "Watch the exhaust plume widen as the air pressure around it falls."] },
+    { "title": "The gravity turn", "body": ["A few seconds after lift-off the rocket starts to lean over. Gravity then pulls its path gradually toward horizontal, the gravity turn, so it builds sideways speed without ever turning against the air.", "The flight path card shows the curve: steep at first, then nearly flat."] },
+    { "title": "Staging", "body": ["After about two and a half minutes the first stage is empty. The stages separate, the first stage falls away, and the second stage's engine starts. Without the dead weight of the big empty tanks, the remaining propellant goes much further.", "At about 110 km, above nearly all of the air, the fairing splits in two and falls away."] },
+    { "title": "Orbit", "body": ["The second stage keeps pushing almost horizontally until the lowest point of the orbit is safely above the atmosphere, then shuts down. The payload is in orbit, circling the Earth every 90 minutes.", "Δv left shows the rocket equation at work on the propellant still on board."] },
+    { "title": "Too heavy", "payload": 22.5, "body": ["Now try 22.5 tonnes. The rocket climbs on the same path, but the heavier second stage runs dry before it reaches orbital speed, and the payload falls back.", "Because Δv depends on the logarithm of the mass ratio, a few extra tonnes on top cost far more than they seem to."] }
+  ],
+  "parts": [
+    { "name": "First stage", "role": "The big booster: kerosene and liquid oxygen tanks and nine engines." },
+    { "name": "Engine section", "role": "Holds the engines and their plumbing at the base of the first stage." },
+    { "name": "Merlin-class engines", "role": "Nine kerosene-oxygen engines, eight in a ring around a centre one." },
+    { "name": "Common bulkhead", "role": "The dome separating the fuel tank from the oxygen tank." },
+    { "name": "LOX downcomer", "role": "Carries liquid oxygen from its tank down through the fuel tank to the engines." },
+    { "name": "Interstage", "role": "Joins the two stages and covers the second-stage engine." },
+    { "name": "Landing legs", "role": "Folded against the first stage." },
+    { "name": "Grid fins", "role": "Steer the first stage when it falls back." },
+    { "name": "Second stage", "role": "Carries the payload the rest of the way to orbit." },
+    { "name": "Vacuum engine", "role": "One engine with a huge bell, designed to work in vacuum." },
+    { "name": "Payload fairing", "role": "A nose cone that protects the satellite through the atmosphere, then splits in two." },
+    { "name": "Payload adapter", "role": "Holds the satellite and releases it in orbit." },
+    { "name": "Satellite", "role": "The payload, with folded solar panels." },
+    { "name": "Launch pad", "role": "Concrete pad with a flame trench to carry the exhaust away." },
+    { "name": "Flame trench", "role": "Channels the engines' exhaust away from the pad." },
+    { "name": "Launch tower", "role": "Gives access to the rocket and carries fuel and power lines." },
+    { "name": "Crew access arm", "role": "A walkway to the top of the rocket." },
+    { "name": "Lightning mast", "role": "Protects the rocket on the pad from lightning strikes." },
+    { "name": "Exhaust", "role": "Hot gas leaving the engines; it spreads as the outside air thins." }
+  ],
+  "facts": [
+    { "label": "Rocket equation", "value": "Δv = Isp·g₀·ln(m₀/m₁)" },
+    { "label": "Orbital speed at 200 km", "value": "≈ 7.8 km/s" },
+    { "label": "Δv to low orbit", "value": "≈ 9.4 km/s with losses" },
+    { "label": "First stage burn", "value": "≈ 2.5 minutes" },
+    { "label": "Lift-off thrust", "value": "≈ 7,600 kN" }
+  ],
+  "accuracy": "The flight is a point-mass simulation over a round Earth with an exponential atmosphere, drag, thrust that rises as the air thins, and a fixed pitch programme. Stage masses and engines are similar to a modern medium-lift launcher but not a model of a specific vehicle; real guidance optimises the path for each payload.",
+  "sources": ["Sutton & Biblarz, Rocket Propulsion Elements, 9th ed. (2016)", "Curtis, Orbital Mechanics for Engineering Students, 4th ed. (2020)", "Tsiolkovsky, Exploration of Outer Space by Means of Reaction Devices (1903)"]
+}

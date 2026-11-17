@@ -28,8 +28,18 @@ Engines, hearts, factories and machines drawn as precise, full-colour isometric 
 | **DC Electric Motor** | Physics | Field magnets, armature, split-ring commutator and brushes; Lorentz-force arrows and moving charges; speed, current, back-EMF, torque and efficiency from the motor equations. |
 | **Hard Disk Drive** | Technology | Lid-off drive: platters spin, the voice-coil arm seeks with a bang-bang profile, then waits for the sector to rotate under the head; seek time, latency and data rate. |
 | **The Water Cycle** | Nature | Island diorama with a cut-away aquifer: Clausius–Clapeyron evaporation, wind-driven clouds, orographic rain, snowline from the lapse rate, river and groundwater return. |
+| **Coin Mint** | Factories & Making | Coil → blanking press → rimming mill → annealing furnace → washing drum → coining press → counting bin. Set the striking force and alloy (nickel-brass, cupronickel, bimetal); a live coin shows how much of the relief fills; pressure, die life, coins per hour. |
+| **Bottling Plant** | Factories & Making | Rinser, 72-valve rotary filler, capper, labeler, inspection gate and case packer. Water / juice / cola; Torricelli valve flow against time under the valve; speed the line up until bottles leave half-full and get rejected. |
+| **Injection Moulding Machine** | Factories & Making | Cut-away barrel and screw, heater bands, toggle clamp and a two-part mould making toy bricks. ABS / PP / PC; melt temperature, injection speed and cooling time decide between good parts, short shots, flash, burns and warping. |
+| **Mechanical Watch** | Engineering | Mainspring barrel, gear train, Swiss lever escapement, balance wheel and hairspring at 28,800 bph. Slow motion, wind and regulator; amplitude, rate in s/day, power reserve. Escapement mode zooms in on the lever. |
+| **Jet Engine** | Engineering | Cut-away two-spool turbofan: fan, booster, HP compressor, annular combustor, turbines, exhaust cone; air coloured by temperature. Brayton-cycle thrust, EGT, fuel flow, OPR and TSFC from throttle and air speed. |
+| **Rocket Launch** | Space | Cut-away two-stage rocket on its pad. Launch it: max-Q, gravity turn, staging, fairing separation and orbit, flown by a point-mass simulation with drag; payload decides whether it reaches orbit. |
+| **Lungs & Breathing** | Biology | Trachea, bronchial tree, lobed lungs, diaphragm, ribs; an alveolus close-up with O₂ and CO₂ crossing. Breathing rate, breath size and altitude drive alveolar ventilation, the alveolar gas equation, SpO₂ and pH. |
+| **Volcano** | Nature | Voxel stratovolcano cut through the summit: strata, conduit, dyke, sill and magma chamber. Silica and gas decide between Hawaiian, Strombolian, lava dome, Vulcanian and Plinian eruptions; plume height, eruption rate, VEI. |
+| **Refrigerator** | Everyday | Side-cut fridge-freezer with condenser, compressor, capillary and evaporator; refrigerant coloured by state. Thermostat, kitchen temperature and door; duty cycle, COP, watts and kWh per day with a live thermostat trace. |
+| **Oil Refinery** | Chemistry | Crude tank, fired furnace and a cut-away distillation column with trays, drawing gas, petrol, naphtha, kerosene, diesel, fuel oil and residue to their tanks. Light or heavy crude; yields from the boiling curve. |
 
-Every lab has view modes, sliders, live gauges, a synced step-by-step explanation, and **tap-any-part identification** (the part glows and its name and job appear).
+Every lab has view modes, sliders, live gauges, a synced step-by-step explanation, **tap-any-part identification** (the part glows and its name and job appear) and **zoom**: pinch with two fingers, double-tap, or use the + / − buttons.
 
 ## App features
 

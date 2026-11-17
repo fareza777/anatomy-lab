@@ -1,0 +1,73 @@
+{
+  "id": "bottling-plant",
+  "title": "Bottling Plant",
+  "subtitle": "Rinse, fill, cap, label, pack: 30,000 bottles an hour",
+  "category": "making",
+  "featured": true,
+  "tags": ["bottling", "factory", "drinks", "filler", "carousel", "capper", "labeler", "conveyor", "packaging", "making"],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "Bottles race round a rotary filler, each under its own valve for just a few seconds. Speed the line up and find the point where they start to leave half-full.",
+  "overview": [
+    "A drinks bottling line can fill tens of thousands of bottles an hour without ever stopping. The trick is the rotary filler: a big turning table with a filling valve over every bottle position. A bottle is gripped by the neck as it joins the table, filled while it rides round about two thirds of a turn, and released before it gets back to the start.",
+    "Most fillers work by gravity. Liquid sits in a ring-shaped bowl above the valves and flows down into each bottle; how fast depends on the height of liquid above the valve, just as Torricelli worked out in 1643. Fizzy drinks need a counter-pressure filler: the bottle is first filled with carbon dioxide at the same pressure as the bowl so the drink flows in gently without foaming, then the pressure is let off slowly (the snift).",
+    "Around the filler, other machines keep pace: a rinser cleans the empty bottles, a capper screws on caps, a labeler wraps a label round each one, an inspection gate checks the fill level and rejects any that are low, and a packer drops them into cases."
+  ],
+  "modes": [
+    { "id": "water", "label": "Water" },
+    { "id": "juice", "label": "Juice" },
+    { "id": "soda", "label": "Cola" }
+  ],
+  "controls": [
+    { "id": "bph", "type": "range", "label": "Line speed", "min": 6000, "max": 60000, "step": 1000, "value": 30000, "format": "{v} /h", "help": "Bottles per hour. Faster means less time under each valve." },
+    { "id": "head", "type": "range", "label": "Liquid head in the bowl", "min": 10, "max": 60, "step": 1, "value": 30, "format": "{v} cm", "help": "More liquid above the valve pushes it out faster (flow grows with the square root of the head)." }
+  ],
+  "gauges": [
+    { "id": "bph", "label": "Output" },
+    { "id": "rpm", "label": "Filler speed" },
+    { "id": "need", "label": "Fill time needed" },
+    { "id": "avail", "label": "Time under valve" },
+    { "id": "status", "label": "Fill level" },
+    { "id": "rejects", "label": "Rejected bottles" }
+  ],
+  "steps": [
+    { "title": "Rinsing", "focus": "rinse", "bph": 30000, "head": 30, "body": ["Empty bottles are swept off the pallet layer by layer and stood upright on the conveyor. Inside the blue rinser they are turned upside down and blasted with jets of sterile water or air.", "Clean bottles then queue at the filler, spaced exactly one valve apart by a screw-shaped timing feed and a star wheel."] },
+    { "title": "Filling", "focus": "fill", "bph": 30000, "body": ["Each bottle is lifted against its valve and rides round with the table. The valve opens, the drink runs down the inside wall of the bottle, and a small vent tube stops the flow when the liquid reaches it, so every bottle fills to the same height.", "At 30,000 bottles an hour this 72-valve filler turns about 7 times a minute, giving each bottle almost 6 seconds under its valve."] },
+    { "title": "Too fast", "focus": "fill", "bph": 54000, "body": ["Push the speed up and the table turns faster, but the liquid still flows at the same rate. Each bottle now leaves the filler before it is full.", "Raise the liquid head or slow the line until the time under the valve is longer than the time the fill needs."] },
+    { "title": "Fizzy drinks", "focus": "fill", "bph": 24000, "body": ["Switch to Cola. A carbonated drink would foam out of an open bottle, so the valve first pressurises the bottle with CO₂, lets the drink flow in under pressure, then vents it slowly. That extra time is why fizzy-drink lines run slower, or need more valves.", "Try Cola at 40,000 bottles an hour and watch the inspection gate turn red."] },
+    { "title": "Capping", "focus": "cap", "bph": 30000, "body": ["A sorter bowl spins loose caps until they all face the same way and slide down a chute. Spinning chucks press a cap onto each bottle and screw it tight to a set torque, so it seals but can still be opened by hand."] },
+    { "title": "Labelling and checking", "focus": "inspect", "body": ["The labeler wraps a printed label off the reel round each passing bottle. Then a light beam (in real plants often an X-ray or camera) checks the fill height.", "Any bottle that is too low is pushed off the line into the red reject tray, and the rest are packed six to a case."] }
+  ],
+  "parts": [
+    { "name": "Pallet", "role": "A wooden pallet carrying layers of empty bottles." },
+    { "name": "Pallet of empty bottles", "role": "Bottles arrive from the glass or plastic factory in layers separated by sheets." },
+    { "name": "Depalletiser", "role": "Sweeps bottles off the pallet one layer at a time." },
+    { "name": "Conveyor", "role": "A slatted chain that carries bottles upright between machines." },
+    { "name": "Rinser", "role": "Turns bottles over and sprays them clean before filling." },
+    { "name": "Filler carousel", "role": "The rotating heart of the line: one filling valve per bottle position." },
+    { "name": "Carousel table", "role": "Carries the bottles round under their valves." },
+    { "name": "Filling valves", "role": "Open when a bottle is in place and close when the liquid reaches the vent tube." },
+    { "name": "Centre column", "role": "Holds the bowl and carries product and gas to the turning top." },
+    { "name": "Product bowl", "role": "A ring-shaped tank above the valves; its liquid head drives the flow." },
+    { "name": "Product tank", "role": "Holds the drink and keeps the bowl topped up." },
+    { "name": "Bottles", "role": "Each bottle's fill level shows how long it spent under its valve." },
+    { "name": "Capper", "role": "Screws caps onto bottles at a set torque." },
+    { "name": "Capping chucks", "role": "Spinning heads that grip and tighten each cap." },
+    { "name": "Cap sorter", "role": "A vibrating bowl that lines caps up the same way round." },
+    { "name": "Labeler", "role": "Wraps a glued label round each bottle as it passes." },
+    { "name": "Label roll", "role": "A reel of printed labels." },
+    { "name": "Inspection gate", "role": "Checks the fill height of every bottle; green means pass, red means reject." },
+    { "name": "Reject tray", "role": "Collects bottles pushed off for being under-filled." },
+    { "name": "Case packer", "role": "Lowers bottles into cases of six." },
+    { "name": "Shipping case", "role": "Six filled, capped and labelled bottles ready to ship." }
+  ],
+  "facts": [
+    { "label": "Large rotary fillers", "value": "up to 80,000+ bottles an hour" },
+    { "label": "Valves on a big filler", "value": "100–200" },
+    { "label": "Flow through a valve", "value": "Q ∝ √head (Torricelli)" },
+    { "label": "Fill arc", "value": "≈ 240° of each turn" },
+    { "label": "This filler", "value": "72 valves, 500 ml bottles" }
+  ],
+  "accuracy": "Fill time is the valve overhead plus 500 ml divided by a flow that scales with the square root of the head; time under the valve is the 240° fill arc at the chosen output. Flow rates are typical, not those of a specific machine. The drawing shows 24 of the 72 valves.",
+  "sources": ["Krones and KHS public technical descriptions of rotary gravity and counter-pressure fillers", "Steen & Ashurst, Carbonated Soft Drinks: Formulation and Manufacture (2006)", "Torricelli's law: any fluid mechanics text, e.g. White, Fluid Mechanics, 8th ed."]
+}

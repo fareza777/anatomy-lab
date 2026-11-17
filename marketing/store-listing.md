@@ -8,7 +8,7 @@
 
 See inside the machines that run the world.
 
-Anatomy Lab turns complex systems into beautiful, living isometric models you can touch. Turn an engine's crank with your finger and watch the spark ignite the charge. Follow a cocoa bean through a whole chocolate factory. Watch a 3D printer build a vase layer by layer. Slow a human heart down until you can see every valve open and close.
+Anatomy Lab turns complex systems into beautiful, living isometric models you can touch. Turn an engine's crank with your finger and watch the spark ignite the charge. Follow a cocoa bean through a whole chocolate factory. Watch a 3D printer build a vase layer by layer. Slow a human heart down until you can see every valve open and close. Launch a two-stage rocket to orbit, strike coins in a mint, speed up a bottling line until it fails, slow a mechanical watch to watch its escapement tick, follow the air through a jet engine, and erupt a volcano from gentle lava to a 40 km ash column. Pinch to zoom into any part.
 
 ★ LIVING, FULL-COLOUR MODELS
 Every system is drawn as a precise isometric illustration with hundreds of real parts — crankshafts and cams, granite rollers and cooling tunnels, chambers and valves — all moving together.

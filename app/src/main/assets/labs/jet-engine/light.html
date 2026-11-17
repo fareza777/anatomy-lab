@@ -1,0 +1,2847 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Jet Engine</title><style>
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+
+@font-face{font-family:"LabMono";src:url(../../fonts/JetBrainsMono.ttf) format("truetype");font-weight:100 900;font-display:swap}
+@font-face{font-family:"LabDisplay";src:url(../../fonts/SpaceGrotesk.ttf) format("truetype");font-weight:300 700;font-display:swap}
+.iso{--anatomy-mono:"LabMono",ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{color-scheme:dark}
+body[data-theme="light"]{color-scheme:light}
+.iso{--lab-accent:#ff7a45;--lab-accent-2:#3cc8d8;--lab-accent-ink:#1a0a03;--lab-rule:#232a36;--lab-chip:#111722;
+  --anatomy-page:#070a10;--anatomy-card:#0e1420;--lab-spot:#22304a;--lab-mid:#111a29;--lab-edge:#070b12;--lab-floor:#00000088;--lab-tip-bg:#121a28e6}
+.iso[data-theme="light"]{--lab-accent:#e8461a;--lab-accent-2:#0f8597;--lab-accent-ink:#ffffff;--lab-rule:#dfe3ea;--lab-chip:#f8f9fb;
+  --anatomy-page:#eef1f5;--anatomy-card:#fbfbfc;--lab-spot:#ffffff;--lab-mid:#f1f4f8;--lab-edge:#dbe2ec;--lab-floor:#5a6b8a22;--lab-tip-bg:#ffffffe6}
+body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:15px/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+.lab{max-width:720px;margin:0 auto;padding:0 0 28px}
+.lab-stage{position:sticky;top:0;z-index:2;background:var(--anatomy-page);padding:10px 10px 6px}
+.lab .iso-figure{margin:0}
+.lab .iso-plate{padding:34px 8px 34px;box-shadow:0 0 0 1px var(--lab-rule),var(--anatomy-lift);border-radius:18px;overflow:hidden;
+  background:radial-gradient(90% 70% at 50% 42%,var(--lab-spot) 0%,var(--lab-mid) 55%,var(--lab-edge) 100%)}
+.lab .iso-plate::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 18% at 50% 88%,var(--lab-floor),transparent 70%)}
+.lab .iso-plate-corner[data-corner="title"]{color:var(--lab-accent);font-weight:600}
+.lab-tip{position:absolute;z-index:5;left:10px;right:10px;top:30px;background:var(--lab-tip-bg);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:14px;padding:8px 12px 9px;box-shadow:0 0 0 1px var(--lab-rule),0 10px 30px #0003;opacity:0;transform:translateY(-8px);transition:opacity .25s,transform .25s var(--anatomy-ease);pointer-events:none}
+.lab-tip[data-on]{opacity:1;transform:none}
+.lab-tip b{display:block;color:var(--lab-accent);font:600 11px/1.2 var(--anatomy-mono);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.lab-tip span{display:block;color:var(--anatomy-strong);font-size:12.5px;line-height:1.35}
+.lab-hl{filter:drop-shadow(0 0 1.5px var(--lab-accent)) drop-shadow(0 0 5px var(--lab-accent));animation:lab-hl 1.2s ease-in-out infinite alternate}
+@keyframes lab-hl{from{filter:drop-shadow(0 0 1px var(--lab-accent)) drop-shadow(0 0 3px var(--lab-accent))}to{filter:drop-shadow(0 0 2px var(--lab-accent)) drop-shadow(0 0 8px var(--lab-accent))}}
+.lab .iso-plate-corners{inset:12px 14px}
+.lab .iso-plate-corner{font-size:9.5px}
+.lab .iso-legend{display:none}
+.lab .iso-stage{touch-action:none;outline:none;width:min(100%,calc(var(--fig-max-h,340px) * var(--fig-aspect,1)));margin:0 auto}
+.lab .iso-stage:focus-visible{box-shadow:0 0 0 2px var(--lab-accent);border-radius:8px}
+.lab-panel{padding:4px 16px 0}
+.lab-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:6px 0}
+.lab-row::-webkit-scrollbar{display:none}
+.lab-seg{display:flex;flex:1 1 auto;background:var(--lab-chip);border-radius:12px;padding:3px;box-shadow:0 0 0 1px var(--lab-rule)}
+.lab-seg button{flex:1 1 0;min-width:0;white-space:nowrap;border:0;background:transparent;color:var(--anatomy-text);font:600 11px/1 var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase;padding:11px 8px;border-radius:9px;transition:background .25s var(--anatomy-ease),color .25s}
+.lab-seg button[aria-pressed="true"]{background:var(--anatomy-card);color:var(--anatomy-strong);box-shadow:var(--anatomy-lift)}
+.lab-gauges{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin:8px 0 4px}
+.lab-gauge{background:var(--lab-chip);border-radius:12px;padding:9px 11px 8px;box-shadow:0 0 0 1px var(--lab-rule)}
+.lab-gauge b{display:block;color:var(--anatomy-strong);font:600 16px/1.2 var(--anatomy-mono);font-variant-numeric:tabular-nums;letter-spacing:-.01em;overflow-wrap:anywhere}
+.lab-gauge b[data-long]{font-size:12.5px;line-height:1.25}
+.lab-gauge span{display:block;color:var(--anatomy-muted);font:500 9.5px/1.3 var(--anatomy-mono);letter-spacing:.09em;text-transform:uppercase;margin-top:3px}
+.lab-gauge[data-hot] b{color:var(--lab-accent)}
+.lab-controls{margin:10px 0 2px}
+.lab-ctl{padding:10px 0 4px;border-top:1px solid var(--lab-rule)}
+.lab-ctl:first-child{border-top:0}
+.lab-ctl-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.lab-ctl-head label{color:var(--anatomy-strong);font:600 12px/1.3 var(--anatomy-mono);letter-spacing:.06em;text-transform:uppercase}
+.lab-ctl-head output{color:var(--lab-accent);font:600 13px/1.3 var(--anatomy-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.lab-ctl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:36px;background:transparent;margin:2px 0 0}
+.lab-ctl input[type=range]::-webkit-slider-runnable-track{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--lab-accent) var(--fill,50%),var(--lab-rule) var(--fill,50%))}
+.lab-ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;background:var(--anatomy-card);box-shadow:0 0 0 1.5px var(--lab-accent),0 2px 6px #0003}
+.lab-ctl input[type=range]::-moz-range-track{height:4px;border-radius:4px;background:var(--lab-rule)}
+.lab-ctl input[type=range]::-moz-range-progress{height:4px;border-radius:4px;background:var(--lab-accent)}
+.lab-ctl input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--anatomy-card);border:1.5px solid var(--lab-accent)}
+.lab-ctl small{display:block;color:var(--anatomy-muted);font-size:12px;line-height:1.4;margin-top:-2px}
+.lab-toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;border:0;background:transparent;color:var(--anatomy-strong);font:600 12px/1.3 var(--anatomy-mono);letter-spacing:.06em;text-transform:uppercase;padding:8px 0;text-align:left}
+.lab-toggle i{flex:0 0 auto;width:42px;height:24px;border-radius:12px;background:var(--lab-rule);position:relative;transition:background .25s}
+.lab-toggle i::after{content:"";position:absolute;left:3px;top:3px;width:18px;height:18px;border-radius:50%;background:var(--anatomy-card);box-shadow:0 1px 3px #0004;transition:transform .25s var(--anatomy-ease)}
+.lab-toggle[aria-checked="true"] i{background:var(--lab-accent)}
+.lab-toggle[aria-checked="true"] i::after{transform:translateX(18px)}
+.lab-actions{display:flex;gap:8px;margin:6px 0}
+.lab-btn{flex:1 1 0;border:0;border-radius:12px;padding:13px 10px;font:600 12px/1 var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase;background:var(--lab-chip);color:var(--anatomy-strong);box-shadow:0 0 0 1px var(--lab-rule)}
+.lab-btn[data-primary]{background:var(--lab-accent);color:var(--lab-accent-ink);box-shadow:none}
+.lab-btn:active{transform:scale(.98)}
+.lab-steps{margin:16px 0 0;border-top:1px solid var(--lab-rule);padding-top:12px}
+.lab-steps-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.lab-steps-head h2{margin:0;color:var(--anatomy-muted);font:600 10.5px/1 var(--anatomy-mono);letter-spacing:.12em;text-transform:uppercase}
+.lab-steps-head .lab-pager{display:flex;gap:6px}
+.lab-pager button{width:38px;height:34px;border:0;border-radius:10px;background:var(--lab-chip);color:var(--anatomy-strong);box-shadow:0 0 0 1px var(--lab-rule);font:600 15px/1 var(--anatomy-mono)}
+.lab-pips{display:flex;gap:6px;margin:0 0 10px}
+.lab-pips button{flex:1 1 0;height:30px;border:0;border-radius:8px;background:var(--lab-chip);box-shadow:0 0 0 1px var(--lab-rule);color:var(--anatomy-muted);font:600 11px/1 var(--anatomy-mono);position:relative;overflow:hidden}
+.lab-pips button[aria-current="step"]{background:var(--lab-accent);color:var(--lab-accent-ink);box-shadow:none}
+.lab-step h3{margin:2px 0 6px;color:var(--anatomy-strong);font:600 21px/1.25 "LabDisplay",ui-sans-serif,system-ui,sans-serif;letter-spacing:-.01em}
+.lab-step p{margin:0 0 10px;text-align:justify;hyphens:auto;-webkit-hyphens:auto}
+.lab-step .lab-kicker{color:var(--lab-accent);font:600 10.5px/1 var(--anatomy-mono);letter-spacing:.12em;text-transform:uppercase}
+.lab-step{animation:lab-in .35s var(--anatomy-ease)}
+@keyframes lab-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.lab-card{margin:10px 0 4px;background:var(--lab-chip);border-radius:14px;padding:10px 12px 8px;box-shadow:0 0 0 1px var(--lab-rule)}
+.lab-card-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.lab-card-head span{color:var(--anatomy-strong);font:600 11px/1 var(--anatomy-mono);letter-spacing:.08em;text-transform:uppercase}
+.lab-card-head em{color:var(--anatomy-muted);font:500 10px/1 var(--anatomy-mono);font-style:normal;letter-spacing:.06em}
+.lab-foot{margin:18px 0 0;color:var(--anatomy-muted);font:500 10.5px/1.5 var(--anatomy-mono);letter-spacing:.04em}
+.lab .iso-stage{transform-origin:0 0}
+.lab .iso-stage[data-ease]{transition:transform .28s var(--anatomy-ease)}
+.lab-zoom{position:absolute;z-index:4;right:10px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px}
+.lab-zoom button{width:34px;height:34px;border:0;border-radius:11px;background:var(--lab-tip-bg);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:var(--anatomy-strong);box-shadow:0 0 0 1px var(--lab-rule),0 4px 12px #0002;font:600 17px/1 var(--anatomy-mono);padding:0}
+.lab-zoom button:active{transform:scale(.94)}
+.lab-zoom [data-zoom="level"]{font-size:10px;letter-spacing:.02em;height:26px}
+.lab-zoom:not([data-zoomed]) [data-zoom="level"],.lab-zoom:not([data-zoomed]) [data-zoom="out"]{display:none}
+@media (prefers-reduced-motion:reduce){.lab-step{animation:none}}
+body.lab-thumb,body.lab-thumb .lab-stage{background:transparent!important}
+body.lab-thumb .iso-plate{background:none!important;box-shadow:none!important;padding:0!important}
+body.lab-thumb .iso-plate::before,body.lab-thumb .iso-plate-corners,body.lab-thumb .lab-panel,body.lab-thumb .lab-tip,body.lab-thumb .lab-zoom{display:none!important}
+body.lab-thumb .iso-stage{width:100%!important}
+@media (min-height:700px) and (max-width:719px){.lab-stage{padding-top:8px}}
+.iso{--fig-aspect:1.4762}
+.je-blade{stroke:#00000040;stroke-width:.3}
+.je-fan .je-blade{fill:#b9c3cf}
+.je-lpc .je-blade{fill:#9ab0c8}
+.je-hpc .je-blade{fill:#c7ccd3}
+.je-hpt .je-blade{fill:#c0703a}
+.je-lpt .je-blade{fill:#a27a5a}
+body[data-theme="dark"] .je-fan .je-blade{fill:#8f9aa8}
+.je-hot .iso-fill,.je-hot .iso-shade,.je-hot .iso-top{fill:var(--heat)!important}
+.je-air{opacity:.85}
+.je-flame{stroke:#ff9a2a;stroke-width:3.2;stroke-linecap:round;filter:drop-shadow(0 0 2px #ff6a00)}
+.je-nozzle{fill:#5b6675}
+body[data-theme="light"] [data-mat="navy"]{--anatomy-paper:#25395a;--anatomy-face:#2e4770;--anatomy-top:#3d5787;--anatomy-lit-top:#4665a0;--anatomy-lit-shade:#2b4268;--anatomy-shade-3:#283e61;--anatomy-shade-2:#1a2b43;--anatomy-shade-1:#0f1a28;--anatomy-shade-0:#04070a;--anatomy-hi:#000000;--anatomy-mid:#000000;--anatomy-lo:#0b121d;--anatomy-faint:#17243a;--anatomy-lit:#000000;--anatomy-dot:#000000}
+body[data-theme="dark"] [data-mat="navy"]{--anatomy-paper:#05070a;--anatomy-face:#0e151f;--anatomy-top:#222e44;--anatomy-lit-top:#2d3f5a;--anatomy-lit-shade:#121a26;--anatomy-shade-3:#121a26;--anatomy-shade-2:#030507;--anatomy-shade-1:#000000;--anatomy-shade-0:#000000;--anatomy-hi:#4e6b97;--anatomy-mid:#2b3f5e;--anatomy-lo:#05070a;--anatomy-faint:#000000;--anatomy-lit:#748baf;--anatomy-dot:#6d85ab}
+body[data-theme="light"] [data-mat="yellow"]{--anatomy-paper:#f2c230;--anatomy-face:#f4ca4d;--anatomy-top:#f4db80;--anatomy-lit-top:#f7e4a0;--anatomy-lit-shade:#f3c843;--anatomy-shade-3:#f3c53a;--anatomy-shade-2:#f3b411;--anatomy-shade-1:#d89809;--anatomy-shade-0:#b67a05;--anatomy-hi:#493803;--anatomy-mid:#8d6c06;--anatomy-lo:#c1940a;--anatomy-faint:#e7b10d;--anatomy-lit:#221a01;--anatomy-dot:#3a2c02}
+body[data-theme="dark"] [data-mat="yellow"]{--anatomy-paper:#a27e10;--anatomy-face:#be9312;--anatomy-top:#e7be2c;--anatomy-lit-top:#eac34c;--anatomy-lit-shade:#c79b13;--anatomy-shade-3:#c79b13;--anatomy-shade-2:#a27710;--anatomy-shade-1:#845c0b;--anatomy-shade-0:#654308;--anatomy-hi:#f2db96;--anatomy-mid:#edc240;--anatomy-lo:#a27e10;--anatomy-faint:#7d610c;--anatomy-lit:#f7edce;--anatomy-dot:#f6eac5}
+body[data-theme="light"] [data-mat="white"]{--anatomy-paper:#f3f4f6;--anatomy-face:#ffffff;--anatomy-top:#ffffff;--anatomy-lit-top:#ffffff;--anatomy-lit-shade:#ffffff;--anatomy-shade-3:#f9f9fa;--anatomy-shade-2:#e2e5ea;--anatomy-shade-1:#ced4dd;--anatomy-shade-0:#b8c2d0;--anatomy-hi:#7382a0;--anatomy-mid:#9fa8bb;--anatomy-lo:#c0c6d2;--anatomy-faint:#d8dce3;--anatomy-lit:#5e6d8c;--anatomy-dot:#6a7a9a}
+body[data-theme="dark"] [data-mat="white"]{--anatomy-paper:#b7bbc2;--anatomy-face:#c7cad0;--anatomy-top:#e9eaeb;--anatomy-lit-top:#fbfcfc;--anatomy-lit-shade:#cdd0d5;--anatomy-shade-3:#cdd0d5;--anatomy-shade-2:#b8bcc3;--anatomy-shade-1:#a5acb6;--anatomy-shade-0:#929ca8;--anatomy-hi:#ffffff;--anatomy-mid:#f9f9fa;--anatomy-lo:#b7bbc2;--anatomy-faint:#a1a6af;--anatomy-lit:#ffffff;--anatomy-dot:#ffffff}
+body[data-theme="light"] [data-mat="steel"]{--anatomy-paper:#9aa6b4;--anatomy-face:#acb5c1;--anatomy-top:#d1d5da;--anatomy-lit-top:#e6e8eb;--anatomy-lit-shade:#a6b0bd;--anatomy-shade-3:#a0abb8;--anatomy-shade-2:#778a9e;--anatomy-shade-1:#576c80;--anatomy-shade-0:#3a4a58;--anatomy-hi:#303b48;--anatomy-mid:#4f5e71;--anatomy-lo:#677a90;--anatomy-faint:#7f8fa2;--anatomy-lit:#20272f;--anatomy-dot:#2a333f}
+body[data-theme="dark"] [data-mat="steel"]{--anatomy-paper:#666e78;--anatomy-face:#747e89;--anatomy-top:#a0a4a9;--anatomy-lit-top:#b3b7bb;--anatomy-lit-shade:#79838e;--anatomy-shade-3:#79838e;--anatomy-shade-2:#565e66;--anatomy-shade-1:#383f45;--anatomy-shade-0:#1b2022;--anatomy-hi:#d9dadb;--anatomy-mid:#a5acb3;--anatomy-lo:#666e78;--anatomy-faint:#535a62;--anatomy-lit:#f9f9f9;--anatomy-dot:#f4f4f4}
+body[data-theme="light"] [data-mat="chrome"]{--anatomy-paper:#c4ccd6;--anatomy-face:#d6dce3;--anatomy-top:#ffffff;--anatomy-lit-top:#ffffff;--anatomy-lit-shade:#d0d6de;--anatomy-shade-3:#cad1da;--anatomy-shade-2:#9faebf;--anatomy-shade-1:#758ea7;--anatomy-shade-0:#506b83;--anatomy-hi:#4b5f78;--anatomy-mid:#6c839f;--anatomy-lo:#8fa0b4;--anatomy-faint:#a8b5c4;--anatomy-lit:#3c4c5f;--anatomy-dot:#45586f}
+body[data-theme="dark"] [data-mat="chrome"]{--anatomy-paper:#8893a2;--anatomy-face:#99a2b0;--anatomy-top:#ced1d6;--anatomy-lit-top:#e4e6e9;--anatomy-lit-shade:#9fa8b4;--anatomy-shade-3:#9fa8b4;--anatomy-shade-2:#728191;--anatomy-shade-1:#52616e;--anatomy-shade-0:#354049;--anatomy-hi:#ffffff;--anatomy-mid:#ccd1d8;--anatomy-lo:#8893a2;--anatomy-faint:#717e90;--anatomy-lit:#ffffff;--anatomy-dot:#ffffff}
+body[data-theme="light"] [data-mat="alu"]{--anatomy-paper:#c9cfd6;--anatomy-face:#dadee3;--anatomy-top:#f8f8f9;--anatomy-lit-top:#ffffff;--anatomy-lit-shade:#d5d9df;--anatomy-shade-3:#cfd4da;--anatomy-shade-2:#adb8c3;--anatomy-shade-1:#8d9faf;--anatomy-shade-0:#69849a;--anatomy-hi:#526377;--anatomy-mid:#74879c;--anatomy-lo:#96a3b2;--anatomy-faint:#aeb8c3;--anatomy-lit:#414f5f;--anatomy-dot:#4b5b6e}
+body[data-theme="dark"] [data-mat="alu"]{--anatomy-paper:#8f97a0;--anatomy-face:#9fa7ae;--anatomy-top:#c5c8cb;--anatomy-lit-top:#d8dadc;--anatomy-lit-shade:#a5acb3;--anatomy-shade-3:#a5acb3;--anatomy-shade-2:#838d96;--anatomy-shade-1:#67757e;--anatomy-shade-0:#4f5b63;--anatomy-hi:#ffffff;--anatomy-mid:#d1d5d8;--anatomy-lo:#8f97a0;--anatomy-faint:#79838d;--anatomy-lit:#ffffff;--anatomy-dot:#ffffff}
+body[data-theme="light"] [data-mat="heatblue"]{--anatomy-paper:#6b6fa8;--anatomy-face:#7e82b3;--anatomy-top:#a5a6c6;--anatomy-lit-top:#bbbcd4;--anatomy-lit-shade:#787cb0;--anatomy-shade-3:#7175ac;--anatomy-shade-2:#50568e;--anatomy-shade-1:#393f6a;--anatomy-shade-0:#212640;--anatomy-hi:#151628;--anatomy-mid:#2f3155;--anatomy-lo:#444778;--anatomy-faint:#545891;--anatomy-lit:#07070d;--anatomy-dot:#10111e}
+body[data-theme="dark"] [data-mat="heatblue"]{--anatomy-paper:#414461;--anatomy-face:#4e5074;--anatomy-top:#707299;--anatomy-lit-top:#8588a8;--anatomy-lit-shade:#52557a;--anatomy-shade-3:#52557a;--anatomy-shade-2:#35384f;--anatomy-shade-1:#1d1f2d;--anatomy-shade-0:#060609;--anatomy-hi:#b3b4c6;--anatomy-mid:#797ca5;--anatomy-lo:#414461;--anatomy-faint:#313349;--anatomy-lit:#d8d8df;--anatomy-dot:#d2d3da}
+[data-mat] .tb-body{fill:var(--anatomy-shade-2)}[data-mat] .tb-shine{fill:var(--anatomy-top)}[data-mat] .tb-shade{fill:var(--anatomy-shade-0)}
+[data-mat] .iso-dots circle{opacity:.7}
+</style></head><body class="iso" data-theme="light"><main class="lab"><section class="lab-stage"><figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true"><span class="iso-plate-corner" data-corner="fig">Fig 15</span><span class="iso-plate-corner" data-corner="title">Turbofan</span><span class="iso-plate-corner" data-corner="hint">Open the throttle</span><span class="iso-plate-corner" data-corner="readout" data-readout></span></div><div class="iso-stage je-stage" tabindex="0" role="img" aria-label="Turbofan engine"><svg xmlns="http://www.w3.org/2000/svg" class="iso-svg je-svg" viewBox="0 0 620 420" role="img" aria-label="A turbofan jet engine on a display stand with the back half of its casings cut away. A large fan at the front pushes most of the air round the core through the bypass duct. Inside the core, rows of compressor blades squeeze the air, a ring-shaped combustor burns fuel in it, and turbine blades take power back out before the hot gas leaves past the exhaust cone."><path class="iso-halo" d="M79.9 307L80 305.9L80.7 304.9L81.9 303.9L170.3 246.5L172 245.6L174.1 244.9L176.6 244.3L179.3 243.9L182.1 243.7L185 243.8L187.8 244L190.5 244.5L624.6 338.4L627 339L629 339.8L630.5 340.7L631.5 341.7L632 342.8L632 351L631.9 352.1L631.2 353.1L630 354.1L541.6 411.5L539.9 412.4L537.8 413.1L535.3 413.7L532.6 414.1L529.8 414.3L526.9 414.2L524.1 414L521.4 413.5L87.3 319.6L84.9 319L82.9 318.2L81.4 317.3L80.4 316.3L79.9 315.2Z"/><g data-name="Display stand"><g data-mat="navy"><g class="iso-solid"><path class="iso-fill" d="M85.1 297.4L85.2 296.8L85.6 296.1L86.3 295.6L165.9 243.9L166.9 243.4L168.2 242.9L169.7 242.6L171.3 242.3L173 242.2L174.7 242.3L176.4 242.4L178 242.7L622.4 338.8L623.8 339.2L625 339.6L625.9 340.2L626.5 340.8L626.8 341.4L626.8 355.1L626.7 355.8L626.3 356.4L625.6 357L546 408.7L545 409.2L543.7 409.6L542.2 410L540.6 410.2L538.9 410.3L537.2 410.3L535.5 410.1L533.9 409.9L89.5 313.8L88.1 313.4L86.9 312.9L86 312.4L85.4 311.7L85.1 311.1Z"/><path class="iso-shade" data-shade="0" d="M626.8 355.1L626.7 355.8L626.7 342.1L626.8 341.4ZM626.7 355.8L626.3 356.4L626.3 342.7L626.7 342.1ZM626.3 356.4L625.6 357L625.6 343.3L626.3 342.7ZM625.6 357L546 408.7L546 395L625.6 343.3ZM546 408.7L545 409.2L545 395.5L546 395ZM545 409.2L543.7 409.6L543.7 396L545 395.5ZM543.7 409.6L542.2 410L542.2 396.3L543.7 396Z"/><path class="iso-shade" data-shade="1" d="M542.2 410L540.6 410.2L540.6 396.5L542.2 396.3ZM540.6 410.2L538.9 410.3L538.9 396.6L540.6 396.5Z"/><path class="iso-shade" data-shade="2" d="M538.9 410.3L537.2 410.3L537.2 396.6L538.9 396.6ZM537.2 410.3L535.5 410.1L535.5 396.5L537.2 396.6ZM535.5 410.1L533.9 409.9L533.9 396.2L535.5 396.5Z"/><path class="iso-shade" data-shade="3" d="M533.9 409.9L89.5 313.8L89.5 300.1L533.9 396.2ZM89.5 313.8L88.1 313.4L88.1 299.7L89.5 300.1ZM88.1 313.4L86.9 312.9L86.9 299.2L88.1 299.7ZM86.9 312.9L86 312.4L86 298.7L86.9 299.2ZM86 312.4L85.4 311.7L85.4 298.1L86 298.7ZM85.4 311.7L85.1 311.1L85.1 297.4L85.4 298.1Z"/><path class="iso-top" d="M622.4 338.8L623.8 339.2L625 339.6L625.9 340.2L626.5 340.8L626.8 341.4L626.7 342.1L626.3 342.7L625.6 343.3L546 395L545 395.5L543.7 396L542.2 396.3L540.6 396.5L538.9 396.6L537.2 396.6L535.5 396.5L533.9 396.2L89.5 300.1L88.1 299.7L86.9 299.2L86 298.7L85.4 298.1L85.1 297.4L85.2 296.8L85.6 296.1L86.3 295.6L165.9 243.9L166.9 243.4L168.2 242.9L169.7 242.6L171.3 242.3L173 242.2L174.7 242.3L176.4 242.4L178 242.7Z"/><path class="iso-line iso-crease" data-tone="faint" d="M626.8 341.4L626.7 342.1L626.3 342.7L625.6 343.3L546 395L545 395.5L543.7 396L542.2 396.3L540.6 396.5L538.9 396.6L537.2 396.6L535.5 396.5L533.9 396.2L89.5 300.1L88.1 299.7L86.9 299.2L86 298.7L85.4 298.1L85.1 297.4"/><path class="iso-line iso-bevel" data-tone="faint" d="M626.8 341.4L625.3 342L624.9 342.5L624.3 343.1L544.7 394.7L543.9 395.1L542.8 395.5L541.6 395.8L540.2 396L538.8 396.1L537.4 396.1L536 395.9L534.6 395.7L90.3 299.6L89.1 299.3L88.1 298.9L87.3 298.4L86.8 297.9L85.1 297.4"/><path class="iso-line iso-edge" data-tone="hi" d="M85.1 297.4L85.2 296.8L85.6 296.1L86.3 295.6L165.9 243.9L166.9 243.4L168.2 242.9L169.7 242.6L171.3 242.3L173 242.2L174.7 242.3L176.4 242.4L178 242.7L622.4 338.8L623.8 339.2L625 339.6L625.9 340.2L626.5 340.8L626.8 341.4M626.8 355.1L626.7 355.8L626.3 356.4L625.6 357L546 408.7L545 409.2L543.7 409.6L542.2 410L540.6 410.2L538.9 410.3L537.2 410.3L535.5 410.1L533.9 409.9L89.5 313.8L88.1 313.4L86.9 312.9L86 312.4L85.4 311.7L85.1 311.1M626.8 341.4L626.8 355.1M85.1 297.4L85.1 311.1"/></g></g><g data-mat="yellow"><g class="iso-solid"><path class="iso-fill" d="M186.8 235.7L187.2 235.2L228.5 208.4L229.5 208L231 207.8L232.5 208L242.7 210.2L243.8 210.6L244.2 211.1L244.2 276.8L243.8 277.3L202.5 304.1L201.4 304.5L199.9 304.7L198.5 304.5L188.3 302.3L187.2 301.9L186.8 301.3Z"/><path class="iso-shade" data-shade="0" d="M244.2 276.8L243.8 277.3L243.8 211.7L244.2 211.1ZM243.8 277.3L202.5 304.1L202.5 238.5L243.8 211.7ZM202.5 304.1L201.4 304.5L201.4 238.9L202.5 238.5Z"/><path class="iso-shade" data-shade="1" d="M201.4 304.5L199.9 304.7L199.9 239L201.4 238.9Z"/><path class="iso-shade" data-shade="2" d="M199.9 304.7L198.5 304.5L198.5 238.9L199.9 239Z"/><path class="iso-shade" data-shade="3" d="M198.5 304.5L188.3 302.3L188.3 236.7L198.5 238.9ZM188.3 302.3L187.2 301.9L187.2 236.3L188.3 236.7ZM187.2 301.9L186.8 301.3L186.8 235.7L187.2 236.3Z"/><path class="iso-top" d="M242.7 210.2L243.8 210.6L244.2 211.1L243.8 211.7L202.5 238.5L201.4 238.9L199.9 239L198.5 238.9L188.3 236.7L187.2 236.3L186.8 235.7L187.2 235.2L228.5 208.4L229.5 208L231 207.8L232.5 208Z"/><path class="iso-line iso-crease" data-tone="faint" d="M244.2 211.1L243.8 211.7L202.5 238.5L201.4 238.9L199.9 239L198.5 238.9L188.3 236.7L187.2 236.3L186.8 235.7"/><path class="iso-line iso-bevel" data-tone="faint" d="M244.2 211.1L243 211.6L201.8 238.3L201 238.6L199.9 238.7L198.8 238.6L188.8 236.4L187.9 236.1L186.8 235.7"/><path class="iso-line iso-edge" data-tone="hi" d="M186.8 235.7L187.2 235.2L228.5 208.4L229.5 208L231 207.8L232.5 208L242.7 210.2L243.8 210.6L244.2 211.1M244.2 276.8L243.8 277.3L202.5 304.1L201.4 304.5L199.9 304.7L198.5 304.5L188.3 302.3L187.2 301.9L186.8 301.3M244.2 211.1L244.2 276.8M186.8 235.7L186.8 301.3"/></g><g class="iso-solid"><path class="iso-fill" d="M416.6 285.4L417 284.9L458.3 258.1L459.4 257.7L460.9 257.5L462.3 257.7L472.6 259.9L473.6 260.3L474 260.9L474 326.5L473.6 327L432.4 353.8L431.3 354.2L429.8 354.4L428.3 354.2L418.1 352L417 351.6L416.6 351.1Z"/><path class="iso-shade" data-shade="0" d="M474 326.5L473.6 327L473.6 261.4L474 260.9ZM473.6 327L432.4 353.8L432.4 288.2L473.6 261.4ZM432.4 353.8L431.3 354.2L431.3 288.6L432.4 288.2Z"/><path class="iso-shade" data-shade="1" d="M431.3 354.2L429.8 354.4L429.8 288.8L431.3 288.6Z"/><path class="iso-shade" data-shade="2" d="M429.8 354.4L428.3 354.2L428.3 288.6L429.8 288.8Z"/><path class="iso-shade" data-shade="3" d="M428.3 354.2L418.1 352L418.1 286.4L428.3 288.6ZM418.1 352L417 351.6L417 286L418.1 286.4ZM417 351.6L416.6 351.1L416.6 285.4L417 286Z"/><path class="iso-top" d="M472.6 259.9L473.6 260.3L474 260.9L473.6 261.4L432.4 288.2L431.3 288.6L429.8 288.8L428.3 288.6L418.1 286.4L417 286L416.6 285.4L417 284.9L458.3 258.1L459.4 257.7L460.9 257.5L462.3 257.7Z"/><path class="iso-line iso-crease" data-tone="faint" d="M474 260.9L473.6 261.4L432.4 288.2L431.3 288.6L429.8 288.8L428.3 288.6L418.1 286.4L417 286L416.6 285.4"/><path class="iso-line iso-bevel" data-tone="faint" d="M474 260.9L472.8 261.3L431.7 288L430.8 288.3L429.8 288.4L428.7 288.3L418.6 286.1L417.8 285.8L416.6 285.4"/><path class="iso-line iso-edge" data-tone="hi" d="M416.6 285.4L417 284.9L458.3 258.1L459.4 257.7L460.9 257.5L462.3 257.7L472.6 259.9L473.6 260.3L474 260.9M474 326.5L473.6 327L432.4 353.8L431.3 354.2L429.8 354.4L428.3 354.2L418.1 352L417 351.6L416.6 351.1M474 260.9L474 326.5M416.6 285.4L416.6 351.1"/></g></g></g><g data-name="Nacelle"><g data-mat="white"><g class="iso-solid"><path class="iso-fill" d="M94.2 19.5L102.6 15L111 12.7L119 12.5L143.3 17.8L150.9 19.8L157.9 24L164.3 30.2L169.9 38.4L174.6 48.4L178.4 60.1L181.1 73.2L182.8 87.6L183.3 102.9L182.8 119L181.1 135.5L178.4 152.2L174.6 168.7L169.9 184.9L164.3 200.3L157.9 214.8L150.9 228.2L143.3 240.1L135.2 250.3L126.9 258.8L118.4 265.3L94.2 260.1Z"/><path class="iso-shade" data-shade="0" d="M148.7 62.6L145.2 51.9L169.5 57.2L172.9 67.8ZM145.2 51.9L141 42.8L165.2 48.1L169.5 57.2ZM141 42.8L135.9 35.4L160.1 40.6L165.2 48.1ZM135.9 35.4L130.1 29.7L154.3 35L160.1 40.6ZM130.1 29.7L123.7 25.9L147.9 31.2L154.3 35ZM123.7 25.9L116.7 24.1L141 29.3L147.9 31.2ZM118.4 24.7L126.9 20.3L135.2 17.9L143.3 17.8L150.9 19.8L157.9 24L164.3 30.2L169.9 38.4L174.6 48.4L178.4 60.1L181.1 73.2L182.8 87.6L183.3 102.9L182.8 119L181.1 135.5L178.4 152.2L174.6 168.7L169.9 184.9L164.3 200.3L157.9 214.8L150.9 228.2L143.3 240.1L135.2 250.3L126.9 258.8L118.4 265.3L118.4 254.4L126.1 248.5L133.7 240.8L141 231.4L147.9 220.6L154.3 208.5L160.1 195.3L165.2 181.2L169.5 166.6L172.9 151.5L175.4 136.4L176.9 121.4L177.4 106.8L176.9 92.8L175.4 79.8L172.9 67.8L169.5 57.2L165.2 48.1L160.1 40.6L154.3 35L147.9 31.2L141 29.3L133.7 29.5L126.1 31.6L118.4 35.7Z"/><path class="iso-shade" data-shade="1" d="M152.6 87.6L151.1 74.5L175.4 79.8L176.9 92.8ZM151.1 74.5L148.7 62.6L172.9 67.8L175.4 79.8Z"/><path class="iso-shade" data-shade="2" d="M94.2 260.1L94.2 249.1L118.4 254.4L118.4 265.3ZM152.6 116.1L153.1 101.5L177.4 106.8L176.9 121.4ZM153.1 101.5L152.6 87.6L176.9 92.8L177.4 106.8ZM94.2 30.4L94.2 19.5L118.4 24.7L118.4 35.7Z"/><path class="iso-shade" data-shade="3" d="M148.7 146.3L151.1 131.1L175.4 136.4L172.9 151.5ZM151.1 131.1L152.6 116.1L176.9 121.4L175.4 136.4Z"/><path class="iso-top" d="M94.2 19.5L102.6 15L126.9 20.3L118.4 24.7ZM102.6 15L111 12.7L135.2 17.9L126.9 20.3ZM111 12.7L119 12.5L143.3 17.8L135.2 17.9ZM94.2 249.1L101.9 243.2L126.1 248.5L118.4 254.4ZM101.9 243.2L109.4 235.5L133.7 240.8L126.1 248.5ZM109.4 235.5L116.7 226.2L141 231.4L133.7 240.8ZM116.7 226.2L123.7 215.4L147.9 220.6L141 231.4ZM123.7 215.4L130.1 203.3L154.3 208.5L147.9 220.6ZM130.1 203.3L135.9 190.1L160.1 195.3L154.3 208.5ZM135.9 190.1L141 176L165.2 181.2L160.1 195.3ZM141 176L145.2 161.3L169.5 166.6L165.2 181.2ZM145.2 161.3L148.7 146.3L172.9 151.5L169.5 166.6Z"/><path class="iso-line iso-crease" data-tone="faint" d="M94.2 19.5L118.4 24.7M118.4 24.7L126.9 20.3M126.9 20.3L135.2 17.9M135.2 17.9L143.3 17.8M118.4 265.3L118.4 254.4M94.2 249.1L118.4 254.4M118.4 254.4L126.1 248.5M126.1 248.5L133.7 240.8M133.7 240.8L141 231.4M141 231.4L147.9 220.6M147.9 220.6L154.3 208.5M154.3 208.5L160.1 195.3M160.1 195.3L165.2 181.2M165.2 181.2L169.5 166.6M169.5 166.6L172.9 151.5M172.9 151.5L175.4 136.4M175.4 136.4L176.9 121.4M176.9 121.4L177.4 106.8M177.4 106.8L176.9 92.8M176.9 92.8L175.4 79.8M175.4 79.8L172.9 67.8M172.9 67.8L169.5 57.2M169.5 57.2L165.2 48.1M165.2 48.1L160.1 40.6M160.1 40.6L154.3 35M154.3 35L147.9 31.2M147.9 31.2L141 29.3M118.4 35.7L118.4 24.7"/><path class="iso-line iso-edge" data-tone="hi" d="M94.2 19.5L102.6 15L111 12.7L119 12.5L143.3 17.8L150.9 19.8L157.9 24L164.3 30.2L169.9 38.4L174.6 48.4L178.4 60.1L181.1 73.2L182.8 87.6L183.3 102.9L182.8 119L181.1 135.5L178.4 152.2L174.6 168.7L169.9 184.9L164.3 200.3L157.9 214.8L150.9 228.2L143.3 240.1L135.2 250.3L126.9 258.8L118.4 265.3L94.2 260.1Z"/></g><g class="iso-solid"><path class="iso-fill" d="M118.4 23.3L127 18.8L135.4 16.5L143.5 16.3L317.2 53.9L324.9 55.9L332 60.1L338.5 66.4L344.2 74.7L348.9 84.9L352.7 96.7L355.5 110L357.2 124.5L357.7 140L357.2 156.3L355.5 173L352.7 189.8L348.9 206.6L344.2 222.9L338.5 238.5L332 253.2L324.9 266.7L317.2 278.7L309.1 289.1L300.7 297.7L292.1 304.3L118.4 266.7Z"/><path class="iso-shade" data-shade="0" d="M174.3 65.9L170.8 55L344.5 92.6L348 103.4ZM170.8 55L166.4 45.7L340.1 83.2L344.5 92.6ZM166.4 45.7L161.2 38L334.8 75.6L340.1 83.2ZM161.2 38L155.2 32.2L328.9 69.8L334.8 75.6ZM155.2 32.2L148.7 28.3L322.3 65.9L328.9 69.8ZM148.7 28.3L141.6 26.4L315.2 64L322.3 65.9ZM292.1 60.9L300.7 56.4L309.1 54L317.2 53.9L324.9 55.9L332 60.1L338.5 66.4L344.2 74.7L348.9 84.9L352.7 96.7L355.5 110L357.2 124.5L357.7 140L357.2 156.3L355.5 173L352.7 189.8L348.9 206.6L344.2 222.9L338.5 238.5L332 253.2L324.9 266.7L317.2 278.7L309.1 289.1L300.7 297.7L292.1 304.3L292.1 294.7L300 288.6L307.7 280.7L315.2 271.1L322.3 260.1L328.9 247.6L334.8 234.1L340.1 219.7L344.5 204.7L348 189.2L350.5 173.7L352 158.3L352.6 143.4L352 129.1L350.5 115.7L348 103.4L344.5 92.6L340.1 83.2L334.8 75.6L328.9 69.8L322.3 65.9L315.2 64L307.7 64.1L300 66.3L292.1 70.5Z"/><path class="iso-shade" data-shade="1" d="M178.4 91.5L176.8 78.1L350.5 115.7L352 129.1ZM176.8 78.1L174.3 65.9L348 103.4L350.5 115.7Z"/><path class="iso-shade" data-shade="2" d="M118.4 266.7L118.4 257.1L292.1 294.7L292.1 304.3ZM178.4 120.8L178.9 105.8L352.6 143.4L352 158.3ZM178.9 105.8L178.4 91.5L352 129.1L352.6 143.4ZM118.4 32.9L118.4 23.3L292.1 60.9L292.1 70.5Z"/><path class="iso-shade" data-shade="3" d="M174.3 151.7L176.8 136.2L350.5 173.7L348 189.2ZM176.8 136.2L178.4 120.8L352 158.3L350.5 173.7Z"/><path class="iso-top" d="M118.4 23.3L127 18.8L300.7 56.4L292.1 60.9ZM127 18.8L135.4 16.5L309.1 54L300.7 56.4ZM135.4 16.5L143.5 16.3L317.2 53.9L309.1 54ZM118.4 257.1L126.3 251.1L300 288.6L292.1 294.7ZM126.3 251.1L134.1 243.2L307.7 280.7L300 288.6ZM134.1 243.2L141.6 233.6L315.2 271.1L307.7 280.7ZM141.6 233.6L148.7 222.5L322.3 260.1L315.2 271.1ZM148.7 222.5L155.2 210.1L328.9 247.6L322.3 260.1ZM155.2 210.1L161.2 196.6L334.8 234.1L328.9 247.6ZM161.2 196.6L166.4 182.2L340.1 219.7L334.8 234.1ZM166.4 182.2L170.8 167.1L344.5 204.7L340.1 219.7ZM170.8 167.1L174.3 151.7L348 189.2L344.5 204.7Z"/><path class="iso-line iso-crease" data-tone="faint" d="M118.4 23.3L292.1 60.9M292.1 60.9L300.7 56.4M300.7 56.4L309.1 54M309.1 54L317.2 53.9M292.1 304.3L292.1 294.7M118.4 257.1L292.1 294.7M292.1 294.7L300 288.6M300 288.6L307.7 280.7M307.7 280.7L315.2 271.1M315.2 271.1L322.3 260.1M322.3 260.1L328.9 247.6M328.9 247.6L334.8 234.1M334.8 234.1L340.1 219.7M340.1 219.7L344.5 204.7M344.5 204.7L348 189.2M348 189.2L350.5 173.7M350.5 173.7L352 158.3M352 158.3L352.6 143.4M352.6 143.4L352 129.1M352 129.1L350.5 115.7M350.5 115.7L348 103.4M348 103.4L344.5 92.6M344.5 92.6L340.1 83.2M340.1 83.2L334.8 75.6M334.8 75.6L328.9 69.8M328.9 69.8L322.3 65.9M322.3 65.9L315.2 64M292.1 70.5L292.1 60.9"/><path class="iso-line iso-edge" data-tone="hi" d="M118.4 23.3L127 18.8L135.4 16.5L143.5 16.3L317.2 53.9L324.9 55.9L332 60.1L338.5 66.4L344.2 74.7L348.9 84.9L352.7 96.7L355.5 110L357.2 124.5L357.7 140L357.2 156.3L355.5 173L352.7 189.8L348.9 206.6L344.2 222.9L338.5 238.5L332 253.2L324.9 266.7L317.2 278.7L309.1 289.1L300.7 297.7L292.1 304.3L118.4 266.7Z"/></g><g class="iso-solid"><path class="iso-fill" d="M292.1 66.4L300.3 62.1L308.3 59.8L316.1 59.7L392.7 76.2L400 78.2L406.9 82.2L413 88.2L418.4 96.2L423 105.8L426.6 117.1L429.2 129.8L430.8 143.7L431.4 158.5L430.8 174L429.2 190L426.6 206.1L423 222L418.4 237.6L413 252.6L406.9 266.6L400 279.5L392.7 291L384.9 300.9L376.9 309.1L368.7 315.4L292.1 298.8Z"/><path class="iso-shade" data-shade="0" d="M345.2 107.3L341.9 97L418.5 113.5L421.8 123.9ZM341.9 97L337.7 88.1L414.3 104.6L418.5 113.5ZM337.7 88.1L332.8 80.8L409.4 97.4L414.3 104.6ZM332.8 80.8L327.1 75.3L403.7 91.8L409.4 97.4ZM327.1 75.3L320.9 71.6L397.5 88.1L403.7 91.8ZM320.9 71.6L314.1 69.8L390.7 86.4L397.5 88.1ZM368.7 82.9L376.9 78.6L384.9 76.4L392.7 76.2L400 78.2L406.9 82.2L413 88.2L418.4 96.2L423 105.8L426.6 117.1L429.2 129.8L430.8 143.7L431.4 158.5L430.8 174L429.2 190L426.6 206.1L423 222L418.4 237.6L413 252.6L406.9 266.6L400 279.5L392.7 291L384.9 300.9L376.9 309.1L368.7 315.4L368.7 305.8L376.2 300L383.6 292.5L390.7 283.4L397.5 272.9L403.7 261L409.4 248.2L414.3 234.5L418.5 220.2L421.8 205.5L424.3 190.7L425.7 176.1L426.2 161.8L425.7 148.2L424.3 135.5L421.8 123.9L418.5 113.5L414.3 104.6L409.4 97.4L403.7 91.8L397.5 88.1L390.7 86.4L383.6 86.5L376.2 88.6L368.7 92.5Z"/><path class="iso-shade" data-shade="1" d="M349.1 131.7L347.6 118.9L424.3 135.5L425.7 148.2ZM347.6 118.9L345.2 107.3L421.8 123.9L424.3 135.5Z"/><path class="iso-shade" data-shade="2" d="M292.1 298.8L292.1 289.2L368.7 305.8L368.7 315.4ZM349.1 159.5L349.6 145.3L426.2 161.8L425.7 176.1ZM349.6 145.3L349.1 131.7L425.7 148.2L426.2 161.8ZM292.1 75.9L292.1 66.4L368.7 82.9L368.7 92.5Z"/><path class="iso-shade" data-shade="3" d="M345.2 188.9L347.6 174.1L424.3 190.7L421.8 205.5ZM347.6 174.1L349.1 159.5L425.7 176.1L424.3 190.7Z"/><path class="iso-top" d="M292.1 66.4L300.3 62.1L376.9 78.6L368.7 82.9ZM300.3 62.1L308.3 59.8L384.9 76.4L376.9 78.6ZM308.3 59.8L316.1 59.7L392.7 76.2L384.9 76.4ZM292.1 289.2L299.6 283.4L376.2 300L368.7 305.8ZM299.6 283.4L307 275.9L383.6 292.5L376.2 300ZM307 275.9L314.1 266.8L390.7 283.4L383.6 292.5ZM314.1 266.8L320.9 256.3L397.5 272.9L390.7 283.4ZM320.9 256.3L327.1 244.5L403.7 261L397.5 272.9ZM327.1 244.5L332.8 231.6L409.4 248.2L403.7 261ZM332.8 231.6L337.7 217.9L414.3 234.5L409.4 248.2ZM337.7 217.9L341.9 203.6L418.5 220.2L414.3 234.5ZM341.9 203.6L345.2 188.9L421.8 205.5L418.5 220.2Z"/><path class="iso-line iso-crease" data-tone="faint" d="M292.1 66.4L368.7 82.9M368.7 82.9L376.9 78.6M376.9 78.6L384.9 76.4M384.9 76.4L392.7 76.2M368.7 315.4L368.7 305.8M292.1 289.2L368.7 305.8M368.7 305.8L376.2 300M376.2 300L383.6 292.5M383.6 292.5L390.7 283.4M390.7 283.4L397.5 272.9M397.5 272.9L403.7 261M403.7 261L409.4 248.2M409.4 248.2L414.3 234.5M414.3 234.5L418.5 220.2M418.5 220.2L421.8 205.5M421.8 205.5L424.3 190.7M424.3 190.7L425.7 176.1M425.7 176.1L426.2 161.8M426.2 161.8L425.7 148.2M425.7 148.2L424.3 135.5M424.3 135.5L421.8 123.9M421.8 123.9L418.5 113.5M418.5 113.5L414.3 104.6M414.3 104.6L409.4 97.4M409.4 97.4L403.7 91.8M403.7 91.8L397.5 88.1M397.5 88.1L390.7 86.4M368.7 92.5L368.7 82.9"/><path class="iso-line iso-edge" data-tone="hi" d="M292.1 66.4L300.3 62.1L308.3 59.8L316.1 59.7L392.7 76.2L400 78.2L406.9 82.2L413 88.2L418.4 96.2L423 105.8L426.6 117.1L429.2 129.8L430.8 143.7L431.4 158.5L430.8 174L429.2 190L426.6 206.1L423 222L418.4 237.6L413 252.6L406.9 266.6L400 279.5L392.7 291L384.9 300.9L376.9 309.1L368.7 315.4L292.1 298.8Z"/></g><g class="iso-solid"><path class="iso-fill" d="M368.7 91.2L376.3 87.1L383.8 85.1L391 84.9L429.3 93.2L436.1 95L442.5 98.8L448.2 104.3L453.2 111.7L457.5 120.7L460.8 131.2L463.3 143L464.8 155.9L465.3 169.7L464.8 184.1L463.3 198.9L460.8 213.9L457.5 228.7L453.2 243.2L448.2 257.1L442.5 270.1L436.1 282.1L429.3 292.8L422.1 302L414.6 309.6L407 315.4L368.7 307.2Z"/><path class="iso-shade" data-shade="0" d="M417.8 129.7L414.7 120.1L453 128.4L456.1 138ZM414.7 120.1L410.8 111.9L449.1 120.2L453 128.4ZM410.8 111.9L406.3 105.2L444.6 113.5L449.1 120.2ZM406.3 105.2L401 100.1L439.3 108.4L444.6 113.5ZM401 100.1L395.3 96.7L433.6 105L439.3 108.4ZM395.3 96.7L389 95L427.3 103.3L433.6 105ZM407 99.4L414.6 95.4L422.1 93.3L429.3 93.2L436.1 95L442.5 98.8L448.2 104.3L453.2 111.7L457.5 120.7L460.8 131.2L463.3 143L464.8 155.9L465.3 169.7L464.8 184.1L463.3 198.9L460.8 213.9L457.5 228.7L453.2 243.2L448.2 257.1L442.5 270.1L436.1 282.1L429.3 292.8L422.1 302L414.6 309.6L407 315.4L407 305.9L414 300.5L420.8 293.6L427.3 285.2L433.6 275.5L439.3 264.6L444.6 252.7L449.1 240L453 226.8L456.1 213.3L458.3 199.7L459.7 186.1L460.1 173L459.7 160.4L458.3 148.7L456.1 138L453 128.4L449.1 120.2L444.6 113.5L439.3 108.4L433.6 105L427.3 103.3L420.8 103.4L414 105.4L407 109Z"/><path class="iso-shade" data-shade="1" d="M421.3 152.2L420 140.4L458.3 148.7L459.7 160.4ZM420 140.4L417.8 129.7L456.1 138L458.3 148.7Z"/><path class="iso-shade" data-shade="2" d="M368.7 307.2L368.7 297.6L407 305.9L407 315.4ZM421.3 177.9L421.8 164.7L460.1 173L459.7 186.1ZM421.8 164.7L421.3 152.2L459.7 160.4L460.1 173ZM368.7 100.7L368.7 91.2L407 99.4L407 109Z"/><path class="iso-shade" data-shade="3" d="M417.8 205L420 191.4L458.3 199.7L456.1 213.3ZM420 191.4L421.3 177.9L459.7 186.1L458.3 199.7Z"/><path class="iso-top" d="M368.7 91.2L376.3 87.1L414.6 95.4L407 99.4ZM376.3 87.1L383.8 85.1L422.1 93.3L414.6 95.4ZM383.8 85.1L391 84.9L429.3 93.2L422.1 93.3ZM368.7 297.6L375.6 292.3L414 300.5L407 305.9ZM375.6 292.3L382.5 285.3L420.8 293.6L414 300.5ZM382.5 285.3L389 276.9L427.3 285.2L420.8 293.6ZM389 276.9L395.3 267.2L433.6 275.5L427.3 285.2ZM395.3 267.2L401 256.3L439.3 264.6L433.6 275.5ZM401 256.3L406.3 244.4L444.6 252.7L439.3 264.6ZM406.3 244.4L410.8 231.8L449.1 240L444.6 252.7ZM410.8 231.8L414.7 218.5L453 226.8L449.1 240ZM414.7 218.5L417.8 205L456.1 213.3L453 226.8Z"/><path class="iso-line iso-crease" data-tone="faint" d="M368.7 91.2L407 99.4M407 99.4L414.6 95.4M414.6 95.4L422.1 93.3M422.1 93.3L429.3 93.2M407 315.4L407 305.9M368.7 297.6L407 305.9M407 305.9L414 300.5M414 300.5L420.8 293.6M420.8 293.6L427.3 285.2M427.3 285.2L433.6 275.5M433.6 275.5L439.3 264.6M439.3 264.6L444.6 252.7M444.6 252.7L449.1 240M449.1 240L453 226.8M453 226.8L456.1 213.3M456.1 213.3L458.3 199.7M458.3 199.7L459.7 186.1M459.7 186.1L460.1 173M460.1 173L459.7 160.4M459.7 160.4L458.3 148.7M458.3 148.7L456.1 138M456.1 138L453 128.4M453 128.4L449.1 120.2M449.1 120.2L444.6 113.5M444.6 113.5L439.3 108.4M439.3 108.4L433.6 105M433.6 105L427.3 103.3M407 109L407 99.4"/><path class="iso-line iso-edge" data-tone="hi" d="M368.7 91.2L376.3 87.1L383.8 85.1L391 84.9L429.3 93.2L436.1 95L442.5 98.8L448.2 104.3L453.2 111.7L457.5 120.7L460.8 131.2L463.3 143L464.8 155.9L465.3 169.7L464.8 184.1L463.3 198.9L460.8 213.9L457.5 228.7L453.2 243.2L448.2 257.1L442.5 270.1L436.1 282.1L429.3 292.8L422.1 302L414.6 309.6L407 315.4L368.7 307.2Z"/></g></g></g><g data-part="casing" data-name="Core casing"></g><g data-part="rotors" data-name="Compressor and turbine blades"></g><g data-part="air" data-name="Airflow"></g><g data-name="Nacelle"><path class="iso-line" data-tone="lo" d="M32.2 180L32.8 164.6L34.3 148.9L37 133L40.5 117.2L45 101.7L50.4 87L56.5 73.1L63.2 60.4L70.5 49.1L78.1 39.3L86.1 31.2L94.2 24.9L102.3 20.7L110.2 18.5L117.9 18.3L125.1 20.2L131.9 24.2L138 30.2L143.3 38L147.8 47.6L151.4 58.7L154 71.2L155.6 84.9L156.1 99.6L155.6 114.9L154 130.7L151.4 146.6L147.8 162.4L143.3 177.8L138 192.6L131.9 206.4L125.1 219.1L117.9 230.5L110.2 240.3L102.3 248.4L94.2 254.6L86.1 258.9L78.1 261.1L70.5 261.3L63.2 259.3L56.5 255.3L50.4 249.4L45 241.6L40.5 232L37 220.8L34.3 208.3L32.8 194.6Z"/><path class="iso-line" data-tone="lo" d="M351 243.8L351.5 229.9L352.9 215.7L355.3 201.3L358.5 187L362.6 173L367.4 159.7L372.9 147.1L379 135.6L385.6 125.4L392.5 116.5L399.7 109.2L407 103.5L414.3 99.7L421.5 97.7L428.5 97.5L435 99.3L441.1 102.9L446.6 108.3L451.5 115.3L455.5 124L458.8 134.1L461.1 145.4L462.6 157.8L463.1 171.1L462.6 185L461.1 199.2L458.8 213.6L455.5 227.9L451.5 241.9L446.6 255.2L441.1 267.7L435 279.2L428.5 289.5L421.5 298.4L414.3 305.7L407 311.3L399.7 315.2L392.5 317.2L385.6 317.3L379 315.6L372.9 312L367.4 306.6L362.6 299.5L358.5 290.9L355.3 280.8L352.9 269.5L351.5 257Z"/><path class="iso-line" data-tone="lo" d="M542.4 263.2L542.8 254.1L543.9 244.7L545.8 235.3L548.3 226.1L551.4 217.3L555 209.1L559.1 201.8L563.6 195.5L568.2 190.4L573 186.6L577.8 184.2L582.5 183.3L586.9 183.8L591 185.8L594.7 189.2L597.8 193.9L600.3 199.9L602.1 206.9L603.3 214.9L603.6 223.5L603.3 232.6L602.1 242L600.3 251.4L597.8 260.6L594.7 269.4L591 277.6L586.9 284.9L582.5 291.2L577.8 296.3L573 300.1L568.2 302.5L563.6 303.4L559.1 302.9L555 300.9L551.4 297.5L548.3 292.8L545.8 286.8L543.9 279.8L542.8 271.8Z"/></g></svg></div></div></figure></section><section class="lab-panel"><div class="lab-row"><div class="lab-seg" role="group" aria-label="View"><button type="button" data-mode="cutaway" aria-pressed="false">Cutaway</button><button type="button" data-mode="temp" aria-pressed="false">Temperature</button></div></div><div class="lab-gauges"><div class="lab-gauge" data-gauge="n1"><b>–</b><span>Fan speed N1</span></div><div class="lab-gauge" data-gauge="thrust"><b>–</b><span>Thrust</span></div><div class="lab-gauge" data-gauge="egt"><b>–</b><span>Exhaust gas temp</span></div><div class="lab-gauge" data-gauge="fuel"><b>–</b><span>Fuel flow</span></div><div class="lab-gauge" data-gauge="opr"><b>–</b><span>Pressure ratio</span></div><div class="lab-gauge" data-gauge="tsfc"><b>–</b><span>Fuel per thrust</span></div></div><div class="lab-card"><div class="lab-card-head"><span>Gas temperature through the core</span><em>°C at each station</em></div><canvas class="je-chart" style="width:100%;height:150px;display:block"></canvas></div><div class="lab-controls"><div class="lab-ctl" data-ctl="throttle"><div class="lab-ctl-head"><label for="ctl-throttle">Throttle</label><output>70 %</output></div><input id="ctl-throttle" type="range" min="0" max="100" step="1" value="70"><small>From ground idle to take-off power.</small></div><div class="lab-ctl" data-ctl="speed"><div class="lab-ctl-head"><label for="ctl-speed">Air speed</label><output>0 m/s</output></div><input id="ctl-speed" type="range" min="0" max="250" step="5" value="0"><small>Flying fast means the engine must speed up air that is already moving, so thrust falls.</small></div></div><section class="lab-steps" aria-label="How it works"><div class="lab-steps-head"><h2>How it works</h2><div class="lab-pager"><button type="button" data-page="prev" aria-label="Previous step">‹</button><button type="button" data-page="next" aria-label="Next step">›</button></div></div><div class="lab-pips"><button type="button" data-step="0" aria-label="The fan">1</button><button type="button" data-step="1" aria-label="Squeeze">2</button><button type="button" data-step="2" aria-label="Bang">3</button><button type="button" data-step="3" aria-label="Blow">4</button><button type="button" data-step="4" aria-label="Idle to take-off">5</button><button type="button" data-step="5" aria-label="In flight">6</button></div><article class="lab-step" aria-live="polite"></article></section><p class="lab-foot">An ideal two-spool Brayton cycle at sea level with typical component efficiencies, sized like a narrow-body airliner engine; it is not a model of a specific engine. Ram drag and altitude effects are simplified. Blade counts and sizes are reduced for clarity.</p></section></main><script type="application/json" id="lab-config">{"modes":[{"id":"cutaway","label":"Cutaway"},{"id":"temp","label":"Temperature"}],"controls":[{"id":"throttle","type":"range","label":"Throttle","min":0,"max":100,"step":1,"value":70,"format":"{v} %","help":"From ground idle to take-off power."},{"id":"speed","type":"range","label":"Air speed","min":0,"max":250,"step":5,"value":0,"format":"{v} m/s","help":"Flying fast means the engine must speed up air that is already moving, so thrust falls."}],"steps":[{"title":"The fan","throttle":70,"speed":0,"body":["The front fan, over 1.5 m across on a real engine, is the biggest single compressor stage. Its wide twisted blades push air backwards like a propeller in a duct.","Watch the blue particles: five out of every six go round the outside through the bypass duct. This engine's bypass ratio is 5.5."]},{"title":"Squeeze","body":["The air that enters the core passes ten rows of ever-smaller blades: three in the booster and seven in the high-pressure compressor. Each row speeds the air up and the fixed vanes between them slow it again, turning speed into pressure.","At full power the air leaves the compressor 32 times denser in pressure and over 550 °C hot, just from being squeezed."]},{"title":"Bang","mode":"temp","body":["In the ring-shaped combustor, twenty nozzles spray fine kerosene into the compressed air, and it burns continuously. The gas reaches about 1,300 °C, hotter than the melting point of the turbine blades.","The blades survive because cooler air from the compressor flows through tiny holes inside them and over their surfaces as a protective film."]},{"title":"Blow","mode":"temp","body":["The hot gas expands through the high-pressure turbine, which drives the compressor, and then the low-pressure turbine, which drives the fan. By the exhaust it has given up most of its heat as work.","What is left leaves through the nozzle faster than it came in. Thrust is mass flow times the change in speed: F = ṁ·(Vout − Vin)."]},{"title":"Idle to take-off","mode":"cutaway","throttle":100,"body":["Push the throttle forward. The fan speeds up, the pressure ratio climbs, more fuel burns, and thrust rises steeply: from a few kilonewtons at idle to over 110 kN here.","Fuel per unit of thrust falls as power rises: the cycle is most efficient when the pressure ratio is high."]},{"title":"In flight","throttle":100,"speed":230,"body":["At cruise the air already arrives at over 800 km/h. The engine must speed it up from that, so the same fan produces less thrust, and ram compression heats the air before it even reaches the fan.","At high altitude the thin air reduces thrust further, which is why airliners need such large engines for take-off and climb."]}],"parts":[{"name":"Nacelle","role":"The smooth outer cowling; its back half is cut away here."},{"name":"Core casing","role":"The case around the compressor, combustor and turbines."},{"name":"Compressor and turbine blades","role":"Rows of blades on two shafts: the fan and booster with the low-pressure turbine, the high-pressure compressor with the high-pressure turbine."},{"name":"Combustor","role":"A ring-shaped chamber where fuel burns in the compressed air."},{"name":"Airflow","role":"Coloured by temperature: blue cool air to orange-red hot gas."},{"name":"Display stand","role":"Holds the engine for the exhibit."}]}</script><script type="module">
+if (new URLSearchParams(location.search).has("thumb")) document.body.classList.add("lab-thumb");
+// Size the figure from the real viewport height (vh can resolve to 0 inside a WebView that is
+// still being laid out), and keep it in step with every resize.
+const fitFigure = () => { const h = window.innerHeight || document.documentElement.clientHeight; if (h > 0) document.documentElement.style.setProperty("--fig-max-h", Math.round(h * 0.5) + "px"); };
+fitFigure(); addEventListener("resize", fitFigure); addEventListener("load", fitFigure);
+if (window.ResizeObserver) new ResizeObserver(fitFigure).observe(document.documentElement);
+const Lab = (() => {
+  const cfg = JSON.parse(document.getElementById("lab-config").textContent);
+  const values = {}; const listeners = []; const stepListeners = []; const modeListeners = [];
+  let step = -1, mode = cfg.modes && cfg.modes.length ? cfg.modes[0].id : null, touring = false;
+  const fmt = (c, v) => (c.format ? c.format.replace("{v}", (+v).toFixed(c.digits ?? 0)) : (+v).toFixed(c.digits ?? 0));
+  const native = window.AnatomyNative;
+  const emit = (id) => listeners.forEach((fn) => fn(id, values[id], values));
+  const fill = (input) => input.style.setProperty("--fill", ((input.value - input.min) / (input.max - input.min)) * 100 + "%");
+  function setValue(id, v, quiet) {
+    const c = cfg.controls.find((x) => x.id === id); if (!c) return;
+    values[id] = c.type === "toggle" ? !!v : Math.min(c.max, Math.max(c.min, +v));
+    const el = document.querySelector('[data-ctl="' + id + '"]');
+    if (el) {
+      if (c.type === "toggle") el.setAttribute("aria-checked", String(values[id]));
+      else { const input = el.querySelector("input"); input.value = values[id]; fill(input); el.querySelector("output").textContent = fmt(c, values[id]); }
+    }
+    if (!quiet) emit(id);
+  }
+  function setMode(id, quiet) {
+    mode = id;
+    document.querySelectorAll("[data-mode]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === id)));
+    document.body.dataset.mode = id;
+    if (!quiet) modeListeners.forEach((fn) => fn(id));
+  }
+  function setStep(i, fromUser) {
+    const n = cfg.steps.length; if (!n) return;
+    step = ((i % n) + n) % n;
+    document.querySelectorAll(".lab-pips button").forEach((b, k) => (k === step ? b.setAttribute("aria-current", "step") : b.removeAttribute("aria-current")));
+    const s = cfg.steps[step];
+    const box = document.querySelector(".lab-step");
+    if (box) {
+      box.innerHTML = '<div class="lab-kicker">Step ' + (step + 1) + " of " + n + "</div><h3></h3>" + s.body.map(() => "<p></p>").join("");
+      box.querySelector("h3").textContent = s.title;
+      box.querySelectorAll("p").forEach((p, k) => (p.textContent = s.body[k]));
+      box.style.animation = "none"; void box.offsetWidth; box.style.animation = "";
+    }
+    if (fromUser) touring = false;
+    if (s.set) Object.entries(s.set).forEach(([k, v]) => setValue(k, v));
+    if (s.mode) setMode(s.mode);
+    stepListeners.forEach((fn) => fn(step, s, !!fromUser));
+    native && native.onStep && native.onStep(step);
+  }
+  function build() {
+    const seg = document.querySelector(".lab-seg");
+    if (seg) seg.addEventListener("click", (e) => { const b = e.target.closest("[data-mode]"); if (b) setMode(b.dataset.mode); });
+    cfg.controls.forEach((c) => {
+      values[c.id] = c.value;
+      const el = document.querySelector('[data-ctl="' + c.id + '"]');
+      if (!el) return;
+      if (c.type === "toggle") el.addEventListener("click", () => setValue(c.id, !values[c.id]));
+      else { const input = el.querySelector("input"); fill(input); input.addEventListener("input", () => setValue(c.id, input.value)); }
+    });
+    document.querySelectorAll("[data-action]").forEach((b) => b.addEventListener("click", () => actionListeners.forEach((fn) => fn(b.dataset.action, b))));
+    const pips = document.querySelector(".lab-pips");
+    if (pips) pips.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setStep(+b.dataset.step, true); });
+    const prev = document.querySelector('[data-page="prev"]'), next = document.querySelector('[data-page="next"]');
+    prev && prev.addEventListener("click", () => setStep(step - 1, true));
+    next && next.addEventListener("click", () => setStep(step + 1, true));
+    if (mode) setMode(mode, true);
+    if (cfg.steps.length) setStep(0, false);
+  }
+  const actionListeners = [];
+  const gauges = {};
+  function gauge(id, text, hot) {
+    const el = gauges[id] || (gauges[id] = document.querySelector('[data-gauge="' + id + '"] b'));
+    if (!el) return;
+    if (el.textContent !== text) { el.textContent = text; el.toggleAttribute("data-long", text.length > 9); }
+    el.parentElement.toggleAttribute("data-hot", !!hot);
+  }
+  // Tap a part: highlight it and show what it is.
+  const pickListeners = [];
+  let tipTimer = 0, lit = null;
+  function pick(x, y) {
+    const stage = document.querySelector(".iso-stage");
+    const svgs = stage ? [...stage.querySelectorAll("svg")] : [];
+    const saved = svgs.map((s) => s.style.pointerEvents);
+    svgs.forEach((s) => (s.style.pointerEvents = "auto"));
+    const hit = document.elementsFromPoint(x, y).map((el) => el.closest && el.closest("[data-name]")).find(Boolean);
+    svgs.forEach((s, i) => (s.style.pointerEvents = saved[i]));
+    const tip = document.querySelector(".lab-tip");
+    if (lit) lit.classList.remove("lab-hl");
+    if (!hit || !tip) { tip && tip.removeAttribute("data-on"); lit = null; return; }
+    const name = hit.getAttribute("data-name");
+    const info = (cfg.parts || []).find((p) => p.name === name);
+    lit = hit; hit.classList.add("lab-hl");
+    tip.querySelector("b").textContent = name;
+    tip.querySelector("span").textContent = info ? info.role : "";
+    tip.setAttribute("data-on", "");
+    clearTimeout(tipTimer);
+    tipTimer = setTimeout(() => { tip.removeAttribute("data-on"); if (lit) lit.classList.remove("lab-hl"); lit = null; }, 4200);
+    pickListeners.forEach((fn) => fn(name));
+    native && native.onPick && native.onPick(name);
+  }
+  function wirePicker() {
+    const stage = document.querySelector(".iso-stage");
+    const plate = document.querySelector(".iso-plate");
+    if (!stage || !plate) return;
+    const tip = document.createElement("div"); tip.className = "lab-tip"; tip.innerHTML = "<b></b><span></span>"; plate.appendChild(tip);
+    let down = null, lastTap = null;
+    stage.addEventListener("pointerdown", (e) => { down = { x: e.clientX, y: e.clientY, t: performance.now() }; });
+    stage.addEventListener("pointerup", (e) => {
+      const tap = down && !zoom.gestured && Math.hypot(e.clientX - down.x, e.clientY - down.y) < 8 && performance.now() - down.t < 450;
+      down = null;
+      if (!tap) return;
+      const now = performance.now();
+      if (lastTap && now - lastTap.t < 320 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 40) { lastTap = null; zoom.toggleAt(e.clientX, e.clientY); return; }
+      lastTap = { x: e.clientX, y: e.clientY, t: now };
+      pick(e.clientX, e.clientY);
+    });
+  }
+  // Zoom: pinch with two fingers (which also pans), double-tap, or the + / - buttons.
+  // The stage is scaled with a CSS transform, so the SVG stays sharp and every lab's own
+  // pointer maths (which reads the stage's on-screen rect) keeps working.
+  const zoom = (() => {
+    const MAX = 5;
+    let stage, box, s = 1, tx = 0, ty = 0, gestured = false;
+    const pts = new Map();
+    let pinch = null, pan = null;
+    const origin = () => { const r = stage.getBoundingClientRect(); return [r.left - tx, r.top - ty]; };
+    function apply(ease) {
+      const W = stage.offsetWidth, H = stage.offsetHeight;
+      s = Math.min(MAX, Math.max(1, s));
+      tx = Math.min(0, Math.max(W * (1 - s), tx)); ty = Math.min(0, Math.max(H * (1 - s), ty));
+      if (s < 1.01) { s = 1; tx = 0; ty = 0; }
+      ease ? stage.setAttribute("data-ease", "") : stage.removeAttribute("data-ease");
+      stage.style.transform = s === 1 ? "" : "translate(" + tx + "px," + ty + "px) scale(" + s + ")";
+      if (box) { box.toggleAttribute("data-zoomed", s > 1); box.querySelector('[data-zoom="level"]').textContent = s.toFixed(1) + "×"; }
+    }
+    function zoomAt(cx, cy, to, ease) {
+      const [ox, oy] = origin();
+      const px = (cx - ox - tx) / s, py = (cy - oy - ty) / s;
+      s = Math.min(MAX, Math.max(1, to));
+      tx = cx - ox - px * s; ty = cy - oy - py * s;
+      apply(ease);
+    }
+    const centre = () => { const r = stage.parentElement.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+    function wire() {
+      stage = document.querySelector(".lab .iso-stage");
+      const plate = document.querySelector(".iso-plate");
+      if (!stage || !plate) return;
+      box = document.createElement("div"); box.className = "lab-zoom";
+      box.innerHTML = '<button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="level" aria-label="Reset zoom">1.0×</button><button type="button" data-zoom="out" aria-label="Zoom out">−</button>';
+      plate.appendChild(box);
+      box.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-zoom]"); if (!b) return;
+        const [cx, cy] = centre();
+        if (b.dataset.zoom === "in") zoomAt(cx, cy, s * 1.6, true);
+        else if (b.dataset.zoom === "out") zoomAt(cx, cy, s / 1.6, true);
+        else { s = 1; apply(true); }
+      });
+      // Capture listeners run before each lab's own handlers, so a pinch never turns a crank.
+      const opt = { capture: true };
+      stage.addEventListener("pointerdown", (e) => {
+        if (!pts.size) gestured = false;
+        pts.set(e.pointerId, [e.clientX, e.clientY]);
+        // zoomed in, one finger drags the view around like a map
+        pan = pts.size === 1 && s > 1 ? { x: e.clientX, y: e.clientY, tx, ty } : null;
+        if (pts.size === 2) {
+          const [a, b] = [...pts.values()];
+          pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, m: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], s, tx, ty };
+          gestured = true;
+        }
+        if (gestured) e.stopImmediatePropagation();
+      }, opt);
+      stage.addEventListener("pointermove", (e) => {
+        if (!pts.has(e.pointerId)) return;
+        pts.set(e.pointerId, [e.clientX, e.clientY]);
+        if (pan && pts.size === 1) {
+          const dx = e.clientX - pan.x, dy = e.clientY - pan.y;
+          if (!gestured && Math.hypot(dx, dy) > 8) gestured = true; // a small wobble is still a tap
+          if (!gestured) return;
+          e.stopImmediatePropagation();
+          tx = pan.tx + dx; ty = pan.ty + dy;
+          apply(false);
+          return;
+        }
+        if (!gestured) return;
+        e.stopImmediatePropagation();
+        if (pts.size < 2 || !pinch) return;
+        const [a, b] = [...pts.values()];
+        const d = Math.hypot(a[0] - b[0], a[1] - b[1]), m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+        // keep the point under the fingers' first midpoint under the current midpoint
+        s = pinch.s; tx = pinch.tx; ty = pinch.ty;
+        zoomAt(pinch.m[0], pinch.m[1], pinch.s * (d / pinch.d), false);
+        tx += m[0] - pinch.m[0]; ty += m[1] - pinch.m[1];
+        apply(false);
+      }, opt);
+      const end = (e) => {
+        if (!pts.delete(e.pointerId)) return;
+        if (pts.size < 2) pinch = null;
+        // after a pinch, the finger still down carries on panning from where the view is now
+        if (pts.size === 1 && s > 1) { const [p] = [...pts.values()]; pan = { x: p[0], y: p[1], tx, ty }; }
+        if (!pts.size) pan = null;
+        if (gestured && pts.size) e.stopImmediatePropagation(); // the last lift still reaches the lab, so its drag ends
+      };
+      stage.addEventListener("pointerup", end, opt);
+      stage.addEventListener("pointercancel", end, opt);
+      // a trackpad pinch in a desktop browser arrives as ctrl + wheel
+      stage.addEventListener("wheel", (e) => { if (!e.ctrlKey) return; e.preventDefault(); zoomAt(e.clientX, e.clientY, s * Math.exp(-e.deltaY / 200), false); }, { passive: false });
+      addEventListener("resize", () => apply(false));
+    }
+    return {
+      wire, get gestured() { return gestured; }, get scale() { return s; },
+      toggleAt(x, y) { if (s > 1) { s = 1; apply(true); } else zoomAt(x, y, 2.5, true); },
+      set(level) { const [cx, cy] = centre(); zoomAt(cx, cy, level, true); },
+      // Centre the point at (fx, fy) of the stage (0..1 each) and zoom to level; 1 resets.
+      focus(fx, fy, level) {
+        if (!stage) return;
+        const W = stage.offsetWidth, Hh = stage.offsetHeight;
+        s = Math.max(1, level); tx = W / 2 - s * fx * W; ty = Hh / 2 - s * fy * Hh;
+        apply(true);
+      },
+    };
+  })();
+  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => { build(); zoom.wire(); wirePicker(); }) : (build(), zoom.wire(), wirePicker());
+  window.addEventListener("load", () => native && native.ready && native.ready());
+  return {
+    get values() { return values; }, get step() { return step; }, get mode() { return mode; },
+    get theme() { return document.body.dataset.theme; },
+    reduced: matchMedia("(prefers-reduced-motion: reduce)"),
+    value: (id) => values[id], set: setValue, setMode, setStep, gauge,
+    onChange: (fn) => listeners.push(fn), onStep: (fn) => stepListeners.push(fn),
+    onMode: (fn) => modeListeners.push(fn), onAction: (fn) => actionListeners.push(fn), onPick: (fn) => pickListeners.push(fn), pick, zoom,
+    // Pause everything when the app goes to the background (called from Android).
+    paused: false, setPaused(p) { this.paused = !!p; document.dispatchEvent(new CustomEvent("lab-pause", { detail: this.paused })); },
+  };
+})();
+window.Lab = Lab;
+const AZIMUTH = 45;
+const ELEVATION = 30;
+const SHADES = 4;
+const RADIANS = Math.PI / 180;
+const UNIT = Math.sqrt(1.6);
+function cameraOf({ scale, azimuth = AZIMUTH, elevation = ELEVATION }) {
+    const a = azimuth * RADIANS;
+    const e = elevation * RADIANS;
+    return { sinA: Math.sin(a), cosA: Math.cos(a), sinE: Math.sin(e), cosE: Math.cos(e), k: scale * UNIT };
+}
+function iso([x, y, z], projection) {
+    const { origin } = projection;
+    const { sinA, cosA, sinE, cosE, k } = cameraOf(projection);
+    return [origin[0] + (x * sinA - y * cosA) * k, origin[1] + ((x * cosA + y * sinA) * sinE - z * cosE) * k];
+}
+function towardViewer(projection) {
+    const { sinA, cosA } = cameraOf(projection);
+    return [cosA, sinA];
+}
+function depthOf([x, y, z], projection) {
+    const { sinA, cosA, sinE, cosE } = cameraOf(projection);
+    return (x * cosA + y * sinA) * cosE + z * sinE;
+}
+const tenth = (value) => {
+    const text = (Math.round(value * 10) / 10).toFixed(1).replace(/\.0$/, "");
+    return text === "-0" ? "0" : text;
+};
+function pathOf(points, closed = false) {
+    if (!points.length)
+        return "";
+    return points.map(([x, y], at) => `${at ? "L" : "M"}${tenth(x)} ${tenth(y)}`).join("") + (closed ? "Z" : "");
+}
+const joinPaths = (paths) => paths.filter(Boolean).join("");
+function roundedPlan({ x, y, w, d, r }, steps = 8) {
+    const radius = Math.max(0, Math.min(r, w / 2, d / 2));
+    const corners = [
+        [x + w - radius, y + radius, -90],
+        [x + w - radius, y + d - radius, 0],
+        [x + radius, y + d - radius, 90],
+        [x + radius, y + radius, 180],
+    ];
+    const out = [];
+    for (const [cx, cy, start] of corners) {
+        const count = radius > 0 ? steps : 0;
+        for (let step = 0; step <= count; step++) {
+            const angle = (start + (count ? (90 * step) / count : 45)) * RADIANS;
+            out.push([cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)]);
+        }
+    }
+    return out;
+}
+function signedArea(points) {
+    let area = 0;
+    for (let index = 0; index < points.length; index++) {
+        const [ax, ay] = points[index];
+        const [bx, by] = points[(index + 1) % points.length];
+        area += ax * by - bx * ay;
+    }
+    return area / 2;
+}
+const oriented = (points) => (signedArea(points) < 0 ? [...points].reverse() : points);
+function convexHull(points) {
+    const sorted = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+    if (sorted.length < 3)
+        return sorted;
+    const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+    const lower = [];
+    for (const point of sorted) {
+        while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 0)
+            lower.pop();
+        lower.push(point);
+    }
+    const upper = [];
+    for (let index = sorted.length - 1; index >= 0; index--) {
+        const point = sorted[index];
+        while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 0)
+            upper.pop();
+        upper.push(point);
+    }
+    return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+}
+function runsOf(flags, want) {
+    const count = flags.length;
+    const runs = [];
+    const start = flags.findIndex((flag, index) => flag !== flags[(index + count - 1) % count]);
+    if (start < 0)
+        return flags[0] === want ? [Array.from({ length: count + 1 }, (_, index) => index % count)] : [];
+    let run = null;
+    for (let step = 0; step < count; step++) {
+        const index = (start + step) % count;
+        if (flags[index] === want) {
+            if (!run)
+                run = [index];
+            run.push((index + 1) % count);
+        }
+        else if (run) {
+            runs.push(run);
+            run = null;
+        }
+    }
+    if (run)
+        runs.push(run);
+    return runs;
+}
+function extrude(ring, z, height, projection, options = {}) {
+    const convex = options.convex ?? true;
+    const count = ring.length;
+    const counter = signedArea(ring) > 0;
+    const [vx, vy] = towardViewer(projection);
+    const { sinA, cosA } = cameraOf(projection);
+    const normals = ring.map(([ax, ay], index) => {
+        const [bx, by] = ring[(index + 1) % count];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const length = Math.hypot(dx, dy) || 1;
+        return (counter ? [dy / length, -dx / length] : [-dy / length, dx / length]);
+    });
+    const facing = normals.map(([nx, ny]) => nx * vx + ny * vy > 1e-9);
+    const top = ring.map(([x, y]) => iso([x, y, z + height], projection));
+    const bottom = ring.map(([x, y]) => iso([x, y, z], projection));
+    const outline = [];
+    const crease = [];
+    for (const run of runsOf(facing, false))
+        outline.push(pathOf(run.map((index) => top[index])));
+    for (const run of runsOf(facing, true)) {
+        crease.push(pathOf(run.map((index) => top[index])));
+        if (height > 0)
+            outline.push(pathOf(run.map((index) => bottom[index])));
+    }
+    if (height > 0) {
+        for (let index = 0; index < count; index++) {
+            if (facing[(index + count - 1) % count] !== facing[index])
+                outline.push(pathOf([top[index], bottom[index]]));
+        }
+    }
+    let fill;
+    if (convex) {
+        fill = pathOf(convexHull([...top, ...bottom]), true);
+    }
+    else {
+        const parts = [pathOf(oriented(top), true), pathOf(oriented(bottom), true)];
+        for (let index = 0; index < count; index++) {
+            if (!facing[index])
+                continue;
+            const next = (index + 1) % count;
+            parts.push(pathOf(oriented([top[index], top[next], bottom[next], bottom[index]]), true));
+        }
+        fill = parts.join("");
+    }
+    const buckets = Array.from({ length: SHADES }, () => []);
+    if (height > 0) {
+        const [lx, ly] = [-sinA, cosA];
+        for (let index = 0; index < count; index++) {
+            if (!facing[index])
+                continue;
+            const [nx, ny] = normals[index];
+            const lit = (nx * lx + ny * ly + 1) / 2;
+            const shade = Math.min(SHADES - 1, Math.max(0, Math.floor(lit * SHADES)));
+            const next = (index + 1) % count;
+            buckets[shade].push(pathOf(oriented([top[index], top[next], bottom[next], bottom[index]]), true));
+        }
+    }
+    let bevel;
+    if (options.bevel && options.bevel > 0) {
+        const by = options.bevel;
+        const inset = ring.map(([x, y], index) => {
+            const [ax, ay] = normals[(index + count - 1) % count];
+            const [bx, by2] = normals[index];
+            const mx = ax + bx;
+            const my = ay + by2;
+            const length = Math.hypot(mx, my) || 1;
+            return [x - (mx / length) * by, y - (my / length) * by];
+        });
+        const insetTop = inset.map(([x, y]) => iso([x, y, z + height], projection));
+        bevel = runsOf(facing, true)
+            .map((run) => pathOf([top[run[0]], ...run.slice(1, -1).map((index) => insetTop[index]), top[run[run.length - 1]]]))
+            .join("");
+    }
+    return {
+        fill,
+        outline: outline.join(""),
+        crease: crease.join(""),
+        top: pathOf(oriented(top), true),
+        shades: buckets.map((paths) => paths.join("")),
+        bevel,
+    };
+}
+const ringOf = (plan, steps = 8) => roundedPlan(plan, steps);
+function slabOf(plan, z, height, projection, steps = 8, bevel = 0) {
+    return extrude(ringOf(plan, steps), z, height, projection, { convex: true, bevel });
+}
+function circleRing(cx, cy, radius, steps = 40) {
+    return Array.from({ length: steps }, (_, step) => {
+        const angle = (step / steps) * Math.PI * 2;
+        return [cx + radius * Math.cos(angle), cy + radius * Math.sin(angle)];
+    });
+}
+function cylinder(cx, cy, radius, z, height, projection, steps = 32, bevel = 0) {
+    return extrude(circleRing(cx, cy, radius, steps), z, height, projection, { convex: true, bevel });
+}
+const insetPlan = ({ x, y, w, d, r }, by) => ({ x: x + by, y: y + by, w: w - by * 2, d: d - by * 2, r: Math.max(0, r - by) });
+function onTop(points, z, projection, closed = false) {
+    return pathOf(points.map(([x, y]) => iso([x, y, z], projection)), closed);
+}
+const planOutline = (plan, z, projection, steps = 8) => onTop(ringOf(plan, steps), z, projection, true);
+const lineOnTop = (from, to, z, projection) => onTop([from, to], z, projection);
+const segment = (from, to, projection) => pathOf([iso(from, projection), iso(to, projection)]);
+const rise = (at, from, to, projection) => segment([at[0], at[1], from], [at[0], at[1], to], projection);
+const ring = (cx, cy, radius, z, projection, steps = 40) => onTop(circleRing(cx, cy, radius, steps), z, projection, true);
+const pointsAt = (points, projection) => points.map((point) => iso(point, projection));
+function dotGrid(x, y, columns, rows, gap, z, projection) {
+    const dots = [];
+    for (let row = 0; row < rows; row++) {
+        for (let column = 0; column < columns; column++)
+            dots.push(iso([x + column * gap, y + row * gap, z], projection));
+    }
+    return dots;
+}
+function corners({ x, y, w, d }, inset = 0) {
+    return [
+        [x + inset, y + inset],
+        [x + w - inset, y + inset],
+        [x + inset, y + d - inset],
+        [x + w - inset, y + d - inset],
+    ];
+}
+function boxCorners({ x, y, w, d }, z0, z1) {
+    const out = [];
+    for (const px of [x, x + w])
+        for (const py of [y, y + d])
+            for (const z of [z0, z1])
+                out.push([px, py, z]);
+    return out;
+}
+function knurl(cx, cy, radius, z0, z1, count, projection, inset = 0.4) {
+    const [vx, vy] = towardViewer(projection);
+    const lines = [];
+    for (let index = 0; index < count; index++) {
+        const angle = (index / count) * Math.PI * 2;
+        const nx = Math.cos(angle);
+        const ny = Math.sin(angle);
+        if (nx * vx + ny * vy < 0.15)
+            continue;
+        lines.push(segment([cx + radius * nx, cy + radius * ny, z0 + inset], [cx + radius * nx, cy + radius * ny, z1 - inset], projection));
+    }
+    return lines.join("");
+}
+function sideArc(cx, cy, radius, z, projection, steps = 24) {
+    const [vx, vy] = towardViewer(projection);
+    const facing = Math.atan2(vy, vx);
+    const points = [];
+    for (let step = 0; step <= steps; step++) {
+        const angle = facing - Math.PI / 2 + (step / steps) * Math.PI;
+        points.push(iso([cx + radius * Math.cos(angle), cy + radius * Math.sin(angle), z], projection));
+    }
+    return pathOf(points);
+}
+function ringSeam(ring, z, projection) {
+    const count = ring.length;
+    const counter = signedArea(ring) > 0;
+    const [vx, vy] = towardViewer(projection);
+    const facing = ring.map(([ax, ay], index) => {
+        const [bx, by] = ring[(index + 1) % count];
+        const dx = bx - ax;
+        const dy = by - ay;
+        const [nx, ny] = counter ? [dy, -dx] : [-dy, dx];
+        return nx * vx + ny * vy > 1e-9;
+    });
+    return runsOf(facing, true).map((run) => pathOf(run.map((index) => iso([ring[index][0], ring[index][1], z], projection)))).join("");
+}
+const sideSeam = (plan, z, projection, steps = 8) => ringSeam(ringOf(plan, steps), z, projection);
+function sideRing(center, radius, axis, projection, steps = 20) {
+    const [px, py, pz] = center;
+    const points = [];
+    for (let step = 0; step < steps; step++) {
+        const angle = (step / steps) * Math.PI * 2;
+        const u = radius * Math.cos(angle);
+        const v = radius * Math.sin(angle);
+        points.push(iso(axis === "x" ? [px, py + u, pz + v] : [px + u, py, pz + v], projection));
+    }
+    return pathOf(points, true);
+}
+function coil(from, to, center, radius, turns, axis, projection, perTurn = 16) {
+    const count = Math.max(1, Math.round(turns * perTurn));
+    const back = [];
+    const front = [];
+    let run = [];
+    let near = null;
+    for (let index = 0; index <= count; index++) {
+        const share = index / count;
+        const angle = share * turns * Math.PI * 2;
+        const u = radius * Math.cos(angle);
+        const v = radius * Math.sin(angle);
+        const along = from + (to - from) * share;
+        const point = axis === "x" ? [along, center[0] + u, center[1] + v] : [center[0] + u, along, center[1] + v];
+        const normal = axis === "x" ? [0, Math.cos(angle), Math.sin(angle)] : [Math.cos(angle), 0, Math.sin(angle)];
+        const facing = depthOf(normal, projection) > 0;
+        const flat = iso(point, projection);
+        if (near === null)
+            near = facing;
+        if (facing !== near) {
+            run.push(flat);
+            (near ? front : back).push(pathOf(run));
+            run = [flat];
+            near = facing;
+            continue;
+        }
+        run.push(flat);
+    }
+    if (run.length > 1)
+        (near ? front : back).push(pathOf(run));
+    return { back: back.join(""), front: front.join("") };
+}
+function topTicks(from, to, step, every, edge, z, lengths, projection, axis = "x") {
+    const minor = [];
+    const major = [];
+    const first = Math.ceil(from / step) * step;
+    for (let at = first, index = Math.round(first / step); at <= to + 1e-9; at += step, index++) {
+        const big = index % every === 0;
+        const length = big ? lengths[1] : lengths[0];
+        const a = axis === "x" ? [at, edge] : [edge, at];
+        const b = axis === "x" ? [at, edge + length] : [edge + length, at];
+        (big ? major : minor).push(lineOnTop(a, b, z, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+function sideTicks(from, to, step, every, face, top, lengths, projection, axis = "x") {
+    const minor = [];
+    const major = [];
+    const first = Math.ceil(from / step) * step;
+    for (let at = first, index = Math.round(first / step); at <= to + 1e-9; at += step, index++) {
+        const big = index % every === 0;
+        const length = big ? lengths[1] : lengths[0];
+        const a = axis === "x" ? [at, face, top] : [face, at, top];
+        const b = axis === "x" ? [at, face, top - length] : [face, at, top - length];
+        (big ? major : minor).push(segment(a, b, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+function radialTicks(cx, cy, radius, count, every, z, lengths, projection, from = 0, span = Math.PI * 2) {
+    const minor = [];
+    const major = [];
+    const closed = Math.abs(span - Math.PI * 2) < 1e-9;
+    const steps = closed ? count : count + 1;
+    for (let index = 0; index < steps; index++) {
+        const angle = from + (index / count) * span;
+        const big = index % every === 0;
+        const inner = radius - (big ? lengths[1] : lengths[0]);
+        const sx = Math.sin(angle);
+        const sy = -Math.cos(angle);
+        (big ? major : minor).push(lineOnTop([cx + sx * inner, cy + sy * inner], [cx + sx * radius, cy + sy * radius], z, projection));
+    }
+    return { minor: minor.join(""), major: major.join("") };
+}
+const haloOf = (plan, z, height, projection) => slabOf(plan, z, height, projection).fill;
+function axisVector(projection, [dx, dy, dz]) {
+    const origin = iso([0, 0, 0], projection);
+    const moved = iso([dx, dy, dz], projection);
+    return [moved[0] - origin[0], moved[1] - origin[1]];
+}
+const fine = (value) => Math.round(value * 100) / 100;
+function translateAlong(projection, by) {
+    const [x, y] = axisVector(projection, by);
+    return `translate(${fine(x)} ${fine(y)})`;
+}
+const thousandth = (value) => Math.round(value * 1000) / 1000;
+function axesAt(at, z, projection) {
+    const origin = iso([at[0], at[1], z], projection);
+    const along = (point) => {
+        const [px, py] = iso(point, projection);
+        return [px - origin[0], py - origin[1]];
+    };
+    return { origin, x: along([at[0] + 1, at[1], z]), y: along([at[0], at[1] + 1, z]), z: along([at[0], at[1], z + 1]) };
+}
+const matrixOf = (u, v, origin) => `matrix(${thousandth(u[0])} ${thousandth(u[1])} ${thousandth(v[0])} ${thousandth(v[1])} ${thousandth(origin[0])} ${thousandth(origin[1])})`;
+function holdStill(element, [dx, dy]) {
+    const text = dx || dy ? `translate(${-dx} ${-dy})` : "";
+    element.querySelectorAll("[data-hold]").forEach((node) => (text ? node.setAttribute("transform", text) : node.removeAttribute("transform")));
+}
+function topMatrix(at, z, projection, along = "x") {
+    const { origin, x, y } = axesAt(at, z, projection);
+    return along === "x" ? matrixOf(x, y, origin) : matrixOf([-y[0], -y[1]], x, origin);
+}
+function sideMatrix(at, z, projection, face) {
+    const { origin, x, y, z: up } = axesAt(at, z, projection);
+    const down = [-up[0], -up[1]];
+    return face === "left" ? matrixOf(x, down, origin) : matrixOf([-y[0], -y[1]], down, origin);
+}
+function screenRise(height, projection) {
+    const { cosE, k } = cameraOf(projection);
+    return height * cosE * k;
+}
+function fitProjection(points, width, height, { pad = 24, headroom = 0, azimuth = AZIMUTH, elevation = ELEVATION } = {}) {
+    const unit = { origin: [0, 0], scale: 1, azimuth, elevation };
+    const flat = points.map((point) => iso(point, unit));
+    const xs = flat.map(([x]) => x);
+    const ys = flat.map(([, y]) => y);
+    const left = Math.min(...xs);
+    const right = Math.max(...xs);
+    const up = Math.min(...ys);
+    const down = Math.max(...ys);
+    const scale = Math.min((width - pad * 2) / (right - left), (height - pad * 2 - headroom) / (down - up));
+    return {
+        origin: [width / 2 - ((left + right) / 2) * scale, headroom + (height - headroom) / 2 - ((up + down) / 2) * scale],
+        scale,
+        azimuth,
+        elevation,
+    };
+}
+const escape = (text) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const attrs = (pairs) => Object.entries(pairs)
+    .filter(([, value]) => value !== undefined && value !== false)
+    .map(([key, value]) => ` ${key}="${escape(String(value))}"`)
+    .join("");
+function solidSvg(paths, { tone = "hi", crease = "faint", halo = false, lit = false, flat = false, className, inner = "" } = {}) {
+    const parts = [];
+    if (halo)
+        parts.push(`<path class="iso-halo" d="${paths.fill}"/>`);
+    parts.push(`<path class="iso-fill" d="${paths.fill}"/>`);
+    if (!flat) {
+        paths.shades.forEach((d, shade) => {
+            if (d)
+                parts.push(`<path class="iso-shade" data-shade="${shade}" d="${d}"/>`);
+        });
+        parts.push(`<path class="iso-top" d="${paths.top}"/>`);
+    }
+    if (crease !== "none" && paths.crease)
+        parts.push(`<path class="iso-line iso-crease" data-tone="${crease}" d="${paths.crease}"/>`);
+    if (crease !== "none" && paths.bevel)
+        parts.push(`<path class="iso-line iso-bevel" data-tone="${crease}" d="${paths.bevel}"/>`);
+    if (inner)
+        parts.push(inner);
+    parts.push(`<path class="iso-line iso-edge" data-tone="${tone}" d="${paths.outline}"/>`);
+    return `<g${attrs({ class: className ? `iso-solid ${className}` : "iso-solid", "data-lit": lit ? "" : undefined, "data-seamless": paths.seamless ? "" : undefined })}>${parts.join("")}</g>`;
+}
+function lineSvg(d, { tone = "lo", dotted = false, dashed = false, flow = false, className, free } = {}) {
+    if (!d)
+        return "";
+    return `<path${attrs({
+        class: className ? `iso-line ${className}` : "iso-line",
+        "data-tone": tone,
+        "data-free": free === true ? "" : free || undefined,
+        "data-dotted": dotted ? "" : undefined,
+        "data-dashed": dashed ? "" : undefined,
+        "data-flow": flow ? "" : undefined,
+        d,
+    })}/>`;
+}
+function dotsSvg(points, { size = 0.5, tone = "mid", pulse = false } = {}) {
+    const dots = points
+        .map(([x, y, alpha], index) => `<circle cx="${tenth(x)}" cy="${tenth(y)}" r="${size}"${alpha !== undefined && alpha < 1 ? ` fill-opacity="${Math.max(0, alpha).toFixed(2)}"` : ""}${pulse ? ` data-pulse="" style="--pulse-at:${(index * 137) % 1600}ms"` : ""}/>`)
+        .join("");
+    return `<g class="iso-dots" data-tone="${tone}">${dots}</g>`;
+}
+function fadedSvg(list, style = {}) {
+    const groups = new Map();
+    for (const entry of list) {
+        const [d, alpha] = Array.isArray(entry) ? entry : [entry.d, entry.alpha];
+        if (!d || !(alpha > 0.02))
+            continue;
+        const level = Math.min(1, Math.round(alpha * 20) / 20);
+        groups.set(level, (groups.get(level) ?? "") + d);
+    }
+    return [...groups].map(([alpha, d]) => (alpha >= 1 ? lineSvg(d, style) : `<g opacity="${alpha.toFixed(2)}">${lineSvg(d, style)}</g>`)).join("");
+}
+function fadeLineSvg(points, { fade = [0, 0], tone = "lo", className, stops = 6 } = {}) {
+    if (points.length < 2)
+        return "";
+    const ease = (t) => t * t * (3 - 2 * t);
+    const hashOf = (text) => {
+        let hash = 2166136261;
+        for (let index = 0; index < text.length; index++)
+            hash = Math.imul(hash ^ text.charCodeAt(index), 16777619);
+        return (hash >>> 0).toString(36);
+    };
+    const lengths = [0];
+    for (let index = 1; index < points.length; index++)
+        lengths.push(lengths[index - 1] + Math.hypot(points[index][0] - points[index - 1][0], points[index][1] - points[index - 1][1]));
+    const at = (length) => {
+        let index = 1;
+        while (index < points.length - 1 && lengths[index] < length)
+            index++;
+        const span = lengths[index] - lengths[index - 1] || 1;
+        const t = Math.max(0, Math.min(1, (length - lengths[index - 1]) / span));
+        return [points[index - 1][0] + (points[index][0] - points[index - 1][0]) * t, points[index - 1][1] + (points[index][1] - points[index - 1][1]) * t];
+    };
+    const pieceOf = (from, to) => [at(from), ...points.filter((_, index) => lengths[index] > from + 1e-6 && lengths[index] < to - 1e-6), at(to)];
+    const total = lengths[lengths.length - 1];
+    if (total < 1e-6)
+        return "";
+    let [start, end] = Array.isArray(fade) ? fade : [fade, fade];
+    if (start + end > total) {
+        const share = total / (start + end);
+        start *= share;
+        end *= share;
+    }
+    const paint = `var(--anatomy-${tone})`;
+    const ramp = (piece, rising) => {
+        const d = pathOf(piece);
+        const [x1, y1] = piece[0];
+        const [x2, y2] = piece[piece.length - 1];
+        const id = `iso-fade-${hashOf(`${d}|${tone}|${rising}`)}`;
+        const marks = Array.from({ length: stops + 1 }, (_, index) => {
+            const t = index / stops;
+            const alpha = ease(rising ? t : 1 - t);
+            return `<stop offset="${t.toFixed(3)}" stop-opacity="${alpha.toFixed(3)}" style="stop-color:${paint}"/>`;
+        }).join("");
+        const gradient = `<linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="${tenth(x1)}" y1="${tenth(y1)}" x2="${tenth(x2)}" y2="${tenth(y2)}">${marks}</linearGradient>`;
+        return `<defs>${gradient}</defs><path${attrs({ class: className ? `iso-line ${className}` : "iso-line", "data-tone": tone, "data-free": rising ? "start" : "end", d, style: `stroke:url(#${id})` })}/>`;
+    };
+    const parts = [];
+    if (start > 0.05)
+        parts.push(ramp(pieceOf(0, start), true));
+    if (total - end - start > 0.05)
+        parts.push(lineSvg(pathOf(pieceOf(start, total - end)), { tone, className }));
+    if (end > 0.05)
+        parts.push(ramp(pieceOf(total - end, total), false));
+    return `<g class="iso-fade">${parts.join("")}</g>`;
+}
+function wireSvg(from, to, { via = [], tone = "lo", dotted = false, dashed = false, flow = false, ends = "both", size = 1.2 } = {}) {
+    const d = pathOf([from, ...via, to]);
+    const end = ([x, y]) => `<circle class="iso-wire-end" cx="${tenth(x)}" cy="${tenth(y)}" r="${size}"/>`;
+    return `<g class="iso-wire" data-tone="${tone}">${lineSvg(d, { tone, dotted, dashed, flow })}${ends === "both" || ends === "from" ? end(from) : ""}${ends === "both" || ends === "to" ? end(to) : ""}</g>`;
+}
+function faceTextSvg(transform, text, { size = 3, tone = "mid", anchor = "start" } = {}) {
+    return `<text class="iso-face-text" data-tone="${tone}" transform="${transform}" font-size="${size}" text-anchor="${anchor}">${escape(text)}</text>`;
+}
+function groupSvg(children, extra = {}) {
+    return `<g${attrs(extra)}>${Array.isArray(children) ? children.join("") : children}</g>`;
+}
+function figureSvg({ width, height, label, body, standalone = false, className }) {
+    const style = standalone ? `<style>${ISO_CSS}</style>` : "";
+    return `<svg${attrs({
+        xmlns: "http://www.w3.org/2000/svg",
+        class: `iso-svg${standalone ? " iso" : ""}${className ? ` ${className}` : ""}`,
+        "data-theme": standalone || undefined,
+        viewBox: `0 0 ${width} ${height}`,
+        role: "img",
+        "aria-label": label,
+    })}>${style}${Array.isArray(body) ? body.join("") : body}</svg>`;
+}
+function swatchSvg(mark) {
+    if (mark === "raised" || mark === "flat" || mark === "lit") {
+        const body = mark === "flat" ? "M2 6.5 8 3.5 14 6.5 8 9.5Z" : "M2 4.5 8 1.5 14 4.5 14 6 8 9 2 6Z";
+        const crease = mark === "flat" ? "" : `<path class="iso-swatch-crease" d="M2 4.5 8 7.5 14 4.5"/>`;
+        return `<svg class="iso-swatch" data-mark="${mark}" viewBox="0 0 16 10" aria-hidden="true"><path d="${body}"/>${crease}</svg>`;
+    }
+    return `<svg class="iso-swatch" data-mark="${mark}" viewBox="0 0 16 10" aria-hidden="true"><path d="M1.5 5h13"/></svg>`;
+}
+function plateHtml({ fig, title, hint, readout = "", keys = [], caption, body }) {
+    const corner = (name, text, extra = "") => `<span class="iso-plate-corner" data-corner="${name}"${extra}>${escape(text)}</span>`;
+    const legend = keys.length || caption
+        ? `<figcaption class="iso-legend">${keys.length ? `<span class="iso-keys">${keys.map((key) => `<span class="iso-key">${swatchSvg(key.mark)}${escape(key.label)}</span>`).join("")}</span>` : ""}${caption ? `<span class="iso-caption">${escape(caption)}</span>` : ""}</figcaption>`
+        : "";
+    return `<figure class="iso-figure"><div class="iso-plate"><div class="iso-plate-corners" aria-hidden="true">${corner("fig", fig)}${title ? corner("title", title) : ""}${hint ? corner("hint", hint) : ""}${corner("readout", readout, " data-readout")}</div>${body}</div>${legend}</figure>`;
+}
+function pageHtml({ title, theme = "dark", body, script = "", width = 650 }) {
+    return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><style>${ISO_CSS}${PAGE_CSS.replace("__WIDTH__", String(width))}</style></head><body class="iso" data-theme="${theme}"><main class="iso-page">${body}</main>${script ? `<script type="module">${script.replace(/<\/(script)/gi, "<\\/$1")}<\/script>` : ""}</body></html>`;
+}
+const PAGE_CSS = `
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body[data-theme="light"]{color-scheme:light}
+body{margin:0;background:var(--anatomy-page);color:var(--anatomy-text);font:14px/1.6 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.iso-page{width:min(__WIDTH__px,100% - 32px);margin:64px auto 96px}
+`;
+const ISO_CSS = `
+.iso{
+  --anatomy-page:#0b0b0b;--anatomy-card:#131313;--anatomy-text:#a3a3a3;--anatomy-strong:#e6e6e6;--anatomy-muted:#6e6e6e;
+  --anatomy-paper:#131313;--anatomy-face:#1b1b1b;--anatomy-top:#1c1c1c;
+  --anatomy-shade-0:#0f0f0f;--anatomy-shade-1:#121212;--anatomy-shade-2:#151515;--anatomy-shade-3:#181818;
+  --anatomy-lit-top:#262626;--anatomy-lit-shade:#1d1d1d;
+  --anatomy-hi:#d4d4d4;--anatomy-mid:#6a6a6a;--anatomy-lo:#3e3e3e;--anatomy-faint:#2a2a2a;--anatomy-lit:#ffffff;
+  --anatomy-halo:#050505;--anatomy-halo-opacity:.9;--anatomy-dot:#e6e6e6;
+  --anatomy-red:#ff6b6b;--anatomy-green:#6be0a0;--anatomy-blue:#6b9bff;
+  --anatomy-weight:.6px;--anatomy-ease:cubic-bezier(.32,.72,0,1);
+  --anatomy-mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff0a,inset 0 0 0 1px #ffffff06,0 0 0 1px #00000026,0 1px 1px -.5px #00000014,0 3px 3px -1.5px #00000014,0 6px 6px -3px #00000014,0 12px 12px -6px #00000014;
+}
+.iso[data-theme="light"]{
+  --anatomy-page:#f2f2ef;--anatomy-card:#fbfbfa;--anatomy-text:#57575a;--anatomy-strong:#18181a;--anatomy-muted:#8c8c90;
+  --anatomy-paper:#fbfbfa;--anatomy-face:#ffffff;--anatomy-top:#ffffff;
+  --anatomy-shade-0:#dcdcd9;--anatomy-shade-1:#e5e5e2;--anatomy-shade-2:#ededea;--anatomy-shade-3:#f4f4f1;
+  --anatomy-lit-top:#ffffff;--anatomy-lit-shade:#eeeeeb;
+  --anatomy-hi:#26262a;--anatomy-mid:#8a8a8f;--anatomy-lo:#b4b4b8;--anatomy-faint:#d4d4d6;--anatomy-lit:#000000;
+  --anatomy-halo:#8a8a80;--anatomy-halo-opacity:.32;--anatomy-dot:#3a3a3e;
+  --anatomy-red:#e5484d;--anatomy-green:#30a46c;--anatomy-blue:#3e63dd;
+  --anatomy-lift:inset 0 1px 0 0 #ffffff,0 0 0 1px #0000000f,0 1px 1px -.5px #0000000a,0 3px 3px -1.5px #0000000a,0 6px 6px -3px #0000000a,0 12px 12px -6px #0000000a;
+}
+.iso-svg{display:block;width:100%;height:auto;overflow:visible}
+.iso-svg path,.iso-svg circle{vector-effect:non-scaling-stroke}
+.iso-fill{fill:var(--anatomy-paper);stroke:none}
+.iso-solid[data-lit]>.iso-fill{fill:var(--anatomy-face)}
+.iso-shade,.iso-top{stroke:none}
+.iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.iso-top{fill:var(--anatomy-top)}
+.iso-solid[data-lit]>.iso-top{fill:var(--anatomy-lit-top)}
+.iso-solid[data-lit]>.iso-shade{fill:var(--anatomy-lit-shade)}
+.iso-solid[data-seamless]>.iso-shade,.iso-solid[data-seamless]>.iso-top{stroke-width:.4;stroke-linejoin:round}
+.iso-solid[data-seamless]>.iso-shade[data-shade="0"]{stroke:var(--anatomy-shade-0)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="1"]{stroke:var(--anatomy-shade-1)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="2"]{stroke:var(--anatomy-shade-2)}
+.iso-solid[data-seamless]>.iso-shade[data-shade="3"]{stroke:var(--anatomy-shade-3)}
+.iso-solid[data-seamless]>.iso-top{stroke:var(--anatomy-top)}
+.iso-solid[data-seamless][data-lit]>.iso-top{stroke:var(--anatomy-lit-top)}
+.iso-solid[data-seamless][data-lit]>.iso-shade{stroke:var(--anatomy-lit-shade)}
+.iso-solid[data-lit]>.iso-edge{stroke:var(--anatomy-lit)}
+.iso-halo{fill:var(--anatomy-halo);stroke:none;filter:blur(9px);opacity:var(--anatomy-halo-opacity);transform:translateY(3px)}
+.iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight);stroke-linecap:round;stroke-linejoin:round}
+.iso-line[data-tone="hi"]{stroke:var(--anatomy-hi)}
+.iso-line[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.iso-line[data-tone="lo"]{stroke:var(--anatomy-lo)}
+.iso-line[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.iso-line[data-tone="lit"]{stroke:var(--anatomy-lit)}
+.iso-line[data-tone="red"]{stroke:var(--anatomy-red)}
+.iso-line[data-tone="green"]{stroke:var(--anatomy-green)}
+.iso-line[data-tone="blue"]{stroke:var(--anatomy-blue)}
+.iso-line[data-dotted]{stroke-dasharray:.01 3.5;stroke-width:1}
+.iso-line[data-dashed]{stroke-dasharray:3 3}
+.iso-line[data-flow]{stroke-dasharray:2 6}
+.iso-wire-end{fill:var(--anatomy-paper);stroke:var(--anatomy-lo);stroke-width:var(--anatomy-weight)}
+.iso-wire[data-tone="hi"] .iso-wire-end{stroke:var(--anatomy-hi)}
+.iso-wire[data-tone="mid"] .iso-wire-end{stroke:var(--anatomy-mid)}
+.iso-wire[data-tone="faint"] .iso-wire-end{stroke:var(--anatomy-faint)}
+.iso-wire[data-tone="lit"] .iso-wire-end{stroke:var(--anatomy-lit)}
+.iso-dots circle{fill:var(--anatomy-dot);stroke:none;opacity:.32}
+.iso-dots[data-tone="hi"] circle{opacity:.85}
+.iso-dots[data-tone="mid"] circle{opacity:.45}
+.iso-dots[data-tone="lo"] circle{opacity:.22}
+.iso-dots[data-tone="faint"] circle{opacity:.12}
+.iso-face-text{fill:var(--anatomy-mid);font-family:var(--anatomy-mono);letter-spacing:.04em}
+.iso-face-text[data-tone="hi"]{fill:var(--anatomy-hi)}
+.iso-face-text[data-tone="lo"]{fill:var(--anatomy-lo)}
+.iso-face-text[data-tone="faint"]{fill:var(--anatomy-faint)}
+.tb-body{fill:var(--anatomy-shade-2);stroke:none}
+.tb-shine{fill:var(--anatomy-top);stroke:none}
+.tb-shade{fill:var(--anatomy-shade-0);stroke:none}
+.tb-ring{fill:none;stroke:var(--anatomy-lo);stroke-width:.45;stroke-linecap:butt;stroke-linejoin:round}
+.tb-ring[data-tone="mid"]{stroke:var(--anatomy-mid)}
+.tb-ring[data-tone="faint"]{stroke:var(--anatomy-faint)}
+.tb-ring[data-tone="hi"]{stroke:var(--anatomy-hi)}
+@keyframes iso-flow{to{stroke-dashoffset:-32}}
+@keyframes iso-pulse{0%,100%{opacity:.18}12%{opacity:1}40%{opacity:.18}}
+.iso-line[data-flow]{animation:iso-flow 1600ms linear infinite}
+.iso-dots circle[data-pulse]{animation:iso-pulse 1600ms steps(1,end) infinite;animation-delay:var(--pulse-at,0ms)}
+.iso-figure{margin:32px 0 36px}
+.iso-plate{position:relative;padding:52px 24px;border-radius:0;background:var(--anatomy-card);box-shadow:0 0 0 1px var(--anatomy-mid);--anatomy-paper:var(--anatomy-card)}
+.iso-plate-corners{position:absolute;inset:18px 20px;pointer-events:none}
+.iso-plate-corner{position:absolute;color:var(--anatomy-muted);font-family:var(--anatomy-mono);font-size:10.5px;line-height:1;letter-spacing:.04em;white-space:nowrap}
+.iso-plate-corner[data-corner="fig"]{top:0;left:0;color:var(--anatomy-text)}
+.iso-plate-corner[data-corner="title"]{top:0;right:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="hint"]{bottom:0;left:0;text-transform:uppercase;letter-spacing:.1em}
+.iso-plate-corner[data-corner="readout"]{right:0;bottom:0;color:var(--anatomy-text);font-variant-numeric:tabular-nums}
+.iso-plate .iso-svg{margin:0 auto}
+.iso-legend{display:grid;gap:8px;margin-top:12px;color:var(--anatomy-muted);font-size:13px;line-height:1.55}
+.iso-keys{display:flex;flex-wrap:wrap;gap:6px 18px}
+.iso-key{display:inline-flex;align-items:center;gap:7px}
+.iso-swatch{width:16px;height:10px;flex:none;overflow:visible}
+.iso-swatch path{fill:none;stroke:var(--anatomy-hi);stroke-width:1;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.iso-swatch[data-mark="raised"] path,.iso-swatch[data-mark="flat"] path{stroke:var(--anatomy-mid)}
+.iso-swatch[data-mark="lit"] path{stroke:var(--anatomy-lit)}
+.iso-swatch[data-mark="dim"] path{stroke:var(--anatomy-lo)}
+.iso-swatch[data-mark="dotted"] path{stroke-dasharray:.01 3;stroke-width:1.4}
+.iso-swatch[data-mark="dashed"] path{stroke-dasharray:3 2.5}
+.iso-swatch[data-mark="red"] path{stroke:var(--anatomy-red)}
+.iso-swatch[data-mark="green"] path{stroke:var(--anatomy-green)}
+.iso-swatch[data-mark="blue"] path{stroke:var(--anatomy-blue)}
+.iso-swatch-crease{stroke:var(--anatomy-lo)!important}
+@media (max-width:560px){.iso-plate{padding:48px 12px 70px}.iso-plate-corner[data-corner="hint"]{bottom:18px}}
+@media (prefers-reduced-motion:reduce){.iso-line[data-flow],.iso-dots circle[data-pulse]{animation:none}}
+`;
+const G = (() => {
+
+const TAU = Math.PI * 2;
+const LIGHT_UP = 1.2;
+const BANDS = [0, 0.2, 0.42, 0.62];
+
+const dot3 = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+const add3 = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+const sub3 = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const mul3 = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
+const len3 = (a) => Math.hypot(a[0], a[1], a[2]);
+const unit3 = (a) => {
+  const length = len3(a) || 1;
+  return [a[0] / length, a[1] / length, a[2] / length];
+};
+const cross3 = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+const lerp3 = (a, b, t) => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
+
+function viewOf(P) {
+  const { sinA, cosA, sinE, cosE } = cameraOf(P);
+  return [cosA * cosE, sinA * cosE, sinE];
+}
+
+function lightOf(P) {
+  const { sinA, cosA } = cameraOf(P);
+  return unit3([-sinA, cosA, LIGHT_UP]);
+}
+
+const scaleOf = (P) => cameraOf(P).k;
+
+function bandOf(score) {
+  let tone = 0;
+  while (tone < BANDS.length && score >= BANDS[tone]) tone++;
+  return tone;
+}
+
+const toneOf = (normal, P) => bandOf(dot3(unit3(normal), lightOf(P)));
+
+function frameAlong(o, a) {
+  const axis = unit3(a);
+  const helper = Math.abs(axis[2]) > 0.9 ? [1, 0, 0] : [0, 0, 1];
+  const u = unit3(cross3(helper, axis));
+  const v = cross3(axis, u);
+  return { o, a: axis, u, v };
+}
+
+const frameOf = (o, a, u, v) => ({ o, a, u, v });
+
+function pointOf(F, s, r, angle) {
+  const c = Math.cos(angle);
+  const n = Math.sin(angle);
+  return [
+    F.o[0] + F.a[0] * s + r * (c * F.u[0] + n * F.v[0]),
+    F.o[1] + F.a[1] * s + r * (c * F.u[1] + n * F.v[1]),
+    F.o[2] + F.a[2] * s + r * (c * F.u[2] + n * F.v[2]),
+  ];
+}
+
+const radialOf = (F, angle) => {
+  const c = Math.cos(angle);
+  const n = Math.sin(angle);
+  return [c * F.u[0] + n * F.v[0], c * F.u[1] + n * F.v[1], c * F.u[2] + n * F.v[2]];
+};
+
+const tangentOf = (F, angle) => {
+  const c = Math.cos(angle);
+  const n = Math.sin(angle);
+  return [-n * F.u[0] + c * F.v[0], -n * F.u[1] + c * F.v[1], -n * F.u[2] + c * F.v[2]];
+};
+
+const angleToward = (F, direction) => Math.atan2(dot3(direction, F.v), dot3(direction, F.u));
+
+function hullTagged(points) {
+  const sorted = [...points].sort((a, b) => a.p[0] - b.p[0] || a.p[1] - b.p[1]);
+  if (sorted.length < 3) return sorted;
+  const cross = (o, a, b) => (a.p[0] - o.p[0]) * (b.p[1] - o.p[1]) - (a.p[1] - o.p[1]) * (b.p[0] - o.p[0]);
+  const lower = [];
+  for (const point of sorted) {
+    while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 1e-9) lower.pop();
+    lower.push(point);
+  }
+  const upper = [];
+  for (let index = sorted.length - 1; index >= 0; index--) {
+    const point = sorted[index];
+    while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 1e-9) upper.pop();
+    upper.push(point);
+  }
+  return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+}
+
+const hullOf = (points) => hullTagged(points.map((p) => ({ p }))).map(({ p }) => p);
+
+function runsOf(flags) {
+  const count = flags.length;
+  const start = flags.findIndex((flag, index) => flag !== flags[(index + count - 1) % count]);
+  if (start < 0) return flags[0] ? [Array.from({ length: count + 1 }, (_, index) => index % count)] : [];
+  const runs = [];
+  let run = null;
+  for (let step = 0; step < count; step++) {
+    const index = (start + step) % count;
+    if (flags[index]) {
+      if (!run) run = [index];
+      run.push((index + 1) % count);
+    } else if (run) {
+      runs.push(run);
+      run = null;
+    }
+  }
+  if (run) runs.push(run);
+  return runs;
+}
+
+function groupsOf(keys) {
+  const count = keys.length;
+  const out = [];
+  const start = keys.findIndex((key, index) => key !== keys[(index + count - 1) % count]);
+  if (start < 0) {
+    if (keys[0] !== null) out.push({ key: keys[0], run: Array.from({ length: count + 1 }, (_, index) => index % count) });
+    return out;
+  }
+  let current = null;
+  for (let step = 0; step < count; step++) {
+    const index = (start + step) % count;
+    const key = keys[index];
+    if (current && current.key === key) {
+      current.run.push((index + 1) % count);
+      continue;
+    }
+    if (current && current.key !== null) out.push(current);
+    current = { key, run: [index, (index + 1) % count] };
+  }
+  if (current && current.key !== null) out.push(current);
+  return out;
+}
+
+const stepsFor = (radius, least = 16, most = 112, scale = 0) => Math.max(least, Math.min(most, scale ? Math.ceil((TAU * radius * scale) / 3) : Math.round((radius * 1.3) / 4) * 4));
+
+function chains(edges) {
+  const out = [];
+  let current = null;
+  for (const [a, b, keep] of edges) {
+    if (!keep) {
+      if (current) out.push(current);
+      current = null;
+      continue;
+    }
+    if (!current) current = [a];
+    current.push(b);
+  }
+  if (current) out.push(current);
+  if (out.length > 1 && edges[0][2] && edges[edges.length - 1][2]) {
+    const last = out.pop();
+    out[0] = [...last, ...out[0].slice(1)];
+  }
+  return out;
+}
+
+function labelledArcs(nr, na, view, light, gr = nr, ga = na) {
+  const cuts = [];
+  if (Math.abs(gr) > 1e-9) {
+    const visibleCut = -(ga * view.a) / (gr * view.flat);
+    if (visibleCut > -1 && visibleCut < 1) {
+      const d = Math.acos(visibleCut);
+      cuts.push(view.phi - d, view.phi + d);
+    }
+  }
+  if (Math.abs(nr) > 1e-9) {
+    for (const threshold of BANDS) {
+      const c = (threshold - na * light.a) / (nr * light.flat);
+      if (c > -1 && c < 1) {
+        const d = Math.acos(c);
+        cuts.push(light.phi - d, light.phi + d);
+      }
+    }
+  }
+  const wrap = (angle) => ((angle % TAU) + TAU) % TAU;
+  const sorted = [...new Set(cuts.map((angle) => Math.round(wrap(angle) * 1e9) / 1e9))].sort((a, b) => a - b);
+  const label = (angle) => {
+    const facing = gr * view.flat * Math.cos(angle - view.phi) + ga * view.a;
+    if (facing <= 1e-9) return -1;
+    return bandOf(nr * light.flat * Math.cos(angle - light.phi) + na * light.a);
+  };
+  if (!sorted.length) {
+    const tone = label(0);
+    return tone < 0 ? [] : [{ tone, from: 0, to: TAU, full: true }];
+  }
+  const arcs = sorted.map((from, index) => {
+    const to = index + 1 < sorted.length ? sorted[index + 1] : sorted[0] + TAU;
+    return { tone: label((from + to) / 2), from, to };
+  });
+  const merged = [];
+  for (const arc of arcs) {
+    const last = merged[merged.length - 1];
+    if (last && last.tone === arc.tone && Math.abs(last.to - arc.from) < 1e-9) last.to = arc.to;
+    else merged.push({ ...arc });
+  }
+  if (merged.length > 1 && merged[0].tone === merged[merged.length - 1].tone && Math.abs(merged[merged.length - 1].to - TAU - merged[0].from) < 1e-9) {
+    const last = merged.pop();
+    merged[0].from = last.from - TAU;
+  }
+  return merged.filter((arc) => arc.tone >= 0);
+}
+
+function hermiteSlopes(run) {
+  const n = run.length - 1;
+  const h = Array.from({ length: n }, (_, j) => run[j + 1][0] - run[j][0]);
+  const delta = h.map((value, j) => (run[j + 1][1] - run[j][1]) / value);
+  const d = new Array(n + 1).fill(0);
+  const end = (h0, h1, d0, d1) => {
+    let value = ((2 * h0 + h1) * d0 - h0 * d1) / (h0 + h1);
+    if (Math.sign(value) !== Math.sign(d0)) value = 0;
+    else if (Math.sign(d0) !== Math.sign(d1) && Math.abs(value) > Math.abs(3 * d0)) value = 3 * d0;
+    return value;
+  };
+  if (n === 1) d[0] = d[1] = delta[0];
+  else {
+    d[0] = end(h[0], h[1], delta[0], delta[1]);
+    d[n] = end(h[n - 1], h[n - 2], delta[n - 1], delta[n - 2]);
+  }
+  for (let k = 1; k < n; k++) {
+    if (delta[k - 1] * delta[k] <= 0) continue;
+    const w1 = 2 * h[k] + h[k - 1];
+    const w2 = h[k] + 2 * h[k - 1];
+    d[k] = (w1 + w2) / (w1 / delta[k - 1] + w2 / delta[k]);
+  }
+  return d;
+}
+
+function curveRuns(meridian) {
+  const m = meridian.length;
+  const segments = new Array(m - 1).fill(null);
+  let start = 0;
+  while (start < m - 1) {
+    let end = start + 1;
+    while (end < m - 1 && meridian[end][2] && Math.abs(meridian[end + 1][0] - meridian[end][0]) > 1e-9 && Math.abs(meridian[end][0] - meridian[end - 1][0]) > 1e-9) end++;
+    const run = meridian.slice(start, end + 1);
+    const n = run.length - 1;
+    if (n >= 2 && run.every((point, j) => j === 0 || Math.abs(point[0] - run[j - 1][0]) > 1e-9)) {
+      const d = hermiteSlopes(run);
+      for (let j = 0; j < n; j++) {
+        const [s0, r0] = run[j];
+        const [s1, r1] = run[j + 1];
+        const hj = s1 - s0;
+        const d0 = d[j];
+        const d1 = d[j + 1];
+        const radius = (s) => {
+          const t = (s - s0) / hj;
+          return (2 * t ** 3 - 3 * t ** 2 + 1) * r0 + (t ** 3 - 2 * t ** 2 + t) * hj * d0 + (-2 * t ** 3 + 3 * t ** 2) * r1 + (t ** 3 - t ** 2) * hj * d1;
+        };
+        const slope = (s) => {
+          const t = (s - s0) / hj;
+          return ((6 * t ** 2 - 6 * t) * r0 + (6 * t - 6 * t ** 2) * r1) / hj + (3 * t ** 2 - 4 * t + 1) * d0 + (3 * t ** 2 - 2 * t) * d1;
+        };
+        segments[start + j] = { radius, slope };
+      }
+    }
+    start = end;
+  }
+  return segments;
+}
+
+function curved(meridian, P, segments, { error = 0.2, depth = 6 } = {}) {
+  const k = scaleOf(P);
+  const out = [meridian[0]];
+  for (let i = 0; i < meridian.length - 1; i++) {
+    const curve = segments[i];
+    const [s0] = meridian[i];
+    const [s1] = meridian[i + 1];
+    if (curve) {
+      const split = (a, b, level) => {
+        const mid = (a + b) / 2;
+        const chord = (curve.radius(a) + curve.radius(b)) / 2;
+        if (level < depth && Math.abs(curve.radius(mid) - chord) * k > error) {
+          split(a, mid, level + 1);
+          out.push([mid, curve.radius(mid), 1]);
+          split(mid, b, level + 1);
+        }
+      };
+      split(s0, s1, 0);
+    }
+    out.push(meridian[i + 1]);
+  }
+  return out;
+}
+
+function smoothRows(meridian, F, P, { rows = 6, slope = null, radius = null, steps = 48, error = 0.35, depth: deepest = 8, fineness = 0.1 } = {}) {
+  const V = viewOf(P);
+  const L = lightOf(P);
+  const view = { a: dot3(F.a, V), flat: Math.hypot(dot3(F.u, V), dot3(F.v, V)), phi: Math.atan2(dot3(F.v, V), dot3(F.u, V)) };
+  const light = { a: dot3(F.a, L), flat: Math.hypot(dot3(F.u, L), dot3(F.v, L)), phi: Math.atan2(dot3(F.v, L), dot3(F.u, L)) };
+  const m = meridian.length;
+  const faces = [];
+  for (let i = 0; i < m - 1; i++) {
+    const ds = meridian[i + 1][0] - meridian[i][0];
+    const dr = meridian[i + 1][1] - meridian[i][1];
+    const length = Math.hypot(ds, dr) || 1;
+    faces.push([ds / length, -dr / length]);
+  }
+  const splines = slope ? null : curveRuns(meridian);
+  const vertexNormal = (k, own) => {
+    if (k <= 0 || k >= m - 1 || !meridian[k][2]) return own;
+    const a = faces[k - 1];
+    const b = faces[k];
+    const x = a[0] + b[0];
+    const y = a[1] + b[1];
+    const length = Math.hypot(x, y) || 1;
+    return [x / length, y / length];
+  };
+  const normalAt = (i, u) => {
+    const [s0] = meridian[i];
+    const [s1] = meridian[i + 1];
+    const s = s0 + (s1 - s0) * u;
+    const sign = Math.sign(s1 - s0) || 1;
+    const g = slope ? slope(s) : splines[i] ? splines[i].slope(s) : null;
+    if (g !== null) {
+      const length = Math.hypot(1, g);
+      return [sign / length, (-sign * g) / length];
+    }
+    const a = vertexNormal(i, faces[i]);
+    const b = vertexNormal(i + 1, faces[i]);
+    const x = a[0] + (b[0] - a[0]) * u;
+    const y = a[1] + (b[1] - a[1]) * u;
+    const length = Math.hypot(x, y) || 1;
+    return [x / length, y / length];
+  };
+  const pointAt = (i, u, angle) => {
+    const [s0, r0] = meridian[i];
+    const [s1, r1] = meridian[i + 1];
+    const s = s0 + (s1 - s0) * u;
+    return iso(pointOf(F, s, radius ? radius(s) : splines && splines[i] ? splines[i].radius(s) : r0 + (r1 - r0) * u, angle), P);
+  };
+  const buckets = [[], [], [], [], []];
+  const fine = TAU / Math.max(24, Math.min(192, steps * 1.5));
+  const arcPoints = (i, u, from, to) => {
+    const count = Math.max(1, Math.ceil((to - from) / fine));
+    return Array.from({ length: count + 1 }, (_, index) => pointAt(i, u, from + ((to - from) * index) / count));
+  };
+  const centreOf = (arc, reference) => {
+    let mid = (arc.from + arc.to) / 2 - reference;
+    mid = ((mid % TAU) + TAU) % TAU;
+    return mid;
+  };
+  const levelOf = (i, u) => {
+    const [nr, na] = normalAt(i, u);
+    const groups = new Map();
+    for (const arc of labelledArcs(nr, na, view, light, faces[i][0], faces[i][1])) {
+      if (!groups.has(arc.tone)) groups.set(arc.tone, []);
+      groups.get(arc.tone).push(arc);
+    }
+    for (const list of groups.values()) list.sort((x, y) => centreOf(x, light.phi) - centreOf(y, light.phi));
+    return { i, u, groups };
+  };
+  const same = (x, y) => {
+    if (x.groups.size !== y.groups.size) return false;
+    for (const [tone, list] of x.groups) if ((y.groups.get(tone) ?? []).length !== list.length) return false;
+    return true;
+  };
+  const align = (reference, arc) => {
+    const out = { ...arc };
+    const centre = (reference.from + reference.to) / 2;
+    while ((out.from + out.to) / 2 - centre > Math.PI) {
+      out.from -= TAU;
+      out.to -= TAU;
+    }
+    while (centre - (out.from + out.to) / 2 > Math.PI) {
+      out.from += TAU;
+      out.to += TAU;
+    }
+    return out;
+  };
+  const strayOf = (i, a, mid, b) => {
+    let worst = 0;
+    for (const [tone, list] of mid.groups) {
+      list.forEach((arc, index) => {
+        const lo = align(arc, a.groups.get(tone)[index]);
+        const hi = align(arc, b.groups.get(tone)[index]);
+        for (const key of ["from", "to"]) {
+          const p = pointAt(i, mid.u, arc[key]);
+          const p0 = pointAt(i, a.u, lo[key]);
+          const p1 = pointAt(i, b.u, hi[key]);
+          worst = Math.max(worst, Math.hypot(p[0] - (p0[0] + p1[0]) / 2, p[1] - (p0[1] + p1[1]) / 2));
+        }
+      });
+    }
+    return worst;
+  };
+  const sheet = (tone, levels) => {
+    levels[0].groups.get(tone).forEach((arc, index) => {
+      const chain = [arc];
+      for (let k = 1; k < levels.length; k++) chain.push(align(chain[k - 1], levels[k].groups.get(tone)[index]));
+      const last = levels.length - 1;
+      const points = [...arcPoints(levels[0].i, levels[0].u, chain[0].from, chain[0].to)];
+      for (let k = 1; k < last; k++) points.push(pointAt(levels[k].i, levels[k].u, chain[k].to));
+      points.push(...arcPoints(levels[last].i, levels[last].u, chain[last].from, chain[last].to).reverse());
+      for (let k = last - 1; k >= 1; k--) points.push(pointAt(levels[k].i, levels[k].u, chain[k].from));
+      buckets[tone].push(pathOf(oriented(points), true));
+    });
+  };
+  const overlap = (x, y) => Math.min(x.to, y.to) - Math.max(x.from, y.from);
+  const strip = (tone, a, b) => {
+    const below = a.groups.get(tone) ?? [];
+    const above = (b.groups.get(tone) ?? []).map((arc) => ({ arc, used: false }));
+    const quad = (lo, hi) => {
+      const points = [...arcPoints(a.i, a.u, lo.from, lo.to), ...arcPoints(b.i, b.u, hi.from, hi.to).reverse()];
+      buckets[tone].push(pathOf(oriented(points), true));
+    };
+    for (const arc of below) {
+      let best = null;
+      let score = -Infinity;
+      for (const entry of above) {
+        if (entry.used) continue;
+        const aligned = align(arc, entry.arc);
+        const value = overlap(arc, aligned);
+        if (value > score) (score = value), (best = entry);
+      }
+      if (best && score > -0.05) {
+        best.used = true;
+        quad(arc, align(arc, best.arc));
+      } else {
+        const centre = (arc.from + arc.to) / 2;
+        quad(arc, { from: centre, to: centre });
+      }
+    }
+    for (const entry of above) {
+      if (entry.used) continue;
+      const centre = (entry.arc.from + entry.arc.to) / 2;
+      quad({ from: centre, to: centre }, entry.arc);
+    }
+  };
+  const k = scaleOf(P);
+  let run = [];
+  const flush = () => {
+    const tones = [...new Set(run.flatMap((level) => [...level.groups.keys()]))].sort((x, y) => x - y);
+    for (const tone of tones) {
+      const countOf = (level) => (level.groups.get(tone) ?? []).length;
+      let start = 0;
+      for (let at = 1; at <= run.length; at++) {
+        if (at < run.length && countOf(run[at - 1]) === countOf(run[at])) continue;
+        if (at - 1 > start && countOf(run[start])) sheet(tone, run.slice(start, at));
+        if (at < run.length) strip(tone, run[at - 1], run[at]);
+        start = at;
+      }
+    }
+    run = [];
+  };
+  for (let i = 0; i < m - 1; i++) {
+    const ds = meridian[i + 1][0] - meridian[i][0];
+    if (Math.abs(ds) < 1e-9) {
+      flush();
+      continue;
+    }
+    const count = Math.max(1, rows);
+    const reach = (Math.hypot(ds, meridian[i + 1][1] - meridian[i][1]) * k) / count;
+    const limit = Math.max(1, Math.min(deepest, Math.ceil(Math.log2(Math.max(2, reach / fineness)))));
+    const coarse = Array.from({ length: count + 1 }, (_, index) => levelOf(i, index / count));
+    run.push(coarse[0]);
+    const refine = (a, b, depth) => {
+      const mid = levelOf(i, (a.u + b.u) / 2);
+      const split = depth < limit && (!same(a, b) || !same(a, mid) || (depth < 6 && strayOf(i, a, mid, b) > error));
+      if (!split) {
+        run.push(b);
+        return;
+      }
+      refine(a, mid, depth + 1);
+      refine(mid, b, depth + 1);
+    };
+    for (let index = 1; index <= count; index++) refine(coarse[index - 1], coarse[index], 0);
+  }
+  flush();
+  return buckets;
+}
+
+function sideOf(meridian) {
+  const m = meridian.length;
+  let first = 0;
+  let last = m - 1;
+  if (meridian[0][1] <= 1e-9) first = 1;
+  if (meridian[m - 1][1] <= 1e-9) last = m - 2;
+  const side = meridian.slice(first, last + 1);
+  for (let index = 1; index < side.length; index++) if (side[index][0] - side[index - 1][0] <= 1e-9) return null;
+  return side.length >= 3 ? side : null;
+}
+
+function surfaceOf(side, F, P, rims, { samples = 96, slope = null } = {}) {
+  const V = viewOf(P);
+  const aV = dot3(F.a, V);
+  const facing = Math.atan2(dot3(F.v, V), dot3(F.u, V));
+  const [left, right] = silhouettePoints(side, F, P, { samples, slope });
+  if (left.length <= samples || right.length <= samples) return null;
+  const s0 = side[0][0];
+  const s1 = side[side.length - 1][0];
+  const angleOf = (point) => angleToward(F, sub3(point, add3(F.o, mul3(F.a, dot3(sub3(point, F.o), F.a)))));
+  const wrap = (angle) => ((angle % TAU) + TAU) % TAU;
+  const arc = (s, r, from, to, through) => {
+    let sweep = wrap(to - from);
+    if (wrap(through - from) > sweep) sweep -= TAU;
+    const count = Math.max(4, Math.ceil(Math.abs(sweep) / (TAU / 96)), Math.ceil((Math.abs(sweep) * r * scaleOf(P)) / 1.5));
+    return Array.from({ length: count + 1 }, (_, index) => iso(pointOf(F, s, r, from + (sweep * index) / count), P));
+  };
+  const r0 = side[0][1];
+  const r1 = side[side.length - 1][1];
+  const bottom = -aV > 0 ? facing + Math.PI : facing;
+  const top = aV > 0 ? facing + Math.PI : facing;
+  const L = left.map((point) => iso(point, P));
+  const R = right.map((point) => iso(point, P));
+  const topArc = arc(s1, r1, angleOf(left[left.length - 1]), angleOf(right[right.length - 1]), top);
+  const bottomArc = arc(s0, r0, angleOf(right[0]), angleOf(left[0]), bottom);
+  const keepFirst = rims === "all" || rims === "first" || rims === "ends";
+  const keepLast = rims === "all" || rims === "last" || rims === "ends";
+  const fill = pathOf([...L, ...topArc, ...[...R].reverse(), ...bottomArc], true);
+  const outline = [pathOf(L), pathOf(R), keepLast ? pathOf(topArc) : "", keepFirst ? pathOf(bottomArc) : ""].join("");
+  const hull = hullOf([...arc(s0, r0, 0, TAU - 1e-6, Math.PI), ...arc(s1, r1, 0, TAU - 1e-6, Math.PI), ...L, ...R]);
+  let gap = 0;
+  for (const p of [...L, ...R]) {
+    let best = Infinity;
+    for (let index = 0; index < hull.length; index++) {
+      const a = hull[index];
+      const b = hull[(index + 1) % hull.length];
+      const dx = b[0] - a[0];
+      const dy = b[1] - a[1];
+      const t = Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / (dx * dx + dy * dy || 1)));
+      best = Math.min(best, Math.hypot(p[0] - a[0] - dx * t, p[1] - a[1] - dy * t));
+    }
+    gap = Math.max(gap, best);
+  }
+  return { fill, outline, gap };
+}
+
+const softOf = (meridian) => meridian.some((point) => Boolean(point[2]));
+
+function lathe(meridian, F, P, { steps = stepsFor(Math.max(...meridian.map(([, r]) => r)), 32, 160, scaleOf(P)), fill = "auto", hole = null, bevel = 0, rims = "all", smooth: asked = "auto", waist = 0.5 } = {}) {
+  const smooth = asked === "auto" ? softOf(meridian) : asked;
+  const V = viewOf(P);
+  const L = lightOf(P);
+  const aV = dot3(F.a, V);
+  const uV = dot3(F.u, V);
+  const vV = dot3(F.v, V);
+  const aL = dot3(F.a, L);
+  const uL = dot3(F.u, L);
+  const vL = dot3(F.v, L);
+  const n = steps;
+  const m = meridian.length;
+  const rings = meridian.map(([s, r]) => Array.from({ length: n }, (_, j) => iso(pointOf(F, s, r, (j / n) * TAU), P)));
+  const midC = [];
+  const midS = [];
+  for (let j = 0; j < n; j++) {
+    const t = ((j + 0.5) / n) * TAU;
+    midC.push(Math.cos(t));
+    midS.push(Math.sin(t));
+  }
+  const seen = [];
+  const tones = [];
+  for (let i = 0; i < m - 1; i++) {
+    const ds = meridian[i + 1][0] - meridian[i][0];
+    const dr = meridian[i + 1][1] - meridian[i][1];
+    const length = Math.hypot(ds, dr);
+    const row = [];
+    const toneRow = [];
+    for (let j = 0; j < n; j++) {
+      if (length < 1e-9) {
+        row.push(false);
+        toneRow.push(0);
+        continue;
+      }
+      const facing = ds * (midC[j] * uV + midS[j] * vV) - dr * aV;
+      const lit = (ds * (midC[j] * uL + midS[j] * vL) - dr * aL) / length;
+      row.push(facing > 1e-6 * length);
+      toneRow.push(bandOf(lit));
+    }
+    seen.push(row);
+    tones.push(toneRow);
+  }
+  const buckets = [[], [], [], [], []];
+  const all = [];
+  const smoothed = smooth ? smoothRows(meridian, F, P, { steps, ...(smooth === true ? {} : smooth) }) : null;
+  if (smoothed) smoothed.forEach((list, tone) => list.forEach((d) => (buckets[tone].push(d), all.push(d))));
+  for (let i = 0; i < m - 1; i++) {
+    if (smoothed && Math.abs(meridian[i + 1][0] - meridian[i][0]) > 1e-9) continue;
+    const keys = seen[i].map((visible, j) => (visible ? tones[i][j] : null));
+    for (const { key, run } of groupsOf(keys)) {
+      const a = run.map((j) => rings[i][j]);
+      const b = run.map((j) => rings[i + 1][j]).reverse();
+      const d = pathOf(oriented([...a, ...b]), true);
+      buckets[key].push(d);
+      all.push(d);
+    }
+  }
+  const phi = Math.atan2(vV, uV);
+  const flatV = Math.hypot(uV, vV);
+  const rangeOf = (i) => {
+    const ds = meridian[i + 1][0] - meridian[i][0];
+    const dr = meridian[i + 1][1] - meridian[i][1];
+    if (Math.hypot(ds, dr) < 1e-9) return null;
+    if (Math.abs(ds) < 1e-9 || flatV < 1e-9) return -dr * aV > 1e-9 ? [-1, 1] : null;
+    const c = (dr * aV) / (ds * flatV);
+    return ds > 0 ? [Math.max(-1, c), 1] : [-1, Math.min(1, c)];
+  };
+  const arcsOf = (ranges) => {
+    if (ranges.some((range) => !range)) return [];
+    const lo = Math.max(...ranges.map(([x]) => x));
+    const hi = Math.min(...ranges.map(([, x]) => x));
+    if (lo >= hi - 1e-9) return [];
+    const near = Math.acos(Math.min(1, hi));
+    const far = Math.acos(Math.max(-1, lo));
+    if (hi >= 1 && lo <= -1) return [[phi, phi + TAU]];
+    if (hi >= 1) return [[phi - far, phi + far]];
+    if (lo <= -1) return [[phi + near, phi + TAU - near]];
+    return [[phi + near, phi + far], [phi - far, phi - near]];
+  };
+  const along = (s, r, [from, to]) => {
+    const count = Math.max(2, Math.ceil(((to - from) * Math.max(r, 1e-6) * scaleOf(P)) / 1.5));
+    return Array.from({ length: count + 1 }, (_, j) => iso(pointOf(F, s, r, from + ((to - from) * j) / count), P));
+  };
+  const creases = [];
+  for (let i = 1; i < m - 1; i++) {
+    if (meridian[i][2] || meridian[i][1] <= 1e-9) continue;
+    for (const arc of arcsOf([rangeOf(i - 1), rangeOf(i)])) creases.push(pathOf(along(meridian[i][0], meridian[i][1], arc)));
+  }
+  let bevelPath = "";
+  if (bevel > 0 && m > 2) {
+    const ends = [];
+    if (meridian[0][1] <= 1e-9) ends.push([0, 1, 1]);
+    if (meridian[m - 1][1] <= 1e-9) ends.push([m - 2, m - 2, m - 3]);
+    for (const [cap, rim, side] of ends) {
+      const [s, r] = meridian[rim];
+      for (const arc of arcsOf([rangeOf(cap), rangeOf(side)])) {
+        const inset = along(s, Math.max(0, r - bevel), arc);
+        const edge = along(s, r, arc);
+        bevelPath += pathOf([edge[0], ...inset.slice(1, -1), edge[edge.length - 1]]);
+      }
+    }
+  }
+  const { fill: fillPath, outline } = outlineOf(meridian, F, P, { steps: n, fill, hole, rims, smooth, waist, all });
+  return {
+    fill: fillPath,
+    outline,
+    crease: creases.join(""),
+    top: buckets[4].join(""),
+    shades: buckets.slice(0, 4).map((list) => list.join("")),
+    bevel: bevelPath || undefined,
+    seamless: Boolean(smoothed),
+  };
+}
+
+function shapeOf(meridian, P, smooth) {
+  if (smooth && smooth.radius) {
+    const segments = meridian.slice(0, -1).map(([s0], index) => (Math.abs(meridian[index + 1][0] - s0) > 1e-9 ? { radius: smooth.radius, slope: smooth.slope } : null));
+    return curved(meridian, P, segments);
+  }
+  const curves = smooth && !smooth.slope ? curveRuns(meridian) : null;
+  return curves && curves.some(Boolean) ? curved(meridian, P, curves) : meridian;
+}
+
+function outlineOf(meridian, F, P, { steps = stepsFor(Math.max(...meridian.map(([, r]) => r)), 32, 160, scaleOf(P)), fill = "auto", hole = null, rims = "all", smooth: asked = "auto", waist = 0.5, all = null } = {}) {
+  const smooth = asked === "auto" ? softOf(meridian) : asked;
+  const n = steps;
+  let fillPath;
+  let outline;
+  const shape = shapeOf(meridian, P, smooth);
+  const side = fill === "auto" || fill === "surface" ? sideOf(shape) : null;
+  const surface = side && !hole ? surfaceOf(side, F, P, rims, { slope: smooth && smooth.slope ? smooth.slope : null }) : null;
+  if (surface && (fill === "surface" || surface.gap > waist)) {
+    fillPath = surface.fill;
+    outline = surface.outline;
+  } else if (fill === "hull" || fill === "auto" || fill === "surface") {
+    const most = Math.max(...shape.map(([, r]) => r));
+    const around = Math.min(320, Math.max(n, Math.ceil((TAU * most * scaleOf(P)) / 1.5)));
+    const tagged = [];
+    shape.forEach(([s, r], index) => {
+      for (let j = 0; j < around; j++) tagged.push({ p: iso(pointOf(F, s, r, (j / around) * TAU), P), ring: index });
+    });
+    const hull = hullTagged(tagged);
+    const holePath = hole ? pathOf(Array.from({ length: around }, (_, j) => iso(pointOf(F, hole[0], hole[1], (j / around) * TAU), P)), true) : "";
+    fillPath = pathOf(hull.map(({ p }) => p), true) + holePath;
+    if (rims === "all") {
+      outline = pathOf(hull.map(({ p }) => p), true) + holePath;
+    } else {
+      const keepFirst = rims === "first" || rims === "ends";
+      const keepLast = rims === "last" || rims === "ends";
+      const edges = hull.map((a, index) => {
+        const b = hull[(index + 1) % hull.length];
+        const same = a.ring === b.ring;
+        const keep = !same || (a.ring !== 0 && a.ring !== shape.length - 1) || (keepFirst && a.ring === 0) || (keepLast && a.ring === shape.length - 1);
+        return [a.p, b.p, keep];
+      });
+      outline = chains(edges).map((points) => pathOf(points)).join("") + holePath;
+    }
+  } else {
+    fillPath = all ? all.join("") : (({ shades, top }) => [...shades, top].join(""))(lathe(meridian, F, P, { steps: n, fill: "auto", hole, rims, smooth, waist }));
+    outline = "";
+  }
+  return { fill: fillPath, outline };
+}
+
+const signedArea = (points) => points.reduce((sum, [x, y], index) => {
+  const [nx, ny] = points[(index + 1) % points.length];
+  return sum + x * ny - nx * y;
+}, 0);
+
+const oriented = (points) => (signedArea(points) < 0 ? [...points].reverse() : points);
+
+const saddleStart = (R, a, angle) => Math.sqrt(Math.max(0, R * R - a * a * Math.cos(angle) ** 2));
+
+function saddleOf(F, a, start, s1, P, { steps = stepsFor(a, 24) } = {}) {
+  const V = viewOf(P);
+  const L = lightOf(P);
+  const n = steps;
+  const angle = (j) => (j / n) * TAU;
+  const from = typeof start === "function" ? start : (t) => saddleStart(start, a, t);
+  const low = Array.from({ length: n }, (_, j) => iso(pointOf(F, from(angle(j)), a, angle(j)), P));
+  const high = Array.from({ length: n }, (_, j) => iso(pointOf(F, s1, a, angle(j)), P));
+  const seen = [];
+  const tones = [];
+  for (let j = 0; j < n; j++) {
+    const normal = radialOf(F, angle(j + 0.5));
+    seen.push(dot3(normal, V) > 1e-6);
+    tones.push(bandOf(dot3(normal, L)));
+  }
+  const buckets = [[], [], [], [], []];
+  const fills = [];
+  const keys = seen.map((visible, j) => (visible ? tones[j] : null));
+  for (const { key, run } of groupsOf(keys)) {
+    const d = pathOf(oriented([...run.map((j) => low[j]), ...run.map((j) => high[j]).reverse()]), true);
+    buckets[key].push(d);
+    fills.push(d);
+  }
+  const capSeen = dot3(F.a, V) > 1e-6;
+  if (capSeen) {
+    const d = pathOf(oriented(high), true);
+    buckets[bandOf(dot3(F.a, L))].push(d);
+    fills.push(d);
+  }
+  const front = runsOf(seen);
+  const back = runsOf(seen.map((visible) => !visible));
+  const edges = [];
+  for (const run of front) {
+    edges.push(pathOf(run.map((j) => low[j])));
+    edges.push(pathOf([low[run[0]], high[run[0]]]), pathOf([low[run[run.length - 1]], high[run[run.length - 1]]]));
+  }
+  for (const run of capSeen ? back : front) edges.push(pathOf(run.map((j) => high[j])));
+  return {
+    fill: fills.join(""),
+    outline: edges.join(""),
+    crease: capSeen ? front.map((run) => pathOf(run.map((j) => high[j]))).join("") : "",
+    top: buckets[4].join(""),
+    shades: buckets.slice(0, 4).map((list) => list.join("")),
+    seamless: true,
+  };
+}
+
+function prismOf(F, polygon, s0, s1, P) {
+  const V = viewOf(P);
+  const L = lightOf(P);
+  const ring = oriented(polygon.map(([x, y]) => [x, y]));
+  const n = ring.length;
+  const at = (s, [x, y]) => [F.o[0] + F.a[0] * s + F.u[0] * x + F.v[0] * y, F.o[1] + F.a[1] * s + F.u[1] * x + F.v[1] * y, F.o[2] + F.a[2] * s + F.u[2] * x + F.v[2] * y];
+  const low = ring.map((point) => iso(at(s0, point), P));
+  const high = ring.map((point) => iso(at(s1, point), P));
+  const buckets = [[], [], [], [], []];
+  const seen = [];
+  for (let j = 0; j < n; j++) {
+    const [x0, y0] = ring[j];
+    const [x1, y1] = ring[(j + 1) % n];
+    const normal = unit3(add3(mul3(F.u, y1 - y0), mul3(F.v, -(x1 - x0))));
+    const visible = dot3(normal, V) > 1e-6;
+    seen.push(visible);
+    if (visible) buckets[bandOf(dot3(normal, L))].push(pathOf([low[j], low[(j + 1) % n], high[(j + 1) % n], high[j]], true));
+  }
+  const ends = [[s0, low, mul3(F.a, -1)], [s1, high, F.a]];
+  const capSeen = ends.map(([, , normal]) => dot3(normal, V) > 1e-6);
+  ends.forEach(([, points, normal], index) => capSeen[index] && buckets[bandOf(dot3(normal, L))].push(pathOf(points, true)));
+  const hull = hullOf([...low, ...high]);
+  const creases = [];
+  for (let j = 0; j < n; j++) {
+    const prev = (j - 1 + n) % n;
+    const a = [ring[j][0] - ring[prev][0], ring[j][1] - ring[prev][1]];
+    const b = [ring[(j + 1) % n][0] - ring[j][0], ring[(j + 1) % n][1] - ring[j][1]];
+    const sharp = (a[0] * b[0] + a[1] * b[1]) / (Math.hypot(a[0], a[1]) * Math.hypot(b[0], b[1]) || 1) < Math.cos(0.35);
+    if (sharp && seen[j] && seen[prev]) creases.push(pathOf([low[j], high[j]]));
+    ends.forEach(([, points], index) => capSeen[index] && seen[j] && creases.push(pathOf([points[j], points[(j + 1) % n]])));
+  }
+  return { fill: pathOf(hull, true), outline: pathOf(hull, true), crease: creases.join(""), top: buckets[4].join(""), shades: buckets.slice(0, 4).map((list) => list.join("")) };
+}
+
+function stadium(r0, r1, offset, steps = 32) {
+  const circle = (cx, r) => Array.from({ length: steps }, (_, index) => [cx + r * Math.cos((index / steps) * TAU), r * Math.sin((index / steps) * TAU)]);
+  return hullOf([...circle(0, r0), ...circle(offset, r1)]);
+}
+
+function sphereOf(centre, r, P, { steps = 48 } = {}) {
+  const V = viewOf(P);
+  const L = lightOf(P);
+  const F = frameAlong(centre, V);
+  const flat = (p) => iso(p, P);
+  const rim = Array.from({ length: steps }, (_, index) => pointOf(F, 0, r, (index / steps) * TAU));
+  const outline = pathOf(rim.map(flat), true);
+  const capOf = (threshold) => {
+    const points = rim.filter((p) => dot3(sub3(p, centre), L) / r >= threshold).map(flat);
+    const c = dot3(L, V);
+    const LF = frameAlong(add3(centre, mul3(L, r * threshold)), L);
+    const radius = r * Math.sqrt(Math.max(0, 1 - threshold * threshold));
+    for (let index = 0; index < steps; index++) {
+      const p = pointOf(LF, 0, radius, (index / steps) * TAU);
+      if (dot3(sub3(p, centre), V) >= -1e-9) points.push(flat(p));
+    }
+    if (c > threshold) points.push(flat(add3(centre, mul3(V, r))));
+    return points.length > 2 ? pathOf(hullOf(points), true) : "";
+  };
+  const shades = [outline, capOf(BANDS[1]), capOf(BANDS[2]), capOf(BANDS[3])];
+  return { fill: outline, outline, crease: "", top: "", shades, seamless: true };
+}
+
+const disc = (s0, s1, r, F, P, options = {}) =>
+  lathe(
+    [
+      [s0, 0],
+      [s0, r],
+      [s1, r],
+      [s1, 0],
+    ],
+    F,
+    P,
+    { steps: stepsFor(r, 32, 160, scaleOf(P)), ...options },
+  );
+
+const ringBand = (s0, s1, rIn, rOut, F, P, options = {}) =>
+  lathe(
+    [
+      [s0, rIn],
+      [s0, rOut],
+      [s1, rOut],
+      [s1, rIn],
+    ],
+    F,
+    P,
+    { steps: stepsFor(rOut, 32, 160, scaleOf(P)), hole: null, ...options },
+  );
+
+function solidOf(profile, F, P, options = {}) {
+  const first = profile[0];
+  const last = profile[profile.length - 1];
+  const meridian = [[first[0], 0], ...profile, [last[0], 0]];
+  const most = Math.max(...profile.map(([, r]) => r));
+  return lathe(meridian, F, P, { steps: stepsFor(most, 32, 160, scaleOf(P)), ...options });
+}
+
+function bandOfProfile(profile, F, P, options = {}) {
+  const most = Math.max(...profile.map(([, r]) => r));
+  return lathe(profile, F, P, { steps: stepsFor(most, 32, 160, scaleOf(P)), ...options });
+}
+
+function silhouettePoints(profile, F, P, { samples = 72, slope: given = null, radius = null } = {}) {
+  const V = viewOf(P);
+  const aV = dot3(F.a, V);
+  const uV = dot3(F.u, V);
+  const vV = dot3(F.v, V);
+  const facing = Math.atan2(vV, uV);
+  const flat = Math.hypot(uV, vV) || 1e-9;
+  const s0 = profile[0][0];
+  const s1 = profile[profile.length - 1][0];
+  const radiusAt = radius ?? ((s) => {
+    let index = 1;
+    while (index < profile.length - 1 && profile[index][0] < s) index++;
+    const [sa, ra] = profile[index - 1];
+    const [sb, rb] = profile[index];
+    return ra + ((rb - ra) * (s - sa)) / (sb - sa || 1);
+  });
+  const side = (sign) => {
+    const points = [];
+    for (let step = 0; step <= samples; step++) {
+      const s = s0 + ((s1 - s0) * step) / samples;
+      const h = (s1 - s0) / samples / 2 || 0.01;
+      const slope = given ? given(s) : (radiusAt(Math.min(s1, s + h)) - radiusAt(Math.max(s0, s - h))) / (Math.min(s1, s + h) - Math.max(s0, s - h) || 1);
+      const c = (slope * aV) / flat;
+      if (Math.abs(c) > 1) continue;
+      points.push(pointOf(F, s, radiusAt(s), facing + sign * Math.acos(c)));
+    }
+    return points;
+  };
+  return [side(1), side(-1)];
+}
+
+const silhouetteOf = (profile, F, P, options = {}) =>
+  silhouettePoints(profile, F, P, options)
+    .map((points) => pathOf(points.map((point) => iso(point, P))))
+    .join("");
+
+function profileCurve(profile, { slope = null, radius = null } = {}) {
+  for (let index = 1; index < profile.length; index++) if (profile[index][0] - profile[index - 1][0] <= 1e-9) throw new Error(`profileCurve: s must rise along the profile (point ${index} at s = ${profile[index][0]})`);
+  const segments = curveRuns(profile);
+  const s0 = profile[0][0];
+  const s1 = profile[profile.length - 1][0];
+  const find = (s) => {
+    let lo = 0;
+    let hi = profile.length - 2;
+    while (lo < hi) {
+      const mid = (lo + hi + 1) >> 1;
+      if (profile[mid][0] <= s) lo = mid;
+      else hi = mid - 1;
+    }
+    return lo;
+  };
+  const linear = (index, s) => {
+    const [sa, ra] = profile[index];
+    const [sb, rb] = profile[index + 1];
+    return [ra + ((rb - ra) * (s - sa)) / (sb - sa), (rb - ra) / (sb - sa)];
+  };
+  const radiusAt = radius ?? ((s) => {
+    const at = Math.max(s0, Math.min(s1, s));
+    const index = find(at);
+    return segments[index] ? segments[index].radius(at) : linear(index, at)[0];
+  });
+  const slopeAt = slope ?? ((s) => {
+    const at = Math.max(s0, Math.min(s1, s));
+    const index = find(at);
+    return segments[index] ? segments[index].slope(at) : linear(index, at)[1];
+  });
+  return { s0, s1, radius: radiusAt, slope: slopeAt, analytic: Boolean(slope && radius) };
+}
+
+function bandsOf(profile, cuts, F, P, { slope = null, radius = null, steps, rows = 6, rims = "none", fill = "auto", samples = 72 } = {}) {
+  const curve = profileCurve(profile, { slope, radius });
+  const { s0, s1 } = curve;
+  const stops = [s0, ...[...new Set(cuts)].filter((s) => s > s0 + 1e-6 && s < s1 - 1e-6).sort((a, b) => a - b), s1];
+  const most = Math.max(...profile.map(([, r]) => r), ...stops.map((s) => curve.radius(s)));
+  const n = steps ?? stepsFor(most, 32, 160, scaleOf(P));
+  const knot = (s, soft) => (soft ? [s, curve.radius(s), 1] : [s, curve.radius(s)]);
+  const meridianOf = (a, b) => [knot(a), ...profile.filter(([s]) => s > a + 1e-9 && s < b - 1e-9).map(([s, , soft]) => knot(s, soft)), knot(b)];
+  const shading = { slope: curve.slope, radius: curve.radius, rows };
+  const bands = stops.slice(0, -1).map((a, index) => {
+    const b = stops[index + 1];
+    const meridian = meridianOf(a, b);
+    const paths = lathe(meridian, F, P, { steps: n, rims, fill, smooth: shading });
+    const seam = index < stops.length - 2 ? arcOf(F, b, curve.radius(b), P, { slope: curve.slope(b) }) : "";
+    return { s0: a, s1: b, profile: meridian, paths: { ...paths, outline: "" }, outline: paths.outline, seam };
+  });
+  const sidesOf = (from = s0, to = s1, { ends = false, count = samples } = {}) => {
+    const span = [Math.max(s0, from), Math.min(s1, to)];
+    const dense = Array.from({ length: count + 1 }, (_, index) => knot(span[0] + ((span[1] - span[0]) * index) / count, true));
+    const points = silhouettePoints(dense, F, P, { samples: count, slope: curve.slope, radius: curve.radius });
+    const rim = (s) => arcOf(F, s, curve.radius(s), P, { slope: curve.slope(s) });
+    const rimsAt = ends === true ? span : ends === "first" ? [span[0]] : ends === "last" ? [span[1]] : [];
+    return { d: points.map((list) => pathOf(list.map((point) => iso(point, P)))).join("") + rimsAt.map(rim).join(""), points };
+  };
+  return { bands, sidesOf, radius: curve.radius, slope: curve.slope, steps: n, s0, s1 };
+}
+
+function arcOf(F, s, r, P, { slope = 0, steps = 0, least = 0.02, inward = false, from = 0, to = TAU, trim = 0.3 } = {}) {
+  const V = viewOf(P);
+  const aV = dot3(F.a, V);
+  const uV = dot3(F.u, V);
+  const vV = dot3(F.v, V);
+  const flat = Math.hypot(uV, vV);
+  const phi = Math.atan2(vV, uV);
+  const norm = Math.hypot(1, slope);
+  const full = Math.abs(to - from - TAU) < 1e-9;
+  let visible;
+  if (flat < 1e-9) visible = (inward ? slope * aV / norm > least : -slope * aV / norm > least) ? [[phi, phi + TAU]] : [];
+  else if (inward) {
+    const c = (slope * aV - least * norm) / flat;
+    visible = c <= -1 ? [] : c >= 1 ? [[phi, phi + TAU]] : [[phi + Math.acos(c), phi + TAU - Math.acos(c)]];
+  } else {
+    const c = (least * norm + slope * aV) / flat;
+    visible = c >= 1 ? [] : c <= -1 ? [[phi, phi + TAU]] : [[phi - Math.acos(c), phi + Math.acos(c)]];
+  }
+  const at = (t) => iso(pointOf(F, s, r, t), P);
+  const speed = (t) => {
+    const a = at(t - 1e-3);
+    const b = at(t + 1e-3);
+    return Math.hypot(b[0] - a[0], b[1] - a[1]) / 2e-3;
+  };
+  const count = (span) => Math.max(2, Math.ceil(((steps || stepsFor(r, 24, 112)) * span) / TAU), Math.ceil((span * r * scaleOf(P)) / 1.5));
+  const out = [];
+  for (const [a, b] of visible) {
+    if (b - a >= TAU - 1e-9 && full) {
+      const n = count(TAU);
+      out.push(pathOf(Array.from({ length: n }, (_, j) => at(from + (j / n) * TAU)), true));
+      continue;
+    }
+    const pieces = full ? [[a, b, true, true]] : [];
+    if (!full)
+      for (let turn = -2; turn <= 2; turn++) {
+        const lo = Math.max(a + turn * TAU, from);
+        const hi = Math.min(b + turn * TAU, to);
+        if (hi - lo > 1e-6) pieces.push([lo, hi, lo > from + 1e-9, hi < to - 1e-9]);
+      }
+    for (const [lo, hi, limb0, limb1] of pieces) {
+      const span = hi - lo;
+      const cut0 = limb0 && trim > 0 ? Math.min(span * 0.25, trim / (speed(lo) || 1)) : 0;
+      const cut1 = limb1 && trim > 0 ? Math.min(span * 0.25, trim / (speed(hi) || 1)) : 0;
+      const t0 = lo + cut0;
+      const t1 = hi - cut1;
+      const n = count(t1 - t0);
+      out.push(pathOf(Array.from({ length: n + 1 }, (_, j) => at(t0 + ((t1 - t0) * j) / n))));
+    }
+  }
+  return out.join("");
+}
+
+function circleOf(F, s, r, P, steps = 0) {
+  const count = steps || stepsFor(r, 24, 112);
+  return pathOf(
+    Array.from({ length: count }, (_, j) => iso(pointOf(F, s, r, (j / count) * TAU), P)),
+    true,
+  );
+}
+
+function spokesOf(F, s, r0, r1, count, P, { phase = 0, sweep = 0, from = 0, to = TAU } = {}) {
+  const lines = [];
+  for (let index = 0; index < count; index++) {
+    const t = phase + from + (index / count) * (to - from);
+    lines.push(pathOf([iso(pointOf(F, s, r0, t), P), iso(pointOf(F, s, r1, t + sweep), P)]));
+  }
+  return lines.join("");
+}
+
+const fadeOf = (value, [lo, hi]) => {
+  const t = Math.max(0, Math.min(1, (value - lo) / (hi - lo || 1e-9)));
+  return t * t * (3 - 2 * t);
+};
+
+function ribsOf(F, s0, s1, r, count, P, { phase = 0, twist = 0, least = 0.12, r1 = r, fade = null, seams = false } = {}) {
+  const V = viewOf(P);
+  const lines = [];
+  const slope = (r1 - r) / (s1 - s0 || 1);
+  for (let index = 0; index < count; index++) {
+    const t = phase + (index / count) * TAU;
+    const radial = radialOf(F, t + twist / 2);
+    const normal = unit3([radial[0] - slope * F.a[0], radial[1] - slope * F.a[1], radial[2] - slope * F.a[2]]);
+    const facing = dot3(normal, V);
+    const d = pathOf([iso(pointOf(F, s0, r, t), P), iso(pointOf(F, s1, r1, t + twist), P)]);
+    if (fade) {
+      const alpha = fadeOf(facing, fade);
+      if (alpha > 0.02) lines.push({ d, alpha });
+      continue;
+    }
+    if (facing < least) continue;
+    lines.push(d);
+  }
+  const ends = seams ? [seams === "last" ? "" : arcOf(F, s0, r, P, { slope }), seams === "first" ? "" : arcOf(F, s1, r1, P, { slope })].filter(Boolean) : [];
+  if (fade) return [...lines, ...ends.map((d) => ({ d, alpha: 1 }))];
+  return [...lines, ...ends].join("");
+}
+
+function rodOut(F, from, to, r, P, { stroke = 0, ...options } = {}) {
+  const pad = 0.35 / scaleOf(P);
+  const ring = (s) => Array.from({ length: 48 }, (_, index) => iso(pointOf(F, s, r + pad, (index / 48) * TAU), P));
+  return {
+    paths: disc(from - stroke, to, r, F, P, options),
+    clip: pathOf(hullOf([...ring(from), ...ring(to + stroke)]), true),
+    from,
+    to,
+    stroke,
+    reach: to + stroke,
+  };
+}
+
+function dotsOf(F, s, r, count, P, { phase = 0, slope = 0, least = 0.08, all = false, fade = null } = {}) {
+  const V = viewOf(P);
+  const out = [];
+  for (let index = 0; index < count; index++) {
+    const t = phase + (index / count) * TAU;
+    let alpha = 1;
+    if (!all) {
+      const radial = radialOf(F, t);
+      const normal = unit3([radial[0] - slope * F.a[0], radial[1] - slope * F.a[1], radial[2] - slope * F.a[2]]);
+      const facing = dot3(normal, V);
+      if (fade) alpha = fadeOf(facing, fade);
+      else if (facing < least) continue;
+      if (alpha <= 0.02) continue;
+    }
+    const [x, y] = iso(pointOf(F, s, r, t), P);
+    out.push(alpha < 1 ? [x, y, alpha] : [x, y]);
+  }
+  return out;
+}
+
+function facingOf(F, angle, P, slope = 0) {
+  const radial = radialOf(F, angle);
+  return dot3(unit3([radial[0] - slope * F.a[0], radial[1] - slope * F.a[1], radial[2] - slope * F.a[2]]), viewOf(P));
+}
+
+function fillet(points, radius, perArc = 7, { P = null, tube = 0, margin = 1.3 } = {}) {
+  if (points.length < 3) return points.map((p) => [...p]);
+  const V = P && tube ? viewOf(P) : null;
+  const out = [[...points[0]]];
+  for (let index = 1; index < points.length - 1; index++) {
+    const prev = points[index - 1];
+    const here = points[index];
+    const next = points[index + 1];
+    const into = unit3(sub3(here, prev));
+    const outOf = unit3(sub3(next, here));
+    const cosTurn = Math.max(-1, Math.min(1, dot3(into, outOf)));
+    const turn = Math.acos(cosTurn);
+    if (turn < 1e-3) {
+      out.push([...here]);
+      continue;
+    }
+    const room = Math.min(len3(sub3(here, prev)), len3(sub3(next, here))) * 0.48;
+    const facing = V ? Math.abs(dot3(unit3(cross3(into, outOf)), V)) : 1;
+    const bend = V ? Math.max(radius, (margin * tube) / (0.7 * Math.max(0.05, facing) ** 2)) : radius;
+    const cut = Math.min(bend * Math.tan(turn / 2), room);
+    const a = sub3(here, mul3(into, cut));
+    const b = add3(here, mul3(outOf, cut));
+    const count = Math.max(2, Math.ceil((perArc * turn) / (Math.PI / 2)));
+    for (let step = 0; step <= count; step++) {
+      const t = step / count;
+      const p0 = lerp3(a, here, t);
+      const p1 = lerp3(here, b, t);
+      out.push(lerp3(p0, p1, t));
+    }
+  }
+  out.push([...points[points.length - 1]]);
+  return out;
+}
+
+function resample(points, spacing) {
+  const lengths = [0];
+  for (let index = 1; index < points.length; index++) lengths.push(lengths[index - 1] + len3(sub3(points[index], points[index - 1])));
+  const total = lengths[lengths.length - 1];
+  const count = Math.max(1, Math.round(total / spacing));
+  const out = [];
+  let segment = 1;
+  for (let step = 0; step <= count; step++) {
+    const at = (total * step) / count;
+    while (segment < points.length - 1 && lengths[segment] < at) segment++;
+    const a = points[segment - 1];
+    const b = points[segment];
+    const span = lengths[segment] - lengths[segment - 1] || 1;
+    out.push(lerp3(a, b, Math.min(1, Math.max(0, (at - lengths[segment - 1]) / span))));
+  }
+  return out;
+}
+
+function pathLength(points) {
+  let total = 0;
+  for (let index = 1; index < points.length; index++) total += len3(sub3(points[index], points[index - 1]));
+  return total;
+}
+
+function cut(points, from, to) {
+  const out = [];
+  let walked = 0;
+  for (let index = 1; index < points.length; index++) {
+    const a = points[index - 1];
+    const b = points[index];
+    const length = len3(sub3(b, a));
+    const start = walked;
+    const end = walked + length;
+    if (end >= from && start <= to) {
+      const t0 = Math.max(0, (from - start) / (length || 1));
+      const t1 = Math.min(1, (to - start) / (length || 1));
+      if (!out.length) out.push(lerp3(a, b, t0));
+      out.push(lerp3(a, b, t1));
+    }
+    walked = end;
+  }
+  return out;
+}
+
+const pointAlong = (points, at) => {
+  const piece = cut(points, at, at + 0.01);
+  return piece[0] ?? points[points.length - 1];
+};
+
+function tangentAlong(points, at) {
+  const total = pathLength(points);
+  const a = pointAlong(points, Math.max(0, at - 0.6));
+  const b = pointAlong(points, Math.min(total, at + 0.6));
+  return unit3(sub3(b, a));
+}
+
+function spiral(F, s, r0, r1, a0, a1, steps = 28) {
+  const out = [];
+  for (let index = 0; index <= steps; index++) {
+    const t = index / steps;
+    out.push(pointOf(F, s, r0 + (r1 - r0) * t, a0 + (a1 - a0) * t));
+  }
+  return out;
+}
+
+function arcPoints(F, s, r, a0, a1, steps = 24) {
+  return Array.from({ length: steps + 1 }, (_, index) => pointOf(F, s, r, a0 + ((a1 - a0) * index) / steps));
+}
+
+return { dot3, add3, sub3, mul3, len3, unit3, cross3, lerp3, viewOf, lightOf, scaleOf, bandOf, toneOf, frameAlong, frameOf, pointOf, radialOf, tangentOf, angleToward, hullOf, runsOf, stepsFor, curveRuns, softOf, lathe, outlineOf, saddleStart, saddleOf, prismOf, stadium, sphereOf, disc, ringBand, solidOf, bandOfProfile, silhouettePoints, silhouetteOf, profileCurve, bandsOf, arcOf, circleOf, spokesOf, fadeOf, ribsOf, rodOut, dotsOf, facingOf, fillet, resample, pathLength, cut, pointAlong, tangentAlong, spiral, arcPoints };
+})();
+const TB = (() => {
+
+
+const LIGHT = (() => {
+  const length = Math.hypot(-0.55, -0.835);
+  return [-0.55 / length, -0.835 / length];
+})();
+
+const poly = (points, closed = true) => pathOf(points, closed);
+
+const area = (points) => points.reduce((sum, [x, y], index) => {
+  const [nx, ny] = points[(index + 1) % points.length];
+  return sum + x * ny - nx * y;
+}, 0);
+
+function sideOf(frames) {
+  const out = { left: [], right: [], shineA: [], shineB: [], shadeA: [], shadeB: [] };
+  for (const { p, nx, ny, half } of frames) {
+    out.left.push([p[0] + nx * half, p[1] + ny * half]);
+    out.right.push([p[0] - nx * half, p[1] - ny * half]);
+    const toward = nx * LIGHT[0] + ny * LIGHT[1];
+    const shineAt = half * 0.44 * toward;
+    const shineHalf = half * 0.24;
+    out.shineA.push([p[0] + nx * (shineAt + shineHalf), p[1] + ny * (shineAt + shineHalf)]);
+    out.shineB.push([p[0] + nx * (shineAt - shineHalf), p[1] + ny * (shineAt - shineHalf)]);
+    const shadeAt = -half * 0.62 * toward;
+    const shadeHalf = half * 0.2;
+    out.shadeA.push([p[0] + nx * (shadeAt + shadeHalf), p[1] + ny * (shadeAt + shadeHalf)]);
+    out.shadeB.push([p[0] + nx * (shadeAt - shadeHalf), p[1] + ny * (shadeAt - shadeHalf)]);
+  }
+  return out;
+}
+
+function capOf(centre, tangent, radius, inward, P) {
+  const V = G.viewOf(P);
+  let n1 = G.cross3(tangent, V);
+  if (G.len3(n1) < 1e-6) n1 = G.frameAlong([0, 0, 0], tangent).u;
+  n1 = G.unit3(n1);
+  const n2 = G.unit3(G.cross3(tangent, n1));
+  const steps = 28;
+  const ring = Array.from({ length: steps }, (_, index) => {
+    const angle = (index / steps) * Math.PI * 2;
+    return iso(G.add3(centre, G.add3(G.mul3(n1, radius * Math.cos(angle)), G.mul3(n2, radius * Math.sin(angle)))), P);
+  });
+  const c = iso(centre, P);
+  const probe = iso(G.add3(centre, n2), P);
+  const along = (probe[0] - c[0]) * inward[0] + (probe[1] - c[1]) * inward[1];
+  const from = along > 0 ? steps / 2 : 0;
+  const half = (start) => Array.from({ length: steps / 2 + 1 }, (_, index) => ring[(start + index) % steps]);
+  return { ring, arc: half(from), inner: half((from + steps / 2) % steps) };
+}
+
+function stripeEnd(half, centre, nx, ny, from, to) {
+  const offset = (p) => (p[0] - centre[0]) * nx + (p[1] - centre[1]) * ny;
+  const values = half.map(offset);
+  const lo = Math.min(from, to);
+  const hi = Math.max(from, to);
+  const points = [];
+  const cross = (k, level) => {
+    const t = (level - values[k]) / (values[k + 1] - values[k] || 1e-9);
+    return [half[k][0] + (half[k + 1][0] - half[k][0]) * t, half[k][1] + (half[k + 1][1] - half[k][1]) * t];
+  };
+  for (let k = 0; k < half.length; k++) {
+    if (values[k] >= lo && values[k] <= hi) points.push(half[k]);
+    if (k < half.length - 1) for (const level of [lo, hi]) if ((values[k] - level) * (values[k + 1] - level) < 0) points.push(cross(k, level));
+  }
+  const order = points.map((p) => offset(p));
+  const sorted = points.map((p, index) => [p, order[index]]).sort((x, y) => (from > to ? y[1] - x[1] : x[1] - y[1]));
+  return sorted.map(([p]) => p);
+}
+
+function spansOf(total, gaps, breaks, maxLength, closed) {
+  const cuts = gaps
+    .map(([a, b]) => [Math.max(0, Math.min(a, b)), Math.min(total, Math.max(a, b))])
+    .filter(([a, b]) => b - a > 1e-6)
+    .sort((x, y) => x[0] - y[0]);
+  const runs = [];
+  let at = 0;
+  for (const [a, b] of cuts) {
+    if (a > at + 1e-6) runs.push([at, a, at > 0, true]);
+    at = Math.max(at, b);
+  }
+  if (total > at + 1e-6) runs.push([at, total, at > 0, cuts.length > 0 && cuts[cuts.length - 1][1] >= total - 1e-6]);
+  const pieces = [];
+  for (const [from, to, gapStart, gapEnd] of runs) {
+    const stops = [from, ...breaks.filter((b) => b > from + 1e-6 && b < to - 1e-6).sort((x, y) => x - y), to];
+    for (let index = 0; index < stops.length - 1; index++) {
+      const a = stops[index];
+      const b = stops[index + 1];
+      const count = Math.max(1, Math.ceil((b - a) / maxLength - 1e-9));
+      for (let c = 0; c < count; c++) {
+        pieces.push({
+          from: a + ((b - a) * c) / count,
+          to: a + ((b - a) * (c + 1)) / count,
+          open0: !(index === 0 && c === 0),
+          open1: !(index === stops.length - 2 && c === count - 1),
+          gap0: index === 0 && c === 0 && gapStart,
+          gap1: index === stops.length - 2 && c === count - 1 && gapEnd,
+        });
+      }
+    }
+  }
+  if (closed && !cuts.length && pieces.length) {
+    pieces[0].open0 = true;
+    pieces[pieces.length - 1].open1 = true;
+  }
+  return pieces;
+}
+
+function runsOf(total, gaps = []) {
+  const cuts = gaps
+    .map(([a, b]) => [Math.max(0, Math.min(a, b)), Math.min(total, Math.max(a, b))])
+    .filter(([a, b]) => b - a > 1e-6)
+    .sort((x, y) => x[0] - y[0]);
+  const runs = [];
+  let at = 0;
+  for (const [a, b] of cuts) {
+    if (a > at + 1e-6) runs.push([at, a]);
+    at = Math.max(at, b);
+  }
+  if (total > at + 1e-6) runs.push([at, total]);
+  return runs;
+}
+
+function crossingsOf(points, centre, axis, radius) {
+  const n = G.unit3(axis);
+  const out = [];
+  let walked = 0;
+  for (let index = 1; index < points.length; index++) {
+    const a = points[index - 1];
+    const b = points[index];
+    const length = G.len3(G.sub3(b, a));
+    const da = G.dot3(G.sub3(a, centre), n);
+    const db = G.dot3(G.sub3(b, centre), n);
+    if ((da <= 0 && db > 0) || (da >= 0 && db < 0)) {
+      const t = da / (da - db);
+      const p = G.lerp3(a, b, t);
+      if (G.len3(G.sub3(p, centre)) <= radius) out.push(walked + t * length);
+    }
+    walked += length;
+  }
+  return out;
+}
+
+function ringsOf(dense, total, radiusAt, P, span, { pitch = 3, twist = 0, cross = false, fade = [0.1, 0.55], phase = 0, steps = 16 } = {}) {
+  const V = G.viewOf(P);
+  const [lo, hi] = span;
+  const margin = twist ? 0 : Math.min(pitch * 0.35, (hi - lo) / 2);
+  const from = Math.max(lo, span.real0 ? lo + margin : lo);
+  const to = Math.min(hi, span.real1 ? hi - margin : hi);
+  if (to <= from) return [];
+  const out = [];
+  const hands = twist ? (cross ? [1, -1] : [1]) : [0];
+  const reach = Math.abs(twist) * Math.max(...[0, 0.5, 1].map(radiusAt));
+  const first = Math.ceil((from - reach - phase) / pitch);
+  const last = Math.floor((to + reach - phase) / pitch);
+  const surface = (t, theta) => {
+    const at = Math.max(0, Math.min(total, t));
+    const c = G.pointAlong(dense, at);
+    const T = G.tangentAlong(dense, at);
+    let n1 = G.cross3(T, V);
+    if (G.len3(n1) < 1e-6) return null;
+    n1 = G.unit3(n1);
+    let n2 = G.unit3(G.cross3(T, n1));
+    if (G.dot3(n2, V) < 0) n2 = G.mul3(n2, -1);
+    const r = radiusAt(at / (total || 1));
+    const normal = G.add3(G.mul3(n1, Math.cos(theta)), G.mul3(n2, Math.sin(theta)));
+    return { p: iso(G.add3(c, G.mul3(normal, r)), P), facing: G.dot3(normal, V), r };
+  };
+  for (let index = first; index <= last; index++) {
+    const station = phase + index * pitch;
+    for (const hand of hands) {
+      const samples = [];
+      for (let step = 0; step <= steps; step++) {
+        const theta = (step / steps) * Math.PI;
+        const t = station + hand * twist * radiusAt(Math.max(0, Math.min(1, station / (total || 1)))) * (step / steps - 0.5);
+        samples.push({ t, theta });
+      }
+      for (let step = 0; step < steps; step++) {
+        let a = samples[step];
+        let b = samples[step + 1];
+        if ((a.t < from && b.t < from) || (a.t > to && b.t > to)) continue;
+        const clipTo = (x, y, edge) => ({ t: edge, theta: x.theta + ((y.theta - x.theta) * (edge - x.t)) / (y.t - x.t || 1e-9) });
+        if (a.t < from) a = clipTo(a, b, from);
+        if (b.t < from) b = clipTo(b, a, from);
+        if (a.t > to) a = clipTo(a, b, to);
+        if (b.t > to) b = clipTo(b, a, to);
+        const pa = surface(a.t, a.theta);
+        const pb = surface(b.t, b.theta);
+        if (!pa || !pb) continue;
+        const alpha = fade ? G.fadeOf((pa.facing + pb.facing) / 2, fade) : 1;
+        if (alpha <= 0.02) continue;
+        out.push({ d: pathOf([pa.p, pb.p]), alpha });
+      }
+    }
+  }
+  return out;
+}
+
+function tubePieces(points3, radius, P, { maxLength = 30, spacing = 2.2, closed = false, breaks = [], gaps = [], caps = true, stripes = "auto", rings = null } = {}) {
+  const dense = G.resample(points3, spacing);
+  const total = G.pathLength(dense);
+  const radiusAt = typeof radius === "function" ? radius : () => radius;
+  const k = G.scaleOf(P);
+  const wide = stripes === "auto" ? Math.max(...Array.from({ length: 33 }, (_, index) => radiusAt(index / 32))) * k > 1.3 : Boolean(stripes);
+  const lead = 0.5;
+  const out = [];
+  const looped = closed && !gaps.length;
+  const wrap = (at) => (looped ? ((at % total) + total) % total : Math.max(0, Math.min(total, at)));
+  const step = Math.max(0.05, Math.min(spacing, total / 4) * 0.5);
+  const frameAt = (at, p, width) => {
+    const a = iso(G.pointAlong(dense, wrap(at - step)), P);
+    const b = iso(G.pointAlong(dense, wrap(at + step)), P);
+    let tx = b[0] - a[0];
+    let ty = b[1] - a[1];
+    const length = Math.hypot(tx, ty) || 1;
+    tx /= length;
+    ty /= length;
+    return { p, nx: -ty, ny: tx, half: width };
+  };
+  const partOf = (start, end) => {
+    let points = G.cut(dense, Math.max(0, start), Math.min(total, end));
+    if (looped && start < 0) points = [...G.cut(dense, total + start, total), ...points.slice(1)];
+    if (looped && end > total) points = [...points, ...G.cut(dense, 0, end - total).slice(1)];
+    let walked = looped ? start : Math.max(0, start);
+    const along = points.map((point, index) => {
+      if (index > 0) walked += G.len3(G.sub3(point, points[index - 1]));
+      return walked;
+    });
+    const flat = points.map((point) => iso(point, P));
+    const widths = along.map((at) => radiusAt(looped ? wrap(at) / total : Math.min(1, Math.max(0, at / total))) * k);
+    const frames = flat.map((p, index) => frameAt(along[index], p, widths[index]));
+    return { points, flat, widths, frames };
+  };
+  for (const piece of spansOf(total, gaps, breaks, maxLength, closed)) {
+    const openStart = piece.open0 && (piece.from > 0 || looped);
+    const openEnd = piece.open1 && (piece.to < total || looped);
+    const body = partOf(openStart ? piece.from - lead : piece.from, openEnd ? piece.to + lead : piece.to);
+    if (body.points.length < 2) continue;
+    const stripe = openStart || openEnd ? partOf(openStart ? piece.from - 2 * lead : piece.from, openEnd ? piece.to + 2 * lead : piece.to) : body;
+    const { points: part, flat, widths, frames } = body;
+    const sides = sideOf(frames);
+    const bands = stripe === body ? sides : sideOf(stripe.frames);
+    let bodyPath = poly([...sides.left, ...sides.right.slice().reverse()]);
+    let edges = pathOf(sides.left) + pathOf(sides.right);
+    const ends = [!piece.open0 && !looped && (piece.from <= 1e-6 || piece.gap0), !piece.open1 && !looped && (piece.to >= total - 1e-6 || piece.gap1)];
+    const capped = [ends[0] && (piece.gap0 || [caps].flat()[0]), ends[1] && (piece.gap1 || [caps].flat().at(-1))];
+    const sign = Math.sign(area([...sides.left, ...sides.right.slice().reverse()]));
+    const tips = [null, null];
+    [0, 1].forEach((side) => {
+      if (!capped[side]) return;
+      const at = side ? part.length - 1 : 0;
+      const other = side ? part.length - 2 : 1;
+      const tangent = G.unit3(G.sub3(part[side ? at : other], part[side ? other : at]));
+      const outward = side ? tangent : G.mul3(tangent, -1);
+      const inward = [flat[other][0] - flat[at][0], flat[other][1] - flat[at][1]];
+      const { ring, arc, inner } = capOf(part[at], tangent, widths[at] / k, inward, P);
+      const oriented = Math.sign(area(ring)) === sign ? ring : ring.slice().reverse();
+      bodyPath += poly(oriented);
+      edges += pathOf(arc);
+      const open = G.dot3(outward, G.viewOf(P)) > 0;
+      if (open) edges += pathOf(inner);
+      tips[side] = { half: open ? inner : arc, frame: frames[at] };
+    });
+    const band = (a, b, offsets) => {
+      const head = tips[1] ? stripeEnd(tips[1].half, tips[1].frame.p, tips[1].frame.nx, tips[1].frame.ny, offsets(tips[1].frame)[0], offsets(tips[1].frame)[1]) : [];
+      const tail = tips[0] ? stripeEnd(tips[0].half, tips[0].frame.p, tips[0].frame.nx, tips[0].frame.ny, offsets(tips[0].frame)[1], offsets(tips[0].frame)[0]) : [];
+      return poly([...a, ...head, ...b.slice().reverse(), ...tail]);
+    };
+    const toward = ({ nx, ny }) => nx * LIGHT[0] + ny * LIGHT[1];
+    const shineOffsets = (frame) => [frame.half * 0.44 * toward(frame) + frame.half * 0.24, frame.half * 0.44 * toward(frame) - frame.half * 0.24];
+    const shadeOffsets = (frame) => [-frame.half * 0.62 * toward(frame) + frame.half * 0.2, -frame.half * 0.62 * toward(frame) - frame.half * 0.2];
+    const ringSpan = Object.assign([openStart ? piece.from - 2 * lead : piece.from, openEnd ? piece.to + 2 * lead : piece.to], { real0: !openStart, real1: !openEnd });
+    out.push({
+      rings: rings ? ringsOf(dense, total, radiusAt, P, ringSpan, rings) : [],
+      ringTone: rings?.tone ?? "lo",
+      mid: G.pointAlong(dense, (piece.from + piece.to) / 2),
+      body: bodyPath,
+      shine: band(bands.shineA, bands.shineB, shineOffsets),
+      shade: band(bands.shadeA, bands.shadeB, shadeOffsets),
+      edges,
+      wide,
+      points: part,
+      radii: widths.map((width) => width / k),
+      ends,
+      from: piece.from,
+      to: piece.to,
+    });
+  }
+  return out;
+}
+
+function ringsSvg(rings, tone = "lo") {
+  const groups = new Map();
+  for (const { d, alpha } of rings ?? []) {
+    const level = Math.min(1, Math.round(alpha * 20) / 20);
+    if (level <= 0) continue;
+    groups.set(level, (groups.get(level) ?? "") + d);
+  }
+  return [...groups].map(([alpha, d]) => `<path class="tb-ring" data-tone="${tone}" d="${d}"${alpha < 1 ? ` opacity="${alpha.toFixed(2)}"` : ""}/>`).join("");
+}
+
+function tubeSvg(piece, { tone = "hi" } = {}) {
+  const shine = piece.wide ? `<path class="tb-shine" d="${piece.shine}"/><path class="tb-shade" d="${piece.shade}"/>` : "";
+  return `<g class="tb"><path class="tb-body" d="${piece.body}"/>${shine}${ringsSvg(piece.rings, piece.ringTone)}<path class="iso-line tb-edge" data-tone="${tone}" d="${piece.edges}"/></g>`;
+}
+
+return { runsOf, crossingsOf, tubePieces, ringsSvg, tubeSvg };
+})();
+
+const P = {"origin":[368.7159351480713,335.8711479496064],"scale":1.1657064348709314,"azimuth":60,"elevation":22};
+const C = {"AX":100,"FAN":{"x":-180,"r0":14,"r1":80,"n":22},"ROWS":[{"x":-152,"r0":20,"r1":40,"n":26,"kind":"lpc"},{"x":-142,"r0":20,"r1":39,"n":26,"kind":"lpc"},{"x":-132,"r0":20,"r1":38,"n":26,"kind":"lpc"},{"x":-112,"r0":22,"r1":35,"n":30,"kind":"hpc"},{"x":-99,"r0":23.4,"r1":34.4,"n":30,"kind":"hpc"},{"x":-86,"r0":24.8,"r1":33.8,"n":30,"kind":"hpc"},{"x":-73,"r0":26.2,"r1":33.2,"n":30,"kind":"hpc"},{"x":-60,"r0":27.6,"r1":32.6,"n":30,"kind":"hpc"},{"x":-47,"r0":29,"r1":32,"n":30,"kind":"hpc"},{"x":-34,"r0":30.4,"r1":31.4,"n":30,"kind":"hpc"},{"x":44,"r0":25,"r1":38,"n":24,"kind":"hpt"},{"x":55,"r0":25,"r1":38,"n":24,"kind":"hpt"},{"x":70,"r0":24,"r1":42,"n":24,"kind":"lpt"},{"x":82,"r0":24,"r1":43.5,"n":24,"kind":"lpt"},{"x":94,"r0":24,"r1":45,"n":24,"kind":"lpt"},{"x":106,"r0":24,"r1":46.5,"n":24,"kind":"lpt"}],"CASE":[[-160,-122,41,44,"T2"],[-122,-22,36,39,"T3"],[-22,36,40,44,"T4"],[36,62,41,45,"T4"],[62,114,47,50,"T5"],[114,160,40,43,"T5"]]};
+
+const TAU = Math.PI * 2;
+const MAT = (n, s, extra) => '<g data-mat="' + n + '"' + (extra || "") + ">" + s + "</g>";
+const S = (p, st) => solidSvg(p, st || { tone: "hi" });
+const Ln = (d, st) => lineSvg(d, st || { tone: "mid" });
+const at = (p) => iso(p, P);
+const f1 = (v) => (Math.round(v * 10) / 10).toString();
+const Xf = (o) => G.frameOf(o, [1, 0, 0], [0, 1, 0], [0, 0, 1]);
+const Yf = (o) => G.frameOf(o, [0, 1, 0], [1, 0, 0], [0, 0, 1]);
+const Zf = (o) => G.frameOf(o, [0, 0, 1], [1, 0, 0], [0, 1, 0]);
+const slab = (x, y, w, d, z, h, r = 2, bevel = 0.5) => S(slabOf({ x, y, w, d, r }, z, h, P, r > 4 ? 8 : 3, bevel));
+const cyl = (x, y, r, z, h, steps = 24, st) => S(cylinder(x, y, r, z, h, P, steps), st);
+const named = (name, svg, part) => '<g data-name="' + name + '"' + (part ? ' data-part="' + part + '"' : "") + ">" + svg + "</g>";
+const attr = (cls, style) => ' class="' + cls + '"' + (style ? ' style="' + style + '"' : "");
+const poly = (pts, cls, style) => "<path" + attr(cls, style) + ' d="' + pathOf(pts.map(at), true) + '"/>';
+const line3 = (pts, cls, style) => "<path" + attr(cls, style) + ' d="' + pathOf(pts.map(at)) + '"/>';
+const dot = (p, r, cls, style) => { const c = at(p); return "<circle" + attr(cls, style) + ' cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" r="' + r + '"/>'; };
+const ellipse3 = (p, rx, ry, cls, style) => { const c = at(p); return "<ellipse" + attr(cls, style) + ' cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" rx="' + rx + '" ry="' + ry + '"/>'; };
+// A circle lying in a frame's (u,v) plane at axial position s.
+const circle3 = (F, s, r, n = 32) => Array.from({ length: n }, (_, i) => { const t = (i / n) * TAU; return G.pointOf(F, s, r, t); });
+// Toothed outline for a gear (in the frame's u,v plane).
+function gearPoly(teeth, r, depth, phase = 0) {
+  const pts = [], n = teeth * 4;
+  for (let i = 0; i < n; i++) {
+    const t = phase + (i / n) * TAU, tip = Math.floor(i / 2) % 2 === 0;
+    pts.push([(tip ? r : r - depth) * Math.cos(t), (tip ? r : r - depth) * Math.sin(t)]);
+  }
+  return pts;
+}
+const gear = (F, teeth, r, depth, s0, s1, phase, st) => S(G.prismOf(F, gearPoly(teeth, r, depth, phase), s0, s1, P), st);
+// Annulus sector (r0..r1, angle a0..a1) as a 2D outline, for cut-away shells.
+function sector(r0, r1, a0, a1, n = 24) {
+  const out = [], inn = [];
+  for (let i = 0; i <= n; i++) { const t = a0 + ((a1 - a0) * i) / n; out.push([r1 * Math.cos(t), r1 * Math.sin(t)]); inn.push([r0 * Math.cos(t), r0 * Math.sin(t)]); }
+  return out.concat(inn.reverse());
+}
+const shell = (F, r0, r1, a0, a1, s0, s1, st) => S(G.prismOf(F, sector(r0, r1, a0, a1), s0, s1, P), st);
+function tube(points, r, opts = {}) {
+  const route = G.fillet(points, opts.bend ?? Math.max(4, r * 3), 8, { P, tube: r });
+  return TB.tubePieces(route, r, P, { maxLength: 400, ...opts }).map((p) => TB.tubeSvg(p, { tone: "hi" })).join("");
+}
+const halo = (x, y, w, d, z = 0, h = 4) => '<path class="iso-halo" d="' + haloOf({ x, y, w, d, r: 4 }, z, h, P) + '" style="filter:blur(6px)"/>';
+// Linear interpolation along a polyline by fraction f (0..1).
+function along(pts, f) {
+  const seg = [];
+  let total = 0;
+  for (let i = 1; i < pts.length; i++) { const l = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1], pts[i][2] - pts[i - 1][2]); seg.push(l); total += l; }
+  let d = (((f % 1) + 1) % 1) * total;
+  for (let i = 0; i < seg.length; i++) {
+    if (d <= seg[i] || i === seg.length - 1) { const u = seg[i] ? Math.min(1, d / seg[i]) : 0; const a = pts[i], b = pts[i + 1]; return [a[0] + (b[0] - a[0]) * u, a[1] + (b[1] - a[1]) * u, a[2] + (b[2] - a[2]) * u]; }
+    d -= seg[i];
+  }
+  return pts[pts.length - 1];
+}
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const mix = (a, b, t) => a + (b - a) * t;
+// Colour ramp: t in 0..1 across [[t, r, g, b], ...]
+function ramp(stops, t) {
+  t = clamp(t, 0, 1);
+  for (let i = 1; i < stops.length; i++) if (t <= stops[i][0]) { const a = stops[i - 1], b = stops[i], u = (t - a[0]) / (b[0] - a[0] || 1); return "rgb(" + Math.round(mix(a[1], b[1], u)) + "," + Math.round(mix(a[2], b[2], u)) + "," + Math.round(mix(a[3], b[3], u)) + ")"; }
+  const l = stops[stops.length - 1]; return "rgb(" + l[1] + "," + l[2] + "," + l[3] + ")";
+}
+const HEAT = [[0, 70, 130, 230], [0.35, 90, 200, 220], [0.55, 250, 210, 80], [0.75, 250, 120, 40], [1, 220, 40, 30]];
+
+// Pause the loop while the app is in the background.
+const loop = (fn) => {
+  let last = 0, frame = 0;
+  const tick = (now) => { const dt = last ? Math.min((now - last) / 1000, 1 / 20) : 1 / 60; last = now; if (Lab.paused) { frame = 0; return; } fn(dt, now / 1000); frame = requestAnimationFrame(tick); };
+  document.addEventListener("lab-pause", (e) => { if (!e.detail && !frame) { last = 0; frame = requestAnimationFrame(tick); } });
+  frame = requestAnimationFrame(tick);
+};
+const part = (n) => document.querySelector('.iso-stage [data-part="' + n + '"]');
+const setHtml = (el, html) => { if (el && el.__h !== html) { el.innerHTML = html; el.__h = html; } };
+const readout = (text) => { const r = document.querySelector("[data-readout]"); if (r && r.textContent !== text) r.textContent = text; };
+// Two-spool high-bypass turbofan, sea level, modelled as an ideal Brayton cycle with component
+// efficiencies. Sized like a narrow-body airliner engine (≈ 120 kN class).
+const CP_AIR = 1005, CP_GAS = 1150, LHV = 43e6, K = 0.2857;
+const BPR = 5.5;
+const MAX_FLOW = 350; // kg/s total air at full power
+function cycle(throttle, v0) {
+  const n1 = 22 + 78 * throttle; // % fan speed
+  const n = n1 / 100;
+  const flow = MAX_FLOW * n ** 1.5;
+  const core = flow / (1 + BPR), bypass = flow - core;
+  const T2 = 288 + (v0 * v0) / (2 * CP_AIR); // ram temperature rise
+  const opr = 1 + 31 * n ** 2.2;
+  const fpr = 1 + 0.6 * n ** 2;
+  const T3 = T2 * (1 + (opr ** K - 1) / 0.88);
+  const T13 = T2 * (1 + (fpr ** K - 1) / 0.88);
+  const T4 = 800 + 800 * throttle ** 1.2;
+  const fuel = (core * CP_GAS * (T4 - T3)) / (0.99 * LHV);
+  const work = (T3 - T2) * CP_AIR + (1 + BPR) * (T13 - T2) * CP_AIR; // per kg of core air
+  const T5 = T4 - work / CP_GAS;
+  const vb = Math.sqrt(2 * CP_AIR * T13 * (1 - fpr ** -K) * 0.92) + v0 * 0.9;
+  const vc = 300 + 250 * throttle + v0 * 0.6;
+  const thrust = bypass * (vb - v0) + (core + fuel) * vc - core * v0;
+  return { n1, n2: 60 + 40 * n ** 0.6, flow, core, bypass, opr, fpr, T2, T3, T13, T4, T5, fuel, thrust, tsfc: (fuel / thrust) * 1e6, vb, vc };
+}
+
+const AXF = Xf([0, 0, C.AX]);
+const TEMP = [[0, 60, 110, 230], [0.15, 60, 190, 230], [0.32, 150, 210, 90], [0.5, 250, 200, 60], [0.7, 250, 120, 40], [1, 215, 35, 35]];
+const BACKA = [Math.PI / 2, 3 * Math.PI / 2];
+function blades(row, phase, cls) {
+  const out = [];
+  for (let i = 0; i < row.n; i++) {
+    const a = phase + (i / row.n) * TAU, tw = row.kind === "fan" ? 0.35 : 0.22, th = row.kind === "fan" ? 6 : 2.6;
+    const p = (r, ang, dx) => [row.x + dx, r * Math.cos(ang), C.AX + r * Math.sin(ang)];
+    const pts = [p(row.r0, a, -th), p(row.r0, a + 0.12, th), p(row.r1, a + tw + 0.12, th), p(row.r1, a + tw, -th)];
+    out.push({ y: Math.cos(a + tw / 2), svg: poly(pts, "je-blade " + cls) });
+  }
+  return out.sort((u, v) => u.y - v.y).map((b) => b.svg).join("");
+}
+function rotorRow(row, phase) {
+  const cls = "je-" + row.kind;
+  return '<g class="' + cls + '">' + MAT("steel", S(G.disc(row.x - 2.5, row.x + 2.5, row.r0, AXF, P), { tone: "hi", crease: "none" })) + blades(row, phase, cls) + "</g>";
+}
+function casing(temps, heat) {
+  return C.CASE.map(([a, b, r0, r1, st]) => {
+    const style = heat ? "--heat:" + ramp(TEMP, (temps[st] - 280) / 1350) : "";
+    return '<g class="je-case' + (heat ? " je-hot" : "") + '" style="' + style + '">' + shell(AXF, r0, r1, BACKA[0], BACKA[1], a, b) + "</g>";
+  }).join("");
+}
+// particles: bypass air (round the core) and core air (through it), coloured by local temperature
+const N = 140;
+const parts = Array.from({ length: N }, (_, i) => ({ f: Math.random(), a: Math.random() * TAU, core: i % 4 === 0, r: Math.random() }));
+function coreTemp(x, c) {
+  if (x < -160) return c.T2; if (x < -122) return mix(c.T2, c.T2 + (c.T3 - c.T2) * 0.25, (x + 160) / 38);
+  if (x < -22) return mix(c.T2 + (c.T3 - c.T2) * 0.25, c.T3, (x + 122) / 100);
+  if (x < 36) return mix(c.T3, c.T4, clamp((x + 22) / 40, 0, 1));
+  if (x < 115) return mix(c.T4, c.T5, (x - 36) / 79); return c.T5;
+}
+function coreR(x) { return x < -122 ? 30 : x < -22 ? 28 - (x + 122) * 0.04 : x < 36 ? 32 : x < 114 ? 35 : 30 - (x - 114) * 0.2; }
+let spin1 = 0, spin2 = 0, heat = false;
+function frame(dt, now) {
+  const thr = Lab.value("throttle") / 100, v0 = Lab.value("speed");
+  const c = cycle(thr, v0);
+  if (!Lab.reduced.matches) { spin1 += dt * (c.n1 / 100) * 2.2; spin2 += dt * (c.n2 / 100) * 3.4; }
+  const temps = { T2: c.T2, T3: c.T3, T4: c.T4, T5: c.T5 };
+  setHtml(part("casing"), MAT("steel", casing(temps, heat)));
+  let rot = MAT("chrome", S(G.disc(-185, 106, 3.5, AXF, P), { tone: "hi", crease: "none" })) + MAT("steel", S(G.disc(-112, 56, 13, AXF, P), { tone: "mid", crease: "none" }));
+  const fan = { x: C.FAN.x, r0: C.FAN.r0, r1: C.FAN.r1, n: C.FAN.n, kind: "fan" };
+  let rows = MAT("alu", S(G.disc(C.FAN.x - 5, C.FAN.x + 5, C.FAN.r0, AXF, P))) + '<g class="je-fan">' + blades(fan, spin1, "je-fan") + "</g>";
+  rows += MAT("chrome", S(G.solidOf([[-206, 1], [-196, 9], [-186, 14], [-176, 14]], AXF, P)));
+  rows += rot;
+  for (const row of C.ROWS) {
+    if (row.x > -22 && row.x < 36) continue;
+    rows += rotorRow(row, (row.kind === "lpc" || row.kind === "lpt" ? spin1 : spin2) * (row.kind === "hpc" || row.kind === "hpt" ? 1 : 1) + row.x);
+    if (row.x === -132) rows += combustorSvg(0, c, now);
+  }
+  rows += combustorSvg(1, c, now);
+  rows += MAT("heatblue", S(G.solidOf([[112, 22], [140, 16], [168, 3]], AXF, P)));
+  setHtml(part("rotors"), rows);
+  // air
+  let air = "";
+  const speed = 0.12 + 0.5 * (c.n1 / 100);
+  for (const p of parts) {
+    if (!Lab.reduced.matches) p.f = (p.f + dt * speed * (p.core ? 0.7 : 1)) % 1;
+    let x, r, col;
+    if (p.core) { x = mix(-200, 175, p.f); r = x < -165 ? mix(12, 30, (x + 200) / 35) : coreR(x) * (0.55 + 0.4 * p.r); col = ramp(TEMP, (coreTemp(x, c) - 280) / 1350); }
+    else { x = mix(-205, 60, p.f); r = x < -170 ? mix(20, 72, p.r) : mix(48, 74, p.r) - Math.max(0, x) * 0.1; col = ramp(TEMP, (x < -175 ? c.T2 : c.T13) - 280 > 0 ? ((x < -175 ? c.T2 : c.T13) - 280) / 1350 : 0); }
+    const y = r * Math.cos(p.a), z = C.AX + r * Math.sin(p.a);
+    if (y < -6 && !p.core) continue;
+    air += dot([x, y, z], p.core ? 1.5 : 1.2, "je-air", "fill:" + col);
+  }
+  setHtml(part("air"), air);
+  Lab.gauge("n1", c.n1.toFixed(0) + " %");
+  Lab.gauge("thrust", (c.thrust / 1000).toFixed(1) + " kN");
+  Lab.gauge("egt", Math.round(c.T5 - 273) + " °C", c.T5 - 273 > 900);
+  Lab.gauge("fuel", Math.round(c.fuel * 3600).toLocaleString("en-US") + " kg/h");
+  Lab.gauge("opr", c.opr.toFixed(1) + " : 1");
+  Lab.gauge("tsfc", c.tsfc.toFixed(1) + " g/kN·s");
+  readout("N1 " + c.n1.toFixed(0) + " % · N2 " + c.n2.toFixed(0) + " % · " + Math.round(c.flow) + " kg/s air");
+  if (Math.floor(now * 4) !== frame.k) { frame.k = Math.floor(now * 4); drawStations(c); }
+}
+function combustorSvg(which, c, now) {
+  if (which === 0) return "";
+  // liner (cut away) with the flame inside, brighter as more fuel burns
+  let s = MAT("heatblue", shell(AXF, 24, 27, BACKA[0], BACKA[1], -18, 34)) + MAT("heatblue", shell(AXF, 37, 40, BACKA[0], BACKA[1], -18, 34));
+  const glow = clamp((c.T4 - 700) / 900, 0.15, 1);
+  for (let i = 0; i < 26; i++) {
+    const a = (i / 26) * TAU + Math.sin(now * 7 + i) * 0.08, r = 31 + Math.sin(now * 11 + i * 3) * 3;
+    const y = r * Math.cos(a); if (y < -4) continue;
+    const len = 10 + glow * 26 + Math.sin(now * 13 + i) * 4;
+    s += line3([[-12, y, C.AX + r * Math.sin(a)], [-12 + len, y * 1.02, C.AX + r * 1.02 * Math.sin(a)]], "je-flame", "opacity:" + (0.35 + glow * 0.6).toFixed(2));
+  }
+  for (let i = 0; i < 12; i++) { const a = (i / 12) * TAU; if (Math.cos(a) < -0.1) continue; s += dot([-18, 31 * Math.cos(a), C.AX + 31 * Math.sin(a)], 1.6, "je-nozzle"); }
+  return '<g data-name="Combustor">' + s + "</g>";
+}
+const chart = document.querySelector(".je-chart");
+function drawStations(c) {
+  if (!chart || !chart.clientWidth) return;
+  const ctx = chart.getContext("2d");
+  const w = chart.width = chart.clientWidth * 2, h = chart.height = chart.clientHeight * 2;
+  ctx.clearRect(0, 0, w, h);
+  const st = [["Inlet", c.T2], ["Fan out", c.T13], ["Comp. out", c.T3], ["Turbine in", c.T4], ["Exhaust", c.T5]];
+  const bw = (w - 40) / st.length;
+  const muted = getComputedStyle(document.body).getPropertyValue("--anatomy-muted"), strong = getComputedStyle(document.body).getPropertyValue("--anatomy-strong");
+  ctx.font = "600 20px ui-monospace,monospace"; ctx.textAlign = "center";
+  st.forEach(([name, T], i) => {
+    const bh = ((T - 200) / 1500) * (h - 80), x = 20 + i * bw + bw * 0.18, y = h - 40 - bh;
+    ctx.fillStyle = ramp(TEMP, (T - 280) / 1350); ctx.fillRect(x, y, bw * 0.64, bh);
+    ctx.fillStyle = strong; ctx.fillText(Math.round(T - 273) + "°", x + bw * 0.32, y - 8);
+    ctx.fillStyle = muted; ctx.font = "500 17px ui-monospace,monospace"; ctx.fillText(name, x + bw * 0.32, h - 12); ctx.font = "600 20px ui-monospace,monospace";
+  });
+}
+Lab.onMode((m) => { heat = m === "temp"; });
+Lab.onStep((i, s, user) => { if (user) { if (s.throttle !== undefined) Lab.set("throttle", s.throttle); if (s.speed !== undefined) Lab.set("speed", s.speed); } });
+loop(frame);
+</script></body></html>

@@ -1,0 +1,57 @@
+{
+  "id": "jet-engine",
+  "title": "Jet Engine",
+  "subtitle": "Suck, squeeze, bang, blow: inside a turbofan",
+  "category": "engineering",
+  "featured": true,
+  "tags": ["jet engine", "turbofan", "aircraft", "turbine", "compressor", "brayton cycle", "thrust", "aviation", "engineering", "combustion"],
+  "difficulty": "Advanced",
+  "minutes": 7,
+  "summary": "A cut-away airliner engine: a giant fan, 10 rows of compressor blades, a ring of fire at 1,300 °C and the turbines that drive it all. Open the throttle and follow the air.",
+  "overview": [
+    "A jet engine works in four steps that mechanics sum up as suck, squeeze, bang, blow. The fan and compressor suck air in and squeeze it to more than thirty times atmospheric pressure. Fuel is sprayed into that hot, dense air and burned. The expanding gas rushes out through turbines, which take enough power from it to drive the fan and compressor, and then out of the back.",
+    "Modern airliner engines are turbofans. Only about one sixth of the air goes through the hot core. The rest is pushed by the big front fan straight round the outside, through the bypass duct. Moving a lot of air a little faster is far more efficient, and much quieter, than moving a little air very fast, so the fan makes most of the thrust.",
+    "Two shafts run down the middle. The low-pressure turbines at the back drive the fan and booster on a long thin shaft; the high-pressure turbines drive the high-pressure compressor on a short hollow one around it. Each spins at its own best speed."
+  ],
+  "modes": [
+    { "id": "cutaway", "label": "Cutaway" },
+    { "id": "temp", "label": "Temperature" }
+  ],
+  "controls": [
+    { "id": "throttle", "type": "range", "label": "Throttle", "min": 0, "max": 100, "step": 1, "value": 70, "format": "{v} %", "help": "From ground idle to take-off power." },
+    { "id": "speed", "type": "range", "label": "Air speed", "min": 0, "max": 250, "step": 5, "value": 0, "format": "{v} m/s", "help": "Flying fast means the engine must speed up air that is already moving, so thrust falls." }
+  ],
+  "gauges": [
+    { "id": "n1", "label": "Fan speed N1" },
+    { "id": "thrust", "label": "Thrust" },
+    { "id": "egt", "label": "Exhaust gas temp" },
+    { "id": "fuel", "label": "Fuel flow" },
+    { "id": "opr", "label": "Pressure ratio" },
+    { "id": "tsfc", "label": "Fuel per thrust" }
+  ],
+  "steps": [
+    { "title": "The fan", "throttle": 70, "speed": 0, "body": ["The front fan, over 1.5 m across on a real engine, is the biggest single compressor stage. Its wide twisted blades push air backwards like a propeller in a duct.", "Watch the blue particles: five out of every six go round the outside through the bypass duct. This engine's bypass ratio is 5.5."] },
+    { "title": "Squeeze", "body": ["The air that enters the core passes ten rows of ever-smaller blades: three in the booster and seven in the high-pressure compressor. Each row speeds the air up and the fixed vanes between them slow it again, turning speed into pressure.", "At full power the air leaves the compressor 32 times denser in pressure and over 550 °C hot, just from being squeezed."] },
+    { "title": "Bang", "mode": "temp", "body": ["In the ring-shaped combustor, twenty nozzles spray fine kerosene into the compressed air, and it burns continuously. The gas reaches about 1,300 °C, hotter than the melting point of the turbine blades.", "The blades survive because cooler air from the compressor flows through tiny holes inside them and over their surfaces as a protective film."] },
+    { "title": "Blow", "mode": "temp", "body": ["The hot gas expands through the high-pressure turbine, which drives the compressor, and then the low-pressure turbine, which drives the fan. By the exhaust it has given up most of its heat as work.", "What is left leaves through the nozzle faster than it came in. Thrust is mass flow times the change in speed: F = ṁ·(Vout − Vin)."] },
+    { "title": "Idle to take-off", "mode": "cutaway", "throttle": 100, "body": ["Push the throttle forward. The fan speeds up, the pressure ratio climbs, more fuel burns, and thrust rises steeply: from a few kilonewtons at idle to over 110 kN here.", "Fuel per unit of thrust falls as power rises: the cycle is most efficient when the pressure ratio is high."] },
+    { "title": "In flight", "throttle": 100, "speed": 230, "body": ["At cruise the air already arrives at over 800 km/h. The engine must speed it up from that, so the same fan produces less thrust, and ram compression heats the air before it even reaches the fan.", "At high altitude the thin air reduces thrust further, which is why airliners need such large engines for take-off and climb."] }
+  ],
+  "parts": [
+    { "name": "Nacelle", "role": "The smooth outer cowling; its back half is cut away here." },
+    { "name": "Core casing", "role": "The case around the compressor, combustor and turbines." },
+    { "name": "Compressor and turbine blades", "role": "Rows of blades on two shafts: the fan and booster with the low-pressure turbine, the high-pressure compressor with the high-pressure turbine." },
+    { "name": "Combustor", "role": "A ring-shaped chamber where fuel burns in the compressed air." },
+    { "name": "Airflow", "role": "Coloured by temperature: blue cool air to orange-red hot gas." },
+    { "name": "Display stand", "role": "Holds the engine for the exhibit." }
+  ],
+  "facts": [
+    { "label": "Thrust", "value": "F = ṁ·(Vout − Vin)" },
+    { "label": "Bypass ratio here", "value": "5.5 : 1" },
+    { "label": "Overall pressure ratio", "value": "up to 32 : 1" },
+    { "label": "Turbine inlet temperature", "value": "≈ 1,330 °C at take-off" },
+    { "label": "Air flow at take-off", "value": "≈ 350 kg every second" }
+  ],
+  "accuracy": "An ideal two-spool Brayton cycle at sea level with typical component efficiencies, sized like a narrow-body airliner engine; it is not a model of a specific engine. Ram drag and altitude effects are simplified. Blade counts and sizes are reduced for clarity.",
+  "sources": ["Saravanamuttoo, Rogers & Cohen, Gas Turbine Theory, 7th ed. (2017)", "Rolls-Royce, The Jet Engine, 5th ed. (2005)", "NASA Glenn Research Center, Beginner's Guide to Propulsion"]
+}

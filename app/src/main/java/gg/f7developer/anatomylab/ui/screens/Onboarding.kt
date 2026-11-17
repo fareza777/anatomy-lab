@@ -48,6 +48,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
@@ -93,7 +94,9 @@ fun OnboardingScreen(dark: Boolean, onTheme: (ThemeChoice) -> Unit, onDone: () -
     ) {
         Row(Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
             Text("ANATOMY LAB", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(start = 12.dp).weight(1f))
-            if (pager.currentPage < PAGES.lastIndex) TextButton(onClick = onDone) { Text("Skip", color = MaterialTheme.colorScheme.onSurfaceVariant) }
+            // keep the slot on the last page so the header does not jump
+            val canSkip = pager.currentPage < PAGES.lastIndex
+            TextButton(onClick = onDone, enabled = canSkip, modifier = Modifier.alpha(if (canSkip) 1f else 0f)) { Text("Skip", color = MaterialTheme.colorScheme.onSurfaceVariant) }
         }
         HorizontalPager(pager, Modifier.weight(1f)) { index ->
             val page = PAGES[index]
@@ -169,9 +172,10 @@ private fun DragArt() {
             val c = Offset(size.width / 2, size.height / 2)
             val r = size.minDimension * 0.2f
             val a = angle + idle * 0.6f
-            gear(Offset(c.x - r * 0.9f, c.y - r * 0.15f), r, 14, a, SlabColors[1].second, SlabColors[1].third)
-            gear(Offset(c.x + r * 0.95f, c.y + r * 0.42f), r * 0.62f, 9, -a * 14f / 9f + 0.2f, SlabColors[0].first, SlabColors[0].third)
-            gear(Offset(c.x + r * 0.2f, c.y - r * 1.12f), r * 0.5f, 7, -a * 2f, SlabColors[2].first, SlabColors[2].third)
+            // centres sit one pitch-radius sum apart (in the iso plane) so the teeth mesh
+            gear(Offset(c.x - r * 0.75f, c.y - r * 0.1f), r, 14, a, SlabColors[1].second, SlabColors[1].third)
+            gear(Offset(c.x + r * 0.61f, c.y + r * 0.27f), r * 0.62f, 9, -a * 14f / 9f + 0.2f, SlabColors[0].first, SlabColors[0].third)
+            gear(Offset(c.x - r * 0.27f, c.y - r * 0.86f), r * 0.5f, 7, -a * 2f, SlabColors[2].first, SlabColors[2].third)
             // finger hint
             val fx = c.x - r + idle * r * 2
             drawCircle(if (lab.dark) Color.White else Color(0xFF12161F), radius = r * 0.16f, center = Offset(fx, c.y + r * 1.55f), alpha = 0.18f)

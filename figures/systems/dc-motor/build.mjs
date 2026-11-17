@@ -157,7 +157,7 @@ function tick(now) {
   const tau = M.k * I, pin = V * I, pout = Math.max(0, (tau - M.b * w) * w);
   const text = Math.round(rpm) + " rpm · " + I.toFixed(2) + " A";
   if (readout.textContent !== text) readout.textContent = text;
-  Lab.gauge("rpm", Math.round(rpm).toLocaleString() + " rpm");
+  Lab.gauge("rpm", Math.round(rpm).toLocaleString("en-US") + " rpm");
   Lab.gauge("amps", I.toFixed(2) + " A", I > 6);
   Lab.gauge("emf", (M.k * w).toFixed(2) + " V");
   Lab.gauge("torque", (tau * 1000).toFixed(0) + " mN·m");

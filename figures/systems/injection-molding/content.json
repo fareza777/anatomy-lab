@@ -1,0 +1,74 @@
+{
+  "id": "injection-molding",
+  "title": "Injection Moulding Machine",
+  "subtitle": "How plastic toys are made in seconds",
+  "category": "making",
+  "featured": false,
+  "tags": ["injection moulding", "plastic", "mould", "toy", "factory", "polymer", "screw", "making", "manufacturing", "brick"],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "Pellets melt in a heated barrel, a screw shoots them into a steel mould under huge pressure, and a toy brick pops out every few seconds. Find the window between short shots, burns and warping.",
+  "overview": [
+    "Most plastic things around you, from bottle caps to phone cases to building bricks, were made by injection moulding. It is the fastest way to make the same complicated shape millions of times with the same precision.",
+    "Plastic pellets fall from the hopper into a long heated barrel. Inside, a screw turns, dragging the pellets forward; friction and the heater bands melt them into a thick, glowing paste that collects in front of the screw. Then the screw stops turning and rams forward like a syringe plunger, forcing the melt through a nozzle into a closed steel mould at hundreds of bar.",
+    "The mould is kept cool, so the plastic freezes against its walls. A toggle clamp holds the two halves shut against the injection pressure. Once the part is stiff enough, the mould opens and ejector pins push it out, and the next cycle starts while the screw is already melting the next shot."
+  ],
+  "modes": [
+    { "id": "abs", "label": "ABS" },
+    { "id": "pp", "label": "PP" },
+    { "id": "pc", "label": "PC" }
+  ],
+  "controls": [
+    { "id": "melt", "type": "range", "label": "Melt temperature", "min": 180, "max": 340, "step": 1, "value": 235, "format": "{v} °C", "help": "Too cold and the plastic freezes before the mould is full; too hot and it burns." },
+    { "id": "speed", "type": "range", "label": "Injection speed", "min": 10, "max": 100, "step": 1, "value": 60, "format": "{v} %", "help": "Fast fills thin walls before they freeze, but too fast forces plastic out between the mould halves." },
+    { "id": "cool", "type": "range", "label": "Cooling time", "min": 2, "max": 25, "step": 0.5, "value": 10, "digits": 1, "format": "{v} s", "help": "The longest part of the cycle. Too short and the part warps when it is pushed out." }
+  ],
+  "gauges": [
+    { "id": "cycle", "label": "Cycle time" },
+    { "id": "need", "label": "Cooling needed" },
+    { "id": "rate", "label": "Parts per hour (4 cavities)" },
+    { "id": "bar", "label": "Injection pressure" },
+    { "id": "clamp", "label": "Clamp force needed" },
+    { "id": "quality", "label": "Part" }
+  ],
+  "steps": [
+    { "title": "Melting", "melt": 235, "speed": 60, "cool": 10, "body": ["Pellets slide from the hopper into the back of the barrel. The turning screw has a deep channel at the back that gets shallower towards the front, so the pellets are squeezed, sheared and heated.", "About two thirds of the heat comes from that shearing, not from the heater bands, which mainly keep each zone at its set temperature."] },
+    { "title": "Injection", "body": ["When enough melt has collected in front of the screw, it stops turning and is pushed forward by the injection cylinder. A check ring on its tip stops the melt flowing backwards, so the screw works like a plunger.", "Plastic fills the mould in about a second, driven by up to a thousand bar or more."] },
+    { "title": "Holding and cooling", "body": ["Plastic shrinks as it cools, so the screw keeps pushing for a moment (holding pressure) to pack in a little more.", "Then the part must cool until it is stiff. Cooling time grows with the square of the wall thickness: a part twice as thick needs four times as long. Water channels in the mould carry the heat away."] },
+    { "title": "Clamp and eject", "body": ["The two links of the toggle clamp straighten as the mould closes, like locking your knee. That multiplies the force of the clamp cylinder many times and locks the mould against the injection pressure.", "When the mould opens, ejector pins push the part free and it drops into the bin."] },
+    { "title": "Short shot", "melt": 195, "speed": 25, "body": ["Too cold, or too slow, and the melt freezes at the thin edges before the cavity is full. You get a short shot: a part with missing pieces, shown grey in the bin.", "Warm it up or inject faster and the full part comes back."] },
+    { "title": "Rushing the cooling", "melt": 235, "speed": 60, "cool": 4, "body": ["Cut the cooling time to speed the line up, and parts come out still soft inside. They bend as they shrink and the brick no longer clicks onto another.", "Engineers balance cycle time against quality: every second saved is worth thousands of parts a day."] }
+  ],
+  "parts": [
+    { "name": "Hopper", "role": "Holds the plastic pellets and feeds them into the barrel." },
+    { "name": "Plastic pellets", "role": "Raw plastic, often already coloured, about 3 mm across." },
+    { "name": "Barrel", "role": "A thick steel tube, cut open here to show the screw." },
+    { "name": "Heater bands", "role": "Electric heaters that hold each zone of the barrel at its temperature." },
+    { "name": "Screw", "role": "Melts and carries the plastic forward, then pushes it into the mould like a plunger." },
+    { "name": "Nozzle", "role": "Seals against the mould and lets the melt through." },
+    { "name": "Injection cylinder", "role": "A hydraulic cylinder that drives the screw forward." },
+    { "name": "Carriage", "role": "Holds the injection unit and presses the nozzle against the mould." },
+    { "name": "Fixed platen", "role": "Holds the stationary half of the mould." },
+    { "name": "Mould (cavity half)", "role": "Hardened steel with the shape of the part cut into it, cut away here." },
+    { "name": "Mould (core half)", "role": "The moving half; carries the ejector pins." },
+    { "name": "Moving platen", "role": "Slides along the tie bars to open and close the mould." },
+    { "name": "Toggle clamp", "role": "Links that lock straight to hold the mould shut with tonnes of force." },
+    { "name": "Rear platen", "role": "The anchor for the toggle and clamp cylinder." },
+    { "name": "Clamp cylinder", "role": "Drives the toggle open and closed." },
+    { "name": "Tie bars", "role": "Four steel bars that take the clamping force." },
+    { "name": "Machine base", "role": "Holds the hydraulics, pumps and electrics." },
+    { "name": "Control panel", "role": "Sets temperatures, speeds, pressures and times." },
+    { "name": "Drop chute", "role": "Guides falling parts into the bin." },
+    { "name": "Parts bin", "role": "Collects finished parts. Rejects are shown grey." },
+    { "name": "Moulded parts", "role": "Small building bricks with studs, fresh from the mould." }
+  ],
+  "facts": [
+    { "label": "Cooling time", "value": "t = s²/(π²α) · ln(8/π² · (Tm − Tw)/(Te − Tw))" },
+    { "label": "Wall thickness here", "value": "2 mm" },
+    { "label": "Typical injection pressure", "value": "500–1,500 bar" },
+    { "label": "Typical cycle", "value": "5–60 s" },
+    { "label": "Mould steel lasts", "value": "up to millions of cycles" }
+  ],
+  "accuracy": "Cooling time uses the standard one-dimensional slab formula with typical diffusivities and eject temperatures. Pressure, the short-shot rule and the defect limits are simplified illustrations of a real processing window. The cycle is shown 1.6× faster than real time.",
+  "sources": ["Rosato & Rosato, Injection Molding Handbook, 3rd ed. (2000)", "Menges, Michaeli & Mohren, How to Make Injection Molds, 3rd ed. (2001)", "Osswald, Turng & Gramann, Injection Molding Handbook (2008)"]
+}

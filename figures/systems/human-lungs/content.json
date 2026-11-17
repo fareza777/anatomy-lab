@@ -1,0 +1,61 @@
+{
+  "id": "human-lungs",
+  "title": "Lungs & Breathing",
+  "subtitle": "Half a billion air sacs and a dome of muscle",
+  "category": "biology",
+  "featured": true,
+  "tags": ["lungs", "breathing", "respiration", "oxygen", "carbon dioxide", "alveoli", "diaphragm", "altitude", "anatomy", "biology"],
+  "difficulty": "Beginner",
+  "minutes": 6,
+  "summary": "Watch the diaphragm pull air into a tree of airways that ends in half a billion tiny sacs. Change your breathing or climb a mountain and see your blood's oxygen respond.",
+  "overview": [
+    "Your lungs have no muscles of their own. Breathing in is done mostly by the diaphragm, a dome of muscle under the lungs. When it contracts it flattens and pulls down, the chest gets bigger, the pressure inside falls slightly below the air outside, and air flows in. Breathing out at rest is just the diaphragm relaxing and the stretchy lungs springing back.",
+    "Air travels down the trachea, which splits into two bronchi and then keeps branching, about 23 times, into ever narrower tubes. At the ends are around 480 million alveoli: air sacs a fifth of a millimetre across, wrapped in tiny blood vessels. Spread out, their surface would cover half a tennis court.",
+    "In each sac, oxygen crosses a wall less than a thousandth of a millimetre thick into the blood, where haemoglobin grabs it, and carbon dioxide crosses the other way to be breathed out. How much oxygen reaches the sacs depends on how much fresh air you move and on the air pressure around you."
+  ],
+  "modes": [
+    { "id": "anatomy", "label": "Anatomy" },
+    { "id": "airways", "label": "Airways" }
+  ],
+  "controls": [
+    { "id": "rate", "type": "range", "label": "Breathing rate", "min": 4, "max": 40, "step": 1, "value": 12, "format": "{v} /min", "help": "Breaths per minute. 12–16 is normal at rest." },
+    { "id": "tidal", "type": "range", "label": "Breath size", "min": 200, "max": 1500, "step": 50, "value": 500, "format": "{v} ml", "help": "Tidal volume. The first 150 ml of every breath only fills the airways (dead space)." },
+    { "id": "alt", "type": "range", "label": "Altitude", "min": 0, "max": 8849, "step": 50, "value": 0, "format": "{v} m", "help": "Air pressure, and with it the oxygen you breathe in, halves by about 5,500 m." }
+  ],
+  "gauges": [
+    { "id": "ve", "label": "Air moved per minute" },
+    { "id": "va", "label": "Fresh air reaching sacs" },
+    { "id": "co2", "label": "Blood CO₂" },
+    { "id": "o2", "label": "O₂ in the air sacs" },
+    { "id": "spo2", "label": "Blood oxygen (SpO₂)" },
+    { "id": "ph", "label": "Blood pH" }
+  ],
+  "steps": [
+    { "title": "The diaphragm", "rate": 12, "tidal": 500, "alt": 0, "body": ["Watch the red dome under the lungs. As it contracts it moves down by a centimetre or two, the lungs stretch to follow, and about half a litre of air flows in.", "Breathing out at rest needs no effort: the diaphragm relaxes and the elastic lungs recoil."] },
+    { "title": "The airway tree", "mode": "airways", "body": ["Switch to Airways. The trachea, held open by C-shaped rings of cartilage, divides into two bronchi. The right one is wider and steeper, which is why an inhaled peanut usually ends up in the right lung.", "Each branch divides again and again into bronchioles, and finally into the alveoli where gas exchange happens."] },
+    { "title": "Gas exchange", "mode": "anatomy", "body": ["The card below shows one alveolus beside its capillary. Oxygen is at about 100 mmHg in the sac and 40 mmHg in the blood arriving from the body, so it diffuses in. Carbon dioxide does the opposite, 46 mmHg in the blood and 40 mmHg in the sac.", "Blood passes in under a second and leaves almost fully loaded: 97 % of its haemoglobin carries oxygen."] },
+    { "title": "Holding back", "rate": 6, "tidal": 450, "alt": 0, "body": ["Breathe too little and carbon dioxide builds up in the blood, which turns more acidic. Oxygen in the sacs falls too.", "It is rising CO₂, not falling oxygen, that makes you feel the urge to breathe."] },
+    { "title": "Up a mountain", "rate": 12, "tidal": 500, "alt": 5500, "body": ["At 5,500 m the air pressure is half that at sea level, so every breath carries half as much oxygen. Breathing normally, the oxygen in the sacs drops so low that the blood leaves the lungs far from full.", "Now raise the rate and breath size. Breathing harder flushes CO₂ out of the sacs and makes room for more oxygen: the body does this automatically at altitude."] },
+    { "title": "Dead space", "rate": 40, "tidal": 250, "alt": 0, "body": ["Fast, shallow panting moves plenty of air, but each 250 ml breath spends 150 ml just filling the airways and back. Only 100 ml of fresh air reaches the sacs.", "Compare with slow, deep breaths: the same minute volume delivers far more fresh air to the alveoli."] }
+  ],
+  "parts": [
+    { "name": "Trachea", "role": "The windpipe, about 12 cm long and kept open by rings of cartilage." },
+    { "name": "Bronchial tree", "role": "Airways that branch about 23 times down to the alveoli." },
+    { "name": "Right lung", "role": "Three lobes; slightly larger than the left." },
+    { "name": "Left lung", "role": "Two lobes, with a notch where the heart sits." },
+    { "name": "Heart", "role": "Pumps the blood that carries oxygen from the lungs to the body." },
+    { "name": "Diaphragm", "role": "A dome of muscle that does most of the work of breathing in." },
+    { "name": "Ribs", "role": "Protect the lungs and lift outward to help bigger breaths." },
+    { "name": "Spine", "role": "The ribs hinge on the vertebrae at the back." },
+    { "name": "Air", "role": "Fresh air in, used air out." }
+  ],
+  "facts": [
+    { "label": "Alveoli", "value": "≈ 480 million" },
+    { "label": "Gas exchange surface", "value": "≈ 70 m²" },
+    { "label": "Alveolar gas equation", "value": "PAO₂ = FiO₂·(Pb − 47) − PaCO₂/0.8" },
+    { "label": "Resting breath", "value": "≈ 500 ml, 12–16 times a minute" },
+    { "label": "Anatomical dead space", "value": "≈ 150 ml" }
+  ],
+  "accuracy": "CO₂ comes from alveolar ventilation and a resting CO₂ output; alveolar O₂ from the alveolar gas equation; saturation from the Severinghaus fit of the dissociation curve; pressure falls with an 8.4 km scale height. The body's automatic responses (it would breathe harder by itself at altitude) are left out so you can see each effect.",
+  "sources": ["West & Luks, West's Respiratory Physiology: The Essentials, 11th ed. (2020)", "Severinghaus, Simple, accurate equations for human blood O₂ dissociation computations, J. Appl. Physiol. 46 (1979)", "Ochs et al., The number of alveoli in the human lung, Am. J. Respir. Crit. Care Med. 169 (2004)"]
+}

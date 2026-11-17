@@ -1,0 +1,55 @@
+{
+  "id": "volcano",
+  "title": "Volcano",
+  "subtitle": "Why some volcanoes ooze and others explode",
+  "category": "nature",
+  "featured": true,
+  "tags": ["volcano", "magma", "lava", "eruption", "geology", "plinian", "viscosity", "earth science", "nature", "ash"],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "A stratovolcano sliced through its summit. Change the magma's silica and gas, and watch gentle lava fountains turn into a 40 km column of ash.",
+  "overview": [
+    "Deep under a volcano, rock melts into magma that collects in a chamber a few kilometres down. Being lighter than the rock around it, it rises through cracks and a central conduit toward the surface.",
+    "What happens when it gets there depends mostly on two things. The first is silica: magma rich in silica (like rhyolite) is cooler and millions of times stickier than silica-poor basalt. The second is dissolved gas, mostly water and CO₂, which comes out of solution as the pressure falls, just like the bubbles in a fizzy drink when you open it.",
+    "In runny basalt, bubbles escape easily and the lava fountains and flows away, as in Hawaii. In sticky, gas-rich magma the bubbles cannot escape. Pressure builds until the magma shatters into ash and shoots out at hundreds of metres a second, building a column that can rise into the stratosphere. Layer upon layer of lava and ash from thousands of such eruptions builds the cone."
+  ],
+  "controls": [
+    { "id": "silica", "type": "range", "label": "Silica in the magma", "min": 46, "max": 75, "step": 1, "value": 49, "format": "{v} %", "help": "Basalt about 50 %, andesite about 60 %, rhyolite over 70 %." },
+    { "id": "gas", "type": "range", "label": "Dissolved gas", "min": 0.5, "max": 6, "step": 0.1, "value": 1.2, "digits": 1, "format": "{v} wt %", "help": "Mostly water vapour. More gas means more violent fragmentation." }
+  ],
+  "gauges": [
+    { "id": "temp", "label": "Magma temperature" },
+    { "id": "eta", "label": "Viscosity" },
+    { "id": "style", "label": "Eruption style" },
+    { "id": "plume", "label": "Plume height" },
+    { "id": "mer", "label": "Mass erupted" },
+    { "id": "vei", "label": "Explosivity" }
+  ],
+  "steps": [
+    { "title": "Inside the volcano", "silica": 49, "gas": 1.2, "body": ["The volcano is cut in half through the summit. Far below, magma collects in a chamber. From its roof, a conduit leads up to the crater; other blades of magma have pushed sideways as a sill or squeezed up through cracks as a dyke.", "The cone itself is built from alternating layers of solidified lava (dark) and ash and rubble (pale) from countless past eruptions."] },
+    { "title": "Runny lava", "silica": 49, "gas": 1.2, "body": ["Basalt at about 1,200 °C flows like warm honey. Its gas escapes easily, so the eruption is gentle: lava fountains at the vent and rivers of lava down the slope.", "These Hawaiian eruptions are spectacular but rarely deadly; you can usually walk away from the lava."] },
+    { "title": "Bursting bubbles", "silica": 50, "gas": 3.6, "body": ["Add more gas to the same runny magma. Large bubbles now rise through the conduit and burst at the top, flinging out glowing clots of lava every few seconds.", "This is Strombolian activity, named after the island of Stromboli, which has erupted like this almost continuously for over two thousand years."] },
+    { "title": "A plug of sticky lava", "silica": 66, "gas": 1.0, "body": ["Silica-rich magma with little gas is too stiff to flow far. It piles up over the vent as a lava dome that grows like toothpaste squeezed from a tube.", "Domes are dangerous: they can collapse or seal the vent until pressure builds beneath them."] },
+    { "title": "Plinian eruption", "silica": 72, "gas": 5, "body": ["Sticky rhyolite full of gas. The bubbles cannot escape, the magma shatters into ash, and the eruption column shoots up tens of kilometres, spreading out as an umbrella cloud.", "Hot avalanches of ash and gas, pyroclastic flows, race down the slopes at over 100 km/h. Lightning crackles in the column from the friction of colliding ash. Vesuvius in 79 AD and Pinatubo in 1991 erupted like this."] }
+  ],
+  "parts": [
+    { "name": "Volcano cone", "role": "Built from layers of lava and ash. Snow caps the top." },
+    { "name": "Forest", "role": "Trees on the fertile lower slopes; volcanic soils are rich in minerals." },
+    { "name": "Cut face", "role": "Alternating dark lava and pale ash layers that slope outward like the cone." },
+    { "name": "Magma chamber", "role": "A reservoir of molten rock a few kilometres underground." },
+    { "name": "Conduit", "role": "The main pipe from the chamber to the crater." },
+    { "name": "Dyke", "role": "A blade of magma that cut upward through the layers and froze." },
+    { "name": "Sill", "role": "A sheet of magma that pushed sideways between layers." },
+    { "name": "Bedrock", "role": "Older crust the volcano is built on." },
+    { "name": "Eruption", "role": "Fountains, bursts, a dome or an ash column, depending on the magma." }
+  ],
+  "facts": [
+    { "label": "Basalt viscosity", "value": "≈ 10²–10³ Pa·s" },
+    { "label": "Rhyolite viscosity", "value": "≈ 10⁸–10¹⁰ Pa·s" },
+    { "label": "Plume height", "value": "H ≈ 2·V̇^0.241 km (V̇ in m³/s)" },
+    { "label": "Pinatubo 1991 column", "value": "≈ 35 km" },
+    { "label": "Basalt eruption temperature", "value": "≈ 1,150–1,200 °C" }
+  ],
+  "accuracy": "Temperature and viscosity follow simple trends with silica; eruption style is decided by viscosity and gas content with illustrative thresholds. Plume height uses the Mastin et al. (2009) fit to the mass eruption rate. Heights and distances in the drawing are not to scale.",
+  "sources": ["Mastin et al., A multidisciplinary effort to assign realistic source parameters to models of volcanic ash-cloud transport, J. Volcanol. Geotherm. Res. 186 (2009)", "Sigurdsson (ed.), The Encyclopedia of Volcanoes, 2nd ed. (2015)", "USGS Volcano Hazards Program: Volcanic Explosivity Index"]
+}

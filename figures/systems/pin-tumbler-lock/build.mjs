@@ -190,7 +190,7 @@ function draw() {
   Lab.gauge("insert", Math.round(ins * 100) + " %");
   Lab.gauge("aligned", pins.svg.split("lk-ok").length - 1 + " / 5");
   Lab.gauge("bitting", cuts().join("-"));
-  Lab.gauge("combos", (10 ** 5).toLocaleString());
+  Lab.gauge("combos", (10 ** 5).toLocaleString("en-US"));
   Lab.gauge("turn", Math.round(turn * 57.3) + "°");
   return open;
 }

@@ -472,7 +472,7 @@ function draw(dt) {
   Lab.gauge("window", TYPES[choc].lo + "–" + TYPES[choc].hi + " °C");
   Lab.gauge("rate", barsPerMinute(speed) + " /min");
   Lab.gauge("kg", kgPerHour(speed).toFixed(0) + " kg/h");
-  Lab.gauge("made", made.toLocaleString());
+  Lab.gauge("made", made.toLocaleString("en-US"));
   Lab.gauge("flavour", roastNote(roast));
   Lab.gauge("conche", CONCHE_HOURS[choc] + " h");
   Lab.gauge("cocoa", TYPES[choc].cocoa + " %");

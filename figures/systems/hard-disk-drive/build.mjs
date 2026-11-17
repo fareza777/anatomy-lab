@@ -163,7 +163,7 @@ function tick(now) {
   const text = state === "seek" ? "Seeking…" : state === "latency" ? "Waiting for sector" : state === "read" ? "Reading" : "Idle";
   if (readout.textContent !== text) readout.textContent = text;
   Lab.gauge("state", text, state === "read");
-  Lab.gauge("track", Math.round(target * 450000).toLocaleString());
+  Lab.gauge("track", Math.round(target * 450000).toLocaleString("en-US"));
   Lab.gauge("seek", stats.seek.toFixed(1) + " ms");
   Lab.gauge("latency", latAvg.toFixed(2) + " ms");
   Lab.gauge("rate", Math.round(rate) + " MB/s");

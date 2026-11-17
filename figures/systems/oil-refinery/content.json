@@ -1,0 +1,68 @@
+{
+  "id": "oil-refinery",
+  "title": "Oil Refinery",
+  "subtitle": "Splitting crude oil by boiling point",
+  "category": "chemistry",
+  "featured": false,
+  "tags": ["refinery", "crude oil", "distillation", "fractional distillation", "petrol", "diesel", "kerosene", "chemistry", "hydrocarbons", "industry"],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "A tall column sorts crude oil into gas, petrol, kerosene, diesel and tar by boiling point. Turn up the furnace or switch to a heavy crude and see the barrel change.",
+  "overview": [
+    "Crude oil is a mixture of thousands of hydrocarbons, from tiny molecules like propane to huge ones with fifty or more carbon atoms. Small molecules boil at low temperatures and big ones at high temperatures, so heating crude and letting the vapour cool step by step sorts the molecules by size. This is fractional distillation.",
+    "In a refinery, crude is pumped through a furnace and heated to about 360 °C. Most of it turns to vapour and enters the bottom of a column up to 60 m tall, filled with trays. The vapour rises, bubbling through liquid on each tray and cooling as it goes. Each product condenses on the trays where the temperature matches its boiling range and is drawn off there: diesel lower down, kerosene above it, petrol near the top. Gases leave from the very top.",
+    "What never boils, the heavy residue, collects at the bottom. Different crudes give very different mixtures: a light crude is rich in petrol and diesel, a heavy crude yields mostly heavy oils and bitumen."
+  ],
+  "modes": [
+    { "id": "light", "label": "Light crude" },
+    { "id": "heavy", "label": "Heavy crude" }
+  ],
+  "controls": [
+    { "id": "furnace", "type": "range", "label": "Furnace outlet", "min": 300, "max": 420, "step": 1, "value": 360, "format": "{v} °C", "help": "Hotter vaporises more, but above ~400 °C the molecules start to crack and form coke." },
+    { "id": "bpd", "type": "range", "label": "Throughput", "min": 50, "max": 300, "step": 10, "value": 150, "format": "{v}k bbl/day", "help": "Thousands of barrels of crude a day (one barrel is 159 litres)." }
+  ],
+  "gauges": [
+    { "id": "light", "label": "Gas, petrol, naphtha" },
+    { "id": "middle", "label": "Kerosene & diesel" },
+    { "id": "resid", "label": "Residue" },
+    { "id": "duty", "label": "Furnace heat" },
+    { "id": "top", "label": "Column top" },
+    { "id": "status", "label": "Operation" }
+  ],
+  "steps": [
+    { "title": "Heating the crude", "furnace": 360, "bpd": 150, "body": ["Crude from the storage tank is pumped through heat exchangers (not shown) and then the fired furnace, where it flows through tubes past burner flames. It leaves at about 360 °C, partly boiling, and rushes into the bottom of the column.", "Heating 150,000 barrels a day takes over 100 megawatts, about as much as a small town uses."] },
+    { "title": "The column", "body": ["The column is cut open to show its trays. Vapour (the dots) rises through holes in each tray, covered by bubble caps, and bubbles through a layer of liquid. Heavier molecules condense into that liquid; lighter ones carry on up.", "So the column is hot at the bottom and cool at the top, and every tray holds liquid of a slightly different make-up: dark and heavy low down, pale and light near the top."] },
+    { "title": "The products", "body": ["Each product is drawn off at its own height: refinery gas from the top (to the sphere), then petrol, naphtha, kerosene for jet fuel, diesel, fuel oil, and finally the residue from the bottom.", "The card below shows the crude's boiling curve: how much of it has boiled away by each temperature. The coloured bands are the products."] },
+    { "title": "Heavy crude", "mode": "heavy", "body": ["Switch to heavy crude. Its boiling curve sits much higher: less than a fifth boils below 180 °C, and about half is still liquid at 360 °C.", "Refineries that run heavy crude need extra units, like crackers and cokers, to break the big molecules into petrol and diesel."] },
+    { "title": "Too hot", "furnace": 415, "body": ["Push the furnace higher and more of the crude vaporises, but above about 400 °C large molecules start to crack apart and form coke, a hard carbon deposit that clogs furnace tubes.", "To recover more without cracking, refineries send the residue to a second column under vacuum, where everything boils at a lower temperature."] }
+  ],
+  "parts": [
+    { "name": "Crude oil tank", "role": "Stores crude oil with a floating roof to stop vapour escaping." },
+    { "name": "Feed pump", "role": "Pushes crude through the furnace and into the column." },
+    { "name": "Crude line", "role": "Carries crude from the tank to the furnace." },
+    { "name": "Furnace", "role": "Burner flames heat the crude flowing through tubes to about 360 °C." },
+    { "name": "Furnace stack", "role": "Carries the burner exhaust away." },
+    { "name": "Transfer line", "role": "Carries the hot, partly boiling crude into the column." },
+    { "name": "Column skirt", "role": "The steel support at the base of the column." },
+    { "name": "Distillation column", "role": "A tall steel tower full of trays, cut open here." },
+    { "name": "Trays", "role": "Perforated plates with bubble caps; vapour bubbles through the liquid on each one." },
+    { "name": "Product lines", "role": "Draw each product off the column at its height; the colours show the product." },
+    { "name": "Gas sphere", "role": "Holds refinery gas (propane and butane) under pressure." },
+    { "name": "Petrol tank", "role": "Light liquid boiling at about 30–110 °C." },
+    { "name": "Naphtha tank", "role": "Feedstock for making petrol and plastics, boiling at 110–180 °C." },
+    { "name": "Kerosene tank", "role": "Jet fuel and paraffin, boiling at 180–250 °C." },
+    { "name": "Diesel tank", "role": "Gas oil for diesel engines and heating, 250–350 °C." },
+    { "name": "Fuel oil tank", "role": "Heavy oil for ships and power stations." },
+    { "name": "Residue tank", "role": "What never boiled: used for bitumen or processed further." },
+    { "name": "Plant floor", "role": "The refinery site." }
+  ],
+  "facts": [
+    { "label": "Furnace outlet", "value": "≈ 350–380 °C" },
+    { "label": "Column height", "value": "up to ≈ 60 m" },
+    { "label": "One barrel", "value": "159 litres" },
+    { "label": "Kerosene boils", "value": "≈ 180–250 °C" },
+    { "label": "Cracking starts", "value": "≈ 400 °C and above" }
+  ],
+  "accuracy": "Yields come from two typical true-boiling-point curves cut at standard boiling ranges, with a little overflash above the furnace temperature; real cut points overlap and depend on the column design. The column temperature profile and furnace duty (crude preheated to about 240 °C) are simplified.",
+  "sources": ["Gary, Handwerk & Kaiser, Petroleum Refining: Technology and Economics, 5th ed. (2007)", "Fahim, Al-Sahhaf & Elkilani, Fundamentals of Petroleum Refining (2010)", "US EIA, Refining crude oil (energy explained)"]
+}
