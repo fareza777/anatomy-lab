@@ -1,0 +1,146 @@
+{
+  "id": "fusion-tokamak",
+  "title": "Fusion Tokamak",
+  "subtitle": "A star in a magnetic bottle, 150 million degrees hot",
+  "category": "physics",
+  "featured": false,
+  "tags": ["fusion", "tokamak", "plasma", "magnetic confinement", "deuterium", "tritium", "ITER", "energy", "physics", "reactor"],
+  "difficulty": "Advanced",
+  "minutes": 8,
+  "summary": "Twelve superconducting coils hold a glowing torus of plasma away from the wall. Heat it, fuel it and keep the magnets cold; push the density too far and the plasma disrupts.",
+  "overview": [
+    "A tokamak is a doughnut-shaped magnetic bottle. Deuterium and tritium are heated until electrons separate from nuclei and the gas becomes plasma — a soup of charged particles at more than 100 million degrees. No material wall could survive that, so magnetic field lines curve around the torus and keep the hot plasma away from the vessel.",
+    "Fusion releases energy when a deuterium nucleus and a tritium nucleus combine into helium and a fast neutron. The helium stays in the plasma and heats it; the neutron escapes into a blanket, where its kinetic energy becomes heat. A steam cycle or a helium Brayton cycle can turn that heat into electricity.",
+    "The tokamak is a balance of four coupled systems: magnetic field, heating, fuelling and cryogenics. Field shapes the bottle; heating raises the temperature; fuelling sets the density; cryogenics keeps the superconducting coils at a few kelvin. Push one too far and the plasma cools, disrupts or quenches the magnets."
+  ],
+  "modes": [
+    { "id": "plasma", "label": "Plasma" },
+    { "id": "plant", "label": "Plant" }
+  ],
+  "controls": [
+    { "id": "heating", "type": "range", "label": "Auxiliary heating", "min": 0, "max": 100, "step": 5, "value": 70, "format": "{v} %", "help": "Neutral beams and radio-frequency power heat the plasma; more heating raises temperature but costs electricity." },
+    { "id": "fuel", "type": "range", "label": "D-T fuelling", "min": 40, "max": 100, "step": 5, "value": 60, "format": "{v} %", "help": "Pellet injectors set the density. Too much fuel at low field crosses the Greenwald limit." },
+    { "id": "field", "type": "range", "label": "Toroidal field", "min": 40, "max": 100, "step": 5, "value": 80, "format": "{v} %", "help": "Coil current squeezes and stabilises the plasma; stronger field improves confinement." },
+    { "id": "cooling", "type": "range", "label": "Cryogenic cooling", "min": 30, "max": 100, "step": 5, "value": 80, "format": "{v} %", "help": "Keeps the superconducting coils near 4 K. Too little cooling and they quench." }
+  ],
+  "gauges": [
+    { "id": "temp", "label": "Plasma temp" },
+    { "id": "density", "label": "Density" },
+    { "id": "confine", "label": "Confinement" },
+    { "id": "fusion", "label": "Fusion power" },
+    { "id": "q", "label": "Gain Q" },
+    { "id": "magnet", "label": "Coil temp" }
+  ],
+  "actions": [
+    { "id": "disrupt", "label": "Trigger disruption" },
+    { "id": "reset", "label": "Restart pulse", "primary": true }
+  ],
+  "steps": [
+    {
+      "title": "The bottle",
+      "mode": "plasma",
+      "set": { "heating": 70, "fuel": 60, "field": 80, "cooling": 80 },
+      "body": [
+        "The vacuum vessel is a torus — a doughnut with a hole in the middle. Twelve D-shaped coils wrap around it and carry enormous currents; together they make the toroidal field that runs the long way around the ring.",
+        "A central solenoid drives the plasma current. That current does two jobs: it heats the plasma by resistance and it creates the poloidal field that twists the magnetic field lines into a helix. The twist is what makes a tokamak stable."
+      ]
+    },
+    {
+      "title": "Lighting the plasma",
+      "mode": "plasma",
+      "set": { "heating": 80, "fuel": 60, "field": 80, "cooling": 80 },
+      "body": [
+        "Neutral beam injectors fire energetic atoms across the magnetic field; they ionise inside the plasma and give up their momentum and energy. Radio-frequency antennas can also pump energy into the electrons or ions at a chosen resonance.",
+        "The plasma temperature is a balance between heating and losses. The alpha particles from fusion stay trapped in the field and heat the plasma from inside — self-heating is what makes a burning plasma different from a merely hot one."
+      ]
+    },
+    {
+      "title": "Holding the ring",
+      "mode": "plasma",
+      "set": { "heating": 70, "fuel": 60, "field": 90, "cooling": 80 },
+      "body": [
+        "Confinement time measures how long energy stays in the plasma. Stronger field, higher density and gentler turbulence all help; too much auxiliary heating can make the plasma harder to hold.",
+        "The product of density, temperature and confinement time is the triple product. Fusion needs all three at once — a hot but thin plasma, or a dense but cold one, will not burn."
+      ]
+    },
+    {
+      "title": "Fuel and the density limit",
+      "mode": "plasma",
+      "set": { "heating": 70, "fuel": 95, "field": 55, "cooling": 80 },
+      "body": [
+        "Fuel is injected as frozen deuterium-tritium pellets that fly through a guide tube and vaporise in the plasma. More fuel means more fusion, until the edge plasma becomes unstable and the discharge disrupts.",
+        "The Greenwald limit is an empirical density ceiling. Push past it and the plasma detaches from the wall, cools abruptly and dumps its stored energy into the vessel. Tokamaks protect themselves with massive armour and a fast shutdown system."
+      ]
+    },
+    {
+      "title": "Gain",
+      "mode": "plant",
+      "set": { "heating": 80, "fuel": 60, "field": 85, "cooling": 80 },
+      "body": [
+        "Gain Q is fusion power divided by injected heating power. Q = 1 means the plasma releases as much fusion energy as the beams put in; Q = 10 is the target for ITER; Q = infinity is ignition, where alpha self-heating sustains the burn without auxiliary power.",
+        "A power plant needs more than Q. It needs the recirculating power — magnets, cryogenics, pumps, beams — to be a small fraction of the gross electricity. That is why engineering gain, not plasma gain alone, decides whether a tokamak is a power station."
+      ]
+    },
+    {
+      "title": "Cold magnets",
+      "mode": "plant",
+      "set": { "heating": 70, "fuel": 60, "field": 85, "cooling": 35 },
+      "body": [
+        "The coils are superconducting: below their critical temperature they carry current with no resistance. Niobium-tin operates near 4 K, cooled by supercritical helium. A quench is a sudden loss of superconductivity — the coil resistance rises, the stored magnetic energy turns into heat, and the field collapses.",
+        "Cryogenics is invisible in the plasma but essential to it. Lose the cold chain and the machine loses the bottle; the plasma is gone long before the coils finish warming."
+      ]
+    },
+    {
+      "title": "Disruption",
+      "mode": "plasma",
+      "set": { "heating": 70, "fuel": 80, "field": 50, "cooling": 80 },
+      "body": [
+        "A disruption is a fast, uncontrolled loss of plasma current. The plasma cools, the current channel narrows, and enormous electromagnetic forces push on the vessel. Runaway electrons can drill through the wall.",
+        "Modern tokamaks predict disruptions and fire a shattered-pellet injection system to radiate the energy away safely. The goal is not to avoid every disruption; it is to make every disruption survivable."
+      ]
+    },
+    {
+      "title": "A power plant",
+      "mode": "plant",
+      "set": { "heating": 85, "fuel": 65, "field": 95, "cooling": 90 },
+      "body": [
+        "The 14 MeV neutrons from D-T fusion are not confined by the magnetic field. They stream into a blanket, where they slow down and deposit heat; a lithium blanket can also breed tritium from the neutrons. The heat drives a steam turbine or a helium Brayton cycle.",
+        "A tokamak power plant is a chain of efficiencies: fusion power to neutron power, neutron power to heat, heat to steam, steam to electricity, minus the power that the magnets and beams consume. The plasma is the star, but the plant is the machine."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Vacuum vessel", "role": "The toroidal chamber that holds the vacuum and the plasma; its cutaway front shows the ring inside." },
+    { "name": "Plasma", "role": "A glowing torus of ionised deuterium and tritium at more than 100 million degrees." },
+    { "name": "Toroidal field coil", "role": "One of twelve D-shaped superconducting coils that wrap the vessel and make the confining field." },
+    { "name": "Central solenoid", "role": "The stacked coil in the middle that drives the plasma current and helps shape the field." },
+    { "name": "Blanket modules", "role": "Armour and heat-exchange panels on the inner wall; they absorb neutrons and can breed tritium." },
+    { "name": "Divertor", "role": "The exhaust at the bottom of the vessel that guides heat and helium ash out of the plasma." },
+    { "name": "Neutral beam injector", "role": "An accelerator that fires energetic neutral atoms into the plasma for heating and current drive." },
+    { "name": "Magnetic field lines", "role": "Dashed loops showing the twisted field that keeps the hot plasma away from the wall." },
+    { "name": "Cryoplant", "role": "Cold boxes, compressors and helium tanks that keep the superconducting coils near 4 K." },
+    { "name": "Steam generator", "role": "Turns blanket heat into steam for the turbine." },
+    { "name": "Turbine", "role": "A spinning rotor that converts steam enthalpy into shaft work." },
+    { "name": "Generator", "role": "The electrical machine coupled to the turbine; its rotor turns shaft work into electricity." },
+    { "name": "Heat exchanger", "role": "Transfers heat from the primary coolant loop to the steam or Brayton loop." },
+    { "name": "Diagnostic port", "role": "An opening for lasers, cameras, spectroscopy and other plasma measurements." },
+    { "name": "Pellet injector", "role": "A cryogenic pellet gun that fires D-T ice into the plasma to fuel it." },
+    { "name": "Control console", "role": "The operator station that coordinates magnetics, heating, fuelling and safety interlocks." },
+    { "name": "Cryostat base", "role": "The structural platform and thermal shield that sit under the whole machine." }
+  ],
+  "facts": [
+    { "label": "ITER design gain", "value": "Q = 10 (500 MW from 50 MW)" },
+    { "label": "JET record", "value": "59 MJ from a D-T pulse (1997)" },
+    { "label": "Plasma temperature", "value": "100–150 million °C" },
+    { "label": "D-T reaction", "value": "²H + ³H → ⁴He + n + 17.6 MeV" },
+    { "label": "Coil temperature", "value": "≈ 4 K (−269 °C)" },
+    { "label": "Fuel", "value": "deuterium from seawater, tritium bred from lithium" }
+  ],
+  "accuracy": "A lumped, deliberately legible model of a complex plasma. Fusion reactivity uses a Gaussian stand-in for the D-T cross-section; confinement, density limits, quench and disruption thresholds are representative rather than predictive. Real tokamaks need profile control, edge-localised modes, runaway-electron mitigation and a tritium breeding blanket; this lab shows the couplings, not a reactor design.",
+  "sources": [
+    "ITER Organization, ITER: the world's largest tokamak",
+    "Wesson, Tokamaks (4th edition)",
+    "Freidberg, Plasma Physics and Fusion Energy",
+    "EUROfusion, JET and the 1997 D-T record"
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "id": "space-station",
+  "title": "Orbital Life Support",
+  "subtitle": "A closed loop for air and water, 400 km above the ground",
+  "category": "space",
+  "featured": false,
+  "tags": ["space station", "life support", "ECLSS", "oxygen", "CO2", "water recovery", "astronaut", "habitat", "recycling", "space"],
+  "difficulty": "Advanced",
+  "minutes": 8,
+  "summary": "A cutaway habitat where electrolysis makes oxygen, a scrubber pulls CO2 out of the air and a water loop stretches every litre. Add crew, cut power or puncture the hull and watch the cabin drift.",
+  "overview": [
+    "A spacecraft is a sealed world with a very small atmosphere. The International Space Station's habitable volume is about 388 cubic metres, and every kilogram of oxygen, water and food has to be launched from Earth or recycled on board. Life support is the machinery that keeps that sealed world breathable.",
+    "The core loop is simple to state and hard to balance. Crew members consume oxygen and produce carbon dioxide and water vapour. Electrolysis splits water into oxygen and hydrogen. A scrubber removes carbon dioxide from the cabin air; a Sabatier reactor can combine that CO2 with hydrogen to make methane and more water. Urine and humidity are distilled, filtered and returned to the water tanks.",
+    "Nothing closes perfectly. Filters clog, water is lost in brine, and power margins shrink when the station turns away from the sun. The controls here let you add crew, dim the solar arrays, tune the scrubber and tune the water processor; the gauges show the cabin atmosphere responding over the next hours."
+  ],
+  "modes": [
+    { "id": "cabin", "label": "Cabin" },
+    { "id": "loops", "label": "Loops" }
+  ],
+  "controls": [
+    { "id": "crew", "type": "range", "label": "Crew aboard", "min": 2, "max": 6, "step": 1, "value": 4, "format": "{v}", "help": "Each person consumes oxygen and produces CO2 and water vapour." },
+    { "id": "power", "type": "range", "label": "Solar power", "min": 40, "max": 100, "step": 5, "value": 85, "format": "{v} %", "help": "Dim arrays cut electrolysis and scrubber power first." },
+    { "id": "scrubber", "type": "range", "label": "CO2 scrubber", "min": 40, "max": 100, "step": 5, "value": 85, "format": "{v} %", "help": "Removes a fraction of cabin CO2 each minute; needs power." },
+    { "id": "recycler", "type": "range", "label": "Water recovery", "min": 40, "max": 100, "step": 5, "value": 85, "format": "{v} %", "help": "Urine and humidity processor. Recovery never quite reaches 100%." }
+  ],
+  "gauges": [
+    { "id": "o2", "label": "Oxygen" },
+    { "id": "co2", "label": "Carbon dioxide" },
+    { "id": "pressure", "label": "Cabin pressure" },
+    { "id": "water", "label": "Water reserve" },
+    { "id": "temp", "label": "Cabin temp" },
+    { "id": "power", "label": "Power margin" }
+  ],
+  "actions": [
+    { "id": "leak", "label": "Puncture hull" },
+    { "id": "seal", "label": "Seal leak" },
+    { "id": "reset", "label": "Reset cabin", "primary": true }
+  ],
+  "steps": [
+    {
+      "title": "The can",
+      "mode": "cabin",
+      "set": { "crew": 4, "power": 85, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "The habitat is a pressure vessel with two decks. The outer shell keeps the vacuum out; the inner liner, hatches and feedthroughs keep the air in. The cutaway shows the machinery that stands between the crew and a very bad day.",
+        "Air is not still. Fans push it through ducts so carbon dioxide does not pool around sleepers and heat does not gather around electronics. The cabin is mixed, filtered and monitored continuously."
+      ]
+    },
+    {
+      "title": "Making oxygen",
+      "mode": "cabin",
+      "set": { "crew": 4, "power": 85, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "The electrolyser passes current through water and splits it into oxygen and hydrogen. The oxygen goes into the cabin; the hydrogen is either dumped overboard or fed to the Sabatier reactor. The stack needs water and a steady power margin.",
+        "The controller does not run flat out. It trims production to hold the oxygen partial pressure near 21.3 kPa — the same fraction of sea-level air that keeps a human conscious. Drop the power and the electrolyser is the first load to be shed."
+      ]
+    },
+    {
+      "title": "Pulling CO2 out",
+      "mode": "loops",
+      "set": { "crew": 4, "power": 85, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "Four crew members add carbon dioxide to the cabin at a nearly constant rate. The scrubber — a packed bed of zeolite or amine — adsorbs CO2 as air passes through, then releases it into a vacuum or a regeneration loop.",
+        "The Sabatier reactor can combine CO2 with hydrogen to make methane and water. The methane is vented; the water returns to the tank. It is a clever loop, but it needs hydrogen, heat and another piece of machinery that can fail."
+      ]
+    },
+    {
+      "title": "The water loop",
+      "mode": "loops",
+      "set": { "crew": 4, "power": 85, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "Water is the heaviest consumable on a station, so most of it is recycled. Urine goes through distillation, catalytic oxidation and filtration; humidity condensate joins the same stream. The product is clean enough to drink and to feed the electrolyser.",
+        "Recovery is never complete: brine, filter media and sampling take water out of the loop. The reserve gauge falls slowly even when everything works. Resupply ships top it up, and the crew learns to treat every litre as infrastructure."
+      ]
+    },
+    {
+      "title": "Add crew",
+      "mode": "cabin",
+      "set": { "crew": 6, "power": 85, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "Two more astronauts means more oxygen demand, more CO2 and more urine. The electrolyser ramps up, the scrubber works harder, and the water reserve drains faster. The cabin does not fail immediately; it drifts, and the drift is the lesson.",
+        "Watch the CO2 gauge first. It has the smallest buffer. Then watch the water reserve, which is the slowest variable and the one that limits how long the mission can continue without a resupply."
+      ]
+    },
+    {
+      "title": "A dim sun",
+      "mode": "loops",
+      "set": { "crew": 4, "power": 40, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "At 40% solar power the arrays produce less than the habitat's baseline load. The power margin turns negative, the electrolyser stops, and the scrubber slows. Oxygen falls while CO2 climbs — two alarms from one cause.",
+        "Real stations manage this with batteries, load shedding and a carefully ordered list of what can be turned off. The model gives the life-support loads priority over comfort, but physics does not care about priorities."
+      ]
+    },
+    {
+      "title": "Puncture",
+      "mode": "cabin",
+      "set": { "crew": 4, "power": 85, "scrubber": 85, "recycler": 85 },
+      "body": [
+        "A micrometeoroid punches a millimetre-sized hole in the shell. The cabin is not explosively decompressed — it is a big volume with a small leak — but pressure and oxygen partial pressure fall steadily. The crew has time to find the leak and seal it, if they know where to look.",
+        "Seal the leak and the pressure stops falling, but it does not come back. Repressurisation needs gas from a tank. The cabin remains at a lower pressure until the next resupply or a controlled repress."
+      ]
+    },
+    {
+      "title": "Closing the loop",
+      "mode": "loops",
+      "set": { "crew": 4, "power": 90, "scrubber": 90, "recycler": 90 },
+      "body": [
+        "The best operating point is not maximum power or maximum scrubbing; it is the point where every loop has a little margin. Run the electrolyser near demand, keep the scrubber above the CO2 production rate, and recover as much water as the processor allows.",
+        "A station is a system of systems. The air, water, power and thermal loops are coupled, and a change in one shows up in the others. That coupling is the engineering — and the drama — of living off Earth."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Habitat shell", "role": "The pressure vessel: a white cylindrical can with a cutaway front showing the decks inside." },
+    { "name": "Solar array", "role": "Photovoltaic wings that make electricity; they track the sun and dim when the station turns." },
+    { "name": "Radiator", "role": "Panels that dump waste heat to space; they warm and glow as the cabin heat load rises." },
+    { "name": "O2 electrolyser", "role": "Splits water into oxygen and hydrogen using electric current." },
+    { "name": "CO2 scrubber", "role": "A packed bed that adsorbs carbon dioxide from the cabin air and releases it for regeneration." },
+    { "name": "Sabatier reactor", "role": "Combines CO2 with hydrogen to make methane and water, recovering some of the oxygen and water." },
+    { "name": "Water tanks", "role": "Store the reserve that feeds the crew, the electrolyser and the recycler." },
+    { "name": "Urine processor", "role": "Distils and filters urine so its water can return to the potable loop." },
+    { "name": "Equipment rack", "role": "Houses pumps, valves, sensors and control electronics for the life-support loops." },
+    { "name": "Plant chamber", "role": "A small crop chamber under pink grow lights; plants can supplement food and help recycle air." },
+    { "name": "Crew quarters", "role": "Bunks and personal stowage on the upper deck." },
+    { "name": "Exercise bike", "role": "Countermeasures for bone and muscle loss in microgravity; it also adds heat and CO2 to the cabin." },
+    { "name": "Galley", "role": "Food preparation and the water tap that makes the reserve a personal number." },
+    { "name": "Docking port", "role": "The hatches where resupply ships bring water, gas, food and spare parts." },
+    { "name": "Antenna", "role": "Communications and telemetry link to the ground." },
+    { "name": "Circulation fan", "role": "Moves air through the cabin and the scrubber so CO2 and heat do not stratify." },
+    { "name": "Life-support plumbing", "role": "Colour-coded pipes carrying oxygen, air, water and CO2 between the loops." },
+    { "name": "Astronaut", "role": "The reason for all of it: a crew member consuming oxygen, water and food, and producing CO2 and heat." }
+  ],
+  "facts": [
+    { "label": "Sea-level oxygen", "value": "21.3 kPa partial pressure" },
+    { "label": "Cabin pressure", "value": "101.3 kPa (1 atm)" },
+    { "label": "ISS water recovery", "value": "about 93%" },
+    { "label": "Crew oxygen use", "value": "≈ 0.84 kg per person per day" },
+    { "label": "Crew CO2 output", "value": "≈ 1 kg per person per day" },
+    { "label": "Electrolysis", "value": "2 H₂O → 2 H₂ + O₂" }
+  ],
+  "accuracy": "A lumped, continuous model of a closed cabin, not a flight-qualified ECLSS simulation. Volumes, leak rates, scrubber kinetics and water recovery are exaggerated so the drifts are visible in minutes rather than days. Real stations use redundant loops, batteries, pressure-control assemblies and resupply; the chemistry and the direction of every coupling here are representative.",
+  "sources": [
+    "NASA, International Space Station Environmental Control and Life Support System (ECLSS)",
+    "NASA, Baseline Values and Assumptions Document for Life Support",
+    "ESA, Life support systems for human spaceflight",
+    "Wieland, Designing for Human Presence in Space: Environmental Control and Life Support"
+  ]
+}

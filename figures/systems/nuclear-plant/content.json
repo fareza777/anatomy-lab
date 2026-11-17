@@ -1,0 +1,153 @@
+{
+  "id": "nuclear-plant",
+  "title": "Nuclear Power Plant",
+  "subtitle": "Fission, steam and the grid — one coupled machine",
+  "category": "engineering",
+  "featured": false,
+  "tags": ["nuclear", "reactor", "pwr", "fission", "power plant", "turbine", "generator", "control rods", "xenon", "steam", "energy", "engineering"],
+  "difficulty": "Advanced",
+  "minutes": 9,
+  "summary": "A pressurised-water reactor in cut-away: split atoms in the core, follow the heat through the steam generator, spin the turbine, and meet the feedback loops that keep the chain reaction in check.",
+  "overview": [
+    "A nuclear power plant is a steam engine whose fire never sees oxygen. Inside the reactor pressure vessel, uranium-235 nuclei absorb neutrons and split, releasing about 200 MeV each. That heat passes through a closed primary loop of water at 155 bar, so hot that it cannot boil, into a steam generator. There the heat makes steam in a separate secondary loop, and the steam drives a turbine and generator.",
+    "The chain reaction is controlled by a delicate balance. About 0.65 % of the neutrons are released not immediately but seconds later by decaying fission products; these delayed neutrons make a reactor controllable at all. Control rods absorb neutrons, and the fuel and water push back on their own: heat the fuel and the reaction slows (the Doppler effect), heat the water and it slows too. The reactor is designed to be self-correcting.",
+    "Two slow feedbacks matter most. Iodine-135 decays into xenon-135, a voracious neutron absorber. At power, xenon is burned up as fast as it is made; after a shutdown it accumulates into a xenon pit that can prevent a restart for hours. And decay heat — about 6.5 % of full power at the instant of shutdown — keeps coming even after the chain reaction stops. That is why cooling and containment are the heart of nuclear safety."
+  ],
+  "modes": [
+    { "id": "cutaway", "label": "Cutaway" },
+    { "id": "neutrons", "label": "Neutrons" }
+  ],
+  "controls": [
+    { "id": "rods", "type": "range", "label": "Control rods", "min": 0, "max": 100, "step": 1, "value": 55, "format": "{v} % out", "help": "Pull the bank out to add reactivity; drive it in to reduce power. The SCRAM button drops it all the way." },
+    { "id": "load", "type": "range", "label": "Turbine load", "min": 0, "max": 100, "step": 1, "value": 100, "format": "{v} %", "help": "How much steam the turbine admits. Low load raises steam pressure; too low and the relief valve opens." },
+    { "id": "cooling", "type": "range", "label": "Cooling water", "min": 20, "max": 100, "step": 5, "value": 80, "format": "{v} %", "help": "Condenser cooling flow. Less flow means higher back-pressure, lower efficiency and a hotter cooling tower." }
+  ],
+  "gauges": [
+    { "id": "power", "label": "Reactor power" },
+    { "id": "rho", "label": "Reactivity" },
+    { "id": "fuel", "label": "Fuel temperature" },
+    { "id": "steam", "label": "Steam pressure" },
+    { "id": "mwe", "label": "Electrical output" },
+    { "id": "xenon", "label": "Xenon-135" }
+  ],
+  "actions": [
+    { "id": "scram", "label": "SCRAM", "primary": true },
+    { "id": "reset", "label": "Restart" }
+  ],
+  "steps": [
+    {
+      "title": "Splitting the atom",
+      "mode": "cutaway",
+      "set": { "rods": 55, "load": 100, "cooling": 80 },
+      "body": [
+        "A uranium-235 nucleus that absorbs a slow neutron splits into two lighter nuclei and releases two or three more neutrons plus about 200 MeV of energy. Most of that energy appears as the kinetic energy of the fragments, which heats the fuel pellet within micrometres of their birth.",
+        "There are 12 fuel assemblies shown here; a real 3,000 MW reactor holds about 50,000 fuel rods, roughly 100 tonnes of uranium dioxide enriched to 3–5 % uranium-235."
+      ]
+    },
+    {
+      "title": "A chain reaction on a leash",
+      "mode": "neutrons",
+      "set": { "rods": 62, "load": 100 },
+      "body": [
+        "Each fission gives neutrons that can cause more fissions. If exactly one of them goes on to split another nucleus, the reactor is critical: the power is steady. Slightly more and it rises; slightly less and it dies away.",
+        "Control would be hopeless if every neutron appeared instantly. About 0.65 % are delayed by seconds to minutes, released by decaying fission products. Those delayed neutrons slow the whole response, giving operators and automatic systems time to act. Switch to Neutrons to see the flux in the core."
+      ]
+    },
+    {
+      "title": "Control rods",
+      "mode": "cutaway",
+      "set": { "rods": 20, "load": 100 },
+      "body": [
+        "The rods are made of boron carbide or an alloy of silver, indium and cadmium, all hungry for slow neutrons. Driving them into the core removes neutrons from the chain reaction; pulling them out adds reactivity.",
+        "Let the power settle, then pull the bank back out a little at a time. The reactivity gauge shows that the fuel and water quickly cancel much of the change: this reactor has a strongly negative temperature coefficient."
+      ]
+    },
+    {
+      "title": "The primary loop",
+      "mode": "cutaway",
+      "set": { "rods": 55, "load": 100, "cooling": 80 },
+      "body": [
+        "Water at about 155 bar and 300 °C is pumped through the core at several tonnes per second. The pressure is far above water's normal boiling point, so the coolant stays liquid and carries heat away without turning to steam inside the core.",
+        "The pressuriser on the left is a tall tank half full of water and half steam. Heaters and sprays hold its pressure steady; it is the shock absorber that keeps the primary loop from boiling when load changes."
+      ]
+    },
+    {
+      "title": "Making steam",
+      "mode": "cutaway",
+      "set": { "rods": 55, "load": 100 },
+      "body": [
+        "Hot primary water flows through thousands of inverted U-tubes inside the steam generator. On the other side of the tube walls, secondary water boils at about 70 bar into steam at 285 °C.",
+        "The two loops never mix. That is the central safety idea of a PWR: any radioactivity stays in the primary loop, inside the containment building, while clean steam goes to the turbine."
+      ]
+    },
+    {
+      "title": "Turbine and generator",
+      "mode": "cutaway",
+      "set": { "rods": 55, "load": 85, "cooling": 60 },
+      "body": [
+        "Steam expands through the turbine blades, giving up pressure and temperature as it spins the shaft. The generator turns that rotation into electricity: about 950 MW from 3,000 MW of heat, an efficiency near 32 %.",
+        "The exhaust steam is condensed under vacuum and pumped back to the steam generator. Drop the cooling-water flow and watch the condenser pressure rise: less vacuum means less power from the same steam, and the cooling tower plume thickens."
+      ]
+    },
+    {
+      "title": "The xenon pit",
+      "mode": "cutaway",
+      "set": { "rods": 40, "load": 60, "cooling": 75 },
+      "body": [
+        "Iodine-135, with a 6.6-hour half-life, decays into xenon-135, one of the strongest neutron poisons known. At full power the xenon is burned away by the neutron flux as fast as it forms, so it sits at an equilibrium worth about 2.8 % reactivity.",
+        "Cut power and the burn-up falls immediately while iodine keeps producing xenon. The xenon gauge climbs, adding negative reactivity and pulling the power down further — the xenon pit. After a shutdown it can take 20–40 hours before the reactor can be restarted."
+      ]
+    },
+    {
+      "title": "Defence in depth",
+      "mode": "cutaway",
+      "set": { "rods": 55, "load": 100, "cooling": 80 },
+      "body": [
+        "Three barriers stand between the fuel and the environment: the ceramic fuel and its zirconium cladding, the steel pressure vessel and primary loop, and the reinforced concrete containment. Each is designed to hold even if the one before it fails.",
+        "The last line is the operator and the automatic protection system. Press SCRAM: the rods fall in under gravity in a couple of seconds, the chain reaction stops and the turbine trips off the grid. Decay heat does not stop, so the pumps, steam generator and relief valve must keep removing it. Try a SCRAM, then watch the fuel temperature and steam pressure."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Containment", "role": "A steel-lined, reinforced-concrete shell that holds the whole primary loop and can contain steam and radioactivity even in an accident." },
+    { "name": "Reactor pressure vessel", "role": "A forged steel vessel about 12 m tall and 4 m across, holding the core at 155 bar." },
+    { "name": "Reactor core", "role": "The region where fission happens: fuel assemblies, control rods and water in a precise lattice." },
+    { "name": "Fuel assemblies", "role": "Bundles of zirconium-clad uranium-dioxide rods, enriched to 3–5 % uranium-235." },
+    { "name": "Control rods", "role": "Boron-carbide or silver-indium-cadmium rods that absorb neutrons; they drop into the core on a SCRAM." },
+    { "name": "Pressurizer", "role": "A tank of water and steam that holds the primary loop at about 155 bar and absorbs pressure changes." },
+    { "name": "Steam generator", "role": "A heat exchanger: hot primary water boils secondary water into steam without the two ever mixing." },
+    { "name": "Primary coolant pump", "role": "Circulates several tonnes of water per second through the core and steam generator." },
+    { "name": "Hot leg", "role": "Carries water at about 325 °C from the reactor to the steam generator." },
+    { "name": "Cold leg", "role": "Returns cooler water, around 290 °C, from the steam generator through the pump to the reactor." },
+    { "name": "Steam line", "role": "Carries steam at about 70 bar and 285 °C from the steam generator to the turbine." },
+    { "name": "Turbine", "role": "A series of blade rows that turns the steam's heat into rotation; the steam expands and cools as it passes." },
+    { "name": "Generator", "role": "A spinning electromagnet inside coils of wire, converting shaft power into electricity at about 950 MW." },
+    { "name": "Condenser", "role": "Cools the turbine exhaust back to water under vacuum, which is what lets the steam expand so far." },
+    { "name": "Cooling tower", "role": "Evaporates circulating water to dump the waste heat; the white plume is water vapour, not smoke." },
+    { "name": "Cooling tower plume", "role": "Warm, moist air condensing as it meets the cooler atmosphere." },
+    { "name": "Feedwater line", "role": "Returns condensed water from the condenser to the steam generator." },
+    { "name": "Circulating water line", "role": "Carries cooling water between the condenser and the cooling tower." },
+    { "name": "Relief valve", "role": "Opens if steam pressure gets too high and dumps steam to the condenser or atmosphere." },
+    { "name": "Transformer", "role": "Steps the generator voltage up to grid transmission levels." },
+    { "name": "Transmission pylon", "role": "Carries the plant's output into the high-voltage grid." },
+    { "name": "Alarm beacon", "role": "Flashes red when the reactor has tripped or a protection limit is exceeded." },
+    { "name": "Neutron flux", "role": "In Neutrons mode, the moving dots show neutrons sustaining the chain reaction inside the fuel." }
+  ],
+  "facts": [
+    { "label": "Thermal power", "value": "3,000 MWt" },
+    { "label": "Electrical output", "value": "≈ 950 MWe (≈ 32 % efficient)" },
+    { "label": "Primary loop", "value": "≈ 155 bar, 290–325 °C" },
+    { "label": "Steam", "value": "≈ 70 bar, 285 °C" },
+    { "label": "Delayed neutrons", "value": "≈ 0.65 % of all neutrons" },
+    { "label": "Xenon-135 worth", "value": "≈ 2.8 % Δk/k at equilibrium" },
+    { "label": "Decay heat at shutdown", "value": "≈ 6.5 % of full power" },
+    { "label": "Fuel", "value": "UO₂, 3–5 % ²³⁵U, ≈ 100 tonnes" }
+  ],
+  "accuracy": "A lumped-parameter teaching model, not an operator-training simulator. Point kinetics with one delayed-neutron group uses the prompt-jump approximation; fuel, coolant, steam-generator and steam-pressure dynamics are single nodes; xenon is time-lapsed about 240× so an hours-long transient fits in half a minute; decay heat is a simplified 40 s decay. Real PWRs have many more loops, protection channels and spatial effects. Values are typical of a large four-loop PWR, not a specific plant.",
+  "sources": [
+    "Lamarsh & Baratta, Introduction to Nuclear Engineering, 4th ed. (2017)",
+    "Todreas & Kazimi, Nuclear Systems I: Thermal Hydraulic Fundamentals, 2nd ed. (2011)",
+    "IAEA, Pressurised Water Reactor (PWR) Systems (2012)",
+    "US NRC, Reactor Concepts Manual: Pressurized Water Reactor Systems"
+  ]
+}

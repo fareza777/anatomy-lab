@@ -1,0 +1,129 @@
+{
+  "id": "container-terminal",
+  "title": "Container Terminal",
+  "subtitle": "Cranes, AGVs and the yard: the dance of a 1,800-box ship",
+  "category": "technology",
+  "featured": false,
+  "tags": ["container", "port", "terminal", "crane", "AGV", "logistics", "ship", "automation", "yard", "supply chain", "technology"],
+  "difficulty": "Advanced",
+  "minutes": 7,
+  "summary": "Three quay cranes pluck containers off a ship, driverless AGVs race them to the yard and gantry cranes stack them. Add equipment and watch the bottleneck move.",
+  "overview": [
+    "A container terminal is a factory whose product is a moved box. The ship is the incoming warehouse; the quay cranes are the machines that unload it; automated guided vehicles (AGVs) are the conveyor; the yard is the buffer; and the gantry cranes stack and retrieve. Every stage has a maximum rate, and the slowest one sets the tempo for the whole berth.",
+    "The choreography is exact. A quay crane lowers its spreader onto a container, locks the four twistlocks, lifts, trolleys the box over the quay and sets it on an AGV that has queued underneath. The AGV drives a fixed route to a yard block, where a rubber-tyred gantry (RTG) lifts the box into a stack. The empty AGV loops back for the next one.",
+    "Real terminals are measured in moves per hour and berth time. A big ship carries 20,000 TEU; a quay crane does 30–45 moves an hour; a terminal may run dozens of cranes and hundreds of AGVs. The interesting part is not any one machine but the queueing: a fast crane with too few AGVs simply waits, and a full yard slows everything behind it."
+  ],
+  "modes": [
+    { "id": "operations", "label": "Operations" },
+    { "id": "flow", "label": "Flow" }
+  ],
+  "controls": [
+    { "id": "cranes", "type": "range", "label": "Quay cranes", "min": 1, "max": 4, "step": 1, "value": 3, "format": "{v}", "help": "Each crane can make about 33 moves an hour." },
+    { "id": "agvs", "type": "range", "label": "AGV fleet", "min": 2, "max": 12, "step": 1, "value": 8, "format": "{v}", "help": "Each AGV does roughly 17 round trips an hour. Too few and the cranes wait." },
+    { "id": "yard", "type": "range", "label": "Yard cranes", "min": 1, "max": 4, "step": 1, "value": 2, "format": "{v}", "help": "Each RTG can stack about 50 boxes an hour." },
+    { "id": "workload", "type": "range", "label": "Vessel workload", "min": 900, "max": 3600, "step": 150, "value": 1800, "format": "{v} TEU", "help": "How many containers the ship carries. A bigger ship takes longer to turn around." }
+  ],
+  "gauges": [
+    { "id": "moves", "label": "Throughput" },
+    { "id": "quay", "label": "Quay capacity" },
+    { "id": "wait", "label": "AGV wait" },
+    { "id": "yardfill", "label": "Yard fill" },
+    { "id": "berth", "label": "Berth time left" },
+    { "id": "moved", "label": "Containers moved" }
+  ],
+  "actions": [
+    { "id": "reset", "label": "New vessel", "primary": true }
+  ],
+  "steps": [
+    {
+      "title": "The berth",
+      "mode": "operations",
+      "set": { "cranes": 3, "agvs": 8, "yard": 2, "workload": 1800 },
+      "body": [
+        "A 1,800 TEU ship has tied up. The quay is a narrow strip between deep water and the yard, so every box must cross it in one direction and every empty vehicle must come back the other way.",
+        "The terminal operating system already knows which container goes to which yard block. It plans the discharge in a sequence that keeps the ship stable and the cranes from crossing each other."
+      ]
+    },
+    {
+      "title": "The quay crane",
+      "mode": "operations",
+      "set": { "cranes": 3, "agvs": 8, "yard": 2 },
+      "body": [
+        "The ship-to-shore crane is a portal that straddles the quay. Its boom reaches over the ship; the trolley runs along the boom, and the spreader is lowered on steel cables to the container. Four twistlocks engage the corner castings, the spreader lifts, and the box swings clear.",
+        "One cycle — down, lock, lift, trolley, lower, unlock, return — takes about 100 seconds. At three cranes the quay can deliver roughly 100 boxes an hour, but only if the rest of the chain keeps up."
+      ]
+    },
+    {
+      "title": "The AGV shuttle",
+      "mode": "flow",
+      "set": { "cranes": 3, "agvs": 8, "yard": 2 },
+      "body": [
+        "Automated guided vehicles are flat, low and battery-powered. They follow buried magnets or painted lines, and they never need a driver. An AGV waits under the crane, takes the box, drives to its assigned yard block and tips it onto a transfer stand.",
+        "The fleet is a moving queue. With eight AGVs and three cranes, the trips balance; cut the fleet to four and the cranes spend more time waiting than lifting. Switch to Flow to see the routes."
+      ]
+    },
+    {
+      "title": "Stacking the yard",
+      "mode": "operations",
+      "set": { "cranes": 3, "agvs": 8, "yard": 2, "workload": 1800 },
+      "body": [
+        "Rubber-tyred gantry cranes straddle a block of containers and stack them four to six high. The yard is a buffer between the ship and the trucks that will take the boxes inland, so its density decides how long a ship can be discharged before the yard fills.",
+        "Each RTG can make about 50 moves an hour. Two of them are enough for three quay cranes; one is not. Watch the yard-fill gauge climb as the ship empties."
+      ]
+    },
+    {
+      "title": "Find the bottleneck",
+      "mode": "flow",
+      "set": { "cranes": 4, "agvs": 4, "yard": 4, "workload": 2400 },
+      "body": [
+        "Four quay cranes can ask for 133 moves an hour, but four AGVs can only deliver about 67. The extra crane does not add throughput; it just adds a queue. The readout names the limiting stage: AGV.",
+        "Add AGVs until the quay is the limit, then add yard cranes. The best terminal is not the one with the most machines; it is the one whose stages are balanced."
+      ]
+    },
+    {
+      "title": "When the yard is full",
+      "mode": "operations",
+      "set": { "cranes": 4, "agvs": 12, "yard": 1, "workload": 3600 },
+      "body": [
+        "A single RTG with a full yard becomes the worst bottleneck of all. Containers pile up, the AGVs queue, the quay cranes wait, and the ship's berth time stretches into days.",
+        "Real terminals avoid this with pre-stacking, rail links and a gate that keeps trucks flowing. A yard is not just storage; it is a scheduling problem."
+      ]
+    },
+    {
+      "title": "The automation layer",
+      "mode": "flow",
+      "set": { "cranes": 4, "agvs": 10, "yard": 4, "workload": 1800 },
+      "body": [
+        "Above every machine sits the terminal operating system. It assigns each container a yard slot, each AGV a route, and each crane a sequence. It also decides when to stop a crane so a ship stays level and when to send an AGV to recharge.",
+        "Automation makes the choreography faster, but it also makes the bottlenecks more visible: a badly tuned fleet or a full yard stalls a line that never gets tired."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Container ship", "role": "A 1,800 TEU vessel carrying stacked steel boxes; the white superstructure holds the bridge and crew." },
+    { "name": "Harbour water", "role": "Deep water alongside the quay; the ship floats here while it is worked." },
+    { "name": "Quay", "role": "The concrete apron between water and yard, crossed by cranes, AGVs and trucks." },
+    { "name": "Mooring bollard", "role": "A steel post that holds the ship's mooring lines against wind and tide." },
+    { "name": "Ship-to-shore crane", "role": "A portal crane that reaches over the ship and lifts containers onto the quay." },
+    { "name": "AGV", "role": "An automated guided vehicle: a low flatbed that carries one container between quay and yard." },
+    { "name": "Container yard", "role": "The buffer where containers are stacked by destination and departure mode." },
+    { "name": "Container stacks", "role": "Steel boxes stacked several high; each colour here stands for a different destination." },
+    { "name": "Yard gantry crane", "role": "A rubber-tyred gantry that straddles a yard block and stacks or retrieves containers." },
+    { "name": "Truck", "role": "A road vehicle collecting or delivering a container through the terminal gate." }
+  ],
+  "facts": [
+    { "label": "Largest container ships", "value": "24,000+ TEU" },
+    { "label": "Quay crane productivity", "value": "30–45 moves per hour" },
+    { "label": "One TEU", "value": "a 20-foot equivalent unit, about 6.1 m long" },
+    { "label": "Typical AGV speed", "value": "≈ 6 m/s (21 km/h)" },
+    { "label": "Yard stacking", "value": "4–6 containers high" },
+    { "label": "This ship", "value": "1,800 TEU, three cranes" }
+  ],
+  "accuracy": "A continuous queueing approximation of a discrete-event terminal, not a model of a specific port. Crane cycles, AGV trips and yard cycles are typical values; real terminals vary with ship layout, weather, labour, customs and yard design. The animation is slowed and stylised so the individual machines can be followed.",
+  "sources": [
+    "IMO, Container Terminal Planning and Operation (2015)",
+    "Bierwirth & Meisel, A survey of berth allocation and quay crane scheduling problems, EJOR (2015)",
+    "Stahlbock & Voß, Operations research at container terminals: a literature update (2008)",
+    "World Shipping Council, container terminal facts"
+  ]
+}

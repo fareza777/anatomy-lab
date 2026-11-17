@@ -1213,6 +1213,296 @@
    ]
   },
   {
+   "id": "container-terminal",
+   "title": "Container Terminal",
+   "subtitle": "Cranes, AGVs and the yard: the dance of a 1,800-box ship",
+   "category": "technology",
+   "featured": false,
+   "tags": [
+    "container",
+    "port",
+    "terminal",
+    "crane",
+    "AGV",
+    "logistics",
+    "ship",
+    "automation",
+    "yard",
+    "supply chain",
+    "technology"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 7,
+   "summary": "Three quay cranes pluck containers off a ship, driverless AGVs race them to the yard and gantry cranes stack them. Add equipment and watch the bottleneck move.",
+   "overview": [
+    "A container terminal is a factory whose product is a moved box. The ship is the incoming warehouse; the quay cranes are the machines that unload it; automated guided vehicles (AGVs) are the conveyor; the yard is the buffer; and the gantry cranes stack and retrieve. Every stage has a maximum rate, and the slowest one sets the tempo for the whole berth.",
+    "The choreography is exact. A quay crane lowers its spreader onto a container, locks the four twistlocks, lifts, trolleys the box over the quay and sets it on an AGV that has queued underneath. The AGV drives a fixed route to a yard block, where a rubber-tyred gantry (RTG) lifts the box into a stack. The empty AGV loops back for the next one.",
+    "Real terminals are measured in moves per hour and berth time. A big ship carries 20,000 TEU; a quay crane does 30–45 moves an hour; a terminal may run dozens of cranes and hundreds of AGVs. The interesting part is not any one machine but the queueing: a fast crane with too few AGVs simply waits, and a full yard slows everything behind it."
+   ],
+   "modes": [
+    {
+     "id": "operations",
+     "label": "Operations"
+    },
+    {
+     "id": "flow",
+     "label": "Flow"
+    }
+   ],
+   "controls": [
+    {
+     "id": "cranes",
+     "type": "range",
+     "label": "Quay cranes",
+     "min": 1,
+     "max": 4,
+     "step": 1,
+     "value": 3,
+     "format": "{v}",
+     "help": "Each crane can make about 33 moves an hour."
+    },
+    {
+     "id": "agvs",
+     "type": "range",
+     "label": "AGV fleet",
+     "min": 2,
+     "max": 12,
+     "step": 1,
+     "value": 8,
+     "format": "{v}",
+     "help": "Each AGV does roughly 17 round trips an hour. Too few and the cranes wait."
+    },
+    {
+     "id": "yard",
+     "type": "range",
+     "label": "Yard cranes",
+     "min": 1,
+     "max": 4,
+     "step": 1,
+     "value": 2,
+     "format": "{v}",
+     "help": "Each RTG can stack about 50 boxes an hour."
+    },
+    {
+     "id": "workload",
+     "type": "range",
+     "label": "Vessel workload",
+     "min": 900,
+     "max": 3600,
+     "step": 150,
+     "value": 1800,
+     "format": "{v} TEU",
+     "help": "How many containers the ship carries. A bigger ship takes longer to turn around."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "moves",
+     "label": "Throughput"
+    },
+    {
+     "id": "quay",
+     "label": "Quay capacity"
+    },
+    {
+     "id": "wait",
+     "label": "AGV wait"
+    },
+    {
+     "id": "yardfill",
+     "label": "Yard fill"
+    },
+    {
+     "id": "berth",
+     "label": "Berth time left"
+    },
+    {
+     "id": "moved",
+     "label": "Containers moved"
+    }
+   ],
+   "actions": [
+    {
+     "id": "reset",
+     "label": "New vessel",
+     "primary": true
+    }
+   ],
+   "steps": [
+    {
+     "title": "The berth",
+     "mode": "operations",
+     "set": {
+      "cranes": 3,
+      "agvs": 8,
+      "yard": 2,
+      "workload": 1800
+     },
+     "body": [
+      "A 1,800 TEU ship has tied up. The quay is a narrow strip between deep water and the yard, so every box must cross it in one direction and every empty vehicle must come back the other way.",
+      "The terminal operating system already knows which container goes to which yard block. It plans the discharge in a sequence that keeps the ship stable and the cranes from crossing each other."
+     ]
+    },
+    {
+     "title": "The quay crane",
+     "mode": "operations",
+     "set": {
+      "cranes": 3,
+      "agvs": 8,
+      "yard": 2
+     },
+     "body": [
+      "The ship-to-shore crane is a portal that straddles the quay. Its boom reaches over the ship; the trolley runs along the boom, and the spreader is lowered on steel cables to the container. Four twistlocks engage the corner castings, the spreader lifts, and the box swings clear.",
+      "One cycle — down, lock, lift, trolley, lower, unlock, return — takes about 100 seconds. At three cranes the quay can deliver roughly 100 boxes an hour, but only if the rest of the chain keeps up."
+     ]
+    },
+    {
+     "title": "The AGV shuttle",
+     "mode": "flow",
+     "set": {
+      "cranes": 3,
+      "agvs": 8,
+      "yard": 2
+     },
+     "body": [
+      "Automated guided vehicles are flat, low and battery-powered. They follow buried magnets or painted lines, and they never need a driver. An AGV waits under the crane, takes the box, drives to its assigned yard block and tips it onto a transfer stand.",
+      "The fleet is a moving queue. With eight AGVs and three cranes, the trips balance; cut the fleet to four and the cranes spend more time waiting than lifting. Switch to Flow to see the routes."
+     ]
+    },
+    {
+     "title": "Stacking the yard",
+     "mode": "operations",
+     "set": {
+      "cranes": 3,
+      "agvs": 8,
+      "yard": 2,
+      "workload": 1800
+     },
+     "body": [
+      "Rubber-tyred gantry cranes straddle a block of containers and stack them four to six high. The yard is a buffer between the ship and the trucks that will take the boxes inland, so its density decides how long a ship can be discharged before the yard fills.",
+      "Each RTG can make about 50 moves an hour. Two of them are enough for three quay cranes; one is not. Watch the yard-fill gauge climb as the ship empties."
+     ]
+    },
+    {
+     "title": "Find the bottleneck",
+     "mode": "flow",
+     "set": {
+      "cranes": 4,
+      "agvs": 4,
+      "yard": 4,
+      "workload": 2400
+     },
+     "body": [
+      "Four quay cranes can ask for 133 moves an hour, but four AGVs can only deliver about 67. The extra crane does not add throughput; it just adds a queue. The readout names the limiting stage: AGV.",
+      "Add AGVs until the quay is the limit, then add yard cranes. The best terminal is not the one with the most machines; it is the one whose stages are balanced."
+     ]
+    },
+    {
+     "title": "When the yard is full",
+     "mode": "operations",
+     "set": {
+      "cranes": 4,
+      "agvs": 12,
+      "yard": 1,
+      "workload": 3600
+     },
+     "body": [
+      "A single RTG with a full yard becomes the worst bottleneck of all. Containers pile up, the AGVs queue, the quay cranes wait, and the ship's berth time stretches into days.",
+      "Real terminals avoid this with pre-stacking, rail links and a gate that keeps trucks flowing. A yard is not just storage; it is a scheduling problem."
+     ]
+    },
+    {
+     "title": "The automation layer",
+     "mode": "flow",
+     "set": {
+      "cranes": 4,
+      "agvs": 10,
+      "yard": 4,
+      "workload": 1800
+     },
+     "body": [
+      "Above every machine sits the terminal operating system. It assigns each container a yard slot, each AGV a route, and each crane a sequence. It also decides when to stop a crane so a ship stays level and when to send an AGV to recharge.",
+      "Automation makes the choreography faster, but it also makes the bottlenecks more visible: a badly tuned fleet or a full yard stalls a line that never gets tired."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Container ship",
+     "role": "A 1,800 TEU vessel carrying stacked steel boxes; the white superstructure holds the bridge and crew."
+    },
+    {
+     "name": "Harbour water",
+     "role": "Deep water alongside the quay; the ship floats here while it is worked."
+    },
+    {
+     "name": "Quay",
+     "role": "The concrete apron between water and yard, crossed by cranes, AGVs and trucks."
+    },
+    {
+     "name": "Mooring bollard",
+     "role": "A steel post that holds the ship's mooring lines against wind and tide."
+    },
+    {
+     "name": "Ship-to-shore crane",
+     "role": "A portal crane that reaches over the ship and lifts containers onto the quay."
+    },
+    {
+     "name": "AGV",
+     "role": "An automated guided vehicle: a low flatbed that carries one container between quay and yard."
+    },
+    {
+     "name": "Container yard",
+     "role": "The buffer where containers are stacked by destination and departure mode."
+    },
+    {
+     "name": "Container stacks",
+     "role": "Steel boxes stacked several high; each colour here stands for a different destination."
+    },
+    {
+     "name": "Yard gantry crane",
+     "role": "A rubber-tyred gantry that straddles a yard block and stacks or retrieves containers."
+    },
+    {
+     "name": "Truck",
+     "role": "A road vehicle collecting or delivering a container through the terminal gate."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Largest container ships",
+     "value": "24,000+ TEU"
+    },
+    {
+     "label": "Quay crane productivity",
+     "value": "30–45 moves per hour"
+    },
+    {
+     "label": "One TEU",
+     "value": "a 20-foot equivalent unit, about 6.1 m long"
+    },
+    {
+     "label": "Typical AGV speed",
+     "value": "≈ 6 m/s (21 km/h)"
+    },
+    {
+     "label": "Yard stacking",
+     "value": "4–6 containers high"
+    },
+    {
+     "label": "This ship",
+     "value": "1,800 TEU, three cranes"
+    }
+   ],
+   "accuracy": "A continuous queueing approximation of a discrete-event terminal, not a model of a specific port. Crane cycles, AGV trips and yard cycles are typical values; real terminals vary with ship layout, weather, labour, customs and yard design. The animation is slowed and stylised so the individual machines can be followed.",
+   "sources": [
+    "IMO, Container Terminal Planning and Operation (2015)",
+    "Bierwirth & Meisel, A survey of berth allocation and quay crane scheduling problems, EJOR (2015)",
+    "Stahlbock & Voß, Operations research at container terminals: a literature update (2008)",
+    "World Shipping Council, container terminal facts"
+   ]
+  },
+  {
    "id": "dc-motor",
    "title": "DC Electric Motor",
    "subtitle": "How current and magnets make motion",
@@ -1901,6 +2191,343 @@
     "Pulkrabek, Engineering Fundamentals of the Internal Combustion Engine (2004)"
    ],
    "featured": true
+  },
+  {
+   "id": "fusion-tokamak",
+   "title": "Fusion Tokamak",
+   "subtitle": "A star in a magnetic bottle, 150 million degrees hot",
+   "category": "physics",
+   "featured": false,
+   "tags": [
+    "fusion",
+    "tokamak",
+    "plasma",
+    "magnetic confinement",
+    "deuterium",
+    "tritium",
+    "ITER",
+    "energy",
+    "physics",
+    "reactor"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 8,
+   "summary": "Twelve superconducting coils hold a glowing torus of plasma away from the wall. Heat it, fuel it and keep the magnets cold; push the density too far and the plasma disrupts.",
+   "overview": [
+    "A tokamak is a doughnut-shaped magnetic bottle. Deuterium and tritium are heated until electrons separate from nuclei and the gas becomes plasma — a soup of charged particles at more than 100 million degrees. No material wall could survive that, so magnetic field lines curve around the torus and keep the hot plasma away from the vessel.",
+    "Fusion releases energy when a deuterium nucleus and a tritium nucleus combine into helium and a fast neutron. The helium stays in the plasma and heats it; the neutron escapes into a blanket, where its kinetic energy becomes heat. A steam cycle or a helium Brayton cycle can turn that heat into electricity.",
+    "The tokamak is a balance of four coupled systems: magnetic field, heating, fuelling and cryogenics. Field shapes the bottle; heating raises the temperature; fuelling sets the density; cryogenics keeps the superconducting coils at a few kelvin. Push one too far and the plasma cools, disrupts or quenches the magnets."
+   ],
+   "modes": [
+    {
+     "id": "plasma",
+     "label": "Plasma"
+    },
+    {
+     "id": "plant",
+     "label": "Plant"
+    }
+   ],
+   "controls": [
+    {
+     "id": "heating",
+     "type": "range",
+     "label": "Auxiliary heating",
+     "min": 0,
+     "max": 100,
+     "step": 5,
+     "value": 70,
+     "format": "{v} %",
+     "help": "Neutral beams and radio-frequency power heat the plasma; more heating raises temperature but costs electricity."
+    },
+    {
+     "id": "fuel",
+     "type": "range",
+     "label": "D-T fuelling",
+     "min": 40,
+     "max": 100,
+     "step": 5,
+     "value": 60,
+     "format": "{v} %",
+     "help": "Pellet injectors set the density. Too much fuel at low field crosses the Greenwald limit."
+    },
+    {
+     "id": "field",
+     "type": "range",
+     "label": "Toroidal field",
+     "min": 40,
+     "max": 100,
+     "step": 5,
+     "value": 80,
+     "format": "{v} %",
+     "help": "Coil current squeezes and stabilises the plasma; stronger field improves confinement."
+    },
+    {
+     "id": "cooling",
+     "type": "range",
+     "label": "Cryogenic cooling",
+     "min": 30,
+     "max": 100,
+     "step": 5,
+     "value": 80,
+     "format": "{v} %",
+     "help": "Keeps the superconducting coils near 4 K. Too little cooling and they quench."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "temp",
+     "label": "Plasma temp"
+    },
+    {
+     "id": "density",
+     "label": "Density"
+    },
+    {
+     "id": "confine",
+     "label": "Confinement"
+    },
+    {
+     "id": "fusion",
+     "label": "Fusion power"
+    },
+    {
+     "id": "q",
+     "label": "Gain Q"
+    },
+    {
+     "id": "magnet",
+     "label": "Coil temp"
+    }
+   ],
+   "actions": [
+    {
+     "id": "disrupt",
+     "label": "Trigger disruption"
+    },
+    {
+     "id": "reset",
+     "label": "Restart pulse",
+     "primary": true
+    }
+   ],
+   "steps": [
+    {
+     "title": "The bottle",
+     "mode": "plasma",
+     "set": {
+      "heating": 70,
+      "fuel": 60,
+      "field": 80,
+      "cooling": 80
+     },
+     "body": [
+      "The vacuum vessel is a torus — a doughnut with a hole in the middle. Twelve D-shaped coils wrap around it and carry enormous currents; together they make the toroidal field that runs the long way around the ring.",
+      "A central solenoid drives the plasma current. That current does two jobs: it heats the plasma by resistance and it creates the poloidal field that twists the magnetic field lines into a helix. The twist is what makes a tokamak stable."
+     ]
+    },
+    {
+     "title": "Lighting the plasma",
+     "mode": "plasma",
+     "set": {
+      "heating": 80,
+      "fuel": 60,
+      "field": 80,
+      "cooling": 80
+     },
+     "body": [
+      "Neutral beam injectors fire energetic atoms across the magnetic field; they ionise inside the plasma and give up their momentum and energy. Radio-frequency antennas can also pump energy into the electrons or ions at a chosen resonance.",
+      "The plasma temperature is a balance between heating and losses. The alpha particles from fusion stay trapped in the field and heat the plasma from inside — self-heating is what makes a burning plasma different from a merely hot one."
+     ]
+    },
+    {
+     "title": "Holding the ring",
+     "mode": "plasma",
+     "set": {
+      "heating": 70,
+      "fuel": 60,
+      "field": 90,
+      "cooling": 80
+     },
+     "body": [
+      "Confinement time measures how long energy stays in the plasma. Stronger field, higher density and gentler turbulence all help; too much auxiliary heating can make the plasma harder to hold.",
+      "The product of density, temperature and confinement time is the triple product. Fusion needs all three at once — a hot but thin plasma, or a dense but cold one, will not burn."
+     ]
+    },
+    {
+     "title": "Fuel and the density limit",
+     "mode": "plasma",
+     "set": {
+      "heating": 70,
+      "fuel": 95,
+      "field": 55,
+      "cooling": 80
+     },
+     "body": [
+      "Fuel is injected as frozen deuterium-tritium pellets that fly through a guide tube and vaporise in the plasma. More fuel means more fusion, until the edge plasma becomes unstable and the discharge disrupts.",
+      "The Greenwald limit is an empirical density ceiling. Push past it and the plasma detaches from the wall, cools abruptly and dumps its stored energy into the vessel. Tokamaks protect themselves with massive armour and a fast shutdown system."
+     ]
+    },
+    {
+     "title": "Gain",
+     "mode": "plant",
+     "set": {
+      "heating": 80,
+      "fuel": 60,
+      "field": 85,
+      "cooling": 80
+     },
+     "body": [
+      "Gain Q is fusion power divided by injected heating power. Q = 1 means the plasma releases as much fusion energy as the beams put in; Q = 10 is the target for ITER; Q = infinity is ignition, where alpha self-heating sustains the burn without auxiliary power.",
+      "A power plant needs more than Q. It needs the recirculating power — magnets, cryogenics, pumps, beams — to be a small fraction of the gross electricity. That is why engineering gain, not plasma gain alone, decides whether a tokamak is a power station."
+     ]
+    },
+    {
+     "title": "Cold magnets",
+     "mode": "plant",
+     "set": {
+      "heating": 70,
+      "fuel": 60,
+      "field": 85,
+      "cooling": 35
+     },
+     "body": [
+      "The coils are superconducting: below their critical temperature they carry current with no resistance. Niobium-tin operates near 4 K, cooled by supercritical helium. A quench is a sudden loss of superconductivity — the coil resistance rises, the stored magnetic energy turns into heat, and the field collapses.",
+      "Cryogenics is invisible in the plasma but essential to it. Lose the cold chain and the machine loses the bottle; the plasma is gone long before the coils finish warming."
+     ]
+    },
+    {
+     "title": "Disruption",
+     "mode": "plasma",
+     "set": {
+      "heating": 70,
+      "fuel": 80,
+      "field": 50,
+      "cooling": 80
+     },
+     "body": [
+      "A disruption is a fast, uncontrolled loss of plasma current. The plasma cools, the current channel narrows, and enormous electromagnetic forces push on the vessel. Runaway electrons can drill through the wall.",
+      "Modern tokamaks predict disruptions and fire a shattered-pellet injection system to radiate the energy away safely. The goal is not to avoid every disruption; it is to make every disruption survivable."
+     ]
+    },
+    {
+     "title": "A power plant",
+     "mode": "plant",
+     "set": {
+      "heating": 85,
+      "fuel": 65,
+      "field": 95,
+      "cooling": 90
+     },
+     "body": [
+      "The 14 MeV neutrons from D-T fusion are not confined by the magnetic field. They stream into a blanket, where they slow down and deposit heat; a lithium blanket can also breed tritium from the neutrons. The heat drives a steam turbine or a helium Brayton cycle.",
+      "A tokamak power plant is a chain of efficiencies: fusion power to neutron power, neutron power to heat, heat to steam, steam to electricity, minus the power that the magnets and beams consume. The plasma is the star, but the plant is the machine."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Vacuum vessel",
+     "role": "The toroidal chamber that holds the vacuum and the plasma; its cutaway front shows the ring inside."
+    },
+    {
+     "name": "Plasma",
+     "role": "A glowing torus of ionised deuterium and tritium at more than 100 million degrees."
+    },
+    {
+     "name": "Toroidal field coil",
+     "role": "One of twelve D-shaped superconducting coils that wrap the vessel and make the confining field."
+    },
+    {
+     "name": "Central solenoid",
+     "role": "The stacked coil in the middle that drives the plasma current and helps shape the field."
+    },
+    {
+     "name": "Blanket modules",
+     "role": "Armour and heat-exchange panels on the inner wall; they absorb neutrons and can breed tritium."
+    },
+    {
+     "name": "Divertor",
+     "role": "The exhaust at the bottom of the vessel that guides heat and helium ash out of the plasma."
+    },
+    {
+     "name": "Neutral beam injector",
+     "role": "An accelerator that fires energetic neutral atoms into the plasma for heating and current drive."
+    },
+    {
+     "name": "Magnetic field lines",
+     "role": "Dashed loops showing the twisted field that keeps the hot plasma away from the wall."
+    },
+    {
+     "name": "Cryoplant",
+     "role": "Cold boxes, compressors and helium tanks that keep the superconducting coils near 4 K."
+    },
+    {
+     "name": "Steam generator",
+     "role": "Turns blanket heat into steam for the turbine."
+    },
+    {
+     "name": "Turbine",
+     "role": "A spinning rotor that converts steam enthalpy into shaft work."
+    },
+    {
+     "name": "Generator",
+     "role": "The electrical machine coupled to the turbine; its rotor turns shaft work into electricity."
+    },
+    {
+     "name": "Heat exchanger",
+     "role": "Transfers heat from the primary coolant loop to the steam or Brayton loop."
+    },
+    {
+     "name": "Diagnostic port",
+     "role": "An opening for lasers, cameras, spectroscopy and other plasma measurements."
+    },
+    {
+     "name": "Pellet injector",
+     "role": "A cryogenic pellet gun that fires D-T ice into the plasma to fuel it."
+    },
+    {
+     "name": "Control console",
+     "role": "The operator station that coordinates magnetics, heating, fuelling and safety interlocks."
+    },
+    {
+     "name": "Cryostat base",
+     "role": "The structural platform and thermal shield that sit under the whole machine."
+    }
+   ],
+   "facts": [
+    {
+     "label": "ITER design gain",
+     "value": "Q = 10 (500 MW from 50 MW)"
+    },
+    {
+     "label": "JET record",
+     "value": "59 MJ from a D-T pulse (1997)"
+    },
+    {
+     "label": "Plasma temperature",
+     "value": "100–150 million °C"
+    },
+    {
+     "label": "D-T reaction",
+     "value": "²H + ³H → ⁴He + n + 17.6 MeV"
+    },
+    {
+     "label": "Coil temperature",
+     "value": "≈ 4 K (−269 °C)"
+    },
+    {
+     "label": "Fuel",
+     "value": "deuterium from seawater, tritium bred from lithium"
+    }
+   ],
+   "accuracy": "A lumped, deliberately legible model of a complex plasma. Fusion reactivity uses a Gaussian stand-in for the D-T cross-section; confinement, density limits, quench and disruption thresholds are representative rather than predictive. Real tokamaks need profile control, edge-localised modes, runaway-electron mitigation and a tritium breeding blanket; this lab shows the couplings, not a reactor design.",
+   "sources": [
+    "ITER Organization, ITER: the world's largest tokamak",
+    "Wesson, Tokamaks (4th edition)",
+    "Freidberg, Plasma Physics and Fusion Energy",
+    "EUROfusion, JET and the 1997 D-T record"
+   ]
   },
   {
    "id": "hard-disk-drive",
@@ -3253,6 +3880,355 @@
    ]
   },
   {
+   "id": "nuclear-plant",
+   "title": "Nuclear Power Plant",
+   "subtitle": "Fission, steam and the grid — one coupled machine",
+   "category": "engineering",
+   "featured": false,
+   "tags": [
+    "nuclear",
+    "reactor",
+    "pwr",
+    "fission",
+    "power plant",
+    "turbine",
+    "generator",
+    "control rods",
+    "xenon",
+    "steam",
+    "energy",
+    "engineering"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 9,
+   "summary": "A pressurised-water reactor in cut-away: split atoms in the core, follow the heat through the steam generator, spin the turbine, and meet the feedback loops that keep the chain reaction in check.",
+   "overview": [
+    "A nuclear power plant is a steam engine whose fire never sees oxygen. Inside the reactor pressure vessel, uranium-235 nuclei absorb neutrons and split, releasing about 200 MeV each. That heat passes through a closed primary loop of water at 155 bar, so hot that it cannot boil, into a steam generator. There the heat makes steam in a separate secondary loop, and the steam drives a turbine and generator.",
+    "The chain reaction is controlled by a delicate balance. About 0.65 % of the neutrons are released not immediately but seconds later by decaying fission products; these delayed neutrons make a reactor controllable at all. Control rods absorb neutrons, and the fuel and water push back on their own: heat the fuel and the reaction slows (the Doppler effect), heat the water and it slows too. The reactor is designed to be self-correcting.",
+    "Two slow feedbacks matter most. Iodine-135 decays into xenon-135, a voracious neutron absorber. At power, xenon is burned up as fast as it is made; after a shutdown it accumulates into a xenon pit that can prevent a restart for hours. And decay heat — about 6.5 % of full power at the instant of shutdown — keeps coming even after the chain reaction stops. That is why cooling and containment are the heart of nuclear safety."
+   ],
+   "modes": [
+    {
+     "id": "cutaway",
+     "label": "Cutaway"
+    },
+    {
+     "id": "neutrons",
+     "label": "Neutrons"
+    }
+   ],
+   "controls": [
+    {
+     "id": "rods",
+     "type": "range",
+     "label": "Control rods",
+     "min": 0,
+     "max": 100,
+     "step": 1,
+     "value": 55,
+     "format": "{v} % out",
+     "help": "Pull the bank out to add reactivity; drive it in to reduce power. The SCRAM button drops it all the way."
+    },
+    {
+     "id": "load",
+     "type": "range",
+     "label": "Turbine load",
+     "min": 0,
+     "max": 100,
+     "step": 1,
+     "value": 100,
+     "format": "{v} %",
+     "help": "How much steam the turbine admits. Low load raises steam pressure; too low and the relief valve opens."
+    },
+    {
+     "id": "cooling",
+     "type": "range",
+     "label": "Cooling water",
+     "min": 20,
+     "max": 100,
+     "step": 5,
+     "value": 80,
+     "format": "{v} %",
+     "help": "Condenser cooling flow. Less flow means higher back-pressure, lower efficiency and a hotter cooling tower."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "power",
+     "label": "Reactor power"
+    },
+    {
+     "id": "rho",
+     "label": "Reactivity"
+    },
+    {
+     "id": "fuel",
+     "label": "Fuel temperature"
+    },
+    {
+     "id": "steam",
+     "label": "Steam pressure"
+    },
+    {
+     "id": "mwe",
+     "label": "Electrical output"
+    },
+    {
+     "id": "xenon",
+     "label": "Xenon-135"
+    }
+   ],
+   "actions": [
+    {
+     "id": "scram",
+     "label": "SCRAM",
+     "primary": true
+    },
+    {
+     "id": "reset",
+     "label": "Restart"
+    }
+   ],
+   "steps": [
+    {
+     "title": "Splitting the atom",
+     "mode": "cutaway",
+     "set": {
+      "rods": 55,
+      "load": 100,
+      "cooling": 80
+     },
+     "body": [
+      "A uranium-235 nucleus that absorbs a slow neutron splits into two lighter nuclei and releases two or three more neutrons plus about 200 MeV of energy. Most of that energy appears as the kinetic energy of the fragments, which heats the fuel pellet within micrometres of their birth.",
+      "There are 12 fuel assemblies shown here; a real 3,000 MW reactor holds about 50,000 fuel rods, roughly 100 tonnes of uranium dioxide enriched to 3–5 % uranium-235."
+     ]
+    },
+    {
+     "title": "A chain reaction on a leash",
+     "mode": "neutrons",
+     "set": {
+      "rods": 62,
+      "load": 100
+     },
+     "body": [
+      "Each fission gives neutrons that can cause more fissions. If exactly one of them goes on to split another nucleus, the reactor is critical: the power is steady. Slightly more and it rises; slightly less and it dies away.",
+      "Control would be hopeless if every neutron appeared instantly. About 0.65 % are delayed by seconds to minutes, released by decaying fission products. Those delayed neutrons slow the whole response, giving operators and automatic systems time to act. Switch to Neutrons to see the flux in the core."
+     ]
+    },
+    {
+     "title": "Control rods",
+     "mode": "cutaway",
+     "set": {
+      "rods": 20,
+      "load": 100
+     },
+     "body": [
+      "The rods are made of boron carbide or an alloy of silver, indium and cadmium, all hungry for slow neutrons. Driving them into the core removes neutrons from the chain reaction; pulling them out adds reactivity.",
+      "Let the power settle, then pull the bank back out a little at a time. The reactivity gauge shows that the fuel and water quickly cancel much of the change: this reactor has a strongly negative temperature coefficient."
+     ]
+    },
+    {
+     "title": "The primary loop",
+     "mode": "cutaway",
+     "set": {
+      "rods": 55,
+      "load": 100,
+      "cooling": 80
+     },
+     "body": [
+      "Water at about 155 bar and 300 °C is pumped through the core at several tonnes per second. The pressure is far above water's normal boiling point, so the coolant stays liquid and carries heat away without turning to steam inside the core.",
+      "The pressuriser on the left is a tall tank half full of water and half steam. Heaters and sprays hold its pressure steady; it is the shock absorber that keeps the primary loop from boiling when load changes."
+     ]
+    },
+    {
+     "title": "Making steam",
+     "mode": "cutaway",
+     "set": {
+      "rods": 55,
+      "load": 100
+     },
+     "body": [
+      "Hot primary water flows through thousands of inverted U-tubes inside the steam generator. On the other side of the tube walls, secondary water boils at about 70 bar into steam at 285 °C.",
+      "The two loops never mix. That is the central safety idea of a PWR: any radioactivity stays in the primary loop, inside the containment building, while clean steam goes to the turbine."
+     ]
+    },
+    {
+     "title": "Turbine and generator",
+     "mode": "cutaway",
+     "set": {
+      "rods": 55,
+      "load": 85,
+      "cooling": 60
+     },
+     "body": [
+      "Steam expands through the turbine blades, giving up pressure and temperature as it spins the shaft. The generator turns that rotation into electricity: about 950 MW from 3,000 MW of heat, an efficiency near 32 %.",
+      "The exhaust steam is condensed under vacuum and pumped back to the steam generator. Drop the cooling-water flow and watch the condenser pressure rise: less vacuum means less power from the same steam, and the cooling tower plume thickens."
+     ]
+    },
+    {
+     "title": "The xenon pit",
+     "mode": "cutaway",
+     "set": {
+      "rods": 40,
+      "load": 60,
+      "cooling": 75
+     },
+     "body": [
+      "Iodine-135, with a 6.6-hour half-life, decays into xenon-135, one of the strongest neutron poisons known. At full power the xenon is burned away by the neutron flux as fast as it forms, so it sits at an equilibrium worth about 2.8 % reactivity.",
+      "Cut power and the burn-up falls immediately while iodine keeps producing xenon. The xenon gauge climbs, adding negative reactivity and pulling the power down further — the xenon pit. After a shutdown it can take 20–40 hours before the reactor can be restarted."
+     ]
+    },
+    {
+     "title": "Defence in depth",
+     "mode": "cutaway",
+     "set": {
+      "rods": 55,
+      "load": 100,
+      "cooling": 80
+     },
+     "body": [
+      "Three barriers stand between the fuel and the environment: the ceramic fuel and its zirconium cladding, the steel pressure vessel and primary loop, and the reinforced concrete containment. Each is designed to hold even if the one before it fails.",
+      "The last line is the operator and the automatic protection system. Press SCRAM: the rods fall in under gravity in a couple of seconds, the chain reaction stops and the turbine trips off the grid. Decay heat does not stop, so the pumps, steam generator and relief valve must keep removing it. Try a SCRAM, then watch the fuel temperature and steam pressure."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Containment",
+     "role": "A steel-lined, reinforced-concrete shell that holds the whole primary loop and can contain steam and radioactivity even in an accident."
+    },
+    {
+     "name": "Reactor pressure vessel",
+     "role": "A forged steel vessel about 12 m tall and 4 m across, holding the core at 155 bar."
+    },
+    {
+     "name": "Reactor core",
+     "role": "The region where fission happens: fuel assemblies, control rods and water in a precise lattice."
+    },
+    {
+     "name": "Fuel assemblies",
+     "role": "Bundles of zirconium-clad uranium-dioxide rods, enriched to 3–5 % uranium-235."
+    },
+    {
+     "name": "Control rods",
+     "role": "Boron-carbide or silver-indium-cadmium rods that absorb neutrons; they drop into the core on a SCRAM."
+    },
+    {
+     "name": "Pressurizer",
+     "role": "A tank of water and steam that holds the primary loop at about 155 bar and absorbs pressure changes."
+    },
+    {
+     "name": "Steam generator",
+     "role": "A heat exchanger: hot primary water boils secondary water into steam without the two ever mixing."
+    },
+    {
+     "name": "Primary coolant pump",
+     "role": "Circulates several tonnes of water per second through the core and steam generator."
+    },
+    {
+     "name": "Hot leg",
+     "role": "Carries water at about 325 °C from the reactor to the steam generator."
+    },
+    {
+     "name": "Cold leg",
+     "role": "Returns cooler water, around 290 °C, from the steam generator through the pump to the reactor."
+    },
+    {
+     "name": "Steam line",
+     "role": "Carries steam at about 70 bar and 285 °C from the steam generator to the turbine."
+    },
+    {
+     "name": "Turbine",
+     "role": "A series of blade rows that turns the steam's heat into rotation; the steam expands and cools as it passes."
+    },
+    {
+     "name": "Generator",
+     "role": "A spinning electromagnet inside coils of wire, converting shaft power into electricity at about 950 MW."
+    },
+    {
+     "name": "Condenser",
+     "role": "Cools the turbine exhaust back to water under vacuum, which is what lets the steam expand so far."
+    },
+    {
+     "name": "Cooling tower",
+     "role": "Evaporates circulating water to dump the waste heat; the white plume is water vapour, not smoke."
+    },
+    {
+     "name": "Cooling tower plume",
+     "role": "Warm, moist air condensing as it meets the cooler atmosphere."
+    },
+    {
+     "name": "Feedwater line",
+     "role": "Returns condensed water from the condenser to the steam generator."
+    },
+    {
+     "name": "Circulating water line",
+     "role": "Carries cooling water between the condenser and the cooling tower."
+    },
+    {
+     "name": "Relief valve",
+     "role": "Opens if steam pressure gets too high and dumps steam to the condenser or atmosphere."
+    },
+    {
+     "name": "Transformer",
+     "role": "Steps the generator voltage up to grid transmission levels."
+    },
+    {
+     "name": "Transmission pylon",
+     "role": "Carries the plant's output into the high-voltage grid."
+    },
+    {
+     "name": "Alarm beacon",
+     "role": "Flashes red when the reactor has tripped or a protection limit is exceeded."
+    },
+    {
+     "name": "Neutron flux",
+     "role": "In Neutrons mode, the moving dots show neutrons sustaining the chain reaction inside the fuel."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Thermal power",
+     "value": "3,000 MWt"
+    },
+    {
+     "label": "Electrical output",
+     "value": "≈ 950 MWe (≈ 32 % efficient)"
+    },
+    {
+     "label": "Primary loop",
+     "value": "≈ 155 bar, 290–325 °C"
+    },
+    {
+     "label": "Steam",
+     "value": "≈ 70 bar, 285 °C"
+    },
+    {
+     "label": "Delayed neutrons",
+     "value": "≈ 0.65 % of all neutrons"
+    },
+    {
+     "label": "Xenon-135 worth",
+     "value": "≈ 2.8 % Δk/k at equilibrium"
+    },
+    {
+     "label": "Decay heat at shutdown",
+     "value": "≈ 6.5 % of full power"
+    },
+    {
+     "label": "Fuel",
+     "value": "UO₂, 3–5 % ²³⁵U, ≈ 100 tonnes"
+    }
+   ],
+   "accuracy": "A lumped-parameter teaching model, not an operator-training simulator. Point kinetics with one delayed-neutron group uses the prompt-jump approximation; fuel, coolant, steam-generator and steam-pressure dynamics are single nodes; xenon is time-lapsed about 240× so an hours-long transient fits in half a minute; decay heat is a simplified 40 s decay. Real PWRs have many more loops, protection channels and spatial effects. Values are typical of a large four-loop PWR, not a specific plant.",
+   "sources": [
+    "Lamarsh & Baratta, Introduction to Nuclear Engineering, 4th ed. (2017)",
+    "Todreas & Kazimi, Nuclear Systems I: Thermal Hydraulic Fundamentals, 2nd ed. (2011)",
+    "IAEA, Pressurised Water Reactor (PWR) Systems (2012)",
+    "US NRC, Reactor Concepts Manual: Pressurized Water Reactor Systems"
+   ]
+  },
+  {
    "id": "oil-refinery",
    "title": "Oil Refinery",
    "subtitle": "Splitting crude oil by boiling point",
@@ -4111,6 +5087,287 @@
    ]
   },
   {
+   "id": "robotic-assembly",
+   "title": "Robotic Assembly Line",
+   "subtitle": "Takt, welding robots and a car every minute",
+   "category": "making",
+   "featured": false,
+   "tags": [
+    "assembly",
+    "factory",
+    "robot",
+    "welding",
+    "car",
+    "production line",
+    "takt",
+    "automation",
+    "manufacturing",
+    "lean"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 7,
+   "summary": "Bare car bodies index down a conveyor while articulated robots weld, a booth paints and a final station bolts on wheels. Change the takt or the robot count and watch the bottleneck move.",
+   "overview": [
+    "A car body shop is a line of work cells arranged along a conveyor. Each cell performs the same set of tasks on every body that stops in front of it: framing, spot welding, sealing, painting, then doors and wheels. The line moves in steps, not continuously, because every station must finish before the next index.",
+    "The heartbeat of the line is the takt time — from the German Takt, a beat. If the plant needs 60 cars an hour, the takt is 60 seconds: one body must leave the last station every minute. Every cell is designed to finish inside that beat, and any cell that cannot becomes the constraint for the whole plant.",
+    "Welding is usually the constraint. A body-in-white carries around 4,000 spot welds, but a single robot cell only makes the 40–60 welds assigned to it. Robots work in parallel, so doubling the robots in a cell roughly halves its cycle; the conveyor, paint booth and final line do not speed up at all. This lab shows that balance: a fast conveyor with too few robots simply waits."
+   ],
+   "modes": [
+    {
+     "id": "line",
+     "label": "Line"
+    },
+    {
+     "id": "cells",
+     "label": "Work cells"
+    }
+   ],
+   "controls": [
+    {
+     "id": "takt",
+     "type": "range",
+     "label": "Takt time",
+     "min": 40,
+     "max": 110,
+     "step": 5,
+     "value": 60,
+     "format": "{v} s",
+     "help": "The beat of the conveyor: one body indexes every takt. A shorter takt means a faster line."
+    },
+    {
+     "id": "robots",
+     "type": "range",
+     "label": "Welding robots",
+     "min": 2,
+     "max": 8,
+     "step": 1,
+     "value": 4,
+     "format": "{v}",
+     "help": "Robots working in parallel in each welding cell. Fewer robots means a longer weld cycle."
+    },
+    {
+     "id": "order",
+     "type": "range",
+     "label": "Batch size",
+     "min": 30,
+     "max": 120,
+     "step": 10,
+     "value": 60,
+     "format": "{v} bodies",
+     "help": "How many bodies this shift must build before the line stops."
+    },
+    {
+     "id": "mix",
+     "type": "toggle",
+     "label": "Mixed models",
+     "value": false,
+     "help": "Two body styles on one line add changeover time at every cell."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "output",
+     "label": "Line output"
+    },
+    {
+     "id": "takt",
+     "label": "Actual takt"
+    },
+    {
+     "id": "weld",
+     "label": "Weld cycle"
+    },
+    {
+     "id": "util",
+     "label": "Robot load"
+    },
+    {
+     "id": "built",
+     "label": "Bodies built"
+    },
+    {
+     "id": "quality",
+     "label": "First-time quality"
+    }
+   ],
+   "actions": [
+    {
+     "id": "reset",
+     "label": "New shift",
+     "primary": true
+    }
+   ],
+   "steps": [
+    {
+     "title": "The beat of the line",
+     "mode": "line",
+     "set": {
+      "takt": 60,
+      "robots": 4,
+      "order": 60,
+      "mix": false
+     },
+     "body": [
+      "Five stations sit along one conveyor: framing, two welding cells, the paint booth and final assembly. A body enters every takt and stops at each station in turn. If a station is still working when the beat arrives, the whole line waits for it.",
+      "The takt is set by demand, not by the machines: 60 cars an hour means one car a minute, so the takt is 60 seconds. The plant is then designed so that no station needs longer than that."
+     ]
+    },
+    {
+     "title": "Framing the body",
+     "mode": "cells",
+     "set": {
+      "takt": 60,
+      "robots": 4
+     },
+     "body": [
+      "The skeleton arrives as loose pressings: floor pan, side frames, roof rails and bulkheads. A framing station clamps them into a rigid jig and tack-welds the first few joints so the body keeps its shape when the clamps open.",
+      "Everything downstream depends on this fixture. A body that is a millimetre out of square here will fight every robot, door and glass panel for the rest of the line."
+     ]
+    },
+    {
+     "title": "Welding in parallel",
+     "mode": "cells",
+     "set": {
+      "takt": 60,
+      "robots": 2,
+      "mix": false
+     },
+     "body": [
+      "The welding cell has two robots, one on each side. Each robot swings a heavy spot-welding gun between programmed points, clamping two steel sheets and passing a current that melts a small nugget. A body needs about 46 welds at this cell.",
+      "With two robots each weld takes 2.6 seconds, so the cell needs roughly 60 seconds. That exactly fills the 60-second takt. Drop to two robots and the line is no longer limited by the conveyor — it is limited by welders."
+     ]
+    },
+    {
+     "title": "Where the queue forms",
+     "mode": "line",
+     "set": {
+      "takt": 40,
+      "robots": 2
+     },
+     "body": [
+      "Speed the conveyor to 40 seconds and the two-robot cell cannot keep up. The body sits in the cell while the conveyor waits; the readout names welders as the constraint, and robot load pins at 100%.",
+      "Adding robots is the fix: four robots halve the weld cycle, six give headroom for a missed weld or a tip change. The conveyor is already fast enough; it was never the problem."
+     ]
+    },
+    {
+     "title": "Paint and final",
+     "mode": "line",
+     "set": {
+      "takt": 60,
+      "robots": 6,
+      "order": 60
+     },
+     "body": [
+      "The paint booth is a clean room on the line. The body is dipped in phosphate and e-coat, baked, then sprayed by robots inside a downflow of filtered air. Every speck of dust is a defect, so the booth runs at a slight positive pressure.",
+      "Final assembly is the least automated station: doors, glass, seats, wheels and fluids are still largely hand work. It is paced by the same takt, which is why the line cannot simply run faster than its slowest manual task."
+     ]
+    },
+    {
+     "title": "Changeover",
+     "mode": "cells",
+     "set": {
+      "takt": 60,
+      "robots": 4,
+      "mix": true,
+      "order": 90
+     },
+     "body": [
+      "Mixed-model lines build two or more body styles in any order. The robots carry several weld schedules and pick the right one from the body's radio tag, but clamps, grippers and fixture changes still cost time at every cell.",
+      "Turn on Mixed models: the weld cycle grows by seven seconds and first-time quality slips. The line can still run, but the cushion between the takt and the cell disappears."
+     ]
+    },
+    {
+     "title": "Balance, not speed",
+     "mode": "line",
+     "set": {
+      "takt": 45,
+      "robots": 8,
+      "mix": false,
+      "order": 120
+     },
+     "body": [
+      "Eight robots bring the weld cycle down to 15 seconds, far inside a 45-second takt. Now the conveyor is the constraint again, and the robots spend most of each beat waiting — capacity you paid for but cannot use.",
+      "A balanced line keeps every station just under the takt, with a small buffer for variation. The goal is not the fastest robot cell; it is the highest output the whole chain can sustain."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Conveyor",
+     "role": "The indexing line that carries each body from station to station on a skid."
+    },
+    {
+     "name": "Car body",
+     "role": "A body-in-white: pressed steel panels welded into a stiff shell before paint and trim."
+    },
+    {
+     "name": "Welding robot",
+     "role": "A six-axis arm carrying a spot-welding gun; it repeats a taught path thousands of times a shift."
+    },
+    {
+     "name": "Spot weld",
+     "role": "A nugget of molten steel formed where two sheets are clamped and a current passes."
+    },
+    {
+     "name": "Framing station",
+     "role": "The first cell, where loose panels are clamped into a jig and tacked into shape."
+    },
+    {
+     "name": "Paint booth",
+     "role": "A pressurised, filtered enclosure where primer and colour coats are sprayed and baked."
+    },
+    {
+     "name": "Wheel station",
+     "role": "The final cell, where wheels, tyres and torque settings are added."
+    },
+    {
+     "name": "Skid",
+     "role": "The steel pallet that supports the body and locates it repeatably at every station."
+    },
+    {
+     "name": "Safety fence",
+     "role": "A guarded boundary that keeps people out of the robots' reach while the line runs."
+    },
+    {
+     "name": "Control cabinet",
+     "role": "The cell controller that sequences robots, clamps, conveyor and safety interlocks."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Spot welds per car body",
+     "value": "≈ 4,000"
+    },
+    {
+     "label": "Welds in one cell",
+     "value": "40–60"
+    },
+    {
+     "label": "Typical automotive takt",
+     "value": "45–60 s"
+    },
+    {
+     "label": "Robot repeatability",
+     "value": "± 0.05 mm"
+    },
+    {
+     "label": "Paint booth cleanliness",
+     "value": "filtered to a few microns"
+    },
+    {
+     "label": "This line",
+     "value": "5 stations, up to 8 robots"
+    }
+   ],
+   "accuracy": "A lumped takt-and-cycle model, not a discrete-event simulation of a real body shop. Weld counts, robot times and changeover penalties are representative values; actual lines vary with body design, weld schedules, fixture changes and buffer sizes. The animation is slowed so the robots and the indexing conveyor can be followed.",
+   "sources": [
+    "Baudin, Lean Logistics: The Nuts and Bolts of Delivering Materials and Goods (2005)",
+    "Rooks, Robotics: An Introduction (2009)",
+    "Ulrich, The automotive body shop: technology and economics (2010)",
+    "International Federation of Robotics, industrial robot statistics"
+   ]
+  },
+  {
    "id": "rocket-launch",
    "title": "Rocket Launch",
    "subtitle": "Two stages, nine engines, eight minutes to orbit",
@@ -4350,6 +5607,932 @@
     "Sutton & Biblarz, Rocket Propulsion Elements, 9th ed. (2016)",
     "Curtis, Orbital Mechanics for Engineering Students, 4th ed. (2020)",
     "Tsiolkovsky, Exploration of Outer Space by Means of Reaction Devices (1903)"
+   ]
+  },
+  {
+   "id": "roller-coaster",
+   "title": "Roller Coaster",
+   "subtitle": "Lift hill, loop and the forces that hold you in",
+   "category": "engineering",
+   "featured": true,
+   "tags": [
+    "roller coaster",
+    "theme park",
+    "ride",
+    "loop",
+    "gravity",
+    "g-force",
+    "kinetic energy",
+    "track",
+    "amusement",
+    "physics"
+   ],
+   "difficulty": "Intermediate",
+   "minutes": 6,
+   "summary": "A lift hill charges a train with potential energy; every drop spends it. Set the lift height, train length and dispatch interval, then watch the lap and the forces it produces.",
+   "overview": [
+    "A roller coaster has almost no engine. A chain or a launch motor does one job at the start — lift the train to the highest point — and gravity does the rest. At the top the train has potential energy; at the bottom of the drop that energy has become speed. Losing height is the only way to gain it, which is why every hill after the first is shorter.",
+    "The track is a closed circuit: station, lift, drop, loop, a few airtime hills, a helix, then a brake run back to the station. The rails are steel tubes on a welded spine, supported by columns that carry the loads down to the footings. The train's wheels run on three sets of surfaces: running wheels on top, up-stop wheels underneath and side wheels against the rail, so it cannot lift off in a loop.",
+    "Riders feel the track through acceleration, not speed. At the bottom of a loop the seat must supply both weight and centripetal force; a 14-metre loop entered at 80 km/h pulls about 4.5 g. Too much and riders grey out, so designers shape the loop as a clothoid rather than a circle. Capacity is the other constraint: one train can only leave when it returns, so hourly riders are set by the slower of dispatch interval and circuit time."
+   ],
+   "modes": [
+    {
+     "id": "ride",
+     "label": "Ride"
+    },
+    {
+     "id": "forces",
+     "label": "Forces"
+    }
+   ],
+   "controls": [
+    {
+     "id": "lift",
+     "type": "range",
+     "label": "Lift height",
+     "min": 18,
+     "max": 45,
+     "step": 1,
+     "value": 30,
+     "format": "{v} m",
+     "help": "The highest point of the lift. More height means more speed everywhere else on the circuit."
+    },
+    {
+     "id": "cars",
+     "type": "range",
+     "label": "Train length",
+     "min": 3,
+     "max": 8,
+     "step": 1,
+     "value": 5,
+     "format": "{v} cars",
+     "help": "Each car seats two riders. A longer train carries more people but adds weight and length."
+    },
+    {
+     "id": "dispatch",
+     "type": "range",
+     "label": "Dispatch interval",
+     "min": 15,
+     "max": 40,
+     "step": 5,
+     "value": 25,
+     "format": "{v} s",
+     "help": "How often the station sends a train. With one train, the circuit time becomes the real limit."
+    },
+    {
+     "id": "brake",
+     "type": "range",
+     "label": "Brake run",
+     "min": 0.5,
+     "max": 1,
+     "step": 0.05,
+     "value": 0.7,
+     "format": "{v}",
+     "help": "How hard the final brake run slows the train before the station. Harder braking lengthens the lap."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "speed",
+     "label": "Top speed"
+    },
+    {
+     "id": "g",
+     "label": "Loop force"
+    },
+    {
+     "id": "time",
+     "label": "Ride time"
+    },
+    {
+     "id": "capacity",
+     "label": "Riders per hour"
+    },
+    {
+     "id": "energy",
+     "label": "Train energy"
+    },
+    {
+     "id": "laps",
+     "label": "Laps run"
+    }
+   ],
+   "actions": [
+    {
+     "id": "dispatch",
+     "label": "Dispatch train",
+     "primary": true
+    },
+    {
+     "id": "reset",
+     "label": "Reset ride"
+    }
+   ],
+   "steps": [
+    {
+     "title": "The lift hill",
+     "mode": "ride",
+     "set": {
+      "lift": 30,
+      "cars": 5,
+      "dispatch": 25,
+      "brake": 0.7
+     },
+     "body": [
+      "The train leaves the station and a chain dog catches under the car. The chain drags it up the lift at a constant, unhurried speed while the motor does work against gravity. At the crest the dog releases and the train is on its own.",
+      "Everything the train will do for the rest of the lap was paid for here. A taller lift means more potential energy, and therefore more speed at every low point — but also a bigger structure, a longer climb and a slower dispatch."
+     ]
+    },
+    {
+     "title": "The first drop",
+     "mode": "ride",
+     "set": {
+      "lift": 30,
+      "cars": 5
+     },
+     "body": [
+      "At the top the train is nearly stopped. Gravity accelerates it down the drop, converting height into speed: v = √(2gh) in the ideal case, with a little lost to rolling resistance and air drag.",
+      "The track curves through the bottom of the drop rather than kinking, so the change in direction is spread over time. That curve is what the rider feels as pressure in the seat: not speed itself, but the rate at which the velocity vector turns."
+     ]
+    },
+    {
+     "title": "The loop",
+     "mode": "forces",
+     "set": {
+      "lift": 36,
+      "cars": 5,
+      "dispatch": 25
+     },
+     "body": [
+      "A vertical loop is a centripetal-force machine. At the bottom the seat pushes up with the rider's weight plus mv²/r. With a 36-metre lift, the train enters at about 25 m/s and a 14-metre loop pulls roughly 5.5 g.",
+      "At the top of the loop the train is upside down and slower. If it is still moving fast enough, the seat still pushes; if not, the up-stop wheels catch the rail and the riders hang in their restraints. Modern loops are clothoids, tighter at the bottom and wider at the top, to keep the g-force humane."
+     ]
+    },
+    {
+     "title": "Airtime",
+     "mode": "ride",
+     "set": {
+      "lift": 38,
+      "cars": 6,
+      "dispatch": 30
+     },
+     "body": [
+      "A camelback hill is shaped so the train goes over the crest faster than gravity alone would keep it on the track. The up-stop wheels hold it down, but the riders feel the seat drop away — negative g, or airtime.",
+      "Airtime is the coaster designer's real currency. It is also a constraint: too much negative g and the restraints become uncomfortable and unsafe, which is why hills are shaped and trimmed rather than simply made steep."
+     ]
+    },
+    {
+     "title": "The brake run",
+     "mode": "ride",
+     "set": {
+      "lift": 30,
+      "cars": 5,
+      "dispatch": 25,
+      "brake": 1
+     },
+     "body": [
+      "After the last helix the train enters a brake run: magnetic or friction brakes squeeze the train down to station speed. The energy that was lifted into the train is now heat in the brake fins.",
+      "Braking harder is safer but slower, and every extra second on the brake run is a second the next train cannot be dispatched. On a one-train coaster, the brake run sets the capacity."
+     ]
+    },
+    {
+     "title": "Capacity",
+     "mode": "forces",
+     "set": {
+      "lift": 30,
+      "cars": 8,
+      "dispatch": 20,
+      "brake": 0.7
+     },
+     "body": [
+      "Eight cars carry sixteen riders. If the station could dispatch every 20 seconds, that would be 2,880 riders an hour — but one train cannot return before its lap is over, so the circuit time caps the real figure.",
+      "The readout tells you which limit you are on. Shorten the circuit, add a second train or load faster to raise capacity; making the lift taller usually lowers it."
+     ]
+    },
+    {
+     "title": "Designing the profile",
+     "mode": "forces",
+     "set": {
+      "lift": 42,
+      "cars": 6,
+      "dispatch": 30,
+      "brake": 0.8
+     },
+     "body": [
+      "Every hill after the first must be lower than the last, because energy is lost to friction and braking. A 42-metre lift gives a top speed near 95 km/h and about 6 g in a 14-metre loop — thrilling, but at the edge of what most riders tolerate.",
+      "The designer's job is to spend the energy where it feels best: a fast first drop, a smooth loop, a moment of airtime, then a controlled stop. The track is a budget of height, and every element draws on it."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Station",
+     "role": "The platform where riders board, restraints check and the train is dispatched."
+    },
+    {
+     "name": "Lift hill",
+     "role": "The chain-driven climb that gives the train its potential energy."
+    },
+    {
+     "name": "Track",
+     "role": "Two steel running rails on a spine, bent into the ride's profile."
+    },
+    {
+     "name": "Support column",
+     "role": "A steel column that carries the track loads down to the footings."
+    },
+    {
+     "name": "Train",
+     "role": "Articulated cars that follow the track; each car seats two riders."
+    },
+    {
+     "name": "Loop",
+     "role": "A vertical circuit where centripetal force keeps riders pressed into their seats."
+    },
+    {
+     "name": "Airtime hill",
+     "role": "A crest shaped to make riders float against their restraints."
+    },
+    {
+     "name": "Helix",
+     "role": "A descending spiral that turns speed into a longer, lower path."
+    },
+    {
+     "name": "Brake run",
+     "role": "The final straight where the train is slowed to station speed."
+    },
+    {
+     "name": "Up-stop wheel",
+     "role": "A wheel under the rail that stops the train lifting off in loops and crests."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Typical loop radius",
+     "value": "10–15 m"
+    },
+    {
+     "label": "Loop force at 80 km/h",
+     "value": "≈ 4.5 g"
+    },
+    {
+     "label": "Ride duration",
+     "value": "60–120 s"
+    },
+    {
+     "label": "Seats per car",
+     "value": "2 in this train"
+    },
+    {
+     "label": "Lift chain speed",
+     "value": "≈ 3 m/s"
+    },
+    {
+     "label": "Track steel",
+     "value": "hollow tube, 60–120 mm"
+    }
+   ],
+   "accuracy": "A point-mass energy model with a circular-loop force estimate and a simple capacity cap, not a full dynamic simulation. Real coasters use clothoid loops, finite train length, wheel friction, air drag and block sections. Heights, speeds and g-forces here are representative; the animation is stylised and not to scale.",
+   "sources": [
+    "Pendrill & Eager, Velocity and acceleration in a roller coaster loop, Physics Education (2015)",
+    "American Coaster Enthusiasts, coaster design and safety notes",
+    "ASTM F2291, Standard Practice for Design of Amusement Rides and Devices",
+    "Marden, Roller Coaster Design and Analysis (2013)"
+   ]
+  },
+  {
+   "id": "space-station",
+   "title": "Orbital Life Support",
+   "subtitle": "A closed loop for air and water, 400 km above the ground",
+   "category": "space",
+   "featured": false,
+   "tags": [
+    "space station",
+    "life support",
+    "ECLSS",
+    "oxygen",
+    "CO2",
+    "water recovery",
+    "astronaut",
+    "habitat",
+    "recycling",
+    "space"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 8,
+   "summary": "A cutaway habitat where electrolysis makes oxygen, a scrubber pulls CO2 out of the air and a water loop stretches every litre. Add crew, cut power or puncture the hull and watch the cabin drift.",
+   "overview": [
+    "A spacecraft is a sealed world with a very small atmosphere. The International Space Station's habitable volume is about 388 cubic metres, and every kilogram of oxygen, water and food has to be launched from Earth or recycled on board. Life support is the machinery that keeps that sealed world breathable.",
+    "The core loop is simple to state and hard to balance. Crew members consume oxygen and produce carbon dioxide and water vapour. Electrolysis splits water into oxygen and hydrogen. A scrubber removes carbon dioxide from the cabin air; a Sabatier reactor can combine that CO2 with hydrogen to make methane and more water. Urine and humidity are distilled, filtered and returned to the water tanks.",
+    "Nothing closes perfectly. Filters clog, water is lost in brine, and power margins shrink when the station turns away from the sun. The controls here let you add crew, dim the solar arrays, tune the scrubber and tune the water processor; the gauges show the cabin atmosphere responding over the next hours."
+   ],
+   "modes": [
+    {
+     "id": "cabin",
+     "label": "Cabin"
+    },
+    {
+     "id": "loops",
+     "label": "Loops"
+    }
+   ],
+   "controls": [
+    {
+     "id": "crew",
+     "type": "range",
+     "label": "Crew aboard",
+     "min": 2,
+     "max": 6,
+     "step": 1,
+     "value": 4,
+     "format": "{v}",
+     "help": "Each person consumes oxygen and produces CO2 and water vapour."
+    },
+    {
+     "id": "power",
+     "type": "range",
+     "label": "Solar power",
+     "min": 40,
+     "max": 100,
+     "step": 5,
+     "value": 85,
+     "format": "{v} %",
+     "help": "Dim arrays cut electrolysis and scrubber power first."
+    },
+    {
+     "id": "scrubber",
+     "type": "range",
+     "label": "CO2 scrubber",
+     "min": 40,
+     "max": 100,
+     "step": 5,
+     "value": 85,
+     "format": "{v} %",
+     "help": "Removes a fraction of cabin CO2 each minute; needs power."
+    },
+    {
+     "id": "recycler",
+     "type": "range",
+     "label": "Water recovery",
+     "min": 40,
+     "max": 100,
+     "step": 5,
+     "value": 85,
+     "format": "{v} %",
+     "help": "Urine and humidity processor. Recovery never quite reaches 100%."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "o2",
+     "label": "Oxygen"
+    },
+    {
+     "id": "co2",
+     "label": "Carbon dioxide"
+    },
+    {
+     "id": "pressure",
+     "label": "Cabin pressure"
+    },
+    {
+     "id": "water",
+     "label": "Water reserve"
+    },
+    {
+     "id": "temp",
+     "label": "Cabin temp"
+    },
+    {
+     "id": "power",
+     "label": "Power margin"
+    }
+   ],
+   "actions": [
+    {
+     "id": "leak",
+     "label": "Puncture hull"
+    },
+    {
+     "id": "seal",
+     "label": "Seal leak"
+    },
+    {
+     "id": "reset",
+     "label": "Reset cabin",
+     "primary": true
+    }
+   ],
+   "steps": [
+    {
+     "title": "The can",
+     "mode": "cabin",
+     "set": {
+      "crew": 4,
+      "power": 85,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "The habitat is a pressure vessel with two decks. The outer shell keeps the vacuum out; the inner liner, hatches and feedthroughs keep the air in. The cutaway shows the machinery that stands between the crew and a very bad day.",
+      "Air is not still. Fans push it through ducts so carbon dioxide does not pool around sleepers and heat does not gather around electronics. The cabin is mixed, filtered and monitored continuously."
+     ]
+    },
+    {
+     "title": "Making oxygen",
+     "mode": "cabin",
+     "set": {
+      "crew": 4,
+      "power": 85,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "The electrolyser passes current through water and splits it into oxygen and hydrogen. The oxygen goes into the cabin; the hydrogen is either dumped overboard or fed to the Sabatier reactor. The stack needs water and a steady power margin.",
+      "The controller does not run flat out. It trims production to hold the oxygen partial pressure near 21.3 kPa — the same fraction of sea-level air that keeps a human conscious. Drop the power and the electrolyser is the first load to be shed."
+     ]
+    },
+    {
+     "title": "Pulling CO2 out",
+     "mode": "loops",
+     "set": {
+      "crew": 4,
+      "power": 85,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "Four crew members add carbon dioxide to the cabin at a nearly constant rate. The scrubber — a packed bed of zeolite or amine — adsorbs CO2 as air passes through, then releases it into a vacuum or a regeneration loop.",
+      "The Sabatier reactor can combine CO2 with hydrogen to make methane and water. The methane is vented; the water returns to the tank. It is a clever loop, but it needs hydrogen, heat and another piece of machinery that can fail."
+     ]
+    },
+    {
+     "title": "The water loop",
+     "mode": "loops",
+     "set": {
+      "crew": 4,
+      "power": 85,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "Water is the heaviest consumable on a station, so most of it is recycled. Urine goes through distillation, catalytic oxidation and filtration; humidity condensate joins the same stream. The product is clean enough to drink and to feed the electrolyser.",
+      "Recovery is never complete: brine, filter media and sampling take water out of the loop. The reserve gauge falls slowly even when everything works. Resupply ships top it up, and the crew learns to treat every litre as infrastructure."
+     ]
+    },
+    {
+     "title": "Add crew",
+     "mode": "cabin",
+     "set": {
+      "crew": 6,
+      "power": 85,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "Two more astronauts means more oxygen demand, more CO2 and more urine. The electrolyser ramps up, the scrubber works harder, and the water reserve drains faster. The cabin does not fail immediately; it drifts, and the drift is the lesson.",
+      "Watch the CO2 gauge first. It has the smallest buffer. Then watch the water reserve, which is the slowest variable and the one that limits how long the mission can continue without a resupply."
+     ]
+    },
+    {
+     "title": "A dim sun",
+     "mode": "loops",
+     "set": {
+      "crew": 4,
+      "power": 40,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "At 40% solar power the arrays produce less than the habitat's baseline load. The power margin turns negative, the electrolyser stops, and the scrubber slows. Oxygen falls while CO2 climbs — two alarms from one cause.",
+      "Real stations manage this with batteries, load shedding and a carefully ordered list of what can be turned off. The model gives the life-support loads priority over comfort, but physics does not care about priorities."
+     ]
+    },
+    {
+     "title": "Puncture",
+     "mode": "cabin",
+     "set": {
+      "crew": 4,
+      "power": 85,
+      "scrubber": 85,
+      "recycler": 85
+     },
+     "body": [
+      "A micrometeoroid punches a millimetre-sized hole in the shell. The cabin is not explosively decompressed — it is a big volume with a small leak — but pressure and oxygen partial pressure fall steadily. The crew has time to find the leak and seal it, if they know where to look.",
+      "Seal the leak and the pressure stops falling, but it does not come back. Repressurisation needs gas from a tank. The cabin remains at a lower pressure until the next resupply or a controlled repress."
+     ]
+    },
+    {
+     "title": "Closing the loop",
+     "mode": "loops",
+     "set": {
+      "crew": 4,
+      "power": 90,
+      "scrubber": 90,
+      "recycler": 90
+     },
+     "body": [
+      "The best operating point is not maximum power or maximum scrubbing; it is the point where every loop has a little margin. Run the electrolyser near demand, keep the scrubber above the CO2 production rate, and recover as much water as the processor allows.",
+      "A station is a system of systems. The air, water, power and thermal loops are coupled, and a change in one shows up in the others. That coupling is the engineering — and the drama — of living off Earth."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Habitat shell",
+     "role": "The pressure vessel: a white cylindrical can with a cutaway front showing the decks inside."
+    },
+    {
+     "name": "Solar array",
+     "role": "Photovoltaic wings that make electricity; they track the sun and dim when the station turns."
+    },
+    {
+     "name": "Radiator",
+     "role": "Panels that dump waste heat to space; they warm and glow as the cabin heat load rises."
+    },
+    {
+     "name": "O2 electrolyser",
+     "role": "Splits water into oxygen and hydrogen using electric current."
+    },
+    {
+     "name": "CO2 scrubber",
+     "role": "A packed bed that adsorbs carbon dioxide from the cabin air and releases it for regeneration."
+    },
+    {
+     "name": "Sabatier reactor",
+     "role": "Combines CO2 with hydrogen to make methane and water, recovering some of the oxygen and water."
+    },
+    {
+     "name": "Water tanks",
+     "role": "Store the reserve that feeds the crew, the electrolyser and the recycler."
+    },
+    {
+     "name": "Urine processor",
+     "role": "Distils and filters urine so its water can return to the potable loop."
+    },
+    {
+     "name": "Equipment rack",
+     "role": "Houses pumps, valves, sensors and control electronics for the life-support loops."
+    },
+    {
+     "name": "Plant chamber",
+     "role": "A small crop chamber under pink grow lights; plants can supplement food and help recycle air."
+    },
+    {
+     "name": "Crew quarters",
+     "role": "Bunks and personal stowage on the upper deck."
+    },
+    {
+     "name": "Exercise bike",
+     "role": "Countermeasures for bone and muscle loss in microgravity; it also adds heat and CO2 to the cabin."
+    },
+    {
+     "name": "Galley",
+     "role": "Food preparation and the water tap that makes the reserve a personal number."
+    },
+    {
+     "name": "Docking port",
+     "role": "The hatches where resupply ships bring water, gas, food and spare parts."
+    },
+    {
+     "name": "Antenna",
+     "role": "Communications and telemetry link to the ground."
+    },
+    {
+     "name": "Circulation fan",
+     "role": "Moves air through the cabin and the scrubber so CO2 and heat do not stratify."
+    },
+    {
+     "name": "Life-support plumbing",
+     "role": "Colour-coded pipes carrying oxygen, air, water and CO2 between the loops."
+    },
+    {
+     "name": "Astronaut",
+     "role": "The reason for all of it: a crew member consuming oxygen, water and food, and producing CO2 and heat."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Sea-level oxygen",
+     "value": "21.3 kPa partial pressure"
+    },
+    {
+     "label": "Cabin pressure",
+     "value": "101.3 kPa (1 atm)"
+    },
+    {
+     "label": "ISS water recovery",
+     "value": "about 93%"
+    },
+    {
+     "label": "Crew oxygen use",
+     "value": "≈ 0.84 kg per person per day"
+    },
+    {
+     "label": "Crew CO2 output",
+     "value": "≈ 1 kg per person per day"
+    },
+    {
+     "label": "Electrolysis",
+     "value": "2 H₂O → 2 H₂ + O₂"
+    }
+   ],
+   "accuracy": "A lumped, continuous model of a closed cabin, not a flight-qualified ECLSS simulation. Volumes, leak rates, scrubber kinetics and water recovery are exaggerated so the drifts are visible in minutes rather than days. Real stations use redundant loops, batteries, pressure-control assemblies and resupply; the chemistry and the direction of every coupling here are representative.",
+   "sources": [
+    "NASA, International Space Station Environmental Control and Life Support System (ECLSS)",
+    "NASA, Baseline Values and Assumptions Document for Life Support",
+    "ESA, Life support systems for human spaceflight",
+    "Wieland, Designing for Human Presence in Space: Environmental Control and Life Support"
+   ]
+  },
+  {
+   "id": "steel-mill",
+   "title": "Integrated Steel Mill",
+   "subtitle": "From iron ore to a glowing coil of strip",
+   "category": "making",
+   "featured": true,
+   "tags": [
+    "steel",
+    "mill",
+    "blast furnace",
+    "casting",
+    "rolling",
+    "iron",
+    "metal",
+    "industrial",
+    "manufacturing",
+    "heat"
+   ],
+   "difficulty": "Advanced",
+   "minutes": 8,
+   "summary": "A blast furnace reduces ore into molten iron, a converter blows it into steel, a caster freezes it into a slab and a rolling mill squeezes it into strip. Follow the heat and find the stage that limits output.",
+   "overview": [
+    "An integrated steel mill is one continuous argument with heat. Iron ore, coke and limestone are charged into the top of a blast furnace; hot air blasts in near the bottom and burns the coke, producing carbon monoxide that strips oxygen from the ore. The result is liquid iron at about 1,500 °C, which runs out of the tap hole into a ladle.",
+    "That iron is still brittle because it contains about 4% carbon. In a basic oxygen furnace, a water-cooled lance blows pure oxygen onto the melt; the carbon burns away as CO₂ and the iron becomes steel. The vessel tilts to charge scrap and pour, and the whole heat is finished in about 40 minutes.",
+    "The steel then goes to a continuous caster, where it freezes into a slab while moving, and to a rolling mill, where it is squeezed thinner and longer while still glowing. Every stage has a tonnage limit, and because the metal cannot wait around without cooling, the plant is really a chain of matched capacities. This lab lets you set the blast, oxygen, casting speed and mill load, then watch which one becomes the constraint."
+   ],
+   "modes": [
+    {
+     "id": "plant",
+     "label": "Plant"
+    },
+    {
+     "id": "flow",
+     "label": "Heat flow"
+    }
+   ],
+   "controls": [
+    {
+     "id": "blast",
+     "type": "range",
+     "label": "Blast volume",
+     "min": 60,
+     "max": 100,
+     "step": 2,
+     "value": 92,
+     "format": "{v} %",
+     "help": "Hot air through the tuyeres. More wind burns more coke and makes more iron, up to the furnace's limit."
+    },
+    {
+     "id": "oxygen",
+     "type": "range",
+     "label": "Oxygen lance",
+     "min": 50,
+     "max": 100,
+     "step": 2,
+     "value": 100,
+     "format": "{v} %",
+     "help": "Oxygen flow in the converter. It sets how fast carbon is removed from the heat."
+    },
+    {
+     "id": "casting",
+     "type": "range",
+     "label": "Casting speed",
+     "min": 0.8,
+     "max": 2.2,
+     "step": 0.1,
+     "value": 1.8,
+     "format": "{v} m/min",
+     "help": "How fast the slab is pulled out of the mould. Too fast and the core is still liquid."
+    },
+    {
+     "id": "rolling",
+     "type": "range",
+     "label": "Rolling mill",
+     "min": 40,
+     "max": 100,
+     "step": 2,
+     "value": 92,
+     "format": "{v} %",
+     "help": "Mill load. The roughing and finishing stands can roll about 200 tonnes an hour at full load."
+    }
+   ],
+   "gauges": [
+    {
+     "id": "iron",
+     "label": "Hot metal"
+    },
+    {
+     "id": "steel",
+     "label": "Steel"
+    },
+    {
+     "id": "temp",
+     "label": "Furnace temp"
+    },
+    {
+     "id": "strip",
+     "label": "Strip output"
+    },
+    {
+     "id": "cast",
+     "label": "Cast speed"
+    },
+    {
+     "id": "tapped",
+     "label": "Tapped this shift"
+    }
+   ],
+   "actions": [
+    {
+     "id": "tap",
+     "label": "Tap furnace",
+     "primary": true
+    },
+    {
+     "id": "reset",
+     "label": "New shift"
+    }
+   ],
+   "steps": [
+    {
+     "title": "The burden",
+     "mode": "plant",
+     "set": {
+      "blast": 92,
+      "oxygen": 100,
+      "casting": 1.8,
+      "rolling": 92
+     },
+     "body": [
+      "The furnace is charged from the top with alternating layers of sinter, pellets, coke and limestone. A skip hoist carries each bucket up the inclined bridge and tips it into the bell, which seals the furnace so gas cannot escape.",
+      "The burden has to be porous: hot gas must rise through it while liquid iron and slag trickle down. Too much fine dust and the furnace chokes; too little coke and it cannot bear the weight."
+     ]
+    },
+    {
+     "title": "The blast",
+     "mode": "flow",
+     "set": {
+      "blast": 92,
+      "oxygen": 100
+     },
+     "body": [
+      "Stoves heat the blast to about 1,200 °C before it enters the tuyeres around the furnace's waist. The blast burns coke to carbon monoxide, and that gas reduces iron oxide as it climbs: Fe₂O₃ + 3CO → 2Fe + 3CO₂.",
+      "The furnace never stops. It runs for years between relines, with iron tapped every few hours and slag drawn off separately. The tap hole is opened with a oxygen lance and plugged with clay when the heat is out."
+     ]
+    },
+    {
+     "title": "The ladle",
+     "mode": "plant",
+     "set": {
+      "blast": 92,
+      "oxygen": 100,
+      "casting": 1.8
+     },
+     "body": [
+      "Molten iron runs down the runner into a ladle on a rail car. A full ladle holds 250–300 tonnes at 1,500 °C, and its refractory lining is chosen to survive the heat and the slag.",
+      "The car carries the ladle to the converter. On the way, alloy additions and a desulphurising lance may be used, because the steel's final chemistry starts here, not at the caster."
+     ]
+    },
+    {
+     "title": "Basic oxygen steelmaking",
+     "mode": "plant",
+     "set": {
+      "blast": 92,
+      "oxygen": 88,
+      "casting": 1.8
+     },
+     "body": [
+      "The converter is a barrel-shaped vessel on trunnions. Scrap is charged first, then the hot metal, and a water-cooled lance is lowered. Pure oxygen at supersonic speed burns the carbon out of the iron in a violent, bright reaction.",
+      "About 40 minutes later the heat is steel with less than 0.1% carbon. The vessel tilts to pour slag off one side and steel into a ladle on the other. Turn the oxygen down and the heat takes longer, which caps the whole plant."
+     ]
+    },
+    {
+     "title": "Continuous casting",
+     "mode": "flow",
+     "set": {
+      "blast": 92,
+      "oxygen": 100,
+      "casting": 1.8
+     },
+     "body": [
+      "The ladle pours into a tundish, which feeds a water-cooled copper mould. A dummy bar starts the strand, and the slab is pulled out while its skin freezes; secondary sprays finish the job before it is cut to length.",
+      "The caster's speed must match the steel supply and the metallurgical limit. Pull too fast and the liquid core breaks out of the skin — a breakout that stops the plant for hours. That is why casting speed is a hard ceiling in this model."
+     ]
+    },
+    {
+     "title": "Hot rolling",
+     "mode": "plant",
+     "set": {
+      "blast": 92,
+      "oxygen": 100,
+      "casting": 2,
+      "rolling": 92
+     },
+     "body": [
+      "The slab is reheated and pushed through roughing stands, then finishing stands, each pair of rolls squeezing it thinner and longer. The strip leaves the last stand at more than 1,000 °C and is cooled by water sprays before it is coiled.",
+      "A coil can weigh 25–30 tonnes and be less than 2 mm thick. Rolling is the last chance to fix the steel's shape and surface, and it is also a capacity limit: if the mill is slow, the caster has to slow down or the slabs pile up."
+     ]
+    },
+    {
+     "title": "Finding the limit",
+     "mode": "flow",
+     "set": {
+      "blast": 100,
+      "oxygen": 100,
+      "casting": 1.2,
+      "rolling": 100
+     },
+     "body": [
+      "With the caster at 1.2 m/min the strand can only take about 126 tonnes an hour, even though the furnace and converter can supply more. The bottleneck moves to the caster and the readout says so.",
+      "Raise casting speed and the mill becomes the limit; lower the blast and the furnace does. An integrated mill is designed so all four stages sit close to the same tonnage — the best plant is the one whose stages are matched, not the one with the biggest furnace."
+     ]
+    }
+   ],
+   "parts": [
+    {
+     "name": "Blast furnace",
+     "role": "A tall refractory vessel where coke and hot air reduce iron ore into liquid iron."
+    },
+    {
+     "name": "Skip hoist",
+     "role": "The inclined bucket lift that charges ore, coke and limestone into the furnace top."
+    },
+    {
+     "name": "Hot blast stove",
+     "role": "A regenerative heat exchanger that heats the air blast to over 1,000 °C."
+    },
+    {
+     "name": "Tap hole",
+     "role": "The opening at the hearth where molten iron runs out into the runner."
+    },
+    {
+     "name": "Ladle",
+     "role": "A refractory-lined bucket that carries molten iron or steel between stages."
+    },
+    {
+     "name": "Ladle car",
+     "role": "The rail vehicle that moves a full ladle along the plant."
+    },
+    {
+     "name": "Basic oxygen furnace",
+     "role": "A tiltable converter where pure oxygen burns carbon out of the iron."
+    },
+    {
+     "name": "Oxygen lance",
+     "role": "A water-cooled pipe that blows supersonic oxygen onto the melt."
+    },
+    {
+     "name": "Continuous caster",
+     "role": "A water-cooled mould and spray chamber that freeze a moving slab."
+    },
+    {
+     "name": "Rolling mill",
+     "role": "Pairs of rolls that squeeze the hot slab into thin strip and coil it."
+    }
+   ],
+   "facts": [
+    {
+     "label": "Iron pouring temperature",
+     "value": "≈ 1,500 °C"
+    },
+    {
+     "label": "Carbon in pig iron",
+     "value": "≈ 4 %"
+    },
+    {
+     "label": "Carbon in steel",
+     "value": "< 2 %, often < 0.1 %"
+    },
+    {
+     "label": "A converter heat",
+     "value": "≈ 40 minutes"
+    },
+    {
+     "label": "Slab section",
+     "value": "≈ 220 × 1,300 mm"
+    },
+    {
+     "label": "Coil weight",
+     "value": "25–30 tonnes"
+    }
+   ],
+   "accuracy": "A lumped capacity model of an integrated mill, not a heat-and-mass balance. Tonnages, temperatures and casting speeds are representative; real plants depend on ore chemistry, furnace campaign, refractory wear, product mix and logistics. The animation is stylised and slowed so the ladle, strand and strip can be followed.",
+   "sources": [
+    "World Steel Association, Steel Statistical Yearbook",
+    "Ghosh & Chatterjee, Ironmaking and Steelmaking: Theory and Practice (2008)",
+    "Sahoo & Sarkar, Continuous Casting of Steel (2019)",
+    "United States Steel, process descriptions for integrated mills"
    ]
   },
   {

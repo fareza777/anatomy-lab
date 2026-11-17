@@ -1,0 +1,130 @@
+{
+  "id": "roller-coaster",
+  "title": "Roller Coaster",
+  "subtitle": "Lift hill, loop and the forces that hold you in",
+  "category": "engineering",
+  "featured": true,
+  "tags": ["roller coaster", "theme park", "ride", "loop", "gravity", "g-force", "kinetic energy", "track", "amusement", "physics"],
+  "difficulty": "Intermediate",
+  "minutes": 6,
+  "summary": "A lift hill charges a train with potential energy; every drop spends it. Set the lift height, train length and dispatch interval, then watch the lap and the forces it produces.",
+  "overview": [
+    "A roller coaster has almost no engine. A chain or a launch motor does one job at the start — lift the train to the highest point — and gravity does the rest. At the top the train has potential energy; at the bottom of the drop that energy has become speed. Losing height is the only way to gain it, which is why every hill after the first is shorter.",
+    "The track is a closed circuit: station, lift, drop, loop, a few airtime hills, a helix, then a brake run back to the station. The rails are steel tubes on a welded spine, supported by columns that carry the loads down to the footings. The train's wheels run on three sets of surfaces: running wheels on top, up-stop wheels underneath and side wheels against the rail, so it cannot lift off in a loop.",
+    "Riders feel the track through acceleration, not speed. At the bottom of a loop the seat must supply both weight and centripetal force; a 14-metre loop entered at 80 km/h pulls about 4.5 g. Too much and riders grey out, so designers shape the loop as a clothoid rather than a circle. Capacity is the other constraint: one train can only leave when it returns, so hourly riders are set by the slower of dispatch interval and circuit time."
+  ],
+  "modes": [
+    { "id": "ride", "label": "Ride" },
+    { "id": "forces", "label": "Forces" }
+  ],
+  "controls": [
+    { "id": "lift", "type": "range", "label": "Lift height", "min": 18, "max": 45, "step": 1, "value": 30, "format": "{v} m", "help": "The highest point of the lift. More height means more speed everywhere else on the circuit." },
+    { "id": "cars", "type": "range", "label": "Train length", "min": 3, "max": 8, "step": 1, "value": 5, "format": "{v} cars", "help": "Each car seats two riders. A longer train carries more people but adds weight and length." },
+    { "id": "dispatch", "type": "range", "label": "Dispatch interval", "min": 15, "max": 40, "step": 5, "value": 25, "format": "{v} s", "help": "How often the station sends a train. With one train, the circuit time becomes the real limit." },
+    { "id": "brake", "type": "range", "label": "Brake run", "min": 0.5, "max": 1, "step": 0.05, "value": 0.7, "format": "{v}", "help": "How hard the final brake run slows the train before the station. Harder braking lengthens the lap." }
+  ],
+  "gauges": [
+    { "id": "speed", "label": "Top speed" },
+    { "id": "g", "label": "Loop force" },
+    { "id": "time", "label": "Ride time" },
+    { "id": "capacity", "label": "Riders per hour" },
+    { "id": "energy", "label": "Train energy" },
+    { "id": "laps", "label": "Laps run" }
+  ],
+  "actions": [
+    { "id": "dispatch", "label": "Dispatch train", "primary": true },
+    { "id": "reset", "label": "Reset ride" }
+  ],
+  "steps": [
+    {
+      "title": "The lift hill",
+      "mode": "ride",
+      "set": { "lift": 30, "cars": 5, "dispatch": 25, "brake": 0.7 },
+      "body": [
+        "The train leaves the station and a chain dog catches under the car. The chain drags it up the lift at a constant, unhurried speed while the motor does work against gravity. At the crest the dog releases and the train is on its own.",
+        "Everything the train will do for the rest of the lap was paid for here. A taller lift means more potential energy, and therefore more speed at every low point — but also a bigger structure, a longer climb and a slower dispatch."
+      ]
+    },
+    {
+      "title": "The first drop",
+      "mode": "ride",
+      "set": { "lift": 30, "cars": 5 },
+      "body": [
+        "At the top the train is nearly stopped. Gravity accelerates it down the drop, converting height into speed: v = √(2gh) in the ideal case, with a little lost to rolling resistance and air drag.",
+        "The track curves through the bottom of the drop rather than kinking, so the change in direction is spread over time. That curve is what the rider feels as pressure in the seat: not speed itself, but the rate at which the velocity vector turns."
+      ]
+    },
+    {
+      "title": "The loop",
+      "mode": "forces",
+      "set": { "lift": 36, "cars": 5, "dispatch": 25 },
+      "body": [
+        "A vertical loop is a centripetal-force machine. At the bottom the seat pushes up with the rider's weight plus mv²/r. With a 36-metre lift, the train enters at about 25 m/s and a 14-metre loop pulls roughly 5.5 g.",
+        "At the top of the loop the train is upside down and slower. If it is still moving fast enough, the seat still pushes; if not, the up-stop wheels catch the rail and the riders hang in their restraints. Modern loops are clothoids, tighter at the bottom and wider at the top, to keep the g-force humane."
+      ]
+    },
+    {
+      "title": "Airtime",
+      "mode": "ride",
+      "set": { "lift": 38, "cars": 6, "dispatch": 30 },
+      "body": [
+        "A camelback hill is shaped so the train goes over the crest faster than gravity alone would keep it on the track. The up-stop wheels hold it down, but the riders feel the seat drop away — negative g, or airtime.",
+        "Airtime is the coaster designer's real currency. It is also a constraint: too much negative g and the restraints become uncomfortable and unsafe, which is why hills are shaped and trimmed rather than simply made steep."
+      ]
+    },
+    {
+      "title": "The brake run",
+      "mode": "ride",
+      "set": { "lift": 30, "cars": 5, "dispatch": 25, "brake": 1 },
+      "body": [
+        "After the last helix the train enters a brake run: magnetic or friction brakes squeeze the train down to station speed. The energy that was lifted into the train is now heat in the brake fins.",
+        "Braking harder is safer but slower, and every extra second on the brake run is a second the next train cannot be dispatched. On a one-train coaster, the brake run sets the capacity."
+      ]
+    },
+    {
+      "title": "Capacity",
+      "mode": "forces",
+      "set": { "lift": 30, "cars": 8, "dispatch": 20, "brake": 0.7 },
+      "body": [
+        "Eight cars carry sixteen riders. If the station could dispatch every 20 seconds, that would be 2,880 riders an hour — but one train cannot return before its lap is over, so the circuit time caps the real figure.",
+        "The readout tells you which limit you are on. Shorten the circuit, add a second train or load faster to raise capacity; making the lift taller usually lowers it."
+      ]
+    },
+    {
+      "title": "Designing the profile",
+      "mode": "forces",
+      "set": { "lift": 42, "cars": 6, "dispatch": 30, "brake": 0.8 },
+      "body": [
+        "Every hill after the first must be lower than the last, because energy is lost to friction and braking. A 42-metre lift gives a top speed near 95 km/h and about 6 g in a 14-metre loop — thrilling, but at the edge of what most riders tolerate.",
+        "The designer's job is to spend the energy where it feels best: a fast first drop, a smooth loop, a moment of airtime, then a controlled stop. The track is a budget of height, and every element draws on it."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Station", "role": "The platform where riders board, restraints check and the train is dispatched." },
+    { "name": "Lift hill", "role": "The chain-driven climb that gives the train its potential energy." },
+    { "name": "Track", "role": "Two steel running rails on a spine, bent into the ride's profile." },
+    { "name": "Support column", "role": "A steel column that carries the track loads down to the footings." },
+    { "name": "Train", "role": "Articulated cars that follow the track; each car seats two riders." },
+    { "name": "Loop", "role": "A vertical circuit where centripetal force keeps riders pressed into their seats." },
+    { "name": "Airtime hill", "role": "A crest shaped to make riders float against their restraints." },
+    { "name": "Helix", "role": "A descending spiral that turns speed into a longer, lower path." },
+    { "name": "Brake run", "role": "The final straight where the train is slowed to station speed." },
+    { "name": "Up-stop wheel", "role": "A wheel under the rail that stops the train lifting off in loops and crests." }
+  ],
+  "facts": [
+    { "label": "Typical loop radius", "value": "10–15 m" },
+    { "label": "Loop force at 80 km/h", "value": "≈ 4.5 g" },
+    { "label": "Ride duration", "value": "60–120 s" },
+    { "label": "Seats per car", "value": "2 in this train" },
+    { "label": "Lift chain speed", "value": "≈ 3 m/s" },
+    { "label": "Track steel", "value": "hollow tube, 60–120 mm" }
+  ],
+  "accuracy": "A point-mass energy model with a circular-loop force estimate and a simple capacity cap, not a full dynamic simulation. Real coasters use clothoid loops, finite train length, wheel friction, air drag and block sections. Heights, speeds and g-forces here are representative; the animation is stylised and not to scale.",
+  "sources": [
+    "Pendrill & Eager, Velocity and acceleration in a roller coaster loop, Physics Education (2015)",
+    "American Coaster Enthusiasts, coaster design and safety notes",
+    "ASTM F2291, Standard Practice for Design of Amusement Rides and Devices",
+    "Marden, Roller Coaster Design and Analysis (2013)"
+  ]
+}

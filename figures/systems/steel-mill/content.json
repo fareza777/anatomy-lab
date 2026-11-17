@@ -1,0 +1,130 @@
+{
+  "id": "steel-mill",
+  "title": "Integrated Steel Mill",
+  "subtitle": "From iron ore to a glowing coil of strip",
+  "category": "making",
+  "featured": true,
+  "tags": ["steel", "mill", "blast furnace", "casting", "rolling", "iron", "metal", "industrial", "manufacturing", "heat"],
+  "difficulty": "Advanced",
+  "minutes": 8,
+  "summary": "A blast furnace reduces ore into molten iron, a converter blows it into steel, a caster freezes it into a slab and a rolling mill squeezes it into strip. Follow the heat and find the stage that limits output.",
+  "overview": [
+    "An integrated steel mill is one continuous argument with heat. Iron ore, coke and limestone are charged into the top of a blast furnace; hot air blasts in near the bottom and burns the coke, producing carbon monoxide that strips oxygen from the ore. The result is liquid iron at about 1,500 °C, which runs out of the tap hole into a ladle.",
+    "That iron is still brittle because it contains about 4% carbon. In a basic oxygen furnace, a water-cooled lance blows pure oxygen onto the melt; the carbon burns away as CO₂ and the iron becomes steel. The vessel tilts to charge scrap and pour, and the whole heat is finished in about 40 minutes.",
+    "The steel then goes to a continuous caster, where it freezes into a slab while moving, and to a rolling mill, where it is squeezed thinner and longer while still glowing. Every stage has a tonnage limit, and because the metal cannot wait around without cooling, the plant is really a chain of matched capacities. This lab lets you set the blast, oxygen, casting speed and mill load, then watch which one becomes the constraint."
+  ],
+  "modes": [
+    { "id": "plant", "label": "Plant" },
+    { "id": "flow", "label": "Heat flow" }
+  ],
+  "controls": [
+    { "id": "blast", "type": "range", "label": "Blast volume", "min": 60, "max": 100, "step": 2, "value": 92, "format": "{v} %", "help": "Hot air through the tuyeres. More wind burns more coke and makes more iron, up to the furnace's limit." },
+    { "id": "oxygen", "type": "range", "label": "Oxygen lance", "min": 50, "max": 100, "step": 2, "value": 100, "format": "{v} %", "help": "Oxygen flow in the converter. It sets how fast carbon is removed from the heat." },
+    { "id": "casting", "type": "range", "label": "Casting speed", "min": 0.8, "max": 2.2, "step": 0.1, "value": 1.8, "format": "{v} m/min", "help": "How fast the slab is pulled out of the mould. Too fast and the core is still liquid." },
+    { "id": "rolling", "type": "range", "label": "Rolling mill", "min": 40, "max": 100, "step": 2, "value": 92, "format": "{v} %", "help": "Mill load. The roughing and finishing stands can roll about 200 tonnes an hour at full load." }
+  ],
+  "gauges": [
+    { "id": "iron", "label": "Hot metal" },
+    { "id": "steel", "label": "Steel" },
+    { "id": "temp", "label": "Furnace temp" },
+    { "id": "strip", "label": "Strip output" },
+    { "id": "cast", "label": "Cast speed" },
+    { "id": "tapped", "label": "Tapped this shift" }
+  ],
+  "actions": [
+    { "id": "tap", "label": "Tap furnace", "primary": true },
+    { "id": "reset", "label": "New shift" }
+  ],
+  "steps": [
+    {
+      "title": "The burden",
+      "mode": "plant",
+      "set": { "blast": 92, "oxygen": 100, "casting": 1.8, "rolling": 92 },
+      "body": [
+        "The furnace is charged from the top with alternating layers of sinter, pellets, coke and limestone. A skip hoist carries each bucket up the inclined bridge and tips it into the bell, which seals the furnace so gas cannot escape.",
+        "The burden has to be porous: hot gas must rise through it while liquid iron and slag trickle down. Too much fine dust and the furnace chokes; too little coke and it cannot bear the weight."
+      ]
+    },
+    {
+      "title": "The blast",
+      "mode": "flow",
+      "set": { "blast": 92, "oxygen": 100 },
+      "body": [
+        "Stoves heat the blast to about 1,200 °C before it enters the tuyeres around the furnace's waist. The blast burns coke to carbon monoxide, and that gas reduces iron oxide as it climbs: Fe₂O₃ + 3CO → 2Fe + 3CO₂.",
+        "The furnace never stops. It runs for years between relines, with iron tapped every few hours and slag drawn off separately. The tap hole is opened with a oxygen lance and plugged with clay when the heat is out."
+      ]
+    },
+    {
+      "title": "The ladle",
+      "mode": "plant",
+      "set": { "blast": 92, "oxygen": 100, "casting": 1.8 },
+      "body": [
+        "Molten iron runs down the runner into a ladle on a rail car. A full ladle holds 250–300 tonnes at 1,500 °C, and its refractory lining is chosen to survive the heat and the slag.",
+        "The car carries the ladle to the converter. On the way, alloy additions and a desulphurising lance may be used, because the steel's final chemistry starts here, not at the caster."
+      ]
+    },
+    {
+      "title": "Basic oxygen steelmaking",
+      "mode": "plant",
+      "set": { "blast": 92, "oxygen": 88, "casting": 1.8 },
+      "body": [
+        "The converter is a barrel-shaped vessel on trunnions. Scrap is charged first, then the hot metal, and a water-cooled lance is lowered. Pure oxygen at supersonic speed burns the carbon out of the iron in a violent, bright reaction.",
+        "About 40 minutes later the heat is steel with less than 0.1% carbon. The vessel tilts to pour slag off one side and steel into a ladle on the other. Turn the oxygen down and the heat takes longer, which caps the whole plant."
+      ]
+    },
+    {
+      "title": "Continuous casting",
+      "mode": "flow",
+      "set": { "blast": 92, "oxygen": 100, "casting": 1.8 },
+      "body": [
+        "The ladle pours into a tundish, which feeds a water-cooled copper mould. A dummy bar starts the strand, and the slab is pulled out while its skin freezes; secondary sprays finish the job before it is cut to length.",
+        "The caster's speed must match the steel supply and the metallurgical limit. Pull too fast and the liquid core breaks out of the skin — a breakout that stops the plant for hours. That is why casting speed is a hard ceiling in this model."
+      ]
+    },
+    {
+      "title": "Hot rolling",
+      "mode": "plant",
+      "set": { "blast": 92, "oxygen": 100, "casting": 2.0, "rolling": 92 },
+      "body": [
+        "The slab is reheated and pushed through roughing stands, then finishing stands, each pair of rolls squeezing it thinner and longer. The strip leaves the last stand at more than 1,000 °C and is cooled by water sprays before it is coiled.",
+        "A coil can weigh 25–30 tonnes and be less than 2 mm thick. Rolling is the last chance to fix the steel's shape and surface, and it is also a capacity limit: if the mill is slow, the caster has to slow down or the slabs pile up."
+      ]
+    },
+    {
+      "title": "Finding the limit",
+      "mode": "flow",
+      "set": { "blast": 100, "oxygen": 100, "casting": 1.2, "rolling": 100 },
+      "body": [
+        "With the caster at 1.2 m/min the strand can only take about 126 tonnes an hour, even though the furnace and converter can supply more. The bottleneck moves to the caster and the readout says so.",
+        "Raise casting speed and the mill becomes the limit; lower the blast and the furnace does. An integrated mill is designed so all four stages sit close to the same tonnage — the best plant is the one whose stages are matched, not the one with the biggest furnace."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Blast furnace", "role": "A tall refractory vessel where coke and hot air reduce iron ore into liquid iron." },
+    { "name": "Skip hoist", "role": "The inclined bucket lift that charges ore, coke and limestone into the furnace top." },
+    { "name": "Hot blast stove", "role": "A regenerative heat exchanger that heats the air blast to over 1,000 °C." },
+    { "name": "Tap hole", "role": "The opening at the hearth where molten iron runs out into the runner." },
+    { "name": "Ladle", "role": "A refractory-lined bucket that carries molten iron or steel between stages." },
+    { "name": "Ladle car", "role": "The rail vehicle that moves a full ladle along the plant." },
+    { "name": "Basic oxygen furnace", "role": "A tiltable converter where pure oxygen burns carbon out of the iron." },
+    { "name": "Oxygen lance", "role": "A water-cooled pipe that blows supersonic oxygen onto the melt." },
+    { "name": "Continuous caster", "role": "A water-cooled mould and spray chamber that freeze a moving slab." },
+    { "name": "Rolling mill", "role": "Pairs of rolls that squeeze the hot slab into thin strip and coil it." }
+  ],
+  "facts": [
+    { "label": "Iron pouring temperature", "value": "≈ 1,500 °C" },
+    { "label": "Carbon in pig iron", "value": "≈ 4 %" },
+    { "label": "Carbon in steel", "value": "< 2 %, often < 0.1 %" },
+    { "label": "A converter heat", "value": "≈ 40 minutes" },
+    { "label": "Slab section", "value": "≈ 220 × 1,300 mm" },
+    { "label": "Coil weight", "value": "25–30 tonnes" }
+  ],
+  "accuracy": "A lumped capacity model of an integrated mill, not a heat-and-mass balance. Tonnages, temperatures and casting speeds are representative; real plants depend on ore chemistry, furnace campaign, refractory wear, product mix and logistics. The animation is stylised and slowed so the ladle, strand and strip can be followed.",
+  "sources": [
+    "World Steel Association, Steel Statistical Yearbook",
+    "Ghosh & Chatterjee, Ironmaking and Steelmaking: Theory and Practice (2008)",
+    "Sahoo & Sarkar, Continuous Casting of Steel (2019)",
+    "United States Steel, process descriptions for integrated mills"
+  ]
+}

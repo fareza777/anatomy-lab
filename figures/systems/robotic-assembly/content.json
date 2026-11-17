@@ -1,0 +1,129 @@
+{
+  "id": "robotic-assembly",
+  "title": "Robotic Assembly Line",
+  "subtitle": "Takt, welding robots and a car every minute",
+  "category": "making",
+  "featured": false,
+  "tags": ["assembly", "factory", "robot", "welding", "car", "production line", "takt", "automation", "manufacturing", "lean"],
+  "difficulty": "Advanced",
+  "minutes": 7,
+  "summary": "Bare car bodies index down a conveyor while articulated robots weld, a booth paints and a final station bolts on wheels. Change the takt or the robot count and watch the bottleneck move.",
+  "overview": [
+    "A car body shop is a line of work cells arranged along a conveyor. Each cell performs the same set of tasks on every body that stops in front of it: framing, spot welding, sealing, painting, then doors and wheels. The line moves in steps, not continuously, because every station must finish before the next index.",
+    "The heartbeat of the line is the takt time — from the German Takt, a beat. If the plant needs 60 cars an hour, the takt is 60 seconds: one body must leave the last station every minute. Every cell is designed to finish inside that beat, and any cell that cannot becomes the constraint for the whole plant.",
+    "Welding is usually the constraint. A body-in-white carries around 4,000 spot welds, but a single robot cell only makes the 40–60 welds assigned to it. Robots work in parallel, so doubling the robots in a cell roughly halves its cycle; the conveyor, paint booth and final line do not speed up at all. This lab shows that balance: a fast conveyor with too few robots simply waits."
+  ],
+  "modes": [
+    { "id": "line", "label": "Line" },
+    { "id": "cells", "label": "Work cells" }
+  ],
+  "controls": [
+    { "id": "takt", "type": "range", "label": "Takt time", "min": 40, "max": 110, "step": 5, "value": 60, "format": "{v} s", "help": "The beat of the conveyor: one body indexes every takt. A shorter takt means a faster line." },
+    { "id": "robots", "type": "range", "label": "Welding robots", "min": 2, "max": 8, "step": 1, "value": 4, "format": "{v}", "help": "Robots working in parallel in each welding cell. Fewer robots means a longer weld cycle." },
+    { "id": "order", "type": "range", "label": "Batch size", "min": 30, "max": 120, "step": 10, "value": 60, "format": "{v} bodies", "help": "How many bodies this shift must build before the line stops." },
+    { "id": "mix", "type": "toggle", "label": "Mixed models", "value": false, "help": "Two body styles on one line add changeover time at every cell." }
+  ],
+  "gauges": [
+    { "id": "output", "label": "Line output" },
+    { "id": "takt", "label": "Actual takt" },
+    { "id": "weld", "label": "Weld cycle" },
+    { "id": "util", "label": "Robot load" },
+    { "id": "built", "label": "Bodies built" },
+    { "id": "quality", "label": "First-time quality" }
+  ],
+  "actions": [
+    { "id": "reset", "label": "New shift", "primary": true }
+  ],
+  "steps": [
+    {
+      "title": "The beat of the line",
+      "mode": "line",
+      "set": { "takt": 60, "robots": 4, "order": 60, "mix": false },
+      "body": [
+        "Five stations sit along one conveyor: framing, two welding cells, the paint booth and final assembly. A body enters every takt and stops at each station in turn. If a station is still working when the beat arrives, the whole line waits for it.",
+        "The takt is set by demand, not by the machines: 60 cars an hour means one car a minute, so the takt is 60 seconds. The plant is then designed so that no station needs longer than that."
+      ]
+    },
+    {
+      "title": "Framing the body",
+      "mode": "cells",
+      "set": { "takt": 60, "robots": 4 },
+      "body": [
+        "The skeleton arrives as loose pressings: floor pan, side frames, roof rails and bulkheads. A framing station clamps them into a rigid jig and tack-welds the first few joints so the body keeps its shape when the clamps open.",
+        "Everything downstream depends on this fixture. A body that is a millimetre out of square here will fight every robot, door and glass panel for the rest of the line."
+      ]
+    },
+    {
+      "title": "Welding in parallel",
+      "mode": "cells",
+      "set": { "takt": 60, "robots": 2, "mix": false },
+      "body": [
+        "The welding cell has two robots, one on each side. Each robot swings a heavy spot-welding gun between programmed points, clamping two steel sheets and passing a current that melts a small nugget. A body needs about 46 welds at this cell.",
+        "With two robots each weld takes 2.6 seconds, so the cell needs roughly 60 seconds. That exactly fills the 60-second takt. Drop to two robots and the line is no longer limited by the conveyor — it is limited by welders."
+      ]
+    },
+    {
+      "title": "Where the queue forms",
+      "mode": "line",
+      "set": { "takt": 40, "robots": 2 },
+      "body": [
+        "Speed the conveyor to 40 seconds and the two-robot cell cannot keep up. The body sits in the cell while the conveyor waits; the readout names welders as the constraint, and robot load pins at 100%.",
+        "Adding robots is the fix: four robots halve the weld cycle, six give headroom for a missed weld or a tip change. The conveyor is already fast enough; it was never the problem."
+      ]
+    },
+    {
+      "title": "Paint and final",
+      "mode": "line",
+      "set": { "takt": 60, "robots": 6, "order": 60 },
+      "body": [
+        "The paint booth is a clean room on the line. The body is dipped in phosphate and e-coat, baked, then sprayed by robots inside a downflow of filtered air. Every speck of dust is a defect, so the booth runs at a slight positive pressure.",
+        "Final assembly is the least automated station: doors, glass, seats, wheels and fluids are still largely hand work. It is paced by the same takt, which is why the line cannot simply run faster than its slowest manual task."
+      ]
+    },
+    {
+      "title": "Changeover",
+      "mode": "cells",
+      "set": { "takt": 60, "robots": 4, "mix": true, "order": 90 },
+      "body": [
+        "Mixed-model lines build two or more body styles in any order. The robots carry several weld schedules and pick the right one from the body's radio tag, but clamps, grippers and fixture changes still cost time at every cell.",
+        "Turn on Mixed models: the weld cycle grows by seven seconds and first-time quality slips. The line can still run, but the cushion between the takt and the cell disappears."
+      ]
+    },
+    {
+      "title": "Balance, not speed",
+      "mode": "line",
+      "set": { "takt": 45, "robots": 8, "mix": false, "order": 120 },
+      "body": [
+        "Eight robots bring the weld cycle down to 15 seconds, far inside a 45-second takt. Now the conveyor is the constraint again, and the robots spend most of each beat waiting — capacity you paid for but cannot use.",
+        "A balanced line keeps every station just under the takt, with a small buffer for variation. The goal is not the fastest robot cell; it is the highest output the whole chain can sustain."
+      ]
+    }
+  ],
+  "parts": [
+    { "name": "Conveyor", "role": "The indexing line that carries each body from station to station on a skid." },
+    { "name": "Car body", "role": "A body-in-white: pressed steel panels welded into a stiff shell before paint and trim." },
+    { "name": "Welding robot", "role": "A six-axis arm carrying a spot-welding gun; it repeats a taught path thousands of times a shift." },
+    { "name": "Spot weld", "role": "A nugget of molten steel formed where two sheets are clamped and a current passes." },
+    { "name": "Framing station", "role": "The first cell, where loose panels are clamped into a jig and tacked into shape." },
+    { "name": "Paint booth", "role": "A pressurised, filtered enclosure where primer and colour coats are sprayed and baked." },
+    { "name": "Wheel station", "role": "The final cell, where wheels, tyres and torque settings are added." },
+    { "name": "Skid", "role": "The steel pallet that supports the body and locates it repeatably at every station." },
+    { "name": "Safety fence", "role": "A guarded boundary that keeps people out of the robots' reach while the line runs." },
+    { "name": "Control cabinet", "role": "The cell controller that sequences robots, clamps, conveyor and safety interlocks." }
+  ],
+  "facts": [
+    { "label": "Spot welds per car body", "value": "≈ 4,000" },
+    { "label": "Welds in one cell", "value": "40–60" },
+    { "label": "Typical automotive takt", "value": "45–60 s" },
+    { "label": "Robot repeatability", "value": "± 0.05 mm" },
+    { "label": "Paint booth cleanliness", "value": "filtered to a few microns" },
+    { "label": "This line", "value": "5 stations, up to 8 robots" }
+  ],
+  "accuracy": "A lumped takt-and-cycle model, not a discrete-event simulation of a real body shop. Weld counts, robot times and changeover penalties are representative values; actual lines vary with body design, weld schedules, fixture changes and buffer sizes. The animation is slowed so the robots and the indexing conveyor can be followed.",
+  "sources": [
+    "Baudin, Lean Logistics: The Nuts and Bolts of Delivering Materials and Goods (2005)",
+    "Rooks, Robotics: An Introduction (2009)",
+    "Ulrich, The automotive body shop: technology and economics (2010)",
+    "International Federation of Robotics, industrial robot statistics"
+  ]
+}
