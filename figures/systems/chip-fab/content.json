@@ -1,0 +1,336 @@
+{
+  "id": "chip-fab",
+  "title": "Semiconductor Fab",
+  "subtitle": "From a pure silicon wafer to a packaged chip",
+  "category": "technology",
+  "featured": true,
+  "tags": [
+    "chip",
+    "semiconductor",
+    "euv",
+    "lithography",
+    "cleanroom",
+    "wafer",
+    "transistor",
+    "factory",
+    "technology",
+    "nanometre"
+  ],
+  "difficulty": "Advanced",
+  "minutes": 8,
+  "summary": "A 300 mm wafer rides overhead pods and robots through coat, EUV exposure, etch, deposition, dicing and bonding — while defects and overlay error decide how many of its 600 dies are good.",
+  "overview": [
+    "A chip fab is the most precise factory people have ever built. It starts with a monocrystalline silicon ingot sliced into mirror-flat wafers 300 mm across, and turns them into processors through hundreds of repeated steps: grow a layer, coat it with resist, expose a pattern with light, develop it, etch the pattern into the layer, clean, and repeat. Every layer must land on the one below it to within a few nanometres.",
+    "The pattern comes from a lithography scanner. A pulsed laser makes extreme-ultraviolet light at 13.5 nm by hitting tiny tin droplets tens of thousands of times a second; mirrors steer it through a reticle and down onto the wafer. The reticle stage and the wafer stage sweep in opposite directions, exposing one field at a time, then the wafer steps to the next field. A modern scanner exposes more than a hundred wafers an hour.",
+    "The rest of the fab is a conveyor of robots: overhead hoist vehicles carry sealed pods of 25 wafers between tools, vacuum robots pass wafers between chambers, and the back end dices each wafer into hundreds of dies, bonds them into packages and tests them. Defects and overlay error are the economics: a few particles per square centimetre can throw away most of a wafer."
+  ],
+  "modes": [
+    {
+      "id": "cleanroom",
+      "label": "Cleanroom"
+    },
+    {
+      "id": "flow",
+      "label": "Wafer flow"
+    }
+  ],
+  "controls": [
+    {
+      "id": "starts",
+      "type": "range",
+      "label": "Wafer starts",
+      "min": 10,
+      "max": 180,
+      "step": 5,
+      "value": 90,
+      "format": "{v} /h",
+      "help": "How many wafers the fab releases into the line each hour."
+    },
+    {
+      "id": "euv",
+      "type": "range",
+      "label": "EUV source power",
+      "min": 50,
+      "max": 600,
+      "step": 10,
+      "value": 250,
+      "format": "{v} W",
+      "help": "More source power means more wafers exposed per hour; the scanner is often the limit."
+    },
+    {
+      "id": "overlay",
+      "type": "range",
+      "label": "Overlay budget",
+      "min": 0.5,
+      "max": 8,
+      "step": 0.1,
+      "value": 3,
+      "digits": 1,
+      "format": "{v} nm",
+      "help": "How far each layer may be shifted from the one below. Tighter is better and harder."
+    },
+    {
+      "id": "defects",
+      "type": "range",
+      "label": "Defect density",
+      "min": 0.005,
+      "max": 1,
+      "step": 0.005,
+      "value": 0.08,
+      "digits": 3,
+      "format": "{v} /cm²",
+      "help": "Particles and crystal defects per square centimetre. Even tiny numbers kill dies."
+    }
+  ],
+  "gauges": [
+    {
+      "id": "thru",
+      "label": "Throughput"
+    },
+    {
+      "id": "yield",
+      "label": "Die yield"
+    },
+    {
+      "id": "good",
+      "label": "Good dies"
+    },
+    {
+      "id": "overlay",
+      "label": "Overlay"
+    },
+    {
+      "id": "defect",
+      "label": "Defects"
+    },
+    {
+      "id": "wafers",
+      "label": "Wafers done"
+    },
+    {
+      "id": "bottleneck",
+      "label": "Limit"
+    }
+  ],
+  "actions": [
+    {
+      "id": "reset",
+      "label": "New lot",
+      "primary": true
+    }
+  ],
+  "steps": [
+    {
+      "title": "Sand to wafer",
+      "set": {
+        "starts": 90,
+        "euv": 250,
+        "overlay": 3,
+        "defects": 0.08
+      },
+      "body": [
+        "Silicon is refined from sand, melted and pulled into a single crystal ingot almost two metres long. The ingot is ground to exactly 300 mm, sliced into wafers thinner than a credit card, then lapped and polished until the surface is flat to within a few atoms.",
+        "A wafer is not a chip yet: it is a blank canvas. Every pattern that follows is printed on it by light, one layer at a time, and each layer must sit exactly on the one beneath. This pod holds 25 wafers; the overhead hoist fleet moves thousands of them a day."
+      ]
+    },
+    {
+      "title": "Coat and expose",
+      "set": {
+        "starts": 90,
+        "euv": 250,
+        "overlay": 3
+      },
+      "body": [
+        "In the coat track a robot drops a wafer onto a chuck spinning at thousands of rpm and spreads a drop of photoresist across it as a film a few tens of nanometres thick. The wafer bakes, then moves into the scanner.",
+        "Inside, the wafer stage sweeps under the lens while the reticle stage sweeps the opposite way, exposing one field of usually 26 × 33 mm at a time. Six fields across the wafer, dozens of passes: the stage moves faster than a sprint and settles again in milliseconds. Watch the wafer disc step and scan, and the reticle counter-slide above it."
+      ]
+    },
+    {
+      "title": "The EUV source",
+      "set": {
+        "euv": 450,
+        "starts": 120
+      },
+      "body": [
+        "Extreme ultraviolet light at 13.5 nm is absorbed by air, by glass and by almost every material, so it is made and steered in vacuum. A jet of tiny tin droplets is hit by a high-power CO₂ laser 50,000 times a second; each droplet becomes a plasma that flashes EUV light.",
+        "The light reflects off a series of atomically smooth mirrors, is shaped by the reticle, and is focused onto the resist. Only a small fraction of the laser energy reaches the wafer, which is why an EUV source is measured in hundreds of watts and why the scanner, not the people, sets the fab's pace. Raise the source power and watch the throughput gauge respond."
+      ]
+    },
+    {
+      "title": "Etch and deposit",
+      "set": {
+        "starts": 90,
+        "euv": 250
+      },
+      "body": [
+        "After exposure the wafer is developed like a photograph: the exposed resist dissolves away, leaving a stencil. The wafer then passes into a cluster tool, where a vacuum robot hands it from chamber to chamber without ever touching air.",
+        "Deposition grows a film a few atoms thick — silicon dioxide, silicon nitride or a metal. Etch removes it where the stencil is open, using a plasma of ions that are accelerated straight down, so a pattern can be carved with almost vertical walls. Each chamber glows as its plasma strikes; the robot arm pivots in the middle, keeping track of every wafer."
+      ]
+    },
+    {
+      "title": "Copper interconnect",
+      "set": {
+        "starts": 90,
+        "euv": 250
+      },
+      "body": [
+        "The transistors are built in the first layers; the rest of the stack is wiring. Trenches are etched into an insulating film, filled with a barrier and then copper by electroplating, and polished flat again by chemical-mechanical polishing.",
+        "A modern processor can have 15 or more copper levels, from wide power rails at the top to wires under 20 nm wide at the bottom. Every layer adds two or three lithography passes. That is why a wafer may visit the scanner more than 80 times and why a fab is measured in wafer starts per month."
+      ]
+    },
+    {
+      "title": "Yield is a yield",
+      "set": {
+        "defects": 0.35,
+        "overlay": 5
+      },
+      "body": [
+        "Not every die works. A particle of dust that lands at the wrong moment can short two wires; a layer printed a few nanometres off centre can miss its contact. Yield is the fraction of dies on a wafer that pass, and it decides whether a fab makes money.",
+        "The wafer map on the right is the test result for this recipe: green dies pass, red dies fail. Raise the defect density and watch whole regions turn red — a defect density of just 0.35 per square centimetre can cost half the wafer. Tighten the overlay budget back toward 2–3 nm and most of it comes back."
+      ]
+    },
+    {
+      "title": "Dicing and bonding",
+      "set": {
+        "starts": 90,
+        "defects": 0.08,
+        "overlay": 3
+      },
+      "body": [
+        "At the back end the wafer is thinned, mounted on tape and cut apart by a diamond blade spinning at tens of thousands of rpm, or by a laser that cuts from the inside. Each die is then picked up and placed on a package substrate.",
+        "A wire bonder drops a loop of gold or copper wire from the die to the package — a few microns wide, drawn in milliseconds — or the die is flipped and soldered directly. The package is moulded, marked and tested: speed, power and cache decide whether a die becomes a flagship or a cheaper part in the same family."
+      ]
+    },
+    {
+      "title": "Find the bottleneck",
+      "set": {
+        "starts": 170,
+        "euv": 200,
+        "defects": 0.08
+      },
+      "body": [
+        "The fab is a chain of limits. The scanner can expose about 0.52 wafers an hour for every watt of EUV source power; the back end here tops out at 110 wafers an hour. Release more wafers than either can take and work-in-progress piles up between the tools.",
+        "At 170 starts and 200 W the scanner is the limit: about 104 wafers an hour. Raise the source power to 450 W and the back end becomes the limit instead. Real fabs balance dozens of such constraints — and add more scanners, more chambers or more testers where the queue is longest."
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "Cleanroom",
+      "role": "The whole hall is filtered to remove almost every particle; the yellow light protects the photoresist from exposure."
+    },
+    {
+      "name": "Overhead hoist fleet",
+      "role": "Battery-free hoist vehicles carry sealed 25-wafer pods between stockers and tools along ceiling rails."
+    },
+    {
+      "name": "FOUP pod",
+      "role": "A front-opening unified pod: a sealed, nitrogen-filled box that keeps 25 wafers clean between machines."
+    },
+    {
+      "name": "Stocker",
+      "role": "A robotic cabinet that stores pods and hands them to the hoist fleet."
+    },
+    {
+      "name": "Coat track",
+      "role": "Spins photoresist onto each wafer, bakes it and passes it into the scanner."
+    },
+    {
+      "name": "Spin coater",
+      "role": "A vacuum chuck that spreads resist into a film a few tens of nanometres thick."
+    },
+    {
+      "name": "EUV scanner",
+      "role": "The pattern printer: mirrors, a moving reticle and a scanning wafer stage expose one field at a time."
+    },
+    {
+      "name": "EUV source",
+      "role": "A laser hits tin droplets 50,000 times a second to make 13.5 nm light."
+    },
+    {
+      "name": "Reticle stage",
+      "role": "Sweeps the patterned mask in the opposite direction to the wafer, four times faster."
+    },
+    {
+      "name": "Wafer stage",
+      "role": "A maglev stage that scans and steps the wafer under the lens with nanometre precision."
+    },
+    {
+      "name": "Projection lens",
+      "role": "A stack of curved mirrors that shrinks the mask pattern four times onto the resist."
+    },
+    {
+      "name": "Etch cluster",
+      "role": "Vacuum chambers around a central robot that deposit and etch films layer by layer."
+    },
+    {
+      "name": "Transfer robot",
+      "role": "A vacuum robot arm that moves wafers between chambers in seconds."
+    },
+    {
+      "name": "Plasma chamber",
+      "role": "Ionised gas etches or deposits a film; the glow shows the plasma is lit."
+    },
+    {
+      "name": "Metrology",
+      "role": "Measures film thickness, overlay and critical dimension after each critical step."
+    },
+    {
+      "name": "Dicing saw",
+      "role": "A diamond blade spinning at tens of thousands of rpm cuts the wafer into individual dies."
+    },
+    {
+      "name": "Wire bonder",
+      "role": "Draws micron-wide gold or copper loops from each die pad to its package."
+    },
+    {
+      "name": "Die attach",
+      "role": "Picks a known-good die and places it on the package substrate."
+    },
+    {
+      "name": "Test handler",
+      "role": "Contacts each package and sorts it by speed, power and working cores."
+    },
+    {
+      "name": "Package conveyor",
+      "role": "Carries finished chips to packing and shipping."
+    }
+  ],
+  "facts": [
+    {
+      "label": "Wafer diameter",
+      "value": "300 mm (since 2001)"
+    },
+    {
+      "label": "EUV wavelength",
+      "value": "13.5 nm"
+    },
+    {
+      "label": "Tin droplet rate",
+      "value": "≈ 50,000 per second"
+    },
+    {
+      "label": "Scanner fields",
+      "value": "26 × 33 mm, stepped across the wafer"
+    },
+    {
+      "label": "Overlay budget",
+      "value": "a few nanometres between layers"
+    },
+    {
+      "label": "This wafer",
+      "value": "600 dies of 10 × 10 mm"
+    },
+    {
+      "label": "Layers in a logic chip",
+      "value": "60–100+ lithography passes"
+    }
+  ],
+  "accuracy": "Throughput uses a scanner limit proportional to EUV source power plus a fixed back-end limit, and yield uses Murphy's model with an illustrative 1.2 cm² critical area plus an overlay penalty. Real fabs have hundreds of tools, re-entrant flows, queueing and binning; the scene shows one of each stage and eight hoist vehicles, not the thousands of moves per hour of a real fab.",
+  "sources": [
+    "Iris Sou, Ed., Semiconductor Manufacturing Handbook, 2nd ed. (2018)",
+    "ASML public technology pages on EUV lithography and the NXE scanner",
+    "Campbell, Fabrication Engineering at the Micro- and Nanoscale, 4th ed. (2012)",
+    "Murphy, Cost-size optima of monolithic integrated circuits, Proc. IEEE (1964)"
+  ]
+}

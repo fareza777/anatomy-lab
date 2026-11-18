@@ -1,0 +1,331 @@
+{
+  "id": "particle-accelerator",
+  "title": "Particle Accelerator",
+  "subtitle": "LHC: 27 km of superconductors and two beams that meet",
+  "category": "physics",
+  "featured": true,
+  "tags": [
+    "particle",
+    "accelerator",
+    "LHC",
+    "CERN",
+    "physics",
+    "superconductor",
+    "magnet",
+    "collision",
+    "detector",
+    "Higgs"
+  ],
+  "difficulty": "Advanced",
+  "minutes": 8,
+  "summary": "Two proton beams race in opposite directions through a ring of superconducting magnets, are focused to a hair's width and collide inside a detector — and every collision is a small Big Bang recorded track by track.",
+  "overview": [
+    "The Large Hadron Collider at CERN is a ring 27 kilometres long, buried 100 metres under the French–Swiss border. It does not smash protons into a wall: it accelerates two beams of protons in opposite directions, steers them around the ring with 1,232 superconducting dipole magnets, squeezes them with quadrupoles, and brings them together at four points where the beams are only a few micrometres wide.",
+    "A proton in the LHC makes about 11,000 laps a second. Radio-frequency cavities kick it with a few million volts every lap, and over about 20 minutes it climbs from 450 GeV to 6.8 TeV — seven thousand times its rest mass. The dipoles must produce 8.3 tesla to bend it, which is why they are cooled to 1.9 kelvin, colder than outer space, and carry 11,000 amps through a superconductor.",
+    "Collisions are rare and violent. Every time two proton bunches cross, a handful of protons actually hit; the detector sees a spray of new particles and reconstructs their paths. The Higgs boson was found this way in 2012, and the same machine is now looking for particles that could explain dark matter."
+  ],
+  "modes": [
+    {
+      "id": "ring",
+      "label": "Ring"
+    },
+    {
+      "id": "collision",
+      "label": "Collision"
+    }
+  ],
+  "controls": [
+    {
+      "id": "energy",
+      "type": "range",
+      "label": "Beam energy",
+      "min": 1,
+      "max": 7,
+      "step": 0.1,
+      "value": 6.8,
+      "digits": 1,
+      "format": "{v} TeV",
+      "help": "Energy per beam. The dipoles must bend harder as it rises; above 7 TeV they risk a quench."
+    },
+    {
+      "id": "bunches",
+      "type": "range",
+      "label": "Bunches per beam",
+      "min": 600,
+      "max": 2800,
+      "step": 100,
+      "value": 2800,
+      "format": "{v}",
+      "help": "Bunches are buckets of about 100 billion protons. More bunches means more collisions."
+    },
+    {
+      "id": "beta",
+      "type": "range",
+      "label": "Focus at the crossing",
+      "min": 0.1,
+      "max": 1.2,
+      "step": 0.05,
+      "value": 0.55,
+      "digits": 2,
+      "format": "β* {v} m",
+      "help": "The beam size at the collision point. Tighter focus means more luminosity."
+    }
+  ],
+  "gauges": [
+    {
+      "id": "energy",
+      "label": "Beam energy"
+    },
+    {
+      "id": "field",
+      "label": "Dipole field"
+    },
+    {
+      "id": "lumi",
+      "label": "Luminosity"
+    },
+    {
+      "id": "collisions",
+      "label": "Collisions"
+    },
+    {
+      "id": "stored",
+      "label": "Stored energy"
+    },
+    {
+      "id": "cryo",
+      "label": "Magnet temp"
+    },
+    {
+      "id": "bunches",
+      "label": "Bunches"
+    }
+  ],
+  "actions": [
+    {
+      "id": "inject",
+      "label": "Inject & ramp",
+      "primary": true
+    },
+    {
+      "id": "reset",
+      "label": "Reset"
+    }
+  ],
+  "steps": [
+    {
+      "title": "A ring, not a line",
+      "set": {
+        "energy": 6.8,
+        "bunches": 2800,
+        "beta": 0.55
+      },
+      "body": [
+        "A linear accelerator can only give a particle one pass through its cavities. A ring gives it millions. The LHC is a circle 27 km around, built in a tunnel that once held an earlier collider, and it keeps two beams in separate vacuum pipes that cross at four experimental halls.",
+        "Watch the two colours: protons run clockwise in one pipe and anticlockwise in the other. They only meet inside the detectors, where the beams are steered into a single pipe and focused down to a few micrometres."
+      ]
+    },
+    {
+      "title": "The injector chain",
+      "set": {
+        "energy": 1,
+        "bunches": 600,
+        "beta": 1.2
+      },
+      "body": [
+        "Protons start in a bottle of hydrogen. A duoplasmatron ionises the gas, a linear accelerator pushes the protons to 50 MeV, a booster synchrotron takes them to 1.4 GeV and the Proton Synchrotron to 26 GeV. The Super Proton Synchrotron finishes the job at 450 GeV and hands them to the LHC.",
+        "The injector chain is itself a stack of five accelerators, each one feeding the next. At 450 GeV the LHC magnets are already cold and powered to a low field; the beams are injected, captured by the RF system and held there."
+      ]
+    },
+    {
+      "title": "Acceleration with RF",
+      "set": {
+        "energy": 6.8,
+        "bunches": 2800,
+        "beta": 0.55
+      },
+      "body": [
+        "Eight superconducting radio-frequency cavities per beam, running at 400 MHz, give each proton a kick every lap. The cavities do not push continuously: the fields oscillate in step with the bunches, so a bunch arrives exactly on the rising crest of the wave.",
+        "The energy grows a few MeV per turn, and the magnetic field must grow with it. Watch the dipole gauge climb as the beams ramp from 450 GeV to 6.8 TeV; the whole ramp takes about 20 minutes in the real machine."
+      ]
+    },
+    {
+      "title": "Bending with dipoles",
+      "set": {
+        "energy": 6.8,
+        "bunches": 2800
+      },
+      "body": [
+        "A charged particle in a magnetic field is pushed sideways. To bend a 7 TeV proton around a 2.8 km radius you need 8.33 tesla — far beyond iron magnets, which saturate near 2 T. The LHC uses niobium–titanium superconducting coils cooled with superfluid helium.",
+        "The field points vertically, so the force is horizontal and the beam curves in the ring. Switch off a dipole and the beam does not turn: it hits the wall. That is what the beam-dump system exists to prevent."
+      ]
+    },
+    {
+      "title": "Focusing with quadrupoles",
+      "set": {
+        "energy": 6.8,
+        "beta": 0.15,
+        "bunches": 2800
+      },
+      "body": [
+        "Dipoles bend the beam; quadrupoles squeeze it. A quadrupole is a magnetic lens: it focuses in one plane and defocuses in the other, so the ring uses alternating focusing and defocusing magnets to keep the beam narrow all the way round.",
+        "At the collision points the final quadrupoles squeeze the beam to about 10 micrometres across — thinner than a human hair. Tighter focus means a higher collision rate: this is the beta* control. Lower it and the luminosity gauge climbs."
+      ]
+    },
+    {
+      "title": "Colder than space",
+      "set": {
+        "energy": 6.8,
+        "bunches": 2800,
+        "beta": 0.55
+      },
+      "body": [
+        "Superconducting coils only work below about 9 K. The LHC cools its magnets with superfluid helium at 1.9 K, produced by a chain of cryogenic plants that would fill a small town. Each sector holds tonnes of helium and thousands of magnets.",
+        "If a coil warms above its critical temperature, it quenches: the superconductor becomes a resistor, the stored energy turns into heat and the magnet must be ramped down. Protecting the machine from its own 350 MJ beams is one of the hardest engineering problems in the project."
+      ]
+    },
+    {
+      "title": "Collision and luminosity",
+      "set": {
+        "energy": 6.8,
+        "bunches": 2800,
+        "beta": 0.4
+      },
+      "body": [
+        "At each crossing, two bunches pass through each other. Each bunch holds about 100 billion protons, but only a few dozen actually collide; the rest fly on. The collision rate is measured by luminosity — collisions per square centimetre per second — and the LHC reaches about 10³⁴.",
+        "Each collision produces a spray of particles. The beam conditions are so demanding that the beams are dumped after a few hours, when the luminosity has fallen, and a new fill is injected."
+      ]
+    },
+    {
+      "title": "Detecting the invisible",
+      "set": {
+        "energy": 6.8,
+        "beta": 0.25,
+        "bunches": 2800
+      },
+      "body": [
+        "The detectors are cameras for particles. A tracking detector records the curved path of every charged particle in a magnetic field; calorimeters measure its energy; muon chambers catch the particles that pass through everything else.",
+        "The event display on the right draws those tracks. Most are ordinary debris, but every so often the tracks show a particle that lived for a tiny fraction of a second — a Higgs, a W, a Z — and the whole experiment is built to catch that pattern. Switch to Collision mode and watch the detector open up."
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "Accelerator tunnel",
+      "role": "A 27 km circular tunnel 100 m underground; the beam pipes and magnets fill most of it."
+    },
+    {
+      "name": "Beam pipe",
+      "role": "An ultra-high-vacuum pipe; the protons travel through it in two separate pipes."
+    },
+    {
+      "name": "Proton beam",
+      "role": "Bunches of about 100 billion protons, travelling at 99.999999 % of the speed of light."
+    },
+    {
+      "name": "Superconducting dipole",
+      "role": "A blue bending magnet that steers the beam around the ring with fields up to 8.3 T."
+    },
+    {
+      "name": "Quadrupole magnet",
+      "role": "An orange focusing magnet; alternating lenses keep the beam narrow around the ring."
+    },
+    {
+      "name": "RF cavity",
+      "role": "A copper cavity whose oscillating field accelerates each bunch every lap."
+    },
+    {
+      "name": "Cryogenic plant",
+      "role": "Helium refrigerators that keep the magnets at 1.9 K, colder than outer space."
+    },
+    {
+      "name": "Helium line",
+      "role": "A cryogenic transfer line carrying superfluid helium to the magnet sectors."
+    },
+    {
+      "name": "Linac",
+      "role": "The first stage: a linear accelerator that lifts protons from rest to 50 MeV."
+    },
+    {
+      "name": "Booster",
+      "role": "A small synchrotron that takes the protons from 50 MeV to 1.4 GeV."
+    },
+    {
+      "name": "Beam transfer line",
+      "role": "A vacuum pipe that carries the injected beam from the SPS into the LHC ring."
+    },
+    {
+      "name": "Beam dump",
+      "role": "A graphite absorber that swallows the beam safely when the fill ends or a magnet quenches."
+    },
+    {
+      "name": "Detector",
+      "role": "A barrel of layers around the collision point, each layer measuring a different particle."
+    },
+    {
+      "name": "Tracking detector",
+      "role": "The innermost layer: silicon pixels and strips that record the curved paths of charged particles."
+    },
+    {
+      "name": "Calorimeter",
+      "role": "Dense layers that stop particles and measure their energy, layer by layer."
+    },
+    {
+      "name": "Solenoid",
+      "role": "A superconducting coil that fills the detector with a strong magnetic field and bends the tracks."
+    },
+    {
+      "name": "Muon chamber",
+      "role": "The outermost layer; only muons reach it, which is how they are identified."
+    },
+    {
+      "name": "Collision point",
+      "role": "Where the two beams are squeezed together and a few protons meet."
+    },
+    {
+      "name": "Control room",
+      "role": "The operations centre where the beams, magnets and cryogenics are monitored."
+    }
+  ],
+  "facts": [
+    {
+      "label": "Ring circumference",
+      "value": "26.7 km"
+    },
+    {
+      "label": "Beam energy",
+      "value": "6.8 TeV per beam (design 7)"
+    },
+    {
+      "label": "Dipole field",
+      "value": "8.33 T at 7 TeV"
+    },
+    {
+      "label": "Magnet temperature",
+      "value": "1.9 K"
+    },
+    {
+      "label": "Bunches per beam",
+      "value": "up to 2,808, 25 ns apart"
+    },
+    {
+      "label": "Revolution frequency",
+      "value": "11,245 Hz"
+    },
+    {
+      "label": "Stored energy",
+      "value": "≈ 350 MJ per beam"
+    },
+    {
+      "label": "Luminosity",
+      "value": "≈ 10³⁴ cm⁻² s⁻¹"
+    }
+  ],
+  "accuracy": "The field follows the rigid-body relation B = E/(0.3 R) with a 2.8 km bending radius; luminosity is a simplified scaling with bunch number and β*, and the stored energy is scaled from the real 6.8 TeV fill. The ring is drawn with 20 magnet and cavity stations instead of more than 1,600 magnets, and the beams are slowed by about 20× so they can be followed. The detector is a schematic slice, not a specific experiment.",
+  "sources": [
+    "CERN, LHC Design Report, Vol. I (2004) and public LHC fact sheets",
+    "Evans & Bryant, LHC Machine, JINST 3 S08001 (2008)",
+    "Wiedemann, Particle Accelerator Physics, 4th ed. (2015)",
+    "ATLAS and CMS public detector descriptions"
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "id": "parcel-hub",
+  "title": "Parcel Mega-Hub",
+  "subtitle": "Your online order's six-minute journey through a sorting centre",
+  "category": "everyday",
+  "featured": true,
+  "tags": [
+    "parcel",
+    "logistics",
+    "warehouse",
+    "sorter",
+    "conveyor",
+    "robot",
+    "AMR",
+    "delivery",
+    "e-commerce",
+    "everyday"
+  ],
+  "difficulty": "Advanced",
+  "minutes": 7,
+  "summary": "Trucks unload at one end, cross-belt carriages tip parcels down chutes, robots carry shelves to pack stations and outbound trucks load at the other — the hub is a queueing machine with a bottleneck that moves.",
+  "overview": [
+    "A parcel mega-hub is the place where thousands of individually addressed boxes become a sorted stream. Trailers back onto the inbound doors, telescopic conveyors reach inside, and every parcel is scanned, weighed and singulated — spaced exactly one carriage apart — before it is allowed onto the sorter.",
+    "The heart is the cross-belt sorter: an endless loop of carriages, each carrying a short belt that can tip left or right. The control system knows the destination of every parcel and, at the exact moment a carriage passes the right chute, the belt fires and the parcel slides down into a bag, cage or roll container. A big sorter can do 40,000 parcels an hour at 2.5 m/s, and every chute must keep up.",
+    "Around the sorter, a second swarm does the picking: low AMR robots drive under shelving pods, lift them and carry them to pack stations, so a picker never walks an aisle. At peak — the weeks before a holiday — the inflow can double while the sorter's speed cannot, and the backlog becomes the number that everyone watches."
+  ],
+  "modes": [
+    {
+      "id": "hub",
+      "label": "Hub"
+    },
+    {
+      "id": "flow",
+      "label": "Parcel flow"
+    }
+  ],
+  "controls": [
+    {
+      "id": "pph",
+      "type": "range",
+      "label": "Parcels arriving",
+      "min": 10000,
+      "max": 120000,
+      "step": 2500,
+      "value": 45000,
+      "format": "{v} /h",
+      "help": "The inbound stream. Every stage downstream must keep up with it."
+    },
+    {
+      "id": "speed",
+      "type": "range",
+      "label": "Sorter speed",
+      "min": 1.2,
+      "max": 2.8,
+      "step": 0.1,
+      "value": 2.2,
+      "digits": 1,
+      "format": "{v} m/s",
+      "help": "Faster moves more parcels, but the tilt window shrinks and jams get likelier."
+    },
+    {
+      "id": "amrs",
+      "type": "range",
+      "label": "AMR fleet",
+      "min": 8,
+      "max": 40,
+      "step": 2,
+      "value": 24,
+      "format": "{v} robots",
+      "help": "Robots feed induction and picking. Too few and the sorter starves."
+    }
+  ],
+  "gauges": [
+    {
+      "id": "thru",
+      "label": "Throughput"
+    },
+    {
+      "id": "util",
+      "label": "Sorter load"
+    },
+    {
+      "id": "jam",
+      "label": "Jam risk"
+    },
+    {
+      "id": "robots",
+      "label": "AMRs active"
+    },
+    {
+      "id": "sorted",
+      "label": "Parcels sorted"
+    },
+    {
+      "id": "backlog",
+      "label": "Backlog"
+    },
+    {
+      "id": "bottleneck",
+      "label": "Limit"
+    }
+  ],
+  "actions": [
+    {
+      "id": "peak",
+      "label": "Peak burst",
+      "primary": true
+    },
+    {
+      "id": "reset",
+      "label": "New shift"
+    }
+  ],
+  "steps": [
+    {
+      "title": "The six-minute promise",
+      "set": {
+        "pph": 45000,
+        "speed": 2.2,
+        "amrs": 24
+      },
+      "body": [
+        "Inside a hub a parcel is never still for long. It is unloaded, scanned, spaced, sorted, bagged and loaded again in minutes — and every one of those moves is planned so that the sorter never has an empty slot and never gets two parcels at once.",
+        "The machine you see here is a queueing system: each stage has a maximum rate, and the slowest stage sets the tempo. Change the controls and watch the bottleneck move from the induct to the sorter, the chutes or the robots."
+      ]
+    },
+    {
+      "title": "Unloading the trailer",
+      "set": {
+        "pph": 45000,
+        "amrs": 24
+      },
+      "body": [
+        "Trailers are packed floor to ceiling. A telescopic conveyor reaches deep into the trailer and two loaders place parcels on it as fast as they can read the labels; a scanner above the belt reads every barcode and a camera records the six faces of the box.",
+        "The first rule of a hub is singulation: parcels must arrive on the main belt one at a time, with a gap between them. Two parcels touching at the induct become one parcel for the sorter, and one of them is going to the wrong place."
+      ]
+    },
+    {
+      "title": "Induct and scan",
+      "set": {
+        "pph": 60000,
+        "amrs": 24,
+        "speed": 2.2
+      },
+      "body": [
+        "At the induct station an operator — or a robot arm — places each parcel on the belt at a fixed pitch. The scanner reads the address, looks up the destination chute, and the hub's control system reserves a carriage on the sorter for that parcel.",
+        "Push the arrival rate to 60,000 parcels an hour and watch the induction stage become the limit: the fleet cannot feed the belt any faster, so the sorter runs below capacity even though it could take more."
+      ]
+    },
+    {
+      "title": "The cross-belt sorter",
+      "set": {
+        "pph": 50000,
+        "speed": 2.6,
+        "amrs": 28
+      },
+      "body": [
+        "Each carriage carries a short belt across its top. When the carriage reaches the chute for its parcel, the belt motors run for a fraction of a second and throw the parcel sideways into the chute. The timing must be exact: too early and it misses the chute, too late and it hits the divider.",
+        "Higher speed means more parcels per hour — up to a point. The tilt window shrinks with speed, parcels slide differently, and a jam at one chute stops the whole loop. That is what the jam-risk gauge is telling you."
+      ]
+    },
+    {
+      "title": "Chutes, bags and cages",
+      "set": {
+        "pph": 45000,
+        "speed": 2.2,
+        "amrs": 24
+      },
+      "body": [
+        "A chute is a slide with a destination. Parcels tumble down it into a bag, a cage or a roll container that is going to one city, one depot or one delivery route. When a bag is full, a light turns on and someone swaps it — or an automatic shuttle takes it away.",
+        "If a chute or its bag fills faster than it can be emptied, parcels back up and the sorter cannot discharge them; that chute becomes a bottleneck even though every carriage is still moving."
+      ]
+    },
+    {
+      "title": "Robots and shelves",
+      "set": {
+        "pph": 55000,
+        "amrs": 10,
+        "speed": 2.2
+      },
+      "body": [
+        "The picking area is run by a fleet of low, orange AMRs. Each robot drives under a shelving pod, lifts it a few centimetres and carries it to a pack station; the picker takes the item and the robot returns the pod to its place.",
+        "With only ten robots the fleet cannot keep up with 55,000 parcels an hour, and the limit moves to induction. Add robots and the stream recovers; add too many and they queue for the same aisles. Real hubs tune the fleet against the day's order profile."
+      ]
+    },
+    {
+      "title": "Packing and outbound",
+      "set": {
+        "pph": 70000,
+        "amrs": 40,
+        "speed": 2.8
+      },
+      "body": [
+        "At the pack bench a box is chosen, filled, taped, weighed and labelled. The label is the parcel's passport: it carries the destination, the service level and the route. A conveyor takes the sealed boxes to the outbound doors, where they are stacked into cages and rolled into trailers.",
+        "The outbound dock is the last queue. A trailer holds about 3,000 parcels, and a hub that can sort 40,000 an hour needs a trailer every few minutes — which is why the yard, not the building, often sets the pace at peak."
+      ]
+    },
+    {
+      "title": "Peak day",
+      "set": {
+        "pph": 95000,
+        "amrs": 20,
+        "speed": 2.2
+      },
+      "body": [
+        "Press Peak burst. Arrivals jump by 70 %, but the sorter's speed and the fleet cannot jump with them: parcels queue on the induct belt, the backlog gauge climbs, and the only ways out are more hours, more chutes, more robots — or slowing the promise.",
+        "A hub is designed for average volume plus a safety margin. Peak day is the test of that margin: the sorter runs flat out, every chute is full, and the whole building becomes one long line of parcels waiting for their six minutes."
+      ]
+    }
+  ],
+  "parts": [
+    {
+      "name": "Inbound trailer",
+      "role": "A floor-loaded semi-trailer backed onto the dock; loaders empty it through the rear doors."
+    },
+    {
+      "name": "Dock door",
+      "role": "A sealed opening with a leveller and a shelter that keeps weather out of the hub."
+    },
+    {
+      "name": "Telescopic conveyor",
+      "role": "A belt that extends deep into the trailer so loaders do not have to carry every parcel."
+    },
+    {
+      "name": "Inbound belt",
+      "role": "Carries parcels from the trailer to the induct, where they are spaced one by one."
+    },
+    {
+      "name": "Parcel",
+      "role": "A cardboard box with a barcode; its destination decides which chute it will take."
+    },
+    {
+      "name": "Induct scanner",
+      "role": "Reads the barcode and measures the parcel; the control system assigns it a carriage."
+    },
+    {
+      "name": "Parcel lift",
+      "role": "Lifts parcels from the unloading floor to the sorter deck."
+    },
+    {
+      "name": "Sorter deck",
+      "role": "A steel mezzanine that carries the sorter loop above the ground-floor robots."
+    },
+    {
+      "name": "Cross-belt sorter",
+      "role": "An endless loop of carriages; each short belt tips a parcel into one chute."
+    },
+    {
+      "name": "Sorter carriage",
+      "role": "One link of the loop, with a belt, a motor and a controller that knows its parcel."
+    },
+    {
+      "name": "Chute",
+      "role": "A slide from the sorter to a bag, cage or container for one destination."
+    },
+    {
+      "name": "Bag cage",
+      "role": "A wheeled frame that collects the parcels for one route or depot."
+    },
+    {
+      "name": "Sorter drive",
+      "role": "Linear motors and wheels that keep the loop moving at a constant speed."
+    },
+    {
+      "name": "AMR robot",
+      "role": "An autonomous mobile robot that lifts a shelf pod and carries it to a pack station."
+    },
+    {
+      "name": "Shelf pod",
+      "role": "A mobile shelving unit full of products; the robot lifts it off the floor."
+    },
+    {
+      "name": "Storage rack",
+      "role": "Fixed shelving for slower-moving stock and bulk items."
+    },
+    {
+      "name": "Pack station",
+      "role": "A bench where an order is boxed, taped, weighed and labelled."
+    },
+    {
+      "name": "Taping arm",
+      "role": "A machine that folds and seals the box with tape."
+    },
+    {
+      "name": "Outbound conveyor",
+      "role": "Carries sealed boxes from packing to the outbound dock."
+    },
+    {
+      "name": "Outbound trailer",
+      "role": "A trailer being loaded with cages of sorted parcels."
+    },
+    {
+      "name": "Tug and carts",
+      "role": "A small tractor that pulls cages between the hub and the yard."
+    }
+  ],
+  "facts": [
+    {
+      "label": "Large cross-belt sorters",
+      "value": "up to 40,000 parcels an hour"
+    },
+    {
+      "label": "Typical sorter speed",
+      "value": "2–2.5 m/s"
+    },
+    {
+      "label": "Tilt pulse",
+      "value": "a few hundred milliseconds"
+    },
+    {
+      "label": "This loop",
+      "value": "40 carriages, 7 chutes"
+    },
+    {
+      "label": "AMR lifting capacity",
+      "value": "1,000+ kg per robot"
+    },
+    {
+      "label": "A trailer holds",
+      "value": "≈ 3,000 parcels"
+    },
+    {
+      "label": "Distance a parcel travels",
+      "value": "a few hundred metres inside the hub"
+    }
+  ],
+  "accuracy": "Stage capacities are simple linear approximations: induction grows with the AMR fleet, the sorter with belt speed, and the chutes and outbound dock are fixed limits. The animation shows 40 carriages and 7 chutes slowed by roughly 20×; a real hub can run hundreds of chutes, several sorters and thousands of robots, with queueing, blocking and failures that this model does not capture.",
+  "sources": [
+    "Bartholdi & Hackman, Warehouse & Distribution Science, 0.97 ed. (2019)",
+    "Vanderlande and Honeywell Intelligrated public descriptions of cross-belt sorters",
+    "Amazon Robotics (Kiva) public material on goods-to-person AMRs",
+    "Gu, Goetschalckx & McGinnis, Research on warehouse operation: a comprehensive review, EJOR (2007)"
+  ]
+}
